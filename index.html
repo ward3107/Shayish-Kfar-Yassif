@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>שיש כפר יאסיף - Shayish Kfar Yassif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600;700&family=Heebo:wght@100;300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: ['class', '[data-theme="dark"]'],
+        theme: {
+          extend: {
+            colors: {
+              primary: 'var(--color-primary)', 
+              secondary: 'var(--color-secondary)', 
+              accent: 'var(--color-accent)', 
+              light: 'var(--color-text-main)', 
+              surface: 'var(--color-surface)',
+              muted: 'var(--color-text-muted)',
+            },
+            fontFamily: {
+              sans: ['Heebo', 'Assistant', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+              arabic: ['Tajawal', 'sans-serif'],
+            },
+            letterSpacing: {
+              widest: '0.25em',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      :root {
+        /* Default (Light) Theme Variables */
+        --color-primary: #ffffff;
+        --color-secondary: #f4f4f5;
+        --color-surface: #e4e4e7;
+        --color-accent: #b08d4b;
+        --color-text-main: #18181b; /* Zinc 900 */
+        --color-text-muted: #52525b; /* Zinc 600 */
+      }
+
+      [data-theme="dark"] {
+        /* Dark Theme Variables */
+        --color-primary: #050505;
+        --color-secondary: #121212;
+        --color-surface: #1a1a1a;
+        --color-accent: #C5A059;
+        --color-text-main: #e5e5e5;
+        --color-text-muted: #9ca3af; /* Gray 400 */
+      }
+
+      body {
+        font-family: 'Heebo', sans-serif;
+        background-color: var(--color-primary);
+        color: var(--color-text-main);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      /* Apply Arabic font when lang is ar */
+      body[dir="rtl"] {
+        font-family: 'Heebo', 'Tajawal', sans-serif;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+      ::selection {
+        background: var(--color-accent);
+        color: #000;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
