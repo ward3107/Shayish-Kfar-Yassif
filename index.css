@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Default (Light) Theme Variables */
+  --color-primary: #ffffff;
+  --color-secondary: #f4f4f5;
+  --color-surface: #e4e4e7;
+  --color-accent: #b08d4b;
+  --color-text-main: #18181b; /* Zinc 900 */
+  --color-text-muted: #52525b; /* Zinc 600 */
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Variables */
+  --color-primary: #050505;
+  --color-secondary: #121212;
+  --color-surface: #1a1a1a;
+  --color-accent: #C5A059;
+  --color-text-main: #e5e5e5;
+  --color-text-muted: #9ca3af; /* Gray 400 */
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background-color: var(--color-primary);
+  color: var(--color-text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply Arabic font when lang is ar */
+body[dir="rtl"] {
+  font-family: 'Heebo', 'Tajawal', sans-serif;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #000;
+}

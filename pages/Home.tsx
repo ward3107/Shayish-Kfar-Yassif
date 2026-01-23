@@ -1,14 +1,102 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import ContactForm from '../components/ContactForm';
 import { PROJECTS, TESTIMONIALS } from '../constants';
 import { ArrowRight, Star, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home: React.FC = () => {
   const { t, dir, language } = useLanguage();
   const ArrowIcon = dir === 'rtl' ?  (props: any) => <ArrowRight {...props} style={{transform: 'rotate(180deg)'}} /> : ArrowRight;
+
+  // Scroll animation refs
+  const introRef = useScrollAnimation({ type: 'fadeInUp', delay: 0.2 });
+  const collectionsRef = useScrollAnimation({ type: 'fadeInUp', delay: 0.1 });
+  const gridRef = useRef<HTMLDivElement>(null);
+  const artSectionRef = useScrollAnimation({ type: 'fadeInUp' });
+  const testimonialsRef = useScrollAnimation({ type: 'stagger', stagger: 0.2 });
+  const contactRef = useRef<HTMLDivElement>(null);
+
+  // Stagger animation for project cards
+  const gridItemsRef = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    // Animate project cards with stagger
+    if (gridRef.current) {
+      const cards = gridRef.current.children;
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 60, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+          },
+        }
+      );
+    }
+
+    // Parallax effect for the image in art section
+    const artImage = document.querySelector('.art-image');
+    if (artImage) {
+      gsap.to(artImage, {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: artImage,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      });
+    }
+
+    // Parallax break section
+    const parallaxSection = document.querySelector('.parallax-break');
+    if (parallaxSection) {
+      gsap.to(parallaxSection, {
+        backgroundPositionY: '30%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: parallaxSection,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    }
+
+    // Contact section image parallax
+    const contactImage = document.querySelector('.contact-image');
+    if (contactImage) {
+      gsap.to(contactImage, {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: contactImage,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -76,7 +164,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Intro Statement */}
-      <section className="py-32 bg-primary text-center transition-colors duration-300">
+      <section ref={introRef as React.RefObject<HTMLElement>} className="py-32 bg-primary text-center transition-colors duration-300">
           <div className="container mx-auto px-6 max-w-4xl">
               <h2 className="text-2xl md:text-4xl font-serif leading-normal text-light">
                  {t('intro.quote')}
@@ -85,7 +173,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Collections / Grid */}
-      <section className="py-20 bg-primary transition-colors duration-300">
+      <section ref={collectionsRef as React.RefObject<HTMLElement>} className="py-20 bg-primary transition-colors duration-300">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-16 border-b border-neutral-800 pb-6">
             <div>
@@ -97,7 +185,7 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {PROJECTS.slice(0, 4).map((project, index) => (
               <Link to="/gallery" key={project.id} className={`group relative overflow-hidden h-[400px] md:h-[600px] ${index === 1 || index === 2 ? 'md:h-[500px]' : ''}`}>
                 <img 
@@ -129,7 +217,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* The Stone (Shayish) Highlight */}
-      <section className="py-32 bg-secondary relative transition-colors duration-300">
+      <section ref={artSectionRef as React.RefObject<HTMLElement>} className="py-32 bg-secondary relative transition-colors duration-300">
          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
              <div className="order-2 md:order-1">
                  <h2 className="text-4xl md:text-6xl font-serif text-light mb-6 leading-tight">
@@ -142,11 +230,11 @@ const Home: React.FC = () => {
                     <Button variant="gold">{t('home.discover')}</Button>
                  </Link>
              </div>
-             <div className="order-1 md:order-2 relative h-[500px] w-full">
+             <div className="order-1 md:order-2 relative h-[500px] w-full art-image">
                  <div className="absolute inset-0 border border-neutral-700 transform translate-x-4 translate-y-4 rtl:-translate-x-4"></div>
-                 <img 
-                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
-                    alt="Marble Texture" 
+                 <img
+                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
+                    alt="Marble Texture"
                     className="w-full h-full object-cover grayscale contrast-125"
                  />
              </div>
@@ -154,8 +242,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* PARALLAX BREAK SECTION */}
-      <section 
-        className="relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center"
+      <section
+        className="parallax-break relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1616489953121-2e21b7e0964b?q=80&w=2070&auto=format&fit=crop')" }}
       >
          <div className="absolute inset-0 bg-black/40"></div>
@@ -170,7 +258,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimonials - Minimal */}
-      <section className="py-32 bg-primary transition-colors duration-300">
+      <section ref={testimonialsRef as React.RefObject<HTMLElement>} className="py-32 bg-primary transition-colors duration-300">
           <div className="container mx-auto px-6 max-w-5xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                   {TESTIMONIALS.map((review) => (
@@ -190,10 +278,10 @@ const Home: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="relative py-24 bg-surface transition-colors duration-300">
+      <section ref={contactRef as React.RefObject<HTMLElement>} className="relative py-24 bg-surface transition-colors duration-300">
         <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row gap-0">
-                <div className="lg:w-1/2 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative">
+                <div className="contact-image lg:w-1/2 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative">
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                         <div className="text-center p-8 border border-white/20 backdrop-blur-sm bg-black/30">
                             <h3 className="text-3xl font-serif text-white mb-2">{t('home.visit_title')}</h3>
