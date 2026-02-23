@@ -47,3 +47,142 @@ body[dir="rtl"] {
   background: var(--color-accent);
   color: #000;
 }
+
+/* ========================================
+   ACCESSIBILITY WIDGET STYLES
+   WCAG 2.0 AA + IS 5568 Compliant
+   ======================================== */
+
+/* Base font size variable (controlled by widget) */
+html {
+  font-size: var(--base-font-size, 16px);
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* FEATURE 2: High Contrast Mode (19.6:1 contrast ratio) */
+body.a11y-contrast {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+}
+
+body.a11y-contrast a,
+body.a11y-contrast button {
+  color: #00FFFF !important;
+}
+
+body.a11y-contrast input,
+body.a11y-contrast textarea,
+body.a11y-contrast select {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+  border-color: #FFFF00 !important;
+}
+
+body.a11y-contrast * {
+  border-color: #FFFF00 !important;
+  box-shadow: none !important;
+}
+
+/* FEATURE 3: Grayscale Mode */
+html.a11y-gray {
+  filter: grayscale(100%) !important;
+}
+
+/* FEATURE 4: Underline Links */
+body.a11y-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* FEATURE 5: Readable Font (Arial/sans-serif) */
+body.a11y-font,
+body.a11y-font * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* FEATURE 6: Letter Spacing */
+body.a11y-spacing,
+body.a11y-spacing * {
+  letter-spacing: 0.15em !important;
+}
+
+/* FEATURE 7: Line Height */
+body.a11y-lh p,
+body.a11y-lh li,
+body.a11y-lh span,
+body.a11y-lh div,
+body.a11y-lh h1,
+body.a11y-lh h2,
+body.a11y-lh h3,
+body.a11y-lh h4,
+body.a11y-lh h5,
+body.a11y-lh h6 {
+  line-height: 2.0 !important;
+}
+
+/* FEATURE 9: Highlight on Hover/Focus */
+body.a11y-highlight *:hover,
+body.a11y-highlight *:focus {
+  outline: 3px solid var(--color-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Don't highlight the widget panel itself */
+body.a11y-highlight #a11y-panel *,
+body.a11y-highlight #a11y-panel *:hover,
+body.a11y-highlight #a11y-panel *:focus {
+  outline: none !important;
+}
+
+/* Enhanced focus visibility for all interactive elements (WCAG 2.4.7) */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[href]:focus,
+[tabindex]:focus {
+  outline: 3px solid var(--color-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip to content link (for keyboard users) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-accent);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -42,7 +42,8 @@ export const translations = {
       islands: 'Kitchen Islands',
       story: 'Our Story',
       process: 'The Process',
-      contact: 'Contact'
+      contact: 'Contact',
+      privacyPolicy: 'Privacy Policy'
     },
     contact: {
       title: 'Contact',
@@ -122,7 +123,8 @@ export const translations = {
       islands: 'איי מטבח',
       story: 'הסיפור שלנו',
       process: 'תהליך העבודה',
-      contact: 'צור קשר'
+      contact: 'צור קשר',
+      privacyPolicy: 'מדיניות פרטיות'
     },
     contact: {
       title: 'צור קשר',
@@ -202,7 +204,8 @@ export const translations = {
       islands: 'جزر مطبخ',
       story: 'قصتنا',
       process: 'العملية',
-      contact: 'اتصل بنا'
+      contact: 'اتصل بنا',
+      privacyPolicy: 'سياسة الخصوصية'
     },
     contact: {
       title: 'اتصل بنا',

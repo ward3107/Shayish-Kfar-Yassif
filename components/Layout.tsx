@@ -4,6 +4,9 @@ import { Menu, X, Instagram, Facebook, Globe, Sun, Moon } from 'lucide-react';
 import Button from './Button';
 import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
+import CookieBanner from './CookieBanner';
+import AccessibilityWidget from './AccessibilityWidget';
+import BackgroundMusic from './BackgroundMusic';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -215,14 +218,17 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted px-8">
           <p>&copy; {new Date().getFullYear()} {t('footer.rights')}</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-             <span>Privacy Policy</span>
-             <span>Terms of Use</span>
+             <Link to="/privacy-policy" className="hover:text-accent transition-colors">{t('footer.privacyPolicy')}</Link>
+             <span className="hover:text-accent transition-colors cursor-pointer">Terms of Use</span>
           </div>
         </div>
       </footer>
 
       <FloatingActions />
       <ScrollToTop />
+      <CookieBanner />
+      <AccessibilityWidget />
+      <BackgroundMusic />
     </div>
   );
 };
