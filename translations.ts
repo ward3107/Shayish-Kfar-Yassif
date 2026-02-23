@@ -1,4 +1,4 @@
-export type Language = 'en' | 'he' | 'ar';
+export type Language = 'en' | 'he' | 'ar' | 'ru';
 
 export const translations = {
   en: {
@@ -80,6 +80,30 @@ export const translations = {
       family_title: 'The Family',
       family_desc1: 'We are more than a factory; we are a family of artisans and engineers rooted in Kfar Yassif. Every slab of stone we cut carries our name and our reputation.',
       family_desc2: "Our approach is personal. Whether it's a porcelain countertop or a marble staircase, we treat every project as a piece of art."
+    },
+    cookies: {
+      title: 'Cookie Settings',
+      description: 'We use cookies to improve your experience. Choose which cookies you allow us to use.',
+      accept_all: 'Accept All',
+      reject_all: 'Reject All',
+      customize: 'Customize',
+      save_preferences: 'Save Preferences',
+      privacy_policy: 'Privacy Policy',
+      categories: {
+        necessary: {
+          title: 'Necessary Cookies',
+          description: 'Required for the site to function. No personal data is shared with third parties.',
+          always_on: 'Always On'
+        },
+        analytics: {
+          title: 'Analytics Cookies',
+          description: 'Google Analytics — tracks page views and session duration. Data is sent to Google servers. No personally identifiable data is collected. Used to improve the site.'
+        },
+        marketing: {
+          title: 'Marketing Cookies',
+          description: 'Facebook Pixel, Google Ads — used to show you relevant advertisements. Data is shared with Meta and Google for ad targeting and conversion tracking.'
+        }
+      }
     }
   },
   he: {
@@ -161,6 +185,30 @@ export const translations = {
       family_title: 'המשפחה',
       family_desc1: 'אנחנו יותר ממפעל; אנחנו משפחה של אומנים ומהנדסים השורשית בכפר יאסיף. כל לוח אבן שאנחנו חותכים נושא את שמנו ואת המוניטין שלנו.',
       family_desc2: 'הגישה שלנו היא אישית. בין אם זה משטח פורצלן למטבח או מדרגות שיש, אנחנו מתייחסים לכל פרויקט כיצירת אומנות.'
+    },
+    cookies: {
+      title: 'הגדרות עוגיות',
+      description: 'אנו משתמשים בעוגיות לשיפור החוויה שלכם. בחרו אילו עוגיות לאפשר.',
+      accept_all: 'אשר הכל',
+      reject_all: 'דחה הכל',
+      customize: 'התאמה אישית',
+      save_preferences: 'שמור העדפות',
+      privacy_policy: 'מדיניות פרטיות',
+      categories: {
+        necessary: {
+          title: 'עוגיות הכרחיות',
+          description: 'נדרשות לתפקוד האתר. לא מועברים נתונים אישיים לצדדים שלישיים.',
+          always_on: 'תמיד פעיל'
+        },
+        analytics: {
+          title: 'עוגיות ניתוח',
+          description: 'Google Analytics — עוקב אחר צפיות בדפים ומשך שהייה. הנתונים נשלחים לשרתי Google. לא נאספים נתונים מזהים אישית. משמש לשיפור האתר.'
+        },
+        marketing: {
+          title: 'עוגיות שיווק',
+          description: 'Facebook Pixel, Google Ads — משמשים להצגת פרסומות רלוונטיות. הנתונים משותפים עם Meta ו-Google לצורך מיקוד פרסומות ומעקב המרות.'
+        }
+      }
     }
   },
   ar: {
@@ -242,6 +290,134 @@ export const translations = {
       family_title: 'العائلة',
       family_desc1: 'نحن أكثر من مجرد مصنع؛ نحن عائلة من الحرفيين والمهندسين المتجذرين في كفر ياسيف. كل لوح حجر نقطعه يحمل اسمنا وسمعتنا.',
       family_desc2: 'نهجنا شخصي. سواء كان سطح مطبخ من البورسلين أو درج رخامي، نحن نعامل كل مشروع كقطعة فنية.'
+    },
+    cookies: {
+      title: 'إعدادات ملفات تعريف الارتباط',
+      description: 'نستخدم ملفات تعريف الارتباط لتحسين تجربتك. اختر ملفات تعريف الارتباط التي تسمح لنا باستخدامها.',
+      accept_all: 'قبول الكل',
+      reject_all: 'رفض الكل',
+      customize: 'تخصيص',
+      save_preferences: 'حفظ التفضيلات',
+      privacy_policy: 'سياسة الخصوصية',
+      categories: {
+        necessary: {
+          title: 'ملفات تعريف الارتباط الضرورية',
+          description: 'مطلوبة لعمل الموقع. لا يتم مشاركة بيانات شخصية مع أطراف ثالثة.',
+          always_on: 'دائمًا نشط'
+        },
+        analytics: {
+          title: 'ملفات تعريف الارتباط للتحليلات',
+          description: 'Google Analytics — يتتبع مشاهدات الصفحة ومدة الجلسة. يتم إرسال البيانات إلى خوادم Google. لا يتم جمع بيانات شخصية. يُستخدم لتحسين الموقع.'
+        },
+        marketing: {
+          title: 'ملفات تعريف الارتباط للتسويق',
+          description: 'Facebook Pixel، Google Ads — تُستخدم لعرض إعلانات ذات صلة. تتم مشاركة البيانات مع Meta و Google لاستهداف الإعلانات وتتبع التحويلات.'
+        }
+      }
+    }
+  },
+  ru: {
+    nav: {
+      home: 'Главная',
+      collections: 'Коллекции',
+      process: 'Процесс',
+      materials: 'Материалы',
+      studio: 'Студия',
+      consultation: 'Консультация'
+    },
+    hero: {
+      est: 'Основано в 2008 • Кфар Ясиф',
+      title_line1: 'Мастерство в',
+      title_line2: 'Камне и Керамике',
+      subtitle: 'Ведущий центр фарфора, мрамора и bespoke каменных поверхностей на севере Израиля.',
+      explore: 'Смотреть коллекции',
+      book: 'Записаться на приём'
+    },
+    intro: {
+      quote: '"Мы верим, что камень — это не просто материал, а основа дизайна. Шаиш Кфар Ясиф сочетает прочность керамики и элегантность мрамора в вашем доме."'
+    },
+    home: {
+      selected_works: 'Избранные работы',
+      curated: 'ПОДОБРАННЫЕ ПОВЕРХНОСТИ',
+      view_all: 'Смотреть все',
+      art_title: 'Искусство Камня и Керамики',
+      art_desc: 'Наше имя, Шаиш, — это наше наследие. Мы специализируемся на точной резке и установке в Кфар Ясиф. От итальянского мрамора до продвинутых фарфоровых поверхностей — мы создаём прочность и красоту.',
+      discover: 'Открыть материалы',
+      visit_title: 'Посетить шоу-рум',
+      visit_loc: 'Промышленная зона Кфар Ясиф'
+    },
+    footer: {
+      desc: 'Экспертиза в каменных, мраморных и керамических поверхностях. Создаём сердце дома в Кфар Ясиф с 2008 года.',
+      collections: 'Коллекции',
+      studio: 'Студия',
+      visit: 'Посетить нас',
+      rights: 'Шаиш Кфар Ясиф. Все права защищены.',
+      ceramic: 'Керамические поверхности',
+      marble: 'Натуральный мрамор',
+      islands: 'Кухонные острова',
+      story: 'Наша история',
+      process: 'Процесс',
+      contact: 'Контакты'
+    },
+    contact: {
+      title: 'Контакты',
+      subtitle: 'Приглашаем вас посетить наш шоу-рум на фабрике в Кфар Ясиф и лично оценить наши коллекции камня и керамики.',
+      phone: 'Телефон',
+      email: 'Email',
+      address_title: 'Фабрика и шоу-рум',
+      address_lines: ['Промышленная зона', 'Кфар Ясиф, Израиль'],
+      waze: 'Навигация через Waze',
+      form_title: 'Начните свой путь',
+      form_desc: 'Оставьте свои данные, и наши дизайнеры свяжутся с вами.',
+      name: 'Имя',
+      city: 'Город',
+      project_type: 'Тип проекта',
+      notes: 'Видение / Заметки',
+      submit: 'Запросить консультацию',
+      request_received: 'Запрос получен',
+      will_contact: 'Мы свяжемся с вами в ближайшее время для организации частной консультации.',
+      back: 'Назад к форме',
+      types: {
+        new: 'Новая квартира',
+        reno: 'Реновация',
+        villa: 'Частная вилла'
+      }
+    },
+    about: {
+      title_line1: 'Наследие',
+      title_line2: 'Камня и Керамики',
+      desc: 'Основанная в Кфар Ясиф, наша фабрика выросла из скромной мастерской до лидера в производстве роскошного камня и керамики. Мы работаем на стыке традиционного ремесла и современных технологий.',
+      years: 'Лет работы',
+      projects: 'Проекты',
+      size: 'Площадь фабрики',
+      made_in: 'Сделано в Израиле',
+      family_title: 'Семья',
+      family_desc1: 'Мы больше, чем фабрика; мы семья мастеров и инженеров, укоренившихся в Кфар Ясиф. Каждый каменный лист, который мы режем, несёт наше имя и нашу репутацию.',
+      family_desc2: 'Наш подход индивидуален. Будь то фарфоровая столешница или мраморная лестница, мы относимся к каждому проекту как к произведению искусства.'
+    },
+    cookies: {
+      title: 'Настройки файлов cookie',
+      description: 'Мы используем файлы cookie для улучшения вашего опыта. Выберите, какие файлы cookie вы разрешаете нам использовать.',
+      accept_all: 'Принять все',
+      reject_all: 'Отклонить все',
+      customize: 'Настроить',
+      save_preferences: 'Сохранить настройки',
+      privacy_policy: 'Политика конфиденциальности',
+      categories: {
+        necessary: {
+          title: 'Необходимые файлы cookie',
+          description: 'Требуются для работы сайта. Никакие личные данные не передаются третьим лицам.',
+          always_on: 'Всегда включены'
+        },
+        analytics: {
+          title: 'Файлы cookie аналитики',
+          description: 'Google Analytics — отслеживает просмотры страниц и продолжительность сессии. Данные отправляются на серверы Google. Персональные данные не собираются. Используется для улучшения сайта.'
+        },
+        marketing: {
+          title: 'Маркетинговые файлы cookie',
+          description: 'Facebook Pixel, Google Ads — используются для показа релевантной рекламы. Данные передаются Meta и Google для таргетинга рекламы и отслеживания конверсий.'
+        }
+      }
     }
   }
 };
