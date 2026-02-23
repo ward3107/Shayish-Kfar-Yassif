@@ -9,6 +9,7 @@ import Process from './pages/Process';
 import Materials from './pages/Materials';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import CookieBanner from './components/CookieBanner';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </Layout>
+          <CookieBanner />
         </Router>
       </ThemeProvider>
     </LanguageProvider>
