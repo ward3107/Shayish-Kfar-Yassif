@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Instagram, Facebook, Globe, Sun, Moon } from 'lucide-react';
 import Button from './Button';
@@ -13,8 +13,6 @@ import { useTheme } from '../contexts/ThemeContext';
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
-  const langMenuRef = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
   const { language, setLanguage, t, dir } = useLanguage();
@@ -26,16 +24,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-        if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
-            setIsLangOpen(false);
-        }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -81,25 +69,13 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
              {/* Language & Theme Switcher */}
-            <div className="flex items-center gap-6 border-e border-gray-700 pe-6 me-4 relative" ref={langMenuRef}>
-              
-              {/* Language Dropdown */}
-              <div className="relative">
-                  <button 
-                    onClick={() => setIsLangOpen(!isLangOpen)}
-                    className={`flex items-center gap-2 hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`}
-                    aria-label="Select Language"
-                  >
-                    <Globe size={18} />
-                    <span className="text-xs font-bold uppercase">{language}</span>
-                  </button>
-                  
-                  <div className={`absolute top-full rtl:right-0 ltr:left-0 mt-4 bg-secondary border border-neutral-800 shadow-xl flex flex-col min-w-[120px] transition-all duration-200 origin-top ${isLangOpen ? 'opacity-100 visible scale-y-100' : 'opacity-0 invisible scale-y-95'}`}>
-                      <button onClick={() => {setLanguage('en'); setIsLangOpen(false)}} className={`px-4 py-3 text-xs font-bold text-start hover:bg-surface hover:text-accent transition-colors ${language === 'en' ? 'text-accent' : 'text-muted'}`}>English</button>
-                      <button onClick={() => {setLanguage('he'); setIsLangOpen(false)}} className={`px-4 py-3 text-xs font-bold text-start hover:bg-surface hover:text-accent transition-colors ${language === 'he' ? 'text-accent' : 'text-muted'}`}>עברית</button>
-                      <button onClick={() => {setLanguage('ar'); setIsLangOpen(false)}} className={`px-4 py-3 text-xs font-bold text-start hover:bg-surface hover:text-accent transition-colors ${language === 'ar' ? 'text-accent' : 'text-muted'}`}>العربية</button>
-                  </div>
-              </div>
+            <div className="flex items-center gap-6 border-e border-gray-700 pe-6 me-4">
+
+              {/* Language Toggle - Cycles on click */}
+              <button onClick={cycleLanguage} className={`flex items-center gap-2 hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Switch Language">
+                <Globe size={18} />
+                <span className="text-xs font-bold uppercase">{language}</span>
+              </button>
 
               {/* Theme Toggle */}
               <button onClick={toggleTheme} className={`hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Toggle Theme">
