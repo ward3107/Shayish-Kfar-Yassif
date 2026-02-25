@@ -208,26 +208,26 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  // Music tracks - ambient/classical music suitable for the site
-  // Using reliable CDN sources for ambient music
+  // Music tracks - relaxing ambient music for the site
+  // Using calming, atmospheric ambient tracks
   const musicTracks = [
     {
       id: 'track1',
-      title: 'Ambient Marble',
-      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      artist: 'SoundHelix'
+      title: 'Ethereal Calm',
+      src: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=relaxing-145038.mp3',
+      artist: 'Lesfm'
     },
     {
       id: 'track2',
-      title: 'Stone Dreams',
-      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-      artist: 'SoundHelix'
+      title: 'Peaceful Mind',
+      src: 'https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc498b0.mp3?filename=relaxation-13756.mp3',
+      artist: ' RelaxingTime'
     },
     {
       id: 'track3',
-      title: 'Elegant Journey',
-      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-      artist: 'SoundHelix'
+      title: 'Gentle Dreams',
+      src: 'https://cdn.pixabay.com/download/audio/2023/02/28/audio_1e684882bf.mp3?filename=soft-ambient-11594.mp3',
+      artist: 'Egle Lobnyte'
     }
   ];
 
