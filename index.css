@@ -239,57 +239,56 @@ select:focus,
     opacity: 0;
     transform: scale(0.5);
   }
-  20% {
-    opacity: 0.5;
+  15% {
+    opacity: 0.8;
   }
   100% {
     opacity: 0;
-    transform: scale(3);
+    transform: scale(5);
   }
 }
 
-/* Main lightning flash effect - FAST like real lightning */
+/* Main lightning flash effect - DRAMATIC and obvious */
 @keyframes lightningFlash {
   0% {
     opacity: 0;
   }
-  5% {
+  10% {
     opacity: 1;
   }
-  10% {
+  20% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+  40% {
     opacity: 0;
   }
-  12% {
-    opacity: 0.8;
+  50% {
+    opacity: 0.7;
   }
-  15% {
+  70% {
     opacity: 0;
   }
-  17% {
-    opacity: 0.4;
-  }
-  22% {
+  100% {
     opacity: 0;
   }
 }
 
-/* Lightning flash overlay - bigger */
+/* Lightning flash overlay - FULL SCREEN BRIGHT WHITE */
 .lightning-flash {
-  position: absolute;
-  inset: -50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.2) 40%,
-    transparent 80%
-  );
+  position: fixed;
+  inset: 0;
+  background: white;
   pointer-events: none;
   opacity: 0;
+  z-index: 9999;
 }
 
-/* Lightning flash overlay - when triggered - FAST */
+/* Lightning flash overlay - when triggered - DRAMATIC */
 .lightning-flash.active {
-  animation: lightningFlash 0.5s ease-out forwards;
+  animation: lightningFlash 1.5s ease-out forwards;
 }
 
 /* Lightning splash glow on the overlay */
@@ -303,9 +302,9 @@ select:focus,
   inset: -100%;
   background: radial-gradient(
     circle at center,
-    rgba(212, 175, 55, 0.3) 0%,
-    rgba(212, 175, 55, 0.1) 50%,
-    transparent 80%
+    rgba(212, 175, 55, 0.6) 0%,
+    rgba(212, 175, 55, 0.3) 30%,
+    transparent 70%
   );
   pointer-events: none;
   opacity: 0;
@@ -321,8 +320,8 @@ select:focus,
   width: 200%;
   height: 200%;
   background: radial-gradient(
-    circle at 60% 40%,
-    rgba(255, 255, 255, 0.25) 0%,
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.5) 0%,
     transparent 60%
   );
   pointer-events: none;
@@ -330,12 +329,12 @@ select:focus,
   transform: scale(0.5);
 }
 
-/* Lightning splash - when triggered - FAST */
+/* Lightning splash - when triggered - SLOWER for visibility */
 .lightning-splash.active::before {
-  animation: softSplash 1s ease-out forwards;
+  animation: softSplash 2s ease-out forwards;
 }
 
 .lightning-splash.active::after {
-  animation: softSplash 1.2s ease-out 0.1s forwards;
+  animation: softSplash 2.5s ease-out 0.2s forwards;
 }
 
