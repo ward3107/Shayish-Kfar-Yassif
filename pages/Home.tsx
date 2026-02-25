@@ -209,25 +209,25 @@ const Home: React.FC = () => {
   }, []);
 
   // Music tracks - relaxing ambient music for the site
-  // Using reliable free ambient music sources
+  // Using reliable SoundHelix sources
   const musicTracks = [
     {
       id: 'track1',
       title: 'Ambient Dreams',
-      src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Simon_Panrucker/Happy_TV_Songs/Simon_Panrucker_-_05_-_Uplift.mp3',
-      artist: 'Simon Panrucker'
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      artist: 'SoundHelix'
     },
     {
       id: 'track2',
       title: 'Soft Atmosphere',
-      src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_04_-_Sentinel.mp3',
-      artist: 'Kai Engel'
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
+      artist: 'SoundHelix'
     },
     {
       id: 'track3',
       title: 'Gentle Flow',
-      src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Chapter_One_-_Cold/Kai_Engel_-_08_-_Moonlight_Reprise.mp3',
-      artist: 'Kai Engel'
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
+      artist: 'SoundHelix'
     }
   ];
 
