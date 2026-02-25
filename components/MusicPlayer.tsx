@@ -92,10 +92,22 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   useEffect(() => {
     if (audioRef.current && hasInteracted) {
       const actualIndex = isShuffleOn ? shuffledIndices[currentTrackIndex] : currentTrackIndex;
+
+      // Pause any currently playing audio before loading new track
+      if (!audioRef.current.paused) {
+        audioRef.current.pause();
+      }
+
+      // Load new track
       audioRef.current.src = tracks[actualIndex].src;
+      audioRef.current.load(); // Important: reload the audio element
 
       if (isPlaying) {
-        audioRef.current.play().catch(console.error);
+        // Small delay to ensure the new track is loaded
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(console.error);
+        }
       }
     }
   }, [currentTrackIndex, shuffledIndices, isShuffleOn, hasInteracted, isPlaying, tracks]);
@@ -157,16 +169,30 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     setIsPlaying(!isPlaying);
   };
 
+  // Properly change track with audio cleanup
+  const changeTrack = (newIndex: number) => {
+    if (audioRef.current) {
+      // Pause current audio
+      audioRef.current.pause();
+
+      // Reset progress
+      setProgress(0);
+
+      // Update index
+      setCurrentTrackIndex(newIndex);
+
+      // The useEffect will handle loading the new track
+    }
+  };
+
   const playNext = () => {
     const maxIndex = tracks.length - 1;
-    setCurrentTrackIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    setProgress(0);
+    changeTrack(currentTrackIndex >= maxIndex ? 0 : currentTrackIndex + 1);
   };
 
   const playPrevious = () => {
     const maxIndex = tracks.length - 1;
-    setCurrentTrackIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-    setProgress(0);
+    changeTrack(currentTrackIndex <= 0 ? maxIndex : currentTrackIndex - 1);
   };
 
   const toggleShuffle = () => {
@@ -174,7 +200,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     setIsShuffleOn(newShuffleState);
     if (newShuffleState) {
       setShuffledIndices(getShuffledIndices());
-      setCurrentTrackIndex(0);
+      changeTrack(0);
     }
   };
 
@@ -345,8 +371,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                   <button
                     key={track.id}
                     onClick={() => {
-                      setCurrentTrackIndex(isShuffleOn ? shuffledIndices.indexOf(index) : index);
                       setHasInteracted(true);
+                      const targetIndex = isShuffleOn ? shuffledIndices.indexOf(index) : index;
+                      changeTrack(targetIndex);
                       setIsPlaying(true);
                     }}
                     className={`w-full flex items-center gap-3 p-2 rounded-lg text-left transition-all ${
