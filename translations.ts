@@ -13,31 +13,31 @@ export const translations = {
     hero: {
       est: 'Est. 2008 • Kfar Yassif',
       title_line1: 'Mastery in',
-      title_line2: 'Stone & Ceramic',
+      title_line2: 'Stone & Porcelain',
       subtitle: 'The premier destination for porcelain, marble, and custom stone surfaces in Northern Israel.',
       explore: 'Explore Collections',
       book: 'Book Appointment'
     },
     intro: {
-      quote: '"We believe that stone is not just a material, but the foundation of design. Shayish Kfar Yassif brings the durability of ceramic and the elegance of marble into your home."'
+      quote: '"We believe that stone is not just a material, but the foundation of design. Shayish Kfar Yassif brings the durability of porcelain and the elegance of marble into your home."'
     },
     home: {
       selected_works: 'Selected Works',
       curated: 'CURATED SURFACES',
       view_all: 'View All',
-      art_title: 'The Art of Stone & Ceramic',
+      art_title: 'The Art of Stone & Porcelain',
       art_desc: 'Our name, Shayish, is our heritage. We specialize in precision cutting and installation in Kfar Yassif. From Italian marble to advanced porcelain surfaces, we engineer durability and beauty.',
       discover: 'Discover Materials',
       visit_title: 'Visit the Showroom',
       visit_loc: 'Kfar Yassif Industrial Zone'
     },
     footer: {
-      desc: 'Expertise in Stone, Marble & Ceramic surfaces. Creating the heart of the home in Kfar Yassif since 2008.',
+      desc: 'Expertise in Stone, Marble & Porcelain surfaces. Creating the heart of the home in Kfar Yassif since 2008.',
       collections: 'Collections',
       studio: 'Studio',
       visit: 'Visit Us',
       rights: 'Shayish Kfar Yassif. All rights reserved.',
-      ceramic: 'Ceramic Surfaces',
+      ceramic: 'Porcelain Surfaces',
       marble: 'Natural Marble',
       islands: 'Kitchen Islands',
       story: 'Our Story',
@@ -49,7 +49,7 @@ export const translations = {
     },
     contact: {
       title: 'Contact',
-      subtitle: 'We invite you to visit our factory showroom in Kfar Yassif to experience our stone and ceramic collections in person.',
+      subtitle: 'We invite you to visit our factory showroom in Kfar Yassif to experience our stone and porcelain collections in person.',
       phone: 'Phone',
       email: 'Email',
       address_title: 'Factory & Showroom',
@@ -73,8 +73,8 @@ export const translations = {
     },
     about: {
       title_line1: 'Legacy of',
-      title_line2: 'Stone & Ceramic',
-      desc: 'Founded in Kfar Yassif, our factory has evolved from a humble workshop to a leader in luxury stone and ceramic manufacturing. We operate at the intersection of traditional artistry and modern technology.',
+      title_line2: 'Stone & Porcelain',
+      desc: 'Founded in Kfar Yassif, our factory has evolved from a humble workshop to a leader in luxury stone and porcelain manufacturing. We operate at the intersection of traditional artistry and modern technology.',
       years: 'Years Active',
       projects: 'Projects',
       size: 'Factory Size',
@@ -127,10 +127,10 @@ export const translations = {
     // Materials Page
     materials: {
       title: 'Materiality',
-      subtitle: 'The soul of a home lies in the materials. We source the world\'s finest ceramics, porcelain, and natural stones.',
+      subtitle: 'The soul of a home lies in the materials. We source the world\'s finest porcelain and natural stones.',
       section_stone: 'Porcelain & Stone',
       section_finishes: 'Surface Finishes',
-      porcelain_title: 'Porcelain & Ceramic',
+      porcelain_title: 'Porcelain Surfaces',
       porcelain_desc: 'Ultra-compact surfaces perfect for modern kitchens. Heat resistant, scratch resistant, and available in stunning designs.',
       caesarstone_title: 'Caesarstone',
       caesarstone_desc: 'The Israeli standard for quartz surfaces. Durable, practical, and beautiful for everyday use.',
@@ -258,31 +258,31 @@ export const translations = {
     hero: {
       est: 'נוסד 2008 • כפר יאסיף',
       title_line1: 'מומחיות ב',
-      title_line2: 'שיש וקרמיקה',
+      title_line2: 'שיש ופורצלן',
       subtitle: 'היעד המוביל למשטחי פורצלן, שיש ואבן בהתאמה אישית בצפון.',
       explore: 'לכל הקולקציות',
       book: 'תיאום פגישה'
     },
     intro: {
-      quote: '״אנחנו מאמינים שאבן היא לא רק חומר, אלא הבסיס לעיצוב. שיש כפר יאסיף מביא את העמידות של הקרמיקה והאלגנטיות של השיש לביתכם.״'
+      quote: '״אנחנו מאמינים שאבן היא לא רק חומר, אלא הבסיס לעיצוב. שיש כפר יאסיף מביא את העמידות של הפורצלן והאלגנטיות של השיש לביתכם.״'
     },
     home: {
       selected_works: 'פרויקטים נבחרים',
       curated: 'משטחים נבחרים',
       view_all: 'לכל הפרויקטים',
-      art_title: 'אומנות האבן והקרמיקה',
+      art_title: 'אומנות האבן והפורצלן',
       art_desc: 'השם שלנו, שיש, הוא המורשת שלנו. אנו מתמחים בחיתוך והתקנה מדויקים בכפר יאסיף. משיש איטלקי ועד משטחי פורצלן מתקדמים, אנו מהנדסים עמידות ויופי.',
       discover: 'גלה חומרים',
       visit_title: 'בקר באולם התצוגה',
       visit_loc: 'אזור תעשייה כפר יאסיף'
     },
     footer: {
-      desc: 'מומחיות במשטחי אבן, שיש וקרמיקה. יוצרים את לב הבית בכפר יאסיף מאז 2008.',
+      desc: 'מומחיות במשטחי אבן, שיש ופורצלן. יוצרים את לב הבית בכפר יאסיף מאז 2008.',
       collections: 'קולקציות',
       studio: 'סטודיו',
       visit: 'בקר אותנו',
       rights: 'שיש כפר יאסיף. כל הזכויות שמורות.',
-      ceramic: 'משטחי קרמיקה',
+      ceramic: 'משטחי פורצלן',
       marble: 'שיש טבעי',
       islands: 'איי מטבח',
       story: 'הסיפור שלנו',
@@ -294,7 +294,7 @@ export const translations = {
     },
     contact: {
       title: 'צור קשר',
-      subtitle: 'אנו מזמינים אתכם לבקר באולם התצוגה שלנו בכפר יאסיף ולהתרשם מקולקציות השיש והקרמיקה באופן אישי.',
+      subtitle: 'אנו מזמינים אתכם לבקר באולם התצוגה שלנו בכפר יאסיף ולהתרשם מקולקציות השיש והפורצלן באופן אישי.',
       phone: 'טלפון',
       email: 'אימייל',
       address_title: 'מפעל ואולם תצוגה',
@@ -318,7 +318,7 @@ export const translations = {
     },
     about: {
       title_line1: 'מורשת של',
-      title_line2: 'שיש וקרמיקה',
+      title_line2: 'שיש ופורצלן',
       desc: 'מאז היווסדו בכפר יאסיף, המפעל שלנו צמח מבית מלאכה צנוע למוביל בייצור יוקרתי של שיש וקרמיקה. אנו פועלים במפגש שבין אומנות מסורתית לטכנולוגיה מודרנית.',
       years: 'שנות פעילות',
       projects: 'פרויקטים',
@@ -503,31 +503,31 @@ export const translations = {
     hero: {
       est: 'تأسست 2008 • كفر ياسيف',
       title_line1: 'إتقان في',
-      title_line2: 'الحجر والسيراميك',
+      title_line2: 'الحجر والبورسلين',
       subtitle: 'الوجهة الرائدة للبورسلين، الرخام، وأسطح الحجر المخصصة في شمال إسرائيل.',
       explore: 'تصفح المجموعات',
       book: 'حجز موعد'
     },
     intro: {
-      quote: '"نحن نؤمن أن الحجر ليس مجرد مادة، بل هو أساس التصميم. شايش كفر ياسيف يجمع بين متانة السيراميك وأناقة الرخام في منزلك."'
+      quote: '"نحن نؤمن أن الحجر ليس مجرد مادة، بل هو أساس التصميم. شايش كفر ياسيف يجمع بين متانة البورسلين وأناقة الرخام في منزلك."'
     },
     home: {
       selected_works: 'أعمال مختارة',
       curated: 'أسطح منتقاة',
       view_all: 'عرض الكل',
-      art_title: 'فن الحجر والسيراميك',
+      art_title: 'فن الحجر والبورسلين',
       art_desc: 'اسمنا، شايش، هو تراثنا. نحن متخصصون في القص والتركيب الدقيق في كفر ياسيف. من الرخام الإيطالي إلى أسطح البورسلين المتقدمة، نحن نهندس المتانة والجمال.',
       discover: 'اكتشف المواد',
       visit_title: 'زُر صالة العرض',
       visit_loc: 'المنطقة الصناعية كفر ياسيف'
     },
     footer: {
-      desc: 'خبرة في أسطح الحجر، الرخام والسيراميك. نصنع قلب المنزل في كفر ياسيف منذ 2008.',
+      desc: 'خبرة في أسطح الحجر، الرخام والبورسلين. نصنع قلب المنزل في كفر ياسيف منذ 2008.',
       collections: 'المجموعات',
       studio: 'الاستوديو',
       visit: 'زورونا',
       rights: 'شايش كفر ياسيف. جميع الحقوق محفوظة.',
-      ceramic: 'أسطح سيراميك',
+      ceramic: 'أسطح بورسلين',
       marble: 'رخام طبيعي',
       islands: 'جزر مطبخ',
       story: 'قصتنا',
@@ -539,7 +539,7 @@ export const translations = {
     },
     contact: {
       title: 'اتصل بنا',
-      subtitle: 'ندعوكم لزيارة صالة العرض في كفر ياسيف لتجربة مجموعات الحجر والسيراميك شخصيًا.',
+      subtitle: 'ندعوكم لزيارة صالة العرض في كفر ياسيف لتجربة مجموعات الحجر والبورسلين شخصيًا.',
       phone: 'هاتف',
       email: 'بريد إلكتروني',
       address_title: 'المصنع وصالة العرض',
@@ -563,8 +563,8 @@ export const translations = {
     },
     about: {
       title_line1: 'تراث من',
-      title_line2: 'الحجر والسيراميك',
-      desc: 'تأسس مصنعنا في كفر ياسيف، وتطور من ورشة عمل متواضعة إلى رائد في تصنيع الحجر والسيراميك الفاخر. نحن نعمل في تقاطع الفن التقليدي والتكنولوجيا الحديثة.',
+      title_line2: 'الحجر والبورسلين',
+      desc: 'تأسس مصنعنا في كفر ياسيف، وتطور من ورشة عمل متواضعة إلى رائد في تصنيع الحجر والبورسلين الفاخر. نحن نعمل في تقاطع الفن التقليدي والتكنولوجيا الحديثة.',
       years: 'سنوات الخبرة',
       projects: 'مشاريع',
       size: 'مساحة المصنع',
@@ -617,10 +617,10 @@ export const translations = {
     // Materials Page
     materials: {
       title: 'المادية',
-      subtitle: 'روح المنزل تكمن في المواد. نوفر أجود السيراميك والبورسلين والأحجار الطبيعية في العالم.',
+      subtitle: 'روح المنزل تكمن في المواد. نوفر أجود البورسلين والأحجار الطبيعية في العالم.',
       section_stone: 'البورسلين والحجر',
       section_finishes: 'تشطيب الأسطح',
-      porcelain_title: 'البورسلين والسيراميك',
+      porcelain_title: 'البورسلين',
       porcelain_desc: 'أسطح فائقة الدقة مثالية للمطابخ العصرية. مقاومة للحرارة والخدوش، ومتاحة بتصاميم مذهلة.',
       caesarstone_title: 'قيصر ستون',
       caesarstone_desc: 'المعيار الإسرائيلي لأسطح الكوارتز. متين وعملي وجميل للاستخدام اليومي.',
@@ -748,31 +748,31 @@ export const translations = {
     hero: {
       est: 'Основано в 2008 • Кфар Ясиф',
       title_line1: 'Мастерство в',
-      title_line2: 'Камне и Керамике',
+      title_line2: 'Камне и Фарфоре',
       subtitle: 'Ведущий центр фарфора, мрамора и bespoke каменных поверхностей на севере Израиля.',
       explore: 'Смотреть коллекции',
       book: 'Записаться на приём'
     },
     intro: {
-      quote: '"Мы верим, что камень — это не просто материал, а основа дизайна. Шаиш Кфар Ясиф сочетает прочность керамики и элегантность мрамора в вашем доме."'
+      quote: '"Мы верим, что камень — это не просто материал, а основа дизайна. Шаиш Кфар Ясиф сочетает прочность фарфора и элегантность мрамора в вашем доме."'
     },
     home: {
       selected_works: 'Избранные работы',
       curated: 'ПОДОБРАННЫЕ ПОВЕРХНОСТИ',
       view_all: 'Смотреть все',
-      art_title: 'Искусство Камня и Керамики',
+      art_title: 'Искусство Камня и Фарфора',
       art_desc: 'Наше имя, Шаиш, — это наше наследие. Мы специализируемся на точной резке и установке в Кфар Ясиф. От итальянского мрамора до продвинутых фарфоровых поверхностей — мы создаём прочность и красоту.',
       discover: 'Открыть материалы',
       visit_title: 'Посетить шоу-рум',
       visit_loc: 'Промышленная зона Кфар Ясиф'
     },
     footer: {
-      desc: 'Экспертиза в каменных, мраморных и керамических поверхностях. Создаём сердце дома в Кфар Ясиф с 2008 года.',
+      desc: 'Экспертиза в каменных, мраморных и фарфоровых поверхностях. Создаём сердце дома в Кфар Ясиф с 2008 года.',
       collections: 'Коллекции',
       studio: 'Студия',
       visit: 'Посетить нас',
       rights: 'Шаиш Кфар Ясиф. Все права защищены.',
-      ceramic: 'Керамические поверхности',
+      ceramic: 'Фарфоровые поверхности',
       marble: 'Натуральный мрамор',
       islands: 'Кухонные острова',
       story: 'Наша история',
@@ -784,7 +784,7 @@ export const translations = {
     },
     contact: {
       title: 'Контакты',
-      subtitle: 'Приглашаем вас посетить наш шоу-рум на фабрике в Кфар Ясиф и лично оценить наши коллекции камня и керамики.',
+      subtitle: 'Приглашаем вас посетить наш шоу-рум на фабрике в Кфар Ясиф и лично оценить наши коллекции камня и фарфора.',
       phone: 'Телефон',
       email: 'Email',
       address_title: 'Фабрика и шоу-рум',
@@ -808,8 +808,8 @@ export const translations = {
     },
     about: {
       title_line1: 'Наследие',
-      title_line2: 'Камня и Керамики',
-      desc: 'Основанная в Кфар Ясиф, наша фабрика выросла из скромной мастерской до лидера в производстве роскошного камня и керамики. Мы работаем на стыке традиционного ремесла и современных технологий.',
+      title_line2: 'Камня и Фарфора',
+      desc: 'Основанная в Кфар Ясиф, наша фабрика выросла из скромной мастерской до лидера в производстве роскошного камня и фарфора. Мы работаем на стыке традиционного ремесла и современных технологий.',
       years: 'Лет работы',
       projects: 'Проекты',
       size: 'Площадь фабрики',
@@ -862,10 +862,10 @@ export const translations = {
     // Materials Page
     materials: {
       title: 'Материальность',
-      subtitle: 'Душа дома заключается в материалах. Мы поставляем лучшие керамику, фарфор и природный камень со всего мира.',
+      subtitle: 'Душа дома заключается в материалах. Мы поставляем лучшие фарфор и природный камень со всего мира.',
       section_stone: 'Фарфор и камень',
       section_finishes: 'Отделки поверхностей',
-      porcelain_title: 'Фарфор и керамика',
+      porcelain_title: 'Фарфор',
       porcelain_desc: 'Ультра-компактные поверхности, идеально подходящие для современных кухонь. Устойчивые к нагреву, царапинам, доступные в потрясающих дизайнах.',
       caesarstone_title: 'Caesarstone',
       caesarstone_desc: 'Израильский стандарт кварцевых поверхностей. Прочный, практичный и красивый для повседневного использования.',
