@@ -232,12 +232,12 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   const positionClasses: Record<string, string> = {
     'bottom-left': 'bottom-6 left-6',
     'bottom-right': 'bottom-6 right-6',
-    'top-left': 'top-6 left-6',
-    'top-right': 'top-6 right-6'
+    'top-left': 'top-24 left-6',
+    'top-right': 'top-24 right-6'
   };
 
   return (
-    <div className={`fixed z-50 ${positionClasses[position]}`}>
+    <div className={`fixed z-40 ${positionClasses[position]}`}>
       {/* Collapsed player button */}
       {!isExpanded && (
         <button
