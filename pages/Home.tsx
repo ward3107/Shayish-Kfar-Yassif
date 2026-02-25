@@ -209,25 +209,25 @@ const Home: React.FC = () => {
   }, []);
 
   // Music tracks - relaxing ambient music for the site
-  // Using calming, atmospheric ambient tracks
+  // Using reliable free ambient music sources
   const musicTracks = [
     {
       id: 'track1',
-      title: 'Ethereal Calm',
-      src: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=relaxing-145038.mp3',
-      artist: 'Lesfm'
+      title: 'Ambient Dreams',
+      src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Simon_Panrucker/Happy_TV_Songs/Simon_Panrucker_-_05_-_Uplift.mp3',
+      artist: 'Simon Panrucker'
     },
     {
       id: 'track2',
-      title: 'Peaceful Mind',
-      src: 'https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc498b0.mp3?filename=relaxation-13756.mp3',
-      artist: ' RelaxingTime'
+      title: 'Soft Atmosphere',
+      src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Satin/Kai_Engel_-_04_-_Sentinel.mp3',
+      artist: 'Kai Engel'
     },
     {
       id: 'track3',
-      title: 'Gentle Dreams',
-      src: 'https://cdn.pixabay.com/download/audio/2023/02/28/audio_1e684882bf.mp3?filename=soft-ambient-11594.mp3',
-      artist: 'Egle Lobnyte'
+      title: 'Gentle Flow',
+      src: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kai_Engel/Chapter_One_-_Cold/Kai_Engel_-_08_-_Moonlight_Reprise.mp3',
+      artist: 'Kai Engel'
     }
   ];
 
