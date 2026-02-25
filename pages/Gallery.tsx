@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 
 const Gallery: React.FC = () => {
   const [filter, setFilter] = useState<'All' | 'Modern' | 'Classic' | 'Luxury'>('All');
+
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    document.title = 'קולקציות - Collections | שיש כפר יאסיף - Shayish Kfar Yassif';
+  }, []);
 
   const filteredProjects = filter === 'All' 
     ? PROJECTS 
@@ -19,14 +24,15 @@ const Gallery: React.FC = () => {
           </div>
           
           {/* Filters */}
-          <div className="flex gap-8 mt-8 md:mt-0">
+          <div className="flex gap-8 mt-8 md:mt-0" role="group" aria-label="Filter projects by category">
             {['All', 'Modern', 'Classic', 'Luxury'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat as any)}
+                aria-pressed={filter === cat}
                 className={`text-sm uppercase tracking-widest transition-all pb-1 border-b-2 ${
-                  filter === cat 
-                    ? 'text-light border-accent' 
+                  filter === cat
+                    ? 'text-light border-accent'
                     : 'text-muted border-transparent hover:text-light'
                 }`}
               >
@@ -39,20 +45,20 @@ const Gallery: React.FC = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
           {filteredProjects.map((project, index) => (
-            <div key={project.id} className={`group relative aspect-[3/4] overflow-hidden cursor-pointer ${index % 2 === 0 ? 'mt-0' : 'lg:mt-12'}`}>
-              <img 
-                src={project.image} 
-                alt={project.title} 
+            <article key={project.id} className={`group relative aspect-[3/4] overflow-hidden cursor-pointer ${index % 2 === 0 ? 'mt-0' : 'lg:mt-12'}`}>
+              <img
+                src={project.image}
+                alt={`${project.title} - ${project.category} kitchen design. ${project.description}`}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                 <div className="text-accent text-xs uppercase tracking-widest mb-1">{project.category}</div>
                 <h3 className="text-2xl font-serif text-white">{project.title}</h3>
                 <p className="text-gray-400 text-sm mt-2 line-clamp-2">{project.description}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

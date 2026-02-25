@@ -43,7 +43,9 @@ export const translations = {
       story: 'Our Story',
       process: 'The Process',
       contact: 'Contact',
-      privacyPolicy: 'Privacy Policy'
+      privacyPolicy: 'Privacy Policy',
+      accessibility: 'Accessibility Statement',
+      termsOfUse: 'Terms of Use'
     },
     contact: {
       title: 'Contact',
@@ -148,7 +150,9 @@ export const translations = {
       story: 'הסיפור שלנו',
       process: 'תהליך העבודה',
       contact: 'צור קשר',
-      privacyPolicy: 'מדיניות פרטיות'
+      privacyPolicy: 'מדיניות פרטיות',
+      accessibility: 'הצהרת נגישות',
+      termsOfUse: 'תנאי שימוש'
     },
     contact: {
       title: 'צור קשר',
@@ -253,7 +257,9 @@ export const translations = {
       story: 'قصتنا',
       process: 'العملية',
       contact: 'اتصل بنا',
-      privacyPolicy: 'سياسة الخصوصية'
+      privacyPolicy: 'سياسة الخصوصية',
+      accessibility: 'بيان إمكانية الوصول',
+      termsOfUse: 'شروط الاستخدام'
     },
     contact: {
       title: 'اتصل بنا',
@@ -357,7 +363,10 @@ export const translations = {
       islands: 'Кухонные острова',
       story: 'Наша история',
       process: 'Процесс',
-      contact: 'Контакты'
+      contact: 'Контакты',
+      privacyPolicy: 'Политика конфиденциальности',
+      accessibility: 'Заявление о доступности',
+      termsOfUse: 'Условия использования'
     },
     contact: {
       title: 'Контакты',

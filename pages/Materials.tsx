@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Materials: React.FC = () => {
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    document.title = 'חומרים - Materials | שיש כפר יאסיף - Shayish Kfar Yassif';
+  }, []);
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen text-light transition-colors duration-300">
       <div className="container mx-auto px-6">

@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props 
 }) => {
-  const baseStyles = "inline-flex items-center justify-center uppercase tracking-widest font-medium transition-all duration-500 rounded-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed border";
+  const baseStyles = "inline-flex items-center justify-center uppercase tracking-widest font-medium transition-all duration-500 rounded-none disabled:opacity-50 disabled:cursor-not-allowed border focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white";
   
   const variants = {
     primary: "bg-white text-black border-white hover:bg-transparent hover:text-white",

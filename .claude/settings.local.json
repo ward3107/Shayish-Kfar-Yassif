@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(timeout 5)",
+      "Bash(npm install)",
+      "Bash(npm run dev -- --port 8080)",
+      "Bash(git add App.tsx components/FloatingActions.tsx components/Layout.tsx components/ScrollToTop.tsx components/AccessibilityWidget.tsx components/BackgroundMusic.tsx components/CookieBanner.tsx pages/PrivacyPolicy.tsx index.css index.html translations.ts)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Add comprehensive accessibility features and legal compliance\n\nMajor features added:\n- Cookie consent banner \\(Amendment 13 compliant, GTM Consent Mode v2\\)\n- Privacy policy page \\(13 sections, 4 languages, IS 5568 compliant\\)\n- Accessibility widget \\(10 features, WCAG 2.0 AA compliant\\)\n- Background music player with auto-play and volume control\n- Improved floating actions \\(50% transparency, repositioned\\)\n- Scroll-to-top button with visual feedback\n\nTechnical updates:\n- Added GTM head snippet with default consent state\n- Updated translations with new keys\n- Added comprehensive accessibility CSS styles\n- All components support Hebrew, Arabic, English, Russian\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push origin main)",
+      "Bash(git pull --rebase origin main)",
+      "Bash(git rebase --abort)",
+      "Bash(git pull origin main --no-edit)",
+      "Bash(git checkout --ours App.tsx components/CookieBanner.tsx index.html translations.ts)",
+      "Bash(git add App.tsx components/CookieBanner.tsx index.html translations.ts)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nMerge remote changes with local accessibility features\n\nResolved conflicts by keeping local versions of:\n- App.tsx\n- components/CookieBanner.tsx  \n- index.html\n- translations.ts\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git add components/Layout.tsx)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: simplify language toggle to click-to-cycle\n\n- Removed dropdown menu from desktop language switcher\n- Language now cycles on click \\(en → he → ar → en\\)\n- Consistent with mobile version behavior\n- Cleaned up unused state and effects\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(start http://localhost:3001)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":3000 :3001 :3002 :5173 :5174\")",
+      "Bash(start http://localhost:3000)",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__chrome-devtools__navigate_page",
+      "Bash(curl -I http://localhost:3000)",
+      "Bash(npx vite --port 5173)",
+      "mcp__chrome-devtools__take_snapshot",
+      "mcp__chrome-devtools__take_screenshot",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\Waseem\\\\Documents\\\\shayeshkfaryassif\\\\Shayish-Kfar-Yassif\\\\pages\\\\AccessibilityStatement.tsx'' | Select-Object -Skip 106 -First 5\")",
+      "mcp__chrome-devtools__list_console_messages",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\Waseem\\\\Documents\\\\shayeshkfaryassif\\\\Shayish-Kfar-Yassif'' -Recurse -Filter ''favicon*''\")",
+      "Bash(git add -A)"
+    ]
+  }
+}

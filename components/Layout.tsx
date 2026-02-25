@@ -5,7 +5,6 @@ import Button from './Button';
 import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
-import AccessibilityWidget from './AccessibilityWidget';
 import BackgroundMusic from './BackgroundMusic';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -143,7 +142,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </div>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow" role="main" tabIndex={-1}>
         {children}
       </main>
 
@@ -195,7 +194,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <p>&copy; {new Date().getFullYear()} {t('footer.rights')}</p>
           <div className="flex gap-6 mt-4 md:mt-0">
              <Link to="/privacy-policy" className="hover:text-accent transition-colors">{t('footer.privacyPolicy')}</Link>
-             <span className="hover:text-accent transition-colors cursor-pointer">Terms of Use</span>
+             <Link to="/accessibility-statement" className="hover:text-accent transition-colors">{t('footer.accessibility')}</Link>
+             <Link to="/terms-of-use" className="hover:text-accent transition-colors">{t('footer.termsOfUse')}</Link>
           </div>
         </div>
       </footer>
@@ -203,7 +203,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <FloatingActions />
       <ScrollToTop />
       <CookieBanner />
-      <AccessibilityWidget />
       <BackgroundMusic />
     </div>
   );

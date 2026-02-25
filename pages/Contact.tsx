@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
+
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    document.title = 'צור קשר - Contact Us | שיש כפר יאסיף - Shayish Kfar Yassif';
+  }, []);
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen text-light transition-colors duration-300">
         <div className="container mx-auto px-6">
@@ -44,7 +49,7 @@ const Contact: React.FC = () => {
                                 {t('contact.address_lines.0')}<br/>
                                 {t('contact.address_lines.1')}
                             </p>
-                            <a href="#" className="inline-block mt-4 text-accent text-sm underline underline-offset-4 hover:text-light transition-colors">{t('contact.waze')}</a>
+                            <a href="https://waze.com/ul?ll=32.9377,35.2699&navigate=yes" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent text-sm underline underline-offset-4 hover:text-light transition-colors">{t('contact.waze')}</a>
                         </div>
                     </div>
                 </div>

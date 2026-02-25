@@ -27,6 +27,11 @@ const PrivacyPolicy: React.FC = () => {
   const [privacyLang, setPrivacyLang] = useState<PrivacyLanguage>('he');
   const { dir } = useLanguage();
 
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    document.title = 'מדיניות פרטיות - Privacy Policy | שיש כפר יאסיף - Shayish Kfar Yassif';
+  }, []);
+
   // Detect language from browser or use Hebrew as default
   useEffect(() => {
     const browserLang = navigator.language.toLowerCase();

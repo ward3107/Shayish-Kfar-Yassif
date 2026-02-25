@@ -1,0 +1,617 @@
+/**
+ * ACCESSIBILITY WIDGET STYLES
+ * IS 5568 (Israel) & WCAG 2.0 AA Compliant
+ *
+ * Usage: Add <link rel="stylesheet" href="accessibility-widget.css">
+ */
+
+/* ========================================
+   BRAND COLOR CSS VARIABLES (Auto-detected)
+   ======================================== */
+:root {
+  --a11y-brand: #2563EB; /* Will be auto-detected from page */
+  --a11y-brand-dark: #1e40af; /* 25% darker variant */
+}
+
+/* ========================================
+   TRIGGER BUTTON (Bottom-Right)
+   ======================================== */
+#a11y-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  background: color-mix(in srgb, var(--a11y-brand) 50%, transparent);
+  border: 2px solid var(--a11y-brand);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+#a11y-trigger:hover,
+#a11y-trigger:focus {
+  background: var(--a11y-brand);
+  transform: scale(1.05);
+}
+
+/* Visible focus indicator - NEVER suppressed */
+#a11y-trigger:focus-visible {
+  outline: 3px solid var(--a11y-brand);
+  outline-offset: 3px;
+}
+
+/* Accessibility icon */
+#a11y-trigger svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--a11y-brand);
+  transition: fill 0.3s ease;
+}
+
+#a11y-trigger:hover svg,
+#a11y-trigger:focus svg {
+  fill: #ffffff;
+}
+
+/* ========================================
+   DISMISS BUTTON (Below Trigger)
+   ======================================== */
+#a11y-dismiss {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  padding: 6px 12px;
+  background: rgba(128, 128, 128, 0.8);
+  color: #fff;
+  border: 1px solid #666;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 9997;
+  transition: all 0.3s ease;
+}
+
+#a11y-dismiss:hover,
+#a11y-dismiss:focus {
+  background: #444;
+}
+
+#a11y-dismiss:focus-visible {
+  outline: 3px solid var(--a11y-brand);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   PANEL OVERLAY
+   ======================================== */
+#a11y-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#a11y-overlay.a11y-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   PANEL (Dialog)
+   ======================================== */
+#a11y-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 320px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: #ffffff;
+  border: 2px solid var(--a11y-brand);
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+#a11y-panel.a11y-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+/* RTL Support */
+#a11y-panel[dir="rtl"] {
+  right: auto;
+  left: 24px;
+}
+
+/* ========================================
+   PANEL HEADER
+   ======================================== */
+#a11y-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 2px solid var(--a11y-brand);
+  background: var(--a11y-brand);
+  color: #ffffff;
+  border-radius: 6px 6px 0 0;
+}
+
+#a11y-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Close button inside panel */
+#a11y-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+#a11y-close:hover,
+#a11y-close:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#a11y-close:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+#a11y-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ========================================
+   PANEL CONTENT
+   ======================================== */
+#a11y-content {
+  padding: 16px;
+}
+
+/* ========================================
+   FEATURE 1: FONT SIZE CONTROL
+   ======================================== */
+.a11y-feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.a11y-feature:hover {
+  background: #ebebeb;
+}
+
+.a11y-feature-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.a11y-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Font size controls */
+#a11y-font-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.a11y-font-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border: 2px solid var(--a11y-brand);
+  background: #ffffff;
+  color: var(--a11y-brand);
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.a11y-font-btn:hover:not(:disabled) {
+  background: var(--a11y-brand);
+  color: #ffffff;
+}
+
+.a11y-font-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.a11y-font-btn:focus-visible {
+  outline: 2px solid var(--a11y-brand);
+  outline-offset: 2px;
+}
+
+#a11y-font-display {
+  min-width: 50px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* ========================================
+   TOGGLE BUTTONS (Features 2-9)
+   ======================================== */
+.a11y-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f5f5f5;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.a11y-toggle:hover {
+  background: #ebebeb;
+}
+
+.a11y-toggle:focus-visible {
+  outline: 2px solid var(--a11y-brand);
+  outline-offset: 2px;
+}
+
+/* Toggle switch */
+.a11y-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: #cccccc;
+  border-radius: 14px;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.a11y-toggle[aria-pressed="true"] .a11y-switch {
+  background: var(--a11y-brand);
+}
+
+.a11y-switch-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.a11y-toggle[aria-pressed="true"] .a11y-switch-handle {
+  transform: translateX(24px);
+}
+
+/* ========================================
+   FEATURE 10: RESET BUTTON
+   ======================================== */
+#a11y-reset {
+  width: 100%;
+  padding: 12px;
+  margin-top: 16px;
+  background: #444;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s ease;
+}
+
+#a11y-reset:hover {
+  background: #333;
+}
+
+#a11y-reset:focus-visible {
+  outline: 2px solid var(--a11y-brand);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   ACCESSIBILITY STATEMENT LINK
+   ======================================== */
+#a11y-statement-link {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  margin-top: 12px;
+  color: var(--a11y-brand);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+#a11y-statement-link:hover {
+  background: #f0f0f0;
+}
+
+#a11y-statement-link:focus {
+  outline: 2px solid var(--a11y-brand);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   ARIA LIVE REGION (Visually Hidden)
+   ======================================== */
+.a11y-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========================================
+   FEATURE IMPLEMENTATIONS (Applied to Page)
+   ======================================== */
+
+/* FEATURE 2: HIGH CONTRAST */
+body.a11y-contrast {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+}
+
+body.a11y-contrast a,
+body.a11y-contrast button {
+  color: #00FFFF !important;
+}
+
+body.a11y-contrast input,
+body.a11y-contrast textarea,
+body.a11y-contrast select {
+  background: #000000 !important;
+  color: #FFFF00 !important;
+  border-color: #FFFF00 !important;
+}
+
+body.a11y-contrast * {
+  border-color: #FFFF00 !important;
+  box-shadow: none !important;
+}
+
+/* Panel in high contrast mode */
+body.a11y-contrast #a11y-panel {
+  background: #000000 !important;
+  border-color: #FFFF00 !important;
+}
+
+body.a11y-contrast #a11y-header {
+  background: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+body.a11y-contrast #a11y-close {
+  color: #000000 !important;
+}
+
+body.a11y-contrast .a11y-feature {
+  background: #1a1a1a !important;
+  border: 1px solid #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-feature-label,
+body.a11y-contrast #a11y-font-display,
+body.a11y-contrast .a11y-toggle {
+  color: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-font-btn {
+  border-color: #00FFFF !important;
+  color: #00FFFF !important;
+}
+
+body.a11y-contrast .a11y-font-btn:hover:not(:disabled) {
+  background: #00FFFF !important;
+  color: #000000 !important;
+}
+
+body.a11y-contrast .a11y-switch {
+  background: #333333 !important;
+  border: 1px solid #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-toggle[aria-pressed="true"] .a11y-switch {
+  background: #00FFFF !important;
+}
+
+body.a11y-contrast .a11y-switch-handle {
+  background: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-toggle[aria-pressed="true"] .a11y-switch-handle {
+  background: #000000 !important;
+}
+
+body.a11y-contrast #a11y-reset {
+  background: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+body.a11y-contrast #a11y-statement-link {
+  color: #00FFFF !important;
+}
+
+/* FEATURE 3: GRAYSCALE */
+html.a11y-gray {
+  filter: grayscale(100%) !important;
+}
+
+/* FEATURE 4: UNDERLINE LINKS */
+body.a11y-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* FEATURE 5: READABLE FONT */
+body.a11y-font,
+body.a11y-font * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* FEATURE 6: LETTER SPACING */
+body.a11y-spacing,
+body.a11y-spacing * {
+  letter-spacing: 0.15em !important;
+}
+
+/* FEATURE 7: LINE HEIGHT */
+body.a11y-lh p,
+body.a11y-lh li,
+body.a11y-lh span,
+body.a11y-lh div,
+body.a11y-lh h1,
+body.a11y-lh h2,
+body.a11y-lh h3,
+body.a11y-lh h4,
+body.a11y-lh h5,
+body.a11y-lh h6,
+body.a11y-lh button,
+body.a11y-lh a,
+body.a11y-lh input,
+body.a11y-lh textarea,
+body.a11y-lh label {
+  line-height: 2.0 !important;
+}
+
+/* FEATURE 8: PAUSE ANIMATIONS */
+/* Applied via JS-injected style tag */
+
+/* FEATURE 9: HIGHLIGHT ON HOVER/FOCUS */
+body.a11y-highlight *:hover,
+body.a11y-highlight *:focus {
+  outline: 3px solid var(--a11y-brand) !important;
+  outline-offset: 2px !important;
+}
+
+/* Exclude widget from highlight */
+body.a11y-highlight #a11y-panel *,
+body.a11y-highlight #a11y-panel *:hover,
+body.a11y-highlight #a11y-panel *:focus,
+body.a11y-highlight #a11y-trigger:hover,
+body.a11y-highlight #a11y-trigger:focus,
+body.a11y-highlight #a11y-dismiss:hover,
+body.a11y-highlight #a11y-dismiss:focus {
+  outline: none !important;
+}
+
+/* ========================================
+   BASE FONT SIZE (Feature 1)
+   ======================================== */
+html {
+  font-size: var(--base-font-size, 16px);
+}
+
+/* ========================================
+   REDUCED MOTION PREFERENCE
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  #a11y-panel,
+  #a11y-trigger,
+  #a11y-dismiss,
+  .a11y-toggle,
+  .a11y-font-btn,
+  #a11y-reset {
+    transition: none !important;
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+   ======================================== */
+@media (max-width: 480px) {
+  #a11y-panel {
+    width: calc(100vw - 32px);
+    right: 16px;
+    bottom: 16px;
+  }
+
+  #a11y-panel[dir="rtl"] {
+    left: 16px;
+    right: auto;
+  }
+
+  #a11y-trigger {
+    width: 48px;
+    height: 48px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  #a11y-dismiss {
+    right: 16px;
+    bottom: 72px;
+  }
+}

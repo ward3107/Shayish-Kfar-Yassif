@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const About: React.FC = () => {
   const { t, dir } = useLanguage();
+
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    document.title = 'סטודיו - About Studio | שיש כפר יאסיף - Shayish Kfar Yassif';
+  }, []);
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen text-light transition-colors duration-300">
       {/* Hero */}

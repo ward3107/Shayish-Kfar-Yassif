@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import ContactForm from '../components/ContactForm';
 import { PROJECTS, TESTIMONIALS } from '../constants';
@@ -13,6 +14,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home: React.FC = () => {
   const { t, dir, language } = useLanguage();
+  const location = useLocation();
+
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    if (location.pathname === '/') {
+      document.title = 'שיש כפר יאסיף - Shayish Kfar Yassif | משטחי שיש וקרמיקה בהתאמה אישית';
+    }
+  }, [location.pathname]);
+
   const ArrowIcon = dir === 'rtl' ?  (props: any) => <ArrowRight {...props} style={{transform: 'rotate(180deg)'}} /> : ArrowRight;
 
   // Scroll animation refs
@@ -130,18 +140,18 @@ const Home: React.FC = () => {
           <div className="mb-4 flex flex-col items-center justify-center">
             {language === 'he' ? (
                 <>
-                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-wide">שיש כפר יאסיף</h2>
+                    <span className="text-3xl md:text-4xl font-serif text-white tracking-wide">שיש כפר יאסיף</span>
                     <span className="text-sm md:text-base text-gray-400 uppercase tracking-widest mt-1">Shayish Kfar Yassif</span>
                 </>
             ) : (
                 <>
-                    <h2 className="text-3xl md:text-4xl font-serif text-white uppercase tracking-wide">Shayish Kfar Yassif</h2>
+                    <span className="text-3xl md:text-4xl font-serif text-white uppercase tracking-wide">Shayish Kfar Yassif</span>
                     <span className="text-lg md:text-xl text-gray-400 font-serif mt-1">שיש כפר יאסיף</span>
                 </>
             )}
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-8 tracking-tight leading-none">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-8 tracking-tight leading-none animate-slide-in-right">
             {t('hero.title_line1')} <br/> <span className="text-accent italic">{t('hero.title_line2')}</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">

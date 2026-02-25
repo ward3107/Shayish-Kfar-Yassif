@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PROCESS_STEPS } from '../constants';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Process: React.FC = () => {
+  // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
+  useEffect(() => {
+    document.title = 'תהליך העבודה - The Process | שיש כפר יאסיף - Shayish Kfar Yassif';
+  }, []);
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen text-light transition-colors duration-300">
       <div className="container mx-auto px-6">

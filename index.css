@@ -147,31 +147,74 @@ body.a11y-highlight #a11y-panel *:focus {
 }
 
 /* Enhanced focus visibility for all interactive elements (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[href]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-accent) !important;
+  outline-offset: 3px !important;
+}
+
+/* Fallback for browsers that don't support :focus-visible */
 a:focus,
 button:focus,
 input:focus,
 textarea:focus,
 select:focus,
 [href]:focus,
-[tabindex]:focus {
+[tabindex]:focus:not(:focus-visible) {
   outline: 3px solid var(--color-accent) !important;
-  outline-offset: 2px !important;
+  outline-offset: 3px !important;
 }
 
-/* Skip to content link (for keyboard users) */
+/* Remove outline for mouse users only when :focus-visible is supported */
+@media (hover: hover) and (pointer: fine) {
+  a:focus:not(:focus-visible),
+  button:focus:not(:focus-visible) {
+    outline: 2px solid transparent;
+  }
+}
+
+/* Skip to content link (WCAG 2.4.1 - Skip Navigation Link) */
 .skip-to-content {
   position: absolute;
-  top: -40px;
+  top: -100px;
   left: 0;
-  background: var(--color-accent);
-  color: white;
-  padding: 8px 16px;
-  z-index: 100;
+  right: 0;
+  background: #000;
+  color: #fff;
+  padding: 12px 24px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
   transition: top 0.3s;
+  text-align: center;
 }
 
 .skip-to-content:focus {
   top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Slide in from right animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 1s ease-out;
 }
 
 /* Reduced motion for users who prefer it */

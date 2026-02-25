@@ -19,7 +19,9 @@ const BackgroundMusic: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3); // 30% default volume
   const [showVolume, setShowVolume] = useState(false);
+  const [volumeAnnouncement, setVolumeAnnouncement] = useState('');
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const volumeSliderRef = useRef<HTMLInputElement>(null);
 
   // Free ambient music URL (you can replace with your own file)
   // Using a calm ambient track from a free source
@@ -97,8 +99,18 @@ const BackgroundMusic: React.FC = () => {
 
   // Toggle mute
   const toggleMute = () => {
-    setVolume(v => v === 0 ? 0.3 : 0);
+    const newVolume = volume === 0 ? 0.3 : 0;
+    setVolume(newVolume);
+    setVolumeAnnouncement(newVolume === 0 ? 'Muted' : 'Unmuted');
   };
+
+  // Announce volume changes for screen readers
+  useEffect(() => {
+    if (volumeAnnouncement) {
+      const timer = setTimeout(() => setVolumeAnnouncement(''), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [volumeAnnouncement]);
 
   return (
     <>
@@ -153,30 +165,45 @@ const BackgroundMusic: React.FC = () => {
               className="absolute bottom-full left-0 mb-2 p-3 bg-white border border-neutral-300 rounded-lg shadow-xl min-w-[140px]"
               onMouseEnter={() => setShowVolume(true)}
               onMouseLeave={() => setShowVolume(false)}
+              role="dialog"
+              aria-label="Volume control"
             >
               <div className="flex items-center gap-2 mb-2">
                 <button
                   type="button"
                   onClick={toggleMute}
                   aria-label={volume === 0 ? 'Unmute' : 'Mute'}
+                  aria-pressed={volume === 0}
                   className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   {volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
                 </button>
-                <span className="text-xs text-gray-600 font-bold">
+                <span className="text-xs text-gray-600 font-bold" aria-live="polite">
                   {Math.round(volume * 100)}%
                 </span>
               </div>
               <input
+                ref={volumeSliderRef}
                 type="range"
                 min="0"
                 max="1"
                 step="0.1"
                 value={volume}
-                onChange={(e) => setVolume(parseFloat(e.target.value))}
-                aria-label="Volume"
+                onChange={(e) => {
+                  const newVolume = parseFloat(e.target.value);
+                  setVolume(newVolume);
+                }}
+                aria-label="Music volume"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.round(volume * 100)}
+                aria-valuetext={`${Math.round(volume * 100)} percent`}
                 className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-accent"
               />
+              {/* Screen reader announcement */}
+              <div role="status" aria-live="polite" className="sr-only">
+                {volumeAnnouncement}
+              </div>
             </div>
           )}
         </div>
