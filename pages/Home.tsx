@@ -88,6 +88,37 @@ const Home: React.FC = () => {
           scrub: true,
         },
       });
+
+      // Lightning splash animation - triggered on scroll
+      const lightningFlash = document.querySelector('.lightning-flash');
+      const lightningSplash = document.querySelector('.lightning-splash');
+
+      ScrollTrigger.create({
+        trigger: parallaxSection,
+        start: 'top 70%',
+        onEnter: () => {
+          // Activate lightning flash
+          if (lightningFlash) {
+            lightningFlash.classList.add('active');
+          }
+          // Activate splash glow
+          if (lightningSplash) {
+            setTimeout(() => {
+              lightningSplash.classList.add('active');
+            }, 200);
+          }
+        },
+        onLeaveBack: () => {
+          // Reset when scrolling back up (so it can play again)
+          if (lightningFlash) {
+            lightningFlash.classList.remove('active');
+          }
+          if (lightningSplash) {
+            lightningSplash.classList.remove('active');
+          }
+        },
+        once: false // Allow animation to replay when scrolling back
+      });
     }
 
     // Contact section image parallax
@@ -103,6 +134,32 @@ const Home: React.FC = () => {
           scrub: 1.5,
         },
       });
+
+      // Contact info box - staggered fade in from bottom
+      const contactBox = document.querySelector('.contact-info-box');
+      const contactTitle = document.querySelector('.contact-title');
+      const contactLocation = document.querySelector('.contact-location');
+
+      if (contactBox && contactTitle && contactLocation) {
+        gsap.fromTo(
+          [contactBox, contactTitle, contactLocation],
+          {
+            opacity: 0,
+            y: 60,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: contactImage,
+              start: 'top 60%',
+            },
+          }
+        );
+      }
     }
 
     // Hero buttons fade in from both sides
@@ -179,7 +236,7 @@ const Home: React.FC = () => {
       {/* Music Player - Bottom Right Corner */}
       <MusicPlayer
         tracks={musicTracks}
-        autoPlay={false}
+        autoPlay={true}
         shuffle={true}
         loop={true}
         position="bottom-right"
@@ -331,10 +388,12 @@ const Home: React.FC = () => {
 
       {/* PARALLAX BREAK SECTION */}
       <section
-        className="parallax-break relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center"
+        className="parallax-break relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center overflow-hidden"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1616489953121-2e21b7e0964b?q=80&w=2070&auto=format&fit=crop')" }}
       >
-         <div className="absolute inset-0 bg-black/40"></div>
+         {/* Soft Lightning Splash Overlay */}
+         <div className="absolute inset-0 bg-black/40 lightning-splash"></div>
+         <div className="lightning-flash"></div>
          <div className="relative z-10 text-center px-6">
             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-wide mb-6">
               {language === 'he' ? 'דיוק בכל פרט' : (language === 'ar' ? 'الدقة في كل التفاصيل' : 'Precision in Every Detail')}
@@ -371,9 +430,9 @@ const Home: React.FC = () => {
             <div className="flex flex-col lg:flex-row gap-0">
                 <div className="contact-image lg:w-1/2 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative">
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="text-center p-8 border border-white/20 backdrop-blur-sm bg-black/30">
-                            <h3 className="text-3xl font-serif text-white mb-2">{t('home.visit_title')}</h3>
-                            <p className="text-gray-300">{t('home.visit_loc')}</p>
+                        <div className="contact-info-box text-center p-8 border border-white/20 backdrop-blur-sm bg-black/30">
+                            <h3 className="contact-title text-3xl font-serif text-white mb-2">{t('home.visit_title')}</h3>
+                            <p className="contact-location text-gray-300">{t('home.visit_loc')}</p>
                         </div>
                     </div>
                 </div>

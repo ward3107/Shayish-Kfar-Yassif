@@ -12,6 +12,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, Shuffle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export interface Track {
   id: string;
@@ -35,10 +36,11 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   loop = true,
   position = 'bottom-right'
 }) => {
+  const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [volume, setVolume] = useState(0.7);
+  const [volume, setVolume] = useState(0.2);
   const [isMuted, setIsMuted] = useState(false);
   const [isShuffleOn, setIsShuffleOn] = useState(shuffle);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -214,8 +216,8 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       {!isExpanded && (
         <button
           onClick={() => { setHasInteracted(true); setIsExpanded(true); }}
-          className="flex items-center gap-3 bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/20 hover:bg-black/90 transition-all duration-300 group"
-          aria-label="Open music player"
+          className="flex items-center gap-3 bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/20 hover:bg-black/60 transition-all duration-300 group"
+          aria-label={t('music.open_player')}
         >
           <div className={`w-8 h-8 rounded-full bg-accent flex items-center justify-center ${isPlaying ? 'animate-pulse' : ''}`}>
             {isPlaying ? (
@@ -252,7 +254,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <button
               onClick={() => setIsExpanded(false)}
               className="text-white/60 hover:text-white transition-colors"
-              aria-label="Collapse player"
+              aria-label={t('music.collapse_player')}
             >
               ✕
             </button>
@@ -278,7 +280,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <button
               onClick={toggleShuffle}
               className={`p-2 rounded-full transition-all ${isShuffleOn ? 'bg-accent text-white' : 'text-white/60 hover:text-white hover:bg-white/10'}`}
-              aria-label="Toggle shuffle"
+              aria-label={t('music.shuffle')}
             >
               <Shuffle size={18} />
             </button>
@@ -286,7 +288,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <button
               onClick={playPrevious}
               className="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-all"
-              aria-label="Previous track"
+              aria-label={t('music.previous')}
             >
               <SkipBack size={20} />
             </button>
@@ -294,7 +296,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <button
               onClick={togglePlay}
               className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center hover:scale-105 transition-transform"
-              aria-label={isPlaying ? 'Pause' : 'Play'}
+              aria-label={isPlaying ? t('music.pause') : t('music.play')}
             >
               {isPlaying ? <Pause size={24} fill="white" /> : <Play size={24} fill="white" className="ml-1" />}
             </button>
@@ -302,7 +304,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <button
               onClick={playNext}
               className="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-all"
-              aria-label="Next track"
+              aria-label={t('music.next')}
             >
               <SkipForward size={20} />
             </button>
@@ -310,7 +312,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <button
               onClick={toggleMute}
               className="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-all"
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
+              aria-label={isMuted ? t('music.unmute') : t('music.mute')}
             >
               {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
             </button>
@@ -326,7 +328,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
               className="flex-1 h-1 bg-white/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer hover:[&::-webkit-slider-thumb]:scale-125 [&::-webkit-slider-thumb]:transition-transform"
-              aria-label="Volume"
+              aria-label={t('music.volume')}
             />
             <span className="text-xs text-white/60 w-8 text-right">
               {Math.round((isMuted ? 0 : volume) * 100)}%
@@ -335,7 +337,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
           {/* Track list (compact) */}
           <div className="mt-4 pt-4 border-t border-white/10">
-            <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Playlist</p>
+            <p className="text-xs text-white/40 uppercase tracking-wider mb-2">{t('music.playlist')}</p>
             <div className="space-y-1 max-h-32 overflow-y-auto">
               {tracks.map((track, index) => {
                 const isCurrentTrack = index === actualIndex;

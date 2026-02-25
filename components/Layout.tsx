@@ -5,7 +5,6 @@ import Button from './Button';
 import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
-import BackgroundMusic from './BackgroundMusic';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -203,7 +202,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <FloatingActions />
       <ScrollToTop />
       <CookieBanner />
-      <BackgroundMusic />
     </div>
   );
 };

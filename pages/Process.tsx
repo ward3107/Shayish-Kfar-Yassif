@@ -2,19 +2,23 @@ import React, { useEffect } from 'react';
 import { PROCESS_STEPS } from '../constants';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Process: React.FC = () => {
+  const { t } = useLanguage();
+
   // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
   useEffect(() => {
-    document.title = 'תהליך העבודה - The Process | שיש כפר יאסיף - Shayish Kfar Yassif';
+    document.title = `${t('process.title')} - The Process | שיש כפר יאסיף - Shayish Kfar Yassif`;
   }, []);
+
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen text-light transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="text-center mb-24 max-w-3xl mx-auto">
-           <h1 className="text-5xl md:text-7xl font-serif text-light mb-6">The Methodology</h1>
+           <h1 className="text-5xl md:text-7xl font-serif text-light mb-6">{t('process.title')}</h1>
            <p className="text-muted font-light text-lg">
-            Precision planning meets artisanal execution.
+            {t('process.subtitle')}
            </p>
         </div>
 
@@ -34,9 +38,9 @@ const Process: React.FC = () => {
         </div>
 
         <div className="mt-32 text-center">
-            <h2 className="text-3xl font-serif mb-6 text-light">Start Your Project</h2>
+            <h2 className="text-3xl font-serif mb-6 text-light">{t('process.start_project')}</h2>
             <Link to="/contact">
-                <Button size="lg" variant="gold">Book Consultation</Button>
+                <Button size="lg" variant="gold">{t('process.book_consultation')}</Button>
             </Link>
         </div>
       </div>

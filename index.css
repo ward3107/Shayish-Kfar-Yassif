@@ -229,3 +229,113 @@ select:focus,
   }
 }
 
+/* ========================================
+   LIGHTNING SPLASH ANIMATION
+   ======================================== */
+
+/* Soft splash ripple effect - bigger scale */
+@keyframes softSplash {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+/* Main lightning flash effect - FAST like real lightning */
+@keyframes lightningFlash {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.8;
+  }
+  15% {
+    opacity: 0;
+  }
+  17% {
+    opacity: 0.4;
+  }
+  22% {
+    opacity: 0;
+  }
+}
+
+/* Lightning flash overlay - bigger */
+.lightning-flash {
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 80%
+  );
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Lightning flash overlay - when triggered - FAST */
+.lightning-flash.active {
+  animation: lightningFlash 0.5s ease-out forwards;
+}
+
+/* Lightning splash glow on the overlay */
+.lightning-splash {
+  position: relative;
+}
+
+.lightning-splash::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 175, 55, 0.3) 0%,
+    rgba(212, 175, 55, 0.1) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* Multiple splash points for more natural effect - bigger */
+.lightning-splash::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* Lightning splash - when triggered - FAST */
+.lightning-splash.active::before {
+  animation: softSplash 1s ease-out forwards;
+}
+
+.lightning-splash.active::after {
+  animation: softSplash 1.2s ease-out 0.1s forwards;
+}
+

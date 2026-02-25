@@ -1,42 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
+
+type FilterType = 'All' | 'Modern' | 'Classic' | 'Luxury';
 
 const Gallery: React.FC = () => {
-  const [filter, setFilter] = useState<'All' | 'Modern' | 'Classic' | 'Luxury'>('All');
+  const [filter, setFilter] = useState<FilterType>('All');
+  const { t } = useLanguage();
 
   // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
   useEffect(() => {
-    document.title = 'קולקציות - Collections | שיש כפר יאסיף - Shayish Kfar Yassif';
+    document.title = `${t('gallery.title')} - Collections | שיש כפר יאסיף - Shayish Kfar Yassif`;
   }, []);
 
-  const filteredProjects = filter === 'All' 
-    ? PROJECTS 
+  const filteredProjects = filter === 'All'
+    ? PROJECTS
     : PROJECTS.filter(p => p.category === filter);
+
+  const filterOptions: { key: FilterType; label: string }[] = [
+    { key: 'All', label: t('gallery.filter_all') },
+    { key: 'Modern', label: t('gallery.filter_modern') },
+    { key: 'Classic', label: t('gallery.filter_classic') },
+    { key: 'Luxury', label: t('gallery.filter_luxury') }
+  ];
 
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-neutral-800 pb-8">
           <div>
-             <h1 className="text-5xl md:text-7xl font-serif text-light mb-4">Collections</h1>
-             <p className="text-muted font-light max-w-md">Each project is a unique dialogue between material, space, and client aspirations.</p>
+             <h1 className="text-5xl md:text-7xl font-serif text-light mb-4">{t('gallery.title')}</h1>
+             <p className="text-muted font-light max-w-md">{t('gallery.subtitle')}</p>
           </div>
-          
+
           {/* Filters */}
           <div className="flex gap-8 mt-8 md:mt-0" role="group" aria-label="Filter projects by category">
-            {['All', 'Modern', 'Classic', 'Luxury'].map((cat) => (
+            {filterOptions.map((option) => (
               <button
-                key={cat}
-                onClick={() => setFilter(cat as any)}
-                aria-pressed={filter === cat}
+                key={option.key}
+                onClick={() => setFilter(option.key)}
+                aria-pressed={filter === option.key}
                 className={`text-sm uppercase tracking-widest transition-all pb-1 border-b-2 ${
-                  filter === cat
+                  filter === option.key
                     ? 'text-light border-accent'
                     : 'text-muted border-transparent hover:text-light'
                 }`}
               >
-                {cat}
+                {option.label}
               </button>
             ))}
           </div>
