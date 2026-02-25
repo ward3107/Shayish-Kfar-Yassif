@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import ContactForm from '../components/ContactForm';
+import MusicPlayer from '../components/MusicPlayer';
 import { PROJECTS, TESTIMONIALS } from '../constants';
 import { ArrowRight, Star, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
   const artSectionRef = useScrollAnimation({ type: 'fadeInUp' });
   const testimonialsRef = useScrollAnimation({ type: 'stagger', stagger: 0.2 });
   const contactRef = useRef<HTMLDivElement>(null);
+  const heroButtonsRef = useRef<HTMLDivElement>(null);
 
   // Stagger animation for project cards
   const gridItemsRef = useRef<(HTMLElement | null)[]>([]);
@@ -103,13 +105,85 @@ const Home: React.FC = () => {
       });
     }
 
+    // Hero buttons fade in from both sides
+    if (heroButtonsRef.current) {
+      const buttons = heroButtonsRef.current.children;
+      gsap.fromTo(
+        buttons,
+        { opacity: 0, x: (index) => index === 0 ? -60 : 60 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          delay: 0.5,
+          ease: 'power3.out',
+        }
+      );
+    }
+
+    // Word-by-word soft flow animation for intro quote
+    const quoteWords = document.querySelectorAll('.word-flow');
+    if (quoteWords.length > 0) {
+      gsap.fromTo(
+        quoteWords,
+        {
+          opacity: 0,
+          y: 20,
+          filter: 'blur(8px)'
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: introRef.current,
+            start: 'top 80%',
+          },
+        }
+      );
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
+  // Music tracks - ambient/classical music suitable for the site
+  // Using reliable CDN sources for ambient music
+  const musicTracks = [
+    {
+      id: 'track1',
+      title: 'Ambient Marble',
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      artist: 'SoundHelix'
+    },
+    {
+      id: 'track2',
+      title: 'Stone Dreams',
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+      artist: 'SoundHelix'
+    },
+    {
+      id: 'track3',
+      title: 'Elegant Journey',
+      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+      artist: 'SoundHelix'
+    }
+  ];
+
   return (
     <div className="flex flex-col">
+      {/* Music Player - Bottom Right Corner */}
+      <MusicPlayer
+        tracks={musicTracks}
+        autoPlay={false}
+        shuffle={true}
+        loop={true}
+        position="bottom-right"
+      />
       {/* Hero Section - Text remains white due to video background */}
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         {/* Background Video */}
@@ -157,12 +231,12 @@ const Home: React.FC = () => {
           <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
             {t('hero.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div ref={heroButtonsRef} className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/gallery">
-              <Button variant="white" size="lg">{t('hero.explore')}</Button>
+              <Button variant="outline" size="lg">{t('hero.explore')}</Button>
             </Link>
             <Link to="/contact">
-              <Button variant="outline" size="lg">{t('hero.book')}</Button>
+              <Button variant="gold" size="lg">{t('hero.book')}</Button>
             </Link>
           </div>
         </div>
@@ -173,11 +247,15 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Intro Statement */}
-      <section ref={introRef as React.RefObject<HTMLElement>} className="py-32 bg-primary text-center transition-colors duration-300">
+      {/* Intro Statement - Word by Word Animation */}
+      <section className="py-32 bg-primary text-center transition-colors duration-300">
           <div className="container mx-auto px-6 max-w-4xl">
-              <h2 className="text-2xl md:text-4xl font-serif leading-normal text-light">
-                 {t('intro.quote')}
+              <h2 ref={introRef as React.RefObject<HTMLHeadingElement>} className="text-2xl md:text-4xl font-serif leading-normal text-light">
+                 {t('intro.quote').split(' ').map((word, index) => (
+                     <span key={index} className="inline-block word-flow">
+                         {word}&nbsp;
+                     </span>
+                 ))}
               </h2>
           </div>
       </section>

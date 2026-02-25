@@ -1,13 +1,16 @@
 /**
  * Cookie Consent Banner
  * Amendment 13 (Israel Privacy Protection Law) Compliant
+ * GDPR (General Data Protection Regulation) Compliant
  * GTM Consent Mode v2 Integration
  *
  * Signals: analytics_storage, ad_storage, ad_user_data, ad_personalization
- * Built: 2025-02-23
+ * Built: 2025-02-25
  *
  * Features:
  * - Granular consent (Necessary, Analytics, Marketing)
+ * - EU/EEA detection with GDPR messaging
+ * - "Do Not Sell or Share" toggle (Article 21 GDPR)
  * - localStorage persistence (12 months)
  * - RTL/LTR support
  * - 4 languages: Hebrew (he), Arabic (ar), English (en), Russian (ru)
@@ -17,6 +20,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, ChevronDown, ChevronUp } from 'lucide-react';
+import { doesGDPRApply, GDPRDetectionResult } from '../utils/gdprDetection';
 
 // Types
 export type CookieLanguage = 'he' | 'ar' | 'en' | 'ru';
@@ -26,6 +30,8 @@ export interface CookieConsent {
   necessary: boolean;
   analytics: boolean;
   marketing: boolean;
+  doNotSell?: boolean; // GDPR Article 21 - Right to object
+  isEU?: boolean; // Flag for EU users
   timestamp: string;
   language: CookieLanguage;
   expires: string;
@@ -46,14 +52,16 @@ const translations: Record<CookieLanguage, {
   title: string;
   description: string;
   necessary: { label: string; description: string };
-  analytics: { label: string; description: string };
-  marketing: { label: string; description: string };
+  analytics: { label: string; description: string; legalBasis?: string };
+  marketing: { label: string; description: string; legalBasis?: string };
+  doNotSell: { label: string; description: string; legalBasis?: string };
   acceptAll: string;
   rejectAll: string;
   customize: string;
   savePreferences: string;
   privacyPolicy: string;
   privacyLink: string;
+  gdprNotice?: string;
   aria: { banner: string; customize: string; close: string };
 }> = {
   he: {
@@ -65,11 +73,18 @@ const translations: Record<CookieLanguage, {
     },
     analytics: {
       label: 'ניתוח וסטטיסטיקה',
-      description: 'Google Analytics — צפיות בדף, משך הביקור. הנתונים נשלחים לשרתי Google. אין נתונים מזהים אישית. שימוש לשיפור האתר.'
+      description: 'Google Analytics — צפיות בדף, משך הביקור. הנתונים נשלחים לשרתי Google. אין נתונים מזהים אישית. שימוש לשיפור האתר.',
+      legalBasis: 'בסיס משפטי: סעיף 6(1)(א) ל-GDPR - הסכמה'
     },
     marketing: {
       label: 'שיווק ופרסום',
-      description: 'Facebook Pixel, Google Ads — משמש להצגת פרסומות רלוונטיות. נתונים משותפים עם Meta ו-Google למטרות מיקוד פרסומות ומעקב המרות.'
+      description: 'Facebook Pixel, Google Ads — משמש להצגת פרסומות רלוונטיות. נתונים משותפים עם Meta ו-Google למטרות מיקוד פרסומות ומעקב המרות.',
+      legalBasis: 'בסיס משפטי: סעיף 6(1)(א) ל-GDPR - הסכמה'
+    },
+    doNotSell: {
+      label: 'אל תמכור או שתף את הנתונים שלי',
+      description: 'אני מתנגד למכירה או שיתוף הנתונים האישיים שלי לצדדים שלישיים למטרות שיווק.',
+      legalBasis: 'סעיף 21 ל-GDPR - זכות ההתנגדות'
     },
     acceptAll: 'קבל הכל',
     rejectAll: 'דחה הכל',
@@ -77,6 +92,7 @@ const translations: Record<CookieLanguage, {
     savePreferences: 'שמור העדפות',
     privacyPolicy: 'מדיניות הפרטיות שלנו',
     privacyLink: 'קרא את מדיניות הפרטיות',
+    gdprNotice: '🇪🇺 לתושבי האיחוד האירופי: אתר זה מעבד את הנתונים שלך על פי GDPR (התקנה הכללית להגנת נתונים). יש לך זכויות נוספות, לרבות הזכות להתנגד לעיבוד (סעיף 21).',
     aria: {
       banner: 'הודעת הסכמה לקובצי Cookie',
       customize: 'הרחב אפשרויות התאמה אישית',
@@ -92,11 +108,18 @@ const translations: Record<CookieLanguage, {
     },
     analytics: {
       label: 'التحليل والإحصائيات',
-      description: 'Google Analytics — مشاهدات الصفحة، مدة الجلسة. البيانات ترسل إلى خوادم Google. لا بيانات تعريف شخصية. تستخدم لتحسين الموقع.'
+      description: 'Google Analytics — مشاهدات الصفحة، مدة الجلسة. البيانات ترسل إلى خوادم Google. لا بيانات تعريف شخصية. تستخدم لتحسين الموقع.',
+      legalBasis: 'الأساس القانوني: المادة 6(1)(أ) من GDPR - الموافقة'
     },
     marketing: {
       label: 'التسويق والإعلانات',
-      description: 'Facebook Pixel، Google Ads — يستخدم لعرض الإعلانات ذات الصلة. البيانات تشارك مع Meta و Google لاستهداف الإعلانات وتتبع التحويلات.'
+      description: 'Facebook Pixel، Google Ads — يستخدم لعرض الإعلانات ذات الصلة. البيانات تشارك مع Meta و Google لاستهداف الإعلانات وتتبع التحويلات.',
+      legalBasis: 'الأساس القانوني: المادة 6(1)(أ) من GDPR - الموافقة'
+    },
+    doNotSell: {
+      label: 'لا تبيع أو تشارك بياناتي',
+      description: 'أنا أعترض على بيع أو مشاركة بياناتي الشخصية مع أطراف ثالثة لأغراض التسويق.',
+      legalBasis: 'المادة 21 من GDPR - حق الاعتراض'
     },
     acceptAll: 'قبول الكل',
     rejectAll: 'رفض الكل',
@@ -104,6 +127,7 @@ const translations: Record<CookieLanguage, {
     savePreferences: 'حفظ التفضيلات',
     privacyPolicy: 'سياسة الخصوصية الخاصة بنا',
     privacyLink: 'اقرأ سياسة الخصوصية',
+    gdprNotice: '🇪🇺 لمقيمي الاتحاد الأوروبي: يعالج هذا موقع بياناتك بموجب GDPR (اللائحة العامة لحماية البيانات). لديك حقوق إضافية، بما في ذلك الحق في الاعتراض على المعالجة (المادة 21).',
     aria: {
       banner: 'إشعار موافقة ملفات تعريف الارتباط',
       customize: 'توسيع خيارات التخصيص',
@@ -119,11 +143,18 @@ const translations: Record<CookieLanguage, {
     },
     analytics: {
       label: 'Analytics & Statistics',
-      description: 'Google Analytics — page views, session duration. Data sent to Google servers. No personally identifiable data. Used to improve the site.'
+      description: 'Google Analytics — page views, session duration. Data sent to Google servers. No personally identifiable data. Used to improve the site.',
+      legalBasis: 'Legal basis: GDPR Article 6(1)(a) - Consent'
     },
     marketing: {
       label: 'Marketing & Advertising',
-      description: 'Facebook Pixel, Google Ads — used to show relevant ads. Data shared with Meta and Google for ad targeting and conversion tracking.'
+      description: 'Facebook Pixel, Google Ads — used to show relevant ads. Data shared with Meta and Google for ad targeting and conversion tracking.',
+      legalBasis: 'Legal basis: GDPR Article 6(1)(a) - Consent'
+    },
+    doNotSell: {
+      label: 'Do Not Sell or Share My Data',
+      description: 'I object to the sale or sharing of my personal data with third parties for marketing purposes.',
+      legalBasis: 'GDPR Article 21 - Right to Object'
     },
     acceptAll: 'Accept All',
     rejectAll: 'Reject All',
@@ -131,6 +162,7 @@ const translations: Record<CookieLanguage, {
     savePreferences: 'Save Preferences',
     privacyPolicy: 'Our Privacy Policy',
     privacyLink: 'Read Privacy Policy',
+    gdprNotice: '🇪🇺 For EU/EEA Residents: This site processes your data under GDPR (General Data Protection Regulation). You have additional rights, including the right to object to processing (Article 21).',
     aria: {
       banner: 'Cookie consent notice',
       customize: 'Expand customization options',
@@ -146,11 +178,18 @@ const translations: Record<CookieLanguage, {
     },
     analytics: {
       label: 'Аналитика и статистика',
-      description: 'Google Analytics — просмотры страниц, длительность сессии. Данные отправляются на серверы Google. Без персональных данных. Используется для улучшения сайта.'
+      description: 'Google Analytics — просмотры страниц, длительность сессии. Данные отправляются на серверы Google. Без персональных данных. Используется для улучшения сайта.',
+      legalBasis: 'Правовая основа: Статья 6(1)(a) GDPR - Согласие'
     },
     marketing: {
       label: 'Маркетинг и реклама',
-      description: 'Facebook Pixel, Google Ads — используется для показа релевантной рекламы. Данные передаются Meta и Google для таргетинга рекламы и отслеживания конверсий.'
+      description: 'Facebook Pixel, Google Ads — используется для показа релевантной рекламы. Данные передаются Meta и Google для таргетинга рекламы и отслеживания конверсий.',
+      legalBasis: 'Правовая основа: Статья 6(1)(a) GDPR - Согласие'
+    },
+    doNotSell: {
+      label: 'Не продавать и не передавать мои данные',
+      description: 'Я возражаю против продажи или передачи моих личных данных третьим лицам в маркетинговых целях.',
+      legalBasis: 'Статья 21 GDPR - Право на возражение'
     },
     acceptAll: 'Принять все',
     rejectAll: 'Отклонить все',
@@ -158,6 +197,7 @@ const translations: Record<CookieLanguage, {
     savePreferences: 'Сохранить настройки',
     privacyPolicy: 'Наша политика конфиденциальности',
     privacyLink: 'Читать политику конфиденциальности',
+    gdprNotice: '🇪🇺 Для резидентов ЕС/ЕЭЗ: Этот сайт обрабатывает ваши данные в соответствии с GDPR (Общий регламент защиты данных). У вас есть дополнительные права, включая право на возражение против обработки (Статья 21).',
     aria: {
       banner: 'Уведомление о согласии на использование файлов cookie',
       customize: 'Раскрыть параметры настройки',
@@ -230,7 +270,7 @@ const updateGTMConsent = (analytics: boolean, marketing: boolean) => {
 };
 
 // Save consent to localStorage
-const saveConsent = (analytics: boolean, marketing: boolean, language: CookieLanguage): void => {
+const saveConsent = (analytics: boolean, marketing: boolean, language: CookieLanguage, doNotSell: boolean = false, isEU: boolean = false): void => {
   const now = new Date();
   const expires = new Date();
   expires.setMonth(expires.getMonth() + EXPIRY_MONTHS);
@@ -240,6 +280,8 @@ const saveConsent = (analytics: boolean, marketing: boolean, language: CookieLan
     necessary: true,
     analytics,
     marketing,
+    doNotSell,
+    isEU,
     timestamp: now.toISOString(),
     language,
     expires: expires.toISOString()
@@ -278,8 +320,11 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
+  const [doNotSell, setDoNotSell] = useState(false);
   const [language, setLanguage] = useState<CookieLanguage>(detectLanguage());
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isEU, setIsEU] = useState<boolean>(false);
+  const [euDetectionComplete, setEuDetectionComplete] = useState<boolean>(false);
 
   // Initialize on mount
   useEffect(() => {
@@ -292,10 +337,23 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
       // Restore consent and update GTM
       setAnalytics(existingConsent.analytics);
       setMarketing(existingConsent.marketing);
+      setDoNotSell(existingConsent.doNotSell || false);
       setLanguage(existingConsent.language);
+      setIsEU(existingConsent.isEU || false);
+      setEuDetectionComplete(true);
       updateGTMConsent(existingConsent.analytics, existingConsent.marketing);
       // Don't show banner if already consented
       return;
+    }
+
+    // Detect EU user
+    const gdpApplies = doesGDPRApply();
+    setIsEU(gdpApplies);
+    setEuDetectionComplete(true);
+
+    // For EU users, default doNotSell to true (privacy by design)
+    if (gdpApplies) {
+      setDoNotSell(true);
     }
 
     // Initialize GTM with default consent (all denied)
@@ -314,26 +372,28 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
   const handleAcceptAll = useCallback(() => {
     setAnalytics(true);
     setMarketing(true);
-    saveConsent(true, true, language);
+    // Note: doNotSell remains true for EU users (privacy by design)
+    saveConsent(true, true, language, doNotSell, isEU);
     updateGTMConsent(true, true);
     handleClose();
-  }, [language]);
+  }, [language, doNotSell, isEU]);
 
   // Handle reject all
   const handleRejectAll = useCallback(() => {
     setAnalytics(false);
     setMarketing(false);
-    saveConsent(false, false, language);
+    setDoNotSell(true); // Always enable doNotSell on reject
+    saveConsent(false, false, language, true, isEU);
     updateGTMConsent(false, false);
     handleClose();
-  }, [language]);
+  }, [language, isEU]);
 
   // Handle save preferences
   const handleSavePreferences = useCallback(() => {
-    saveConsent(analytics, marketing, language);
+    saveConsent(analytics, marketing, language, doNotSell, isEU);
     updateGTMConsent(analytics, marketing);
     handleClose();
-  }, [analytics, marketing, language]);
+  }, [analytics, marketing, language, doNotSell, isEU]);
 
   // Close banner with animation
   const handleClose = () => {
@@ -378,6 +438,15 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
         isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
     >
+      {/* GDPR Notice for EU Users */}
+      {isEU && euDetectionComplete && t.gdprNotice && (
+        <div className="bg-blue-900/30 border-b border-blue-500/30 px-6 py-3">
+          <p className="text-xs text-light text-center">
+            {t.gdprNotice}
+          </p>
+        </div>
+      )}
+
       {/* Close button (X) */}
       <button
         onClick={handleClose}
@@ -474,6 +543,45 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
               </div>
             </div>
 
+            {/* Do Not Sell or Share Toggle - GDPR Article 21 */}
+            {isEU && euDetectionComplete && (
+              <div className="mb-5 p-4 bg-purple-900/20 rounded-sm border border-purple-500/30 hover:border-purple-500/50 transition-colors">
+                <div className="flex items-start gap-4">
+                  <button
+                    onClick={() => setDoNotSell(!doNotSell)}
+                    role="switch"
+                    aria-checked={doNotSell}
+                    aria-label={`${t.doNotSell.label}: ${doNotSell ? 'enabled' : 'disabled'}`}
+                    className={`flex-shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-secondary ${
+                      doNotSell ? 'bg-purple-500' : 'bg-neutral-600'
+                    }`}
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setDoNotSell(!doNotSell);
+                      }
+                    }}
+                  >
+                    <span
+                      className={`block w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
+                        doNotSell ? 'translate-x-6' : 'translate-x-0.5'
+                      }`}
+                    />
+                  </button>
+                  <div className="flex-1">
+                    <h3 className="text-sm font-bold text-light mb-1 flex items-center gap-2">
+                      {t.doNotSell.label}
+                      <span className="text-xs px-2 py-0.5 bg-purple-500/30 text-purple-300 rounded">
+                        {t.doNotSell.legalBasis?.split(':')[0] || 'GDPR Article 21'}
+                      </span>
+                    </h3>
+                    <p className="text-xs text-muted leading-relaxed">{t.doNotSell.description}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Analytics Toggle */}
             <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-neutral-700 hover:border-neutral-600 transition-colors">
               <div className="flex items-start gap-4">
@@ -500,8 +608,18 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
                   />
                 </button>
                 <div className="flex-1">
-                  <h3 className="text-sm font-bold text-light mb-1">{t.analytics.label}</h3>
+                  <h3 className="text-sm font-bold text-light mb-1">
+                    {t.analytics.label}
+                    {isEU && euDetectionComplete && t.analytics.legalBasis && (
+                      <span className="ml-2 text-xs px-2 py-0.5 bg-blue-900/30 text-blue-300 rounded">
+                        {t.analytics.legalBasis?.split(':')[0] || 'Article 6(1)(a)'}
+                      </span>
+                    )}
+                  </h3>
                   <p className="text-xs text-muted leading-relaxed">{t.analytics.description}</p>
+                  {isEU && euDetectionComplete && t.analytics.legalBasis && (
+                    <p className="text-xs text-blue-400 mt-1">{t.analytics.legalBasis}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -532,8 +650,18 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
                   />
                 </button>
                 <div className="flex-1">
-                  <h3 className="text-sm font-bold text-light mb-1">{t.marketing.label}</h3>
+                  <h3 className="text-sm font-bold text-light mb-1">
+                    {t.marketing.label}
+                    {isEU && euDetectionComplete && t.marketing.legalBasis && (
+                      <span className="ml-2 text-xs px-2 py-0.5 bg-green-900/30 text-green-300 rounded">
+                        {t.marketing.legalBasis?.split(':')[0] || 'Article 6(1)(a)'}
+                      </span>
+                    )}
+                  </h3>
                   <p className="text-xs text-muted leading-relaxed">{t.marketing.description}</p>
+                  {isEU && euDetectionComplete && t.marketing.legalBasis && (
+                    <p className="text-xs text-green-400 mt-1">{t.marketing.legalBasis}</p>
+                  )}
                 </div>
               </div>
             </div>

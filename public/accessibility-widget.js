@@ -1,40 +1,75 @@
 /**
- * ACCESSIBILITY WIDGET
- * IS 5568 (Israel) & WCAG 2.0 AA Compliant
+ * Accessibility Widget - IS 5568 / WCAG 2.0 AA Compliant
+ * Standalone widget for any website
  *
- * NO DEPENDENCIES - Plain HTML/CSS/JS
- * Works on any website
- *
- * USAGE:
+ * Usage:
  *   <link rel="stylesheet" href="accessibility-widget.css">
  *   <script src="accessibility-widget.js" defer></script>
  *
  * Version: 1.0.0
- * Last Updated: 2025-02-25
+ * License: MIT
  */
 
 (function() {
   'use strict';
 
-  // ========================================
+  // ============================================
   // CONFIGURATION & CONSTANTS
-  // ========================================
+  // ============================================
   const STORAGE_KEY = 'a11ySettings';
   const DISMISS_KEY = 'a11yDismissed';
 
-  const MIN_FONT = 100;
-  const MAX_FONT = 180;
+  // Font size range (percentage)
+  const FONT_MIN = 50;
+  const FONT_MAX = 200;
   const FONT_STEP = 10;
 
-  const TRANSITIONS = {
+  const FONT_DEFAULT = 100;
+
+  // ============================================
+  // STATE MANAGEMENT
+  // ============================================
+  let state = {
+    fontPercent: FONT_DEFAULT,
+    contrast: false,
+    grayscale: false,
+    links: false,
+    font: false,
+    spacing: false,
+    lineHeight: false,
+    pauseAnimations: false,
+    highlight: false,
+    isOpen: false
+  };
+
+  // ============================================
+  // DOM ELEMENT REFERENCES
+  // ============================================
+  let triggerBtn = null;
+  let panel = null;
+  let closeBtn = null;
+  let liveRegion = null;
+  let fontDisplay = null;
+  let fontDecreaseBtn = null;
+  let fontIncreaseBtn = null;
+  let firstFocusable = null;
+  let lastFocusable = null;
+
+  // Focusable selector for focus trap
+  const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  // ============================================
+  // TRANSLATIONS
+  // ============================================
+  const translations = {
     he: {
-      panelTitle: 'כלי נגישות',
+      panelTitle: 'כלי נגישות / Accessibility',
       openLabel: 'פתח כלי נגישות',
-      closeLabel: 'סגור כלי נגישות',
-      dismissLabel: 'הסתר כלי ×',
+      closeLabel: 'סגור חלונית נגישות',
+      dismissLabel: 'הסתר וידג׳ט למשך הסשה',
       fontSize: 'גודל טקסט',
-      decrease: 'הקטן טקסט',
-      increase: 'הגדיל טקסט',
+      decreaseLabel: 'הקטן טקסט',
+      increaseLabel: 'הגדיל טקסט',
       contrast: 'ניגודיות גבוהה',
       grayscale: 'גווני אפור',
       underlineLinks: 'הדגשת קישורים',
@@ -45,10 +80,9 @@
       highlightHover: 'הדגשה בעכבר/פוקוס',
       reset: 'אפס הכל',
       statementLink: 'הצהרת נגישות',
-      enabled: 'מופעל',
-      disabled: 'כבוי',
+      statementUrl: '/accessibility-statement',
       announcements: {
-        font: 'גודל הטקסט הוגדל ל-',
+        font: 'גודל הטקסט הוגדר ל-',
         contrastOn: 'מצב ניגודיות גבוהה הופעל',
         contrastOff: 'מצב ניגודיות גבוהה כובה',
         grayscaleOn: 'מצב גווני אפור הופעל',
@@ -63,19 +97,19 @@
         lhOff: 'גובה שורה כובה',
         animOn: 'האנימציות הושהו',
         animOff: 'האנימציות חודשו',
-        highlightOn: 'הדגשה בעכבר הופעלה',
-        highlightOff: 'הדגשה בעכבר כובתה',
+        highlightOn: 'הדגשה בעכבר ופוקוס הופעלה',
+        highlightOff: 'הדגשה בעכבר ופוקוס כובתה',
         reset: 'כל הגדרות הנגישות אופסו'
       }
     },
     en: {
       panelTitle: 'Accessibility',
       openLabel: 'Open accessibility tools',
-      closeLabel: 'Close accessibility tools',
-      dismissLabel: 'Hide widget ×',
+      closeLabel: 'Close accessibility panel',
+      dismissLabel: '× Hide widget for this session',
       fontSize: 'Text Size',
-      decrease: 'Decrease font size',
-      increase: 'Increase font size',
+      decreaseLabel: 'Decrease font size',
+      increaseLabel: 'Increase font size',
       contrast: 'High Contrast',
       grayscale: 'Grayscale',
       underlineLinks: 'Underline Links',
@@ -86,8 +120,7 @@
       highlightHover: 'Highlight on Hover/Focus',
       reset: 'Reset All',
       statementLink: 'Accessibility Statement',
-      enabled: 'enabled',
-      disabled: 'disabled',
+      statementUrl: '/accessibility-statement',
       announcements: {
         font: 'Text size set to ',
         contrastOn: 'High contrast mode enabled',
@@ -100,8 +133,8 @@
         fontOff: 'Readable font disabled',
         spacingOn: 'Letter spacing enabled',
         spacingOff: 'Letter spacing disabled',
-        lhOn: 'Line height enabled',
-        lhOff: 'Line height disabled',
+        lhOn: 'Increased line height enabled',
+        lhOff: 'Increased line height disabled',
         animOn: 'Animations paused',
         animOff: 'Animations resumed',
         highlightOn: 'Highlight on hover and focus enabled',
@@ -111,43 +144,11 @@
     }
   };
 
-  // ========================================
-  // STATE MANAGEMENT
-  // ========================================
-  let state = {
-    fontPercent: 100,
-    contrast: false,
-    grayscale: false,
-    links: false,
-    font: false,
-    spacing: false,
-    lineHeight: false,
-    pauseAnimations: false,
-    highlight: false,
-    isOpen: false
-  };
-
   let currentLang = 'en';
 
-  // ========================================
-  // DOM ELEMENT REFERENCES
-  // ========================================
-  let triggerBtn = null;
-  let dismissBtn = null;
-  let panel = null;
-  let overlay = null;
-  let closeBtn = null;
-  let liveRegion = null;
-  let fontDisplay = null;
-  let fontDecreaseBtn = null;
-  let fontIncreaseBtn = null;
-
-  // Focusable elements for focus trap
-  const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-
-  // ========================================
+  // ============================================
   // UTILITY FUNCTIONS
-  // ========================================
+  // ============================================
 
   /**
    * Convert RGB to Hex
@@ -167,18 +168,15 @@
       return null;
     }
 
-    // Already hex
     if (color.startsWith('#')) {
       return color;
     }
 
-    // RGB format
     const rgbMatch = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     if (rgbMatch) {
       return rgbToHex(rgbMatch[1], rgbMatch[2], rgbMatch[3]);
     }
 
-    // RGBA format
     const rgbaMatch = color.match(/^rgba\((\d+),\s*(\d+),\s*(\d+),\s*[\d.]+\)$/);
     if (rgbaMatch) {
       return rgbToHex(rgbaMatch[1], rgbaMatch[2], rgbaMatch[3]);
@@ -229,14 +227,16 @@
   function detectLanguage() {
     const htmlLang = document.documentElement.lang;
     if (htmlLang) {
-      if (htmlLang.startsWith('he')) return 'he';
-      if (htmlLang.startsWith('ar')) return 'he'; // Use Hebrew translations for Arabic too
+      if (htmlLang.startsWith('he') || htmlLang.startsWith('ar')) return 'he';
     }
     return 'en';
   }
 
   /**
-   * Get brand color from page
+   * Auto-detect brand color from page
+   * Scans: button:not([class*="a11y"]), a, header, nav, .btn, [class*="btn"],
+   *        [class*="button"], [class*="primary"], [class*="brand"], h1, h2
+   * Skips: near-black (lightness < 0.1), near-white (lightness > 0.92), near-grey (saturation < 0.25)
    */
   function detectBrandColor() {
     const selectors = [
@@ -303,15 +303,25 @@
   }
 
   /**
-   * Announce to screen readers
+   * Initialize brand color CSS variables
+   */
+  function initBrandColor() {
+    const brandColor = detectBrandColor();
+    const brandDark = darkenColor(brandColor, 25);
+
+    document.documentElement.style.setProperty('--a11y-brand', brandColor);
+    document.documentElement.style.setProperty('--a11y-brand-dark', brandDark);
+  }
+
+  /**
+   * Announce to screen readers via ARIA live region
    */
   function announce(message) {
     if (liveRegion) {
-      liveRegion.textContent = message;
-      // Clear after announcement
+      liveRegion.textContent = '';
       setTimeout(() => {
-        liveRegion.textContent = '';
-      }, 1000);
+        liveRegion.textContent = message;
+      }, 50);
     }
   }
 
@@ -345,53 +355,53 @@
     const html = document.documentElement;
     const body = document.body;
 
-    // Font size (Feature 1)
+    // FEATURE 1: Font Size (50% - 200%, shown as percentage, not px)
     const actualPx = (state.fontPercent / 100) * 16;
     html.style.setProperty('--base-font-size', actualPx + 'px');
 
-    // High contrast (Feature 2)
+    // FEATURE 2: High Contrast Mode
     if (state.contrast) {
       body.classList.add('a11y-contrast');
     } else {
       body.classList.remove('a11y-contrast');
     }
 
-    // Grayscale (Feature 3)
+    // FEATURE 3: Grayscale Mode
     if (state.grayscale) {
       html.classList.add('a11y-gray');
     } else {
       html.classList.remove('a11y-gray');
     }
 
-    // Underline links (Feature 4)
+    // FEATURE 4: Underline Links
     if (state.links) {
       body.classList.add('a11y-links');
     } else {
       body.classList.remove('a11y-links');
     }
 
-    // Readable font (Feature 5)
+    // FEATURE 5: Readable Font
     if (state.font) {
       body.classList.add('a11y-font');
     } else {
       body.classList.remove('a11y-font');
     }
 
-    // Letter spacing (Feature 6)
+    // FEATURE 6: Letter Spacing
     if (state.spacing) {
       body.classList.add('a11y-spacing');
     } else {
       body.classList.remove('a11y-spacing');
     }
 
-    // Line height (Feature 7)
+    // FEATURE 7: Line Height
     if (state.lineHeight) {
       body.classList.add('a11y-lh');
     } else {
       body.classList.remove('a11y-lh');
     }
 
-    // Pause animations (Feature 8)
+    // FEATURE 8: Pause Animations
     let animStyle = document.getElementById('a11y-no-anim');
     if (state.pauseAnimations) {
       if (!animStyle) {
@@ -411,7 +421,7 @@
       }
     }
 
-    // Highlight on hover/focus (Feature 9)
+    // FEATURE 9: Highlight on Hover/Focus
     if (state.highlight) {
       body.classList.add('a11y-highlight');
     } else {
@@ -426,69 +436,206 @@
    * Update UI elements to reflect current state
    */
   function updateUI() {
-    const t = TRANSITIONS[currentLang];
-
-    // Skip if panel not created yet (during initial load)
     if (!panel) return;
 
-    // Font display
+    const t = translations[currentLang];
+
+    // Font display (Feature 1)
     if (fontDisplay) {
       fontDisplay.textContent = state.fontPercent + '%';
     }
 
-    // Font buttons disabled state
+    // Font buttons disabled state (Feature 1)
     if (fontDecreaseBtn) {
-      fontDecreaseBtn.disabled = state.fontPercent <= MIN_FONT;
+      fontDecreaseBtn.disabled = state.fontPercent <= FONT_MIN;
     }
     if (fontIncreaseBtn) {
-      fontIncreaseBtn.disabled = state.fontPercent >= MAX_FONT;
+      fontIncreaseBtn.disabled = state.fontPercent >= FONT_MAX;
     }
 
-    // Update all toggle buttons
-    const toggles = panel.querySelectorAll('.a11y-toggle');
+    // Update all toggle buttons (Features 2-9)
+    const toggles = panel.querySelectorAll('.a11y-toggle-btn');
     toggles.forEach(toggle => {
       const feature = toggle.dataset.feature;
-      const isPressed = state[feature];
-      toggle.setAttribute('aria-pressed', isPressed);
-      toggle.setAttribute('aria-label',
-        t[feature.replace('pauseAnimations', 'anim').replace('lineHeight', 'lh')] +
-        ' - ' + (isPressed ? t.enabled : t.disabled)
-      );
+      if (feature && state.hasOwnProperty(feature)) {
+        const isPressed = state[feature];
+        toggle.setAttribute('aria-pressed', isPressed);
+      }
     });
   }
 
-  // ========================================
-  // FEATURE HANDLERS
-  // ========================================
+  // ============================================
+  // FEATURE HANDLERS (1-10)
+  // ============================================
 
+  /**
+   * FEATURE 1: Font Size Control
+   * MIN=50, MAX=200, STEP=10
+   * Shows percentage, NOT px
+   */
   function decreaseFont() {
-    if (state.fontPercent > MIN_FONT) {
+    if (state.fontPercent > FONT_MIN) {
       state.fontPercent -= FONT_STEP;
       applyState();
       saveState();
-      announce(t.announcements.font + state.fontPercent + '%');
+      announce(translations[currentLang].announcements.font + state.fontPercent + '%');
     }
   }
 
   function increaseFont() {
-    if (state.fontPercent < MAX_FONT) {
+    if (state.fontPercent < FONT_MAX) {
       state.fontPercent += FONT_STEP;
       applyState();
       saveState();
-      announce(t.announcements.font + state.fontPercent + '%');
+      announce(translations[currentLang].announcements.font + state.fontPercent + '%');
     }
   }
 
-  function toggleFeature(featureName, onMsg, offMsg) {
-    state[featureName] = !state[featureName];
+  /**
+   * FEATURE 2: High Contrast Mode
+   * Adds class "a11y-contrast" to <body>
+   * Announces: "High contrast mode enabled/disabled"
+   */
+  function toggleContrast() {
+    state.contrast = !state.contrast;
     applyState();
     saveState();
-    announce(state[featureName] ? onMsg : offMsg);
+    announce(state.contrast ?
+      translations[currentLang].announcements.contrastOn :
+      translations[currentLang].announcements.contrastOff);
   }
 
+  /**
+   * FEATURE 3: Grayscale Mode
+   * Adds class "a11y-gray" to <html>
+   * Announces: "Grayscale mode enabled/disabled"
+   */
+  function toggleGrayscale() {
+    state.grayscale = !state.grayscale;
+    applyState();
+    saveState();
+    announce(state.grayscale ?
+      translations[currentLang].announcements.grayscaleOn :
+      translations[currentLang].announcements.grayscaleOff);
+  }
+
+  /**
+   * FEATURE 4: Underline Links
+   * Adds class "a11y-links" to <body>
+   * Announces: "Link underlining enabled/disabled"
+   */
+  function toggleLinks() {
+    state.links = !state.links;
+    applyState();
+    saveState();
+    announce(state.links ?
+      translations[currentLang].announcements.linksOn :
+      translations[currentLang].announcements.linksOff);
+  }
+
+  /**
+   * FEATURE 5: Readable Font
+   * Adds class "a11y-font" to <body>
+   * Announces: "Readable font enabled/disabled"
+   */
+  function toggleFont() {
+    state.font = !state.font;
+    applyState();
+    saveState();
+    announce(state.font ?
+      translations[currentLang].announcements.fontOn :
+      translations[currentLang].announcements.fontOff);
+  }
+
+  /**
+   * FEATURE 6: Letter Spacing
+   * Adds class "a11y-spacing" to <body>
+   * Announces: "Letter spacing enabled/disabled"
+   */
+  function toggleSpacing() {
+    state.spacing = !state.spacing;
+    applyState();
+    saveState();
+    announce(state.spacing ?
+      translations[currentLang].announcements.spacingOn :
+      translations[currentLang].announcements.spacingOff);
+  }
+
+  /**
+   * FEATURE 7: Line Height
+   * Adds class "a11y-lh" to <body>
+   * Announces: "Increased line height enabled/disabled"
+   */
+  function toggleLineHeight() {
+    state.lineHeight = !state.lineHeight;
+    applyState();
+    saveState();
+    announce(state.lineHeight ?
+      translations[currentLang].announcements.lhOn :
+      translations[currentLang].announcements.lhOff);
+  }
+
+  /**
+   * FEATURE 8: Pause Animations
+   * Injects <style id="a11y-no-anim">
+   * On toggle off: remove the style tag
+   * Announces: "Animations paused/resumed"
+   */
+  function togglePauseAnimations() {
+    state.pauseAnimations = !state.pauseAnimations;
+    applyState();
+    saveState();
+    announce(state.pauseAnimations ?
+      translations[currentLang].announcements.animOn :
+      translations[currentLang].announcements.animOff);
+  }
+
+  /**
+   * FEATURE 9: Highlight on Hover/Focus
+   * Adds class "a11y-highlight" to <body>
+   * Excludes widget itself from highlight
+   * Announces: "Highlight on hover and focus enabled/disabled"
+   */
+  function toggleHighlight() {
+    state.highlight = !state.highlight;
+    applyState();
+    saveState();
+    announce(state.highlight ?
+      translations[currentLang].announcements.highlightOn :
+      translations[currentLang].announcements.highlightOff);
+  }
+
+  /**
+   * FEATURE 10: Reset All
+   * Removes all a11y classes from <html> and <body>
+   * Removes all injected style tags
+   * Resets --base-font-size to 16px
+   * Sets fontPercent back to 100
+   * Sets all aria-pressed to false
+   * Clears localStorage
+   * Updates all UI elements
+   * Announces: "All accessibility settings have been reset"
+   */
   function resetAll() {
+    const html = document.documentElement;
+    const body = document.body;
+
+    // Remove all classes
+    html.classList.remove('a11y-gray');
+    body.classList.remove('a11y-contrast', 'a11y-links', 'a11y-font', 'a11y-spacing', 'a11y-lh', 'a11y-highlight');
+
+    // Remove injected animation style
+    const animStyle = document.getElementById('a11y-no-anim');
+    if (animStyle) {
+      animStyle.remove();
+    }
+
+    // Reset font size
+    html.style.removeProperty('--base-font-size');
+
+    // Reset state
     state = {
-      fontPercent: 100,
+      fontPercent: FONT_DEFAULT,
       contrast: false,
       grayscale: false,
       links: false,
@@ -500,97 +647,114 @@
       isOpen: false
     };
 
+    // Clear localStorage
     localStorage.removeItem(STORAGE_KEY);
+
+    // Update UI
     applyState();
     closePanel();
-    announce(TRANSITIONS[currentLang].announcements.reset);
+
+    // Announce
+    announce(translations[currentLang].announcements.reset);
   }
 
-  // ========================================
+  // ============================================
   // PANEL CONTROL
-  // ========================================
+  // ============================================
 
   function openPanel() {
     state.isOpen = true;
-    panel.classList.add('a11y-visible');
-    overlay.classList.add('a11y-visible');
+    panel.setAttribute('aria-hidden', 'false');
 
     triggerBtn.setAttribute('aria-expanded', 'true');
-    triggerBtn.setAttribute('aria-label', TRANSITIONS[currentLang].closeLabel);
+    triggerBtn.setAttribute('aria-label', translations[currentLang].closeLabel);
 
-    // Focus first element after animation
+    // Focus first focusable element after opening
     setTimeout(() => {
-      if (closeBtn) {
-        closeBtn.focus();
+      if (firstFocusable) {
+        firstFocusable.focus();
       }
     }, 100);
 
-    // Add focus trap
-    document.addEventListener('keydown', handleFocusTrap);
+    // Add escape key listener and focus trap
+    document.addEventListener('keydown', handleKeyDown);
   }
 
   function closePanel() {
     state.isOpen = false;
-    panel.classList.remove('a11y-visible');
-    overlay.classList.remove('a11y-visible');
+    panel.setAttribute('aria-hidden', 'true');
 
     triggerBtn.setAttribute('aria-expanded', 'false');
-    triggerBtn.setAttribute('aria-label', TRANSITIONS[currentLang].openLabel);
+    triggerBtn.setAttribute('aria-label', translations[currentLang].openLabel);
 
-    // Return focus to trigger
+    // Return focus to trigger button
     setTimeout(() => {
       triggerBtn.focus();
     }, 100);
 
-    // Remove focus trap
-    document.removeEventListener('keydown', handleFocusTrap);
+    // Remove escape key listener and focus trap
+    document.removeEventListener('keydown', handleKeyDown);
   }
 
   /**
-   * Focus trap for panel (WCAG 2.1.2)
+   * Handle keyboard events (Escape + Tab focus trap)
+   * WCAG 2.1.2: No keyboard trap
    */
-  function handleFocusTrap(e) {
-    if (e.key !== 'Tab' && e.key !== 'Tab' && e.key !== 'Escape') return;
-
+  function handleKeyDown(e) {
     if (e.key === 'Escape') {
       e.preventDefault();
       closePanel();
       return;
     }
 
-    const focusableElements = panel.querySelectorAll(focusableSelector);
-    if (focusableElements.length === 0) return;
+    if (e.key === 'Tab') {
+      const focusableElements = panel.querySelectorAll(focusableSelector);
+      if (focusableElements.length === 0) return;
 
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
+      firstFocusable = focusableElements[0];
+      lastFocusable = focusableElements[focusableElements.length - 1];
 
-    if (e.shiftKey && document.activeElement === firstElement) {
-      e.preventDefault();
-      lastElement.focus();
-    } else if (!e.shiftKey && document.activeElement === lastElement) {
-      e.preventDefault();
-      firstElement.focus();
+      if (e.shiftKey && document.activeElement === firstFocusable) {
+        e.preventDefault();
+        lastFocusable.focus();
+      } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+        e.preventDefault();
+        firstFocusable.focus();
+      }
+    }
+  }
+
+  /**
+   * Handle outside click to close panel
+   */
+  function handleOutsideClick(e) {
+    if (panel && state.isOpen &&
+        !panel.contains(e.target) &&
+        !triggerBtn.contains(e.target)) {
+      closePanel();
     }
   }
 
   /**
    * Dismiss widget for current session
+   * sessionStorage.setItem('a11yDismissed', '1')
+   * Then close everything
    */
   function dismissWidget() {
     sessionStorage.setItem(DISMISS_KEY, '1');
+    if (panel) panel.remove();
     if (triggerBtn) triggerBtn.remove();
-    if (dismissBtn) dismissBtn.remove();
   }
 
-  // ========================================
+  // ============================================
   // CREATE WIDGET HTML
-  // ========================================
+  // ============================================
 
   function createWidget() {
-    const t = TRANSITIONS[currentLang];
+    const t = translations[currentLang];
     const dir = document.documentElement.dir || 'ltr';
 
-    // Create trigger button
+    // Create trigger button with official accessibility icon (white on brand background)
     triggerBtn = document.createElement('button');
     triggerBtn.id = 'a11y-trigger';
     triggerBtn.setAttribute('type', 'button');
@@ -598,195 +762,177 @@
     triggerBtn.setAttribute('aria-expanded', 'false');
     triggerBtn.setAttribute('aria-controls', 'a11y-panel');
     triggerBtn.setAttribute('aria-label', t.openLabel);
+    // Official international accessibility SVG icon (dynamic wheelchair user symbol)
     triggerBtn.innerHTML = `
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20ZM8 12C8 10.9 8.9 10 10 10H14C15.1 10 16 10.9 16 12C16 13.1 15.1 14 14 14H10C8.9 14 8 13.1 8 12Z"/>
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2Z"/>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="3" r="2"/>
+        <path d="M19 13h-4l-2-5H9a2 2 0 0 0-2 2v1h2v-1h2.5l2 5H17l1 4h2l-1-5zM9 17.5A3.5 3.5 0 1 1 5.5 14H7v-2H5.5A5.5 5.5 0 1 0 11 17.5H9z"/>
       </svg>
     `;
 
-    // Create dismiss button
-    dismissBtn = document.createElement('button');
-    dismissBtn.id = 'a11y-dismiss';
-    dismissBtn.setAttribute('type', 'button');
-    dismissBtn.setAttribute('aria-label', t.dismissLabel);
-    dismissBtn.textContent = '× ' + (currentLang === 'he' ? 'הסתר' : 'Hide');
-
-    // Create overlay
-    overlay = document.createElement('div');
-    overlay.id = 'a11y-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
-
-    // Create panel
+    // Create panel with role="dialog", aria-modal="true", aria-labelledby
     panel = document.createElement('div');
     panel.id = 'a11y-panel';
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-modal', 'true');
     panel.setAttribute('aria-labelledby', 'a11y-panel-title');
+    panel.setAttribute('aria-hidden', 'true');
     panel.setAttribute('dir', dir);
+
     panel.innerHTML = `
-      <!-- Header -->
-      <div id="a11y-header">
-        <h2 id="a11y-panel-title">${t.panelTitle}</h2>
-        <button type="button" id="a11y-close" aria-label="${t.closeLabel}">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-            <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/>
-          </svg>
-        </button>
+      <!-- Header with close button inside (round icon button, NOT rectangle) -->
+      <div id="a11y-panel-header">
+        <h2 id="a11y-panel-title">♿ ${t.panelTitle}</h2>
+        <button type="button" id="a11y-close-btn" aria-label="${t.closeLabel}">×</button>
       </div>
 
-      <!-- Content -->
-      <div id="a11y-content">
-        <!-- Feature 1: Font Size -->
-        <div class="a11y-feature">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <!-- Scrollable content area -->
+      <div id="a11y-panel-content">
+
+        <!-- FEATURE 1: Font Size Control (50%-200%, shows percentage NOT px) -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6zm2 8H10v-2h4v2z"/>
             </svg>
-            ${t.fontSize}
-          </span>
-          <div id="a11y-font-controls">
-            <button type="button" id="a11y-font-decrease" class="a11y-font-btn" aria-label="${t.decrease}" disabled>−</button>
-            <span id="a11y-font-display">100%</span>
-            <button type="button" id="a11y-font-increase" class="a11y-font-btn" aria-label="${t.increase}">+</button>
+            <span>${t.fontSize}</span>
+          </div>
+          <div class="a11y-btn-group">
+            <button type="button" id="a11y-font-decrease" class="a11y-action-btn" aria-label="${t.decreaseLabel}" disabled>−</button>
+            <span id="a11y-font-display" class="a11y-font-size-display">100%</span>
+            <button type="button" id="a11y-font-increase" class="a11y-action-btn" aria-label="${t.increaseLabel}">+</button>
           </div>
         </div>
 
-        <!-- Feature 2: High Contrast -->
-        <button type="button" class="a11y-toggle" data-feature="contrast" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 2: High Contrast -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6zm2 8H10v-2h4v2z"/>
             </svg>
-            ${t.contrast}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.contrast}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="contrast" aria-pressed="false" aria-label="${t.contrast}"></button>
+        </div>
 
-        <!-- Feature 3: Grayscale -->
-        <button type="button" class="a11y-toggle" data-feature="grayscale" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 3: Grayscale -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
             </svg>
-            ${t.grayscale}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.grayscale}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="grayscale" aria-pressed="false" aria-label="${t.grayscale}"></button>
+        </div>
 
-        <!-- Feature 4: Underline Links -->
-        <button type="button" class="a11y-toggle" data-feature="links" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 4: Underline Links -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
             </svg>
-            ${t.underlineLinks}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.underlineLinks}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="links" aria-pressed="false" aria-label="${t.underlineLinks}"></button>
+        </div>
 
-        <!-- Feature 5: Readable Font -->
-        <button type="button" class="a11y-toggle" data-feature="font" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 5: Readable Font -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M9.93 13.5h4.14L12 7.98zM20 2H4c-1.1 0-2 .9-2 2l-.01 14c0 1.1.89 2 1.99 2h6l4 4 4-4h6c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.05 16.5l-2.54-7.22H7.31l-2.54 7.22h-2.5l6.17-16.5h2.34l6.17 16.5h-2.83z"/>
             </svg>
-            ${t.readableFont}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.readableFont}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="font" aria-pressed="false" aria-label="${t.readableFont}"></button>
+        </div>
 
-        <!-- Feature 6: Letter Spacing -->
-        <button type="button" class="a11y-toggle" data-feature="spacing" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 6: Letter Spacing -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h4v-4H9v4zm0 5h4v-4H9v4zM9 9h4V5H9v4zm5 5h4v-4h-4v4zm0 5h4v-4h-4v4zM9 9h4V5H9v4zm5 5h4v-4h-4v4zm0 5h4v-4h-4v4zm5-10v4h4V5h-4v9h-2V5h2z"/>
             </svg>
-            ${t.letterSpacing}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.letterSpacing}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="spacing" aria-pressed="false" aria-label="${t.letterSpacing}"></button>
+        </div>
 
-        <!-- Feature 7: Line Height -->
-        <button type="button" class="a11y-toggle" data-feature="lineHeight" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 7: Line Height -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M4 16h4v-4H4v4zm0 5h4v-4H4v4zm0-9h4V5H4v7zm5 9h4v-4H9v4zm0-9h4V5H9v7zm5 9h4v-4h-4v4zm0-9h4V5h-4v7z"/>
             </svg>
-            ${t.lineHeight}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.lineHeight}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="lineHeight" aria-pressed="false" aria-label="${t.lineHeight}"></button>
+        </div>
 
-        <!-- Feature 8: Pause Animations -->
-        <button type="button" class="a11y-toggle" data-feature="pauseAnimations" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 8: Pause Animations -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
             </svg>
-            ${t.pauseAnimations}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.pauseAnimations}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="pauseAnimations" aria-pressed="false" aria-label="${t.pauseAnimations}"></button>
+        </div>
 
-        <!-- Feature 9: Highlight on Hover/Focus -->
-        <button type="button" class="a11y-toggle" data-feature="highlight" aria-pressed="false">
-          <span class="a11y-feature-label">
-            <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 9: Highlight on Hover/Focus -->
+        <div class="a11y-feature-row">
+          <div class="a11y-feature-label">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2-4H9v-2h6v2z"/>
             </svg>
-            ${t.highlightHover}
-          </span>
-          <span class="a11y-switch">
-            <span class="a11y-switch-handle"></span>
-          </span>
-        </button>
+            <span>${t.highlightHover}</span>
+          </div>
+          <button type="button" class="a11y-toggle-btn" data-feature="highlight" aria-pressed="false" aria-label="${t.highlightHover}"></button>
+        </div>
 
-        <!-- Feature 10: Reset All -->
-        <button type="button" id="a11y-reset">
-          <svg class="a11y-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- FEATURE 10: Reset All -->
+        <button type="button" id="a11y-reset" class="a11y-reset-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
           </svg>
           ${t.reset}
         </button>
-
-                <!-- Accessibility Statement Link -->
-        <a id="a11y-statement-link" href="#/accessibility-statement">
-          ${t.statementLink}
-        </a>
       </div>
 
-      <!-- ARIA Live Region (hidden) -->
-      <div id="a11y-live" class="a11y-sr-only" aria-live="polite" aria-atomic="true" role="status"></div>
+      <!-- Footer with Accessibility Statement link and dismiss link -->
+      <div id="a11y-panel-footer">
+        <a href="${t.statementUrl}" class="a11y-footer-link">
+          ${t.statementLink}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3M21 3l-7 7"/>
+          </svg>
+        </a>
+        <button type="button" id="a11y-dismiss-link" class="a11y-dismiss-link">${t.dismissLabel}</button>
+      </div>
+
+      <!-- ARIA Live Region (visually hidden) for screen reader announcements -->
+      <div id="a11y-live" aria-live="polite" aria-atomic="true"></div>
     `;
 
     // Add to DOM
-    document.body.appendChild(overlay);
     document.body.appendChild(panel);
     document.body.appendChild(triggerBtn);
-    document.body.appendChild(dismissBtn);
 
     // Get element references
-    closeBtn = document.getElementById('a11y-close');
+    closeBtn = document.getElementById('a11y-close-btn');
     liveRegion = document.getElementById('a11y-live');
     fontDisplay = document.getElementById('a11y-font-display');
     fontDecreaseBtn = document.getElementById('a11y-font-decrease');
     fontIncreaseBtn = document.getElementById('a11y-font-increase');
+
+    // Collect focusable elements for focus trap
+    const focusableElements = panel.querySelectorAll(focusableSelector);
+    if (focusableElements.length > 0) {
+      firstFocusable = focusableElements[0];
+      lastFocusable = focusableElements[focusableElements.length - 1];
+    }
 
     // Attach event listeners
     attachEventListeners();
@@ -805,101 +951,124 @@
       }
     });
 
-    // Close button
+    // Close button (round icon button in header)
     closeBtn.addEventListener('click', closePanel);
 
-    // Overlay click
-    overlay.addEventListener('click', closePanel);
+    // Outside click
+    document.addEventListener('click', handleOutsideClick);
 
-    // Dismiss button
-    dismissBtn.addEventListener('click', dismissWidget);
-
-    // Font size buttons
+    // Font size buttons (Feature 1)
     fontDecreaseBtn.addEventListener('click', decreaseFont);
     fontIncreaseBtn.addEventListener('click', increaseFont);
 
-    // Toggle buttons
-    const toggles = panel.querySelectorAll('.a11y-toggle');
+    // Toggle buttons (Features 2-9)
+    const toggles = panel.querySelectorAll('.a11y-toggle-btn');
     toggles.forEach(toggle => {
       toggle.addEventListener('click', () => {
         const feature = toggle.dataset.feature;
-        const t = TRANSITIONS[currentLang];
 
         switch (feature) {
           case 'contrast':
-            toggleFeature('contrast', t.announcements.contrastOn, t.announcements.contrastOff);
+            toggleContrast();
             break;
           case 'grayscale':
-            toggleFeature('grayscale', t.announcements.grayscaleOn, t.announcements.grayscaleOff);
+            toggleGrayscale();
             break;
           case 'links':
-            toggleFeature('links', t.announcements.linksOn, t.announcements.linksOff);
+            toggleLinks();
             break;
           case 'font':
-            toggleFeature('font', t.announcements.fontOn, t.announcements.fontOff);
+            toggleFont();
             break;
           case 'spacing':
-            toggleFeature('spacing', t.announcements.spacingOn, t.announcements.spacingOff);
+            toggleSpacing();
             break;
           case 'lineHeight':
-            toggleFeature('lineHeight', t.announcements.lhOn, t.announcements.lhOff);
+            toggleLineHeight();
             break;
           case 'pauseAnimations':
-            toggleFeature('pauseAnimations', t.announcements.animOn, t.announcements.animOff);
+            togglePauseAnimations();
             break;
           case 'highlight':
-            toggleFeature('highlight', t.announcements.highlightOn, t.announcements.highlightOff);
+            toggleHighlight();
             break;
         }
       });
     });
 
-    // Reset button
+    // Reset button (Feature 10)
     document.getElementById('a11y-reset').addEventListener('click', resetAll);
-  }
 
-  /**
-   * Detect and apply brand color
-   */
-  function initBrandColor() {
-    const brandColor = detectBrandColor();
-    const brandDark = darkenColor(brandColor, 25);
-
-    // Set CSS variables
-    document.documentElement.style.setProperty('--a11y-brand', brandColor);
-    document.documentElement.style.setProperty('--a11y-brand-dark', brandDark);
+    // Dismiss link
+    document.getElementById('a11y-dismiss-link').addEventListener('click', dismissWidget);
   }
 
   /**
    * Initialize widget
+   * Check sessionStorage for dismissed state
+   * If dismissed, skip rendering entirely
    */
   function init() {
-    // Check if dismissed for this session
+    // Check if widget was dismissed for this session
     if (sessionStorage.getItem(DISMISS_KEY) === '1') {
-      return; // Don't render widget
+      return; // Don't render widget at all
     }
 
     // Detect language
     currentLang = detectLanguage();
 
-    // Detect and apply brand color
+    // Detect and apply brand color (auto from page)
     initBrandColor();
 
-    // Load saved state first
+    // Load saved state from localStorage FIRST
+    // Apply state before building HTML to prevent flash
     loadState();
+    applyState();
 
-    // Create widget HTML BEFORE applying state
-    // This ensures DOM elements exist when updateUI() is called
+    // Create widget HTML
     createWidget();
 
-    // Apply state after widget is created (updates UI elements)
+    // Apply state again after HTML is created to update UI elements
     applyState();
   }
 
-  // Initialize when DOM is ready
+  // ============================================
+  // INITIALIZATION
+  // ============================================
+
+  // Apply saved state BEFORE page renders to prevent flash
+  // This happens during DOMContentLoaded, so styles apply as DOM builds
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    // Check dismissed state early
+    if (sessionStorage.getItem(DISMISS_KEY) !== '1') {
+      // Load and apply state immediately
+      loadState();
+      const html = document.documentElement;
+      const body = document.body;
+
+      // Apply classes early to prevent flash
+      const actualPx = (state.fontPercent / 100) * 16;
+      html.style.setProperty('--base-font-size', actualPx + 'px');
+
+      if (state.grayscale) html.classList.add('a11y-gray');
+      if (state.contrast) body.classList.add('a11y-contrast');
+      if (state.links) body.classList.add('a11y-links');
+      if (state.font) body.classList.add('a11y-font');
+      if (state.spacing) body.classList.add('a11y-spacing');
+      if (state.lineHeight) body.classList.add('a11y-lh');
+      if (state.highlight) body.classList.add('a11y-highlight');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Detect language and brand color
+        currentLang = detectLanguage();
+        initBrandColor();
+        // Create widget and apply final state
+        createWidget();
+        applyState();
+      });
+    }
   } else {
+    // DOM already loaded
     init();
   }
 

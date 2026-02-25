@@ -30,7 +30,10 @@
       "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\Waseem\\\\Documents\\\\shayeshkfaryassif\\\\Shayish-Kfar-Yassif\\\\pages\\\\AccessibilityStatement.tsx'' | Select-Object -Skip 106 -First 5\")",
       "mcp__chrome-devtools__list_console_messages",
       "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\Waseem\\\\Documents\\\\shayeshkfaryassif\\\\Shayish-Kfar-Yassif'' -Recurse -Filter ''favicon*''\")",
-      "Bash(git add -A)"
+      "Bash(git add -A)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: add legal pages and finalize accessibility compliance\n\n- Add Terms of Use page \\(Israeli Contract Law 5733-1973 compliant\\)\n- Add Accessibility Statement page \\(IS 5568/WCAG 2.0 AA compliant\\)\n- Add standalone accessibility widget with 10 features\n- Add footer links: Privacy Policy, Accessibility, Terms of Use\n- Add hero heading slide-in animation from right\n- Fix heading structure, ARIA attributes, form validation\n- Remove React-based widget in favor of standalone version\n- Remove missing favicon reference\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(npm run build)"
     ]
   }
 }

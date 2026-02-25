@@ -1,617 +1,644 @@
 /**
- * ACCESSIBILITY WIDGET STYLES
- * IS 5568 (Israel) & WCAG 2.0 AA Compliant
+ * Accessibility Widget - IS 5568 / WCAG 2.0 AA Compliant
+ * Standalone widget for any website
  *
- * Usage: Add <link rel="stylesheet" href="accessibility-widget.css">
+ * Usage:
+ *   <link rel="stylesheet" href="accessibility-widget.css">
+ *   <script src="accessibility-widget.js" defer></script>
+ *
+ * Version: 1.0.0
+ * License: MIT
  */
 
-/* ========================================
-   BRAND COLOR CSS VARIABLES (Auto-detected)
-   ======================================== */
+/* ============================================
+   CSS VARIABLES (auto-populated by JS)
+   ============================================ */
 :root {
-  --a11y-brand: #2563EB; /* Will be auto-detected from page */
-  --a11y-brand-dark: #1e40af; /* 25% darker variant */
+  --a11y-brand: #2563EB;
+  --a11y-brand-dark: #1e40af;
+  --a11y-bg: #ffffff;
+  --a11y-text: #1f2937;
+  --a11y-border: #e5e7eb;
+  --a11y-radius: 12px;
+  --a11y-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* ========================================
-   TRIGGER BUTTON (Bottom-Right)
-   ======================================== */
+/* ============================================
+   TRIGGER BUTTON (Floating Action Button)
+   ============================================ */
 #a11y-trigger {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 52px;
-  height: 52px;
-  min-width: 52px;
-  min-height: 52px;
-  background: color-mix(in srgb, var(--a11y-brand) 50%, transparent);
-  border: 2px solid var(--a11y-brand);
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 9998;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  border-radius: 50% !important;
+  background: color-mix(in srgb, var(--a11y-brand) 50%, transparent) !important;
+  border: 2px solid var(--a11y-brand) !important;
+  cursor: pointer !important;
+  z-index: 99998 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Pulse animation for trigger button */
+@keyframes a11y-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 var(--a11y-brand);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 8px color-mix(in srgb, var(--a11y-brand) 30%, transparent);
+  }
+}
+
+#a11y-trigger:not(:hover):not(:focus) {
+  animation: a11y-pulse 2.5s ease-in-out infinite;
 }
 
 #a11y-trigger:hover,
 #a11y-trigger:focus {
-  background: var(--a11y-brand);
-  transform: scale(1.05);
+  background: var(--a11y-brand) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Visible focus indicator - NEVER suppressed */
-#a11y-trigger:focus-visible {
-  outline: 3px solid var(--a11y-brand);
-  outline-offset: 3px;
+#a11y-trigger:focus {
+  outline: 3px solid var(--a11y-brand) !important;
+  outline-offset: 2px !important;
 }
 
-/* Accessibility icon */
+/* Trigger SVG icon */
 #a11y-trigger svg {
-  width: 28px;
-  height: 28px;
-  fill: var(--a11y-brand);
-  transition: fill 0.3s ease;
+  width: 28px !important;
+  height: 28px !important;
+  transition: transform 0.3s ease !important;
 }
 
 #a11y-trigger:hover svg,
 #a11y-trigger:focus svg {
-  fill: #ffffff;
+  transform: scale(1.1) !important;
 }
 
-/* ========================================
-   DISMISS BUTTON (Below Trigger)
-   ======================================== */
-#a11y-dismiss {
-  position: fixed;
-  bottom: 84px;
-  right: 24px;
-  padding: 6px 12px;
-  background: rgba(128, 128, 128, 0.8);
-  color: #fff;
-  border: 1px solid #666;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-  z-index: 9997;
-  transition: all 0.3s ease;
-}
-
-#a11y-dismiss:hover,
-#a11y-dismiss:focus {
-  background: #444;
-}
-
-#a11y-dismiss:focus-visible {
-  outline: 3px solid var(--a11y-brand);
-  outline-offset: 2px;
-}
-
-/* ========================================
-   PANEL OVERLAY
-   ======================================== */
-#a11y-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 9998;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-#a11y-overlay.a11y-visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ========================================
-   PANEL (Dialog)
-   ======================================== */
+/* ============================================
+   ACCESSIBILITY PANEL
+   ============================================ */
 #a11y-panel {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 320px;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 48px);
-  overflow-y: auto;
-  background: #ffffff;
-  border: 2px solid var(--a11y-brand);
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  opacity: 0;
-  transform: translateY(20px);
-  visibility: hidden;
-  transition: all 0.3s ease;
+  position: fixed !important;
+  bottom: 88px !important;
+  right: 24px !important;
+  width: 360px !important;
+  max-width: calc(100vw - 48px) !important;
+  max-height: calc(100vh - 120px) !important;
+  background: var(--a11y-bg) !important;
+  border: 2px solid var(--a11y-brand) !important;
+  border-radius: var(--a11y-radius) !important;
+  box-shadow: var(--a11y-shadow) !important;
+  z-index: 99999 !important;
+  display: none !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
 }
 
-#a11y-panel.a11y-visible {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
+/* Panel open state */
+#a11y-panel[aria-hidden="false"] {
+  display: flex !important;
 }
 
-/* RTL Support */
-#a11y-panel[dir="rtl"] {
-  right: auto;
-  left: 24px;
+/* Mobile responsive */
+@media (max-width: 400px) {
+  #a11y-panel {
+    width: calc(100vw - 32px) !important;
+    right: 16px !important;
+    bottom: 80px !important;
+  }
+
+  #a11y-trigger {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
 }
 
-/* ========================================
+/* ============================================
    PANEL HEADER
-   ======================================== */
-#a11y-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  border-bottom: 2px solid var(--a11y-brand);
-  background: var(--a11y-brand);
-  color: #ffffff;
-  border-radius: 6px 6px 0 0;
+   ============================================ */
+#a11y-panel-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 20px 24px !important;
+  background: var(--a11y-brand) !important;
+  color: white !important;
+  border-bottom: 2px solid var(--a11y-brand-dark) !important;
 }
 
-#a11y-header h2 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
+#a11y-panel-title {
+  margin: 0 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
-/* Close button inside panel */
-#a11y-close {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  min-height: 36px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
+#a11y-close-btn {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
+  font-size: 24px !important;
+  font-weight: 300 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
 }
 
-#a11y-close:hover,
-#a11y-close:focus {
-  background: rgba(255, 255, 255, 0.2);
+#a11y-close-btn:hover,
+#a11y-close-btn:focus {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.1) !important;
 }
 
-#a11y-close:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 2px;
+#a11y-close-btn:focus {
+  outline: 3px solid white !important;
+  outline-offset: 2px !important;
 }
 
-#a11y-close svg {
-  width: 20px;
-  height: 20px;
+/* ============================================
+   PANEL CONTENT (scrollable)
+   ============================================ */
+#a11y-panel-content {
+  padding: 20px 24px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  flex: 1 !important;
 }
 
-/* ========================================
-   PANEL CONTENT
-   ======================================== */
-#a11y-content {
-  padding: 16px;
+/* Scrollbar styling */
+#a11y-panel-content::-webkit-scrollbar {
+  width: 8px !important;
 }
 
-/* ========================================
-   FEATURE 1: FONT SIZE CONTROL
-   ======================================== */
-.a11y-feature {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  margin-bottom: 8px;
-  background: #f5f5f5;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+#a11y-panel-content::-webkit-scrollbar-track {
+  background: var(--a11y-border) !important;
+  border-radius: 4px !important;
 }
 
-.a11y-feature:hover {
-  background: #ebebeb;
+#a11y-panel-content::-webkit-scrollbar-thumb {
+  background: var(--a11y-brand) !important;
+  border-radius: 4px !important;
+}
+
+#a11y-panel-content::-webkit-scrollbar-thumb:hover {
+  background: var(--a11y-brand-dark) !important;
+}
+
+/* ============================================
+   FEATURE ROWS
+   ============================================ */
+.a11y-feature-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid var(--a11y-border) !important;
+  gap: 16px !important;
+}
+
+.a11y-feature-row:last-of-type {
+  border-bottom: none !important;
 }
 
 .a11y-feature-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #1a1a1a;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex: 1 !important;
 }
 
-.a11y-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+.a11y-feature-label svg {
+  width: 24px !important;
+  height: 24px !important;
+  flex-shrink: 0 !important;
+  color: var(--a11y-brand) !important;
 }
 
-/* Font size controls */
-#a11y-font-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.a11y-feature-label span {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--a11y-text) !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  line-height: 1.4 !important;
 }
 
-.a11y-font-btn {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  min-height: 36px;
-  border: 2px solid var(--a11y-brand);
-  background: #ffffff;
-  color: var(--a11y-brand);
-  border-radius: 4px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
+/* ============================================
+   TOGGLE BUTTONS
+   ============================================ */
+.a11y-toggle-btn {
+  min-width: 56px !important;
+  min-height: 32px !important;
+  width: 56px !important;
+  height: 32px !important;
+  border-radius: 16px !important;
+  background: var(--a11y-border) !important;
+  border: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
 }
 
-.a11y-font-btn:hover:not(:disabled) {
-  background: var(--a11y-brand);
-  color: #ffffff;
+.a11y-toggle-btn::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 50% !important;
+  background: white !important;
+  top: 4px !important;
+  left: 4px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-.a11y-font-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.a11y-toggle-btn[aria-pressed="true"] {
+  background: var(--a11y-brand) !important;
 }
 
-.a11y-font-btn:focus-visible {
-  outline: 2px solid var(--a11y-brand);
-  outline-offset: 2px;
+.a11y-toggle-btn[aria-pressed="true"]::after {
+  left: 28px !important;
 }
 
-#a11y-font-display {
-  min-width: 50px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1a1a1a;
+.a11y-toggle-btn:hover,
+.a11y-toggle-btn:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--a11y-brand) 40%, transparent) !important;
 }
 
-/* ========================================
-   TOGGLE BUTTONS (Features 2-9)
-   ======================================== */
-.a11y-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 8px;
-  background: #f5f5f5;
-  border: 2px solid transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.a11y-toggle-btn:focus {
+  outline: none !important;
 }
 
-.a11y-toggle:hover {
-  background: #ebebeb;
+.a11y-toggle-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
 }
 
-.a11y-toggle:focus-visible {
-  outline: 2px solid var(--a11y-brand);
-  outline-offset: 2px;
+/* ============================================
+   BUTTON GROUPS (for font size)
+   ============================================ */
+.a11y-btn-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
-/* Toggle switch */
-.a11y-switch {
-  position: relative;
-  width: 52px;
-  height: 28px;
-  background: #cccccc;
-  border-radius: 14px;
-  transition: background 0.3s ease;
-  flex-shrink: 0;
+.a11y-action-btn {
+  min-width: 40px !important;
+  min-height: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  background: var(--a11y-border) !important;
+  border: none !important;
+  color: var(--a11y-text) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
 }
 
-.a11y-toggle[aria-pressed="true"] .a11y-switch {
-  background: var(--a11y-brand);
+.a11y-action-btn:hover:not(:disabled),
+.a11y-action-btn:focus:not(:disabled) {
+  background: var(--a11y-brand) !important;
+  color: white !important;
 }
 
-.a11y-switch-handle {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 24px;
-  height: 24px;
-  background: #ffffff;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.a11y-action-btn:focus:not(:disabled) {
+  outline: none !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--a11y-brand) 40%, transparent) !important;
 }
 
-.a11y-toggle[aria-pressed="true"] .a11y-switch-handle {
-  transform: translateX(24px);
+.a11y-action-btn:disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
 }
 
-/* ========================================
-   FEATURE 10: RESET BUTTON
-   ======================================== */
-#a11y-reset {
-  width: 100%;
-  padding: 12px;
-  margin-top: 16px;
-  background: #444;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: background 0.2s ease;
+.a11y-font-size-display {
+  min-width: 48px !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--a11y-brand) !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
 }
 
-#a11y-reset:hover {
-  background: #333;
+/* ============================================
+   RESET BUTTON (Feature 10)
+   ============================================ */
+.a11y-reset-btn {
+  width: 100% !important;
+  padding: 14px 20px !important;
+  margin-top: 16px !important;
+  border-radius: 8px !important;
+  background: #dc2626 !important;
+  color: white !important;
+  border: none !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
 }
 
-#a11y-reset:focus-visible {
-  outline: 2px solid var(--a11y-brand);
-  outline-offset: 2px;
+.a11y-reset-btn:hover,
+.a11y-reset-btn:focus {
+  background: #b91c1c !important;
+  transform: translateY(-1px) !important;
 }
 
-/* ========================================
-   ACCESSIBILITY STATEMENT LINK
-   ======================================== */
-#a11y-statement-link {
-  display: block;
-  text-align: center;
-  padding: 12px;
-  margin-top: 12px;
-  color: var(--a11y-brand);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-  font-size: 14px;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+.a11y-reset-btn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.4) !important;
 }
 
-#a11y-statement-link:hover {
-  background: #f0f0f0;
+/* ============================================
+   PANEL FOOTER
+   ============================================ */
+#a11y-panel-footer {
+  padding: 16px 24px !important;
+  border-top: 1px solid var(--a11y-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 
-#a11y-statement-link:focus {
-  outline: 2px solid var(--a11y-brand);
-  outline-offset: 2px;
+.a11y-footer-link {
+  font-size: 13px !important;
+  color: var(--a11y-brand) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  transition: color 0.2s ease !important;
 }
 
-/* ========================================
-   ARIA LIVE REGION (Visually Hidden)
-   ======================================== */
-.a11y-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+.a11y-footer-link:hover,
+.a11y-footer-link:focus {
+  color: var(--a11y-brand-dark) !important;
+  text-decoration: underline !important;
 }
 
-/* ========================================
-   FEATURE IMPLEMENTATIONS (Applied to Page)
-   ======================================== */
+.a11y-footer-link:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--a11y-brand) !important;
+  border-radius: 2px !important;
+}
 
-/* FEATURE 2: HIGH CONTRAST */
+.a11y-dismiss-link {
+  font-size: 12px !important;
+  color: #9ca3af !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  border: none !important;
+  background: none !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.a11y-dismiss-link:hover,
+.a11y-dismiss-link:focus {
+  color: #6b7280 !important;
+  text-decoration: underline !important;
+}
+
+/* ============================================
+   ARIA LIVE REGION (visually hidden)
+   ============================================ */
+#a11y-live {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ============================================
+   ACCESSIBILITY FEATURES (applied to body)
+   ============================================ */
+
+/* Feature 2: High Contrast Mode */
 body.a11y-contrast {
-  background: #000000 !important;
+  background: #000 !important;
   color: #FFFF00 !important;
 }
 
 body.a11y-contrast a,
-body.a11y-contrast button {
+body.a11y-contrast a *,
+body.a11y-contrast button,
+body.a11y-contrast button *,
+body.a11y-contrast [role="button"] {
   color: #00FFFF !important;
 }
 
 body.a11y-contrast input,
 body.a11y-contrast textarea,
 body.a11y-contrast select {
-  background: #000000 !important;
+  background: #000 !important;
   color: #FFFF00 !important;
   border-color: #FFFF00 !important;
 }
 
 body.a11y-contrast * {
   border-color: #FFFF00 !important;
-  box-shadow: none !important;
 }
 
-/* Panel in high contrast mode */
-body.a11y-contrast #a11y-panel {
-  background: #000000 !important;
-  border-color: #FFFF00 !important;
-}
-
-body.a11y-contrast #a11y-header {
-  background: #FFFF00 !important;
-  color: #000000 !important;
-}
-
-body.a11y-contrast #a11y-close {
-  color: #000000 !important;
-}
-
-body.a11y-contrast .a11y-feature {
-  background: #1a1a1a !important;
-  border: 1px solid #FFFF00 !important;
-}
-
-body.a11y-contrast .a11y-feature-label,
-body.a11y-contrast #a11y-font-display,
-body.a11y-contrast .a11y-toggle {
-  color: #FFFF00 !important;
-}
-
-body.a11y-contrast .a11y-font-btn {
-  border-color: #00FFFF !important;
-  color: #00FFFF !important;
-}
-
-body.a11y-contrast .a11y-font-btn:hover:not(:disabled) {
-  background: #00FFFF !important;
-  color: #000000 !important;
-}
-
-body.a11y-contrast .a11y-switch {
-  background: #333333 !important;
-  border: 1px solid #FFFF00 !important;
-}
-
-body.a11y-contrast .a11y-toggle[aria-pressed="true"] .a11y-switch {
-  background: #00FFFF !important;
-}
-
-body.a11y-contrast .a11y-switch-handle {
-  background: #FFFF00 !important;
-}
-
-body.a11y-contrast .a11y-toggle[aria-pressed="true"] .a11y-switch-handle {
-  background: #000000 !important;
-}
-
-body.a11y-contrast #a11y-reset {
-  background: #FFFF00 !important;
-  color: #000000 !important;
-}
-
-body.a11y-contrast #a11y-statement-link {
-  color: #00FFFF !important;
-}
-
-/* FEATURE 3: GRAYSCALE */
+/* Feature 3: Grayscale Mode */
 html.a11y-gray {
   filter: grayscale(100%) !important;
 }
 
-/* FEATURE 4: UNDERLINE LINKS */
+/* Feature 4: Underline Links */
 body.a11y-links a {
   text-decoration: underline !important;
-  text-underline-offset: 3px;
 }
 
-/* FEATURE 5: READABLE FONT */
+/* Feature 5: Readable Font */
 body.a11y-font,
-body.a11y-font * {
+body.a11y-font *,
+body.a11y-font input,
+body.a11y-font button,
+body.a11y-font textarea {
   font-family: Arial, Helvetica, sans-serif !important;
 }
 
-/* FEATURE 6: LETTER SPACING */
+/* Feature 6: Letter Spacing */
 body.a11y-spacing,
 body.a11y-spacing * {
   letter-spacing: 0.15em !important;
 }
 
-/* FEATURE 7: LINE HEIGHT */
+/* Feature 7: Line Height */
 body.a11y-lh p,
 body.a11y-lh li,
 body.a11y-lh span,
 body.a11y-lh div,
-body.a11y-lh h1,
-body.a11y-lh h2,
-body.a11y-lh h3,
-body.a11y-lh h4,
-body.a11y-lh h5,
-body.a11y-lh h6,
-body.a11y-lh button,
-body.a11y-lh a,
-body.a11y-lh input,
-body.a11y-lh textarea,
+body.a11y-lh td,
+body.a11y-lh th,
 body.a11y-lh label {
   line-height: 2.0 !important;
 }
 
-/* FEATURE 8: PAUSE ANIMATIONS */
-/* Applied via JS-injected style tag */
-
-/* FEATURE 9: HIGHLIGHT ON HOVER/FOCUS */
+/* Feature 9: Highlight on Hover/Focus */
 body.a11y-highlight *:hover,
 body.a11y-highlight *:focus {
   outline: 3px solid var(--a11y-brand) !important;
   outline-offset: 2px !important;
 }
 
-/* Exclude widget from highlight */
-body.a11y-highlight #a11y-panel *,
+/* Exclude widget itself from highlight */
 body.a11y-highlight #a11y-panel *:hover,
 body.a11y-highlight #a11y-panel *:focus,
 body.a11y-highlight #a11y-trigger:hover,
-body.a11y-highlight #a11y-trigger:focus,
-body.a11y-highlight #a11y-dismiss:hover,
-body.a11y-highlight #a11y-dismiss:focus {
+body.a11y-highlight #a11y-trigger:focus {
   outline: none !important;
 }
 
-/* ========================================
-   BASE FONT SIZE (Feature 1)
-   ======================================== */
-html {
-  font-size: var(--base-font-size, 16px);
+/* ============================================
+   HIGH CONTRAST MODE FOR WIDGET ITSELF
+   ============================================ */
+body.a11y-contrast #a11y-panel {
+  background: #000 !important;
+  border-color: #00FFFF !important;
+  color: #FFFF00 !important;
 }
 
-/* ========================================
-   REDUCED MOTION PREFERENCE
-   ======================================== */
+body.a11y-contrast #a11y-panel-header {
+  background: #FFFF00 !important;
+  color: #000 !important;
+  border-color: #00FFFF !important;
+}
+
+body.a11y-contrast #a11y-panel-title {
+  color: #000 !important;
+}
+
+body.a11y-contrast #a11y-close-btn {
+  color: #000 !important;
+  border: 2px solid #00FFFF !important;
+}
+
+body.a11y-contrast .a11y-feature-label span {
+  color: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-feature-label svg {
+  color: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-font-size-display {
+  color: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-toggle-btn {
+  background: #333 !important;
+  border: 2px solid #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-toggle-btn::after {
+  background: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-toggle-btn[aria-pressed="true"] {
+  background: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-toggle-btn[aria-pressed="true"]::after {
+  background: #000 !important;
+}
+
+body.a11y-contrast .a11y-action-btn {
+  background: #333 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-action-btn:hover:not(:disabled),
+body.a11y-contrast .a11y-action-btn:focus:not(:disabled) {
+  background: #FFFF00 !important;
+  color: #000 !important;
+}
+
+body.a11y-contrast .a11y-reset-btn {
+  background: #00FFFF !important;
+  color: #000 !important;
+}
+
+body.a11y-contrast .a11y-reset-btn:hover,
+body.a11y-contrast .a11y-reset-btn:focus {
+  background: #FFFF00 !important;
+}
+
+body.a11y-contrast .a11y-footer-link {
+  color: #00FFFF !important;
+}
+
+body.a11y-contrast #a11y-trigger {
+  border-color: #FFFF00 !important;
+  background: rgba(255, 255, 0, 0.3) !important;
+}
+
+body.a11y-contrast #a11y-trigger:hover,
+body.a11y-contrast #a11y-trigger:focus {
+  background: #FFFF00 !important;
+}
+
+body.a11y-contrast #a11y-trigger:hover svg,
+body.a11y-contrast #a11y-trigger:focus svg {
+  color: #000 !important;
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  #a11y-panel,
   #a11y-trigger,
-  #a11y-dismiss,
-  .a11y-toggle,
-  .a11y-font-btn,
-  #a11y-reset {
+  #a11y-trigger svg,
+  #a11y-trigger:hover,
+  #a11y-trigger:focus,
+  .a11y-toggle-btn,
+  .a11y-toggle-btn::after,
+  .a11y-action-btn,
+  .a11y-reset-btn,
+  #a11y-panel,
+  #a11y-close-btn {
+    animation: none !important;
     transition: none !important;
-  }
-}
-
-/* ========================================
-   MOBILE RESPONSIVENESS
-   ======================================== */
-@media (max-width: 480px) {
-  #a11y-panel {
-    width: calc(100vw - 32px);
-    right: 16px;
-    bottom: 16px;
-  }
-
-  #a11y-panel[dir="rtl"] {
-    left: 16px;
-    right: auto;
-  }
-
-  #a11y-trigger {
-    width: 48px;
-    height: 48px;
-    right: 16px;
-    bottom: 16px;
-  }
-
-  #a11y-dismiss {
-    right: 16px;
-    bottom: 72px;
   }
 }

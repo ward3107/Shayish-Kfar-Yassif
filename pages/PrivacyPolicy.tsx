@@ -86,6 +86,7 @@ const PrivacyPolicy: React.FC = () => {
     { id: 'automated-decisions', title: translations[privacyLang].toc.automatedDecisions },
     { id: 'security', title: translations[privacyLang].toc.security },
     { id: 'updates', title: translations[privacyLang].toc.updates },
+    { id: 'gdpr-addendum', title: translations[privacyLang].toc.gdprAddendum },
   ];
 
   const t = translations[privacyLang];
@@ -689,6 +690,144 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-4">{t.section13.para1}</p>
                 <p className="text-muted leading-relaxed">{t.section13.para2}</p>
               </section>
+
+              {/* Section 14 - GDPR Addendum for EU/EEA Residents */}
+              <section data-section="gdpr-addendum" id="gdpr-addendum" className="scroll-mt-32">
+                <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-sm p-6 mb-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">🇪🇺</span>
+                    <h2 className="text-2xl font-serif text-light">
+                      <span className="text-accent">14.</span> {t.section14.title}
+                    </h2>
+                  </div>
+                  <p className="text-sm text-muted">{t.section14.notice}</p>
+                </div>
+
+                <p className="text-muted leading-relaxed mb-6">{t.section14.intro}</p>
+
+                {/* GDPR Legal Bases Table */}
+                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
+                    {t.section14.legalBasisTitle}
+                  </h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm border-collapse">
+                      <thead>
+                        <tr className="border-b border-neutral-600">
+                          <th className="text-right p-3 font-bold text-light">{t.section14.table.activity}</th>
+                          <th className="text-right p-3 font-bold text-light">{t.section14.table.legalBasis}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-neutral-700 bg-neutral-800/30">
+                          <td className="p-3 text-light">{t.section14.table.row1.activity}</td>
+                          <td className="p-3">
+                            <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">
+                              {t.section14.table.row1.basis}
+                            </span>
+                          </td>
+                        </tr>
+                        <tr className="border-b border-neutral-700">
+                          <td className="p-3 text-light">{t.section14.table.row2.activity}</td>
+                          <td className="p-3">
+                            <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">
+                              {t.section14.table.row2.basis}
+                            </span>
+                          </td>
+                        </tr>
+                        <tr className="border-b border-neutral-700 bg-neutral-800/30">
+                          <td className="p-3 text-light">{t.section14.table.row3.activity}</td>
+                          <td className="p-3">
+                            <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">
+                              {t.section14.table.row3.basis}
+                            </span>
+                          </td>
+                        </tr>
+                        <tr className="bg-neutral-800/30">
+                          <td className="p-3 text-light">{t.section14.table.row4.activity}</td>
+                          <td className="p-3">
+                            <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">
+                              {t.section14.table.row4.basis}
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* GDPR Additional Rights */}
+                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
+                    {t.section14.additionalRightsTitle}
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-neutral-900/50 border border-neutral-600 rounded-sm p-4">
+                      <h5 className="font-bold text-light mb-2 flex items-center gap-2">
+                        <span className="text-accent">Article 20</span>
+                        <span className="text-sm text-accent">📦</span>
+                      </h5>
+                      <p className="text-sm text-muted">{t.section14.rightPortability}</p>
+                      <p className="text-xs text-muted mt-2">{t.section14.rightPortabilityDesc}</p>
+                    </div>
+                    <div className="bg-neutral-900/50 border border-neutral-600 rounded-sm p-4">
+                      <h5 className="font-bold text-light mb-2 flex items-center gap-2">
+                        <span className="text-accent">Article 18</span>
+                        <span className="text-sm text-accent">🔒</span>
+                      </h5>
+                      <p className="text-sm text-muted">{t.section14.rightRestriction}</p>
+                      <p className="text-xs text-muted mt-2">{t.section14.rightRestrictionDesc}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Supervisory Authority */}
+                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
+                    {t.section14.supervisoryAuthorityTitle}
+                  </h4>
+                  <p className="text-sm text-muted mb-4">{t.section14.supervisoryAuthorityDesc}</p>
+                  <ul className="space-y-2 text-sm text-muted">
+                    <li className="flex items-start gap-3">
+                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <span>{t.section14.supervisoryAuthority1}</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <span>{t.section14.supervisoryAuthority2}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* International Transfers */}
+                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
+                    {t.section14.internationalTransfersTitle}
+                  </h4>
+                  <p className="text-sm text-muted mb-4">{t.section14.internationalTransfersDesc}</p>
+                  <div className="bg-blue-900/20 border border-blue-500/30 rounded-sm p-4">
+                    <p className="text-sm text-light">
+                      <strong className="text-accent">SCC (Standard Contractual Clauses):</strong> {t.section14.sccDesc}
+                    </p>
+                  </div>
+                </div>
+
+                {/* GDPR Request Form Link */}
+                <div className="bg-accent/10 border border-accent/30 rounded-sm p-6">
+                  <h4 className="font-bold text-light mb-3">{t.section14.requestFormTitle}</h4>
+                  <p className="text-sm text-muted mb-4">{t.section14.requestFormDesc}</p>
+                  <Link
+                    to="/gdpr-request"
+                    className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-sm font-bold hover:bg-light hover:text-primary transition-colors"
+                  >
+                    {t.section14.requestFormButton}
+                    <ExternalLink size={16} />
+                  </Link>
+                  <p className="text-xs text-muted mt-3">
+                    <strong>{t.section14.responseTime}:</strong> {t.section14.within30Days}
+                  </p>
+                </div>
+              </section>
             </div>
 
             {/* Footer Note */}
@@ -730,7 +869,8 @@ const translations: Record<PrivacyLanguage, any> = {
       cookies: 'עוגיות (Cookies)',
       automatedDecisions: 'החלטות אוטומטיות ובינה מלאכותית',
       security: 'אבטחת מידע',
-      updates: 'עדכוני מדיניות'
+      updates: 'עדכוני מדיניות',
+      gdprAddendum: 'תוספת GDPR לתושבי אירופה'
     },
     section1: {
       title: 'מבוא וזהות בעל המידע',
@@ -878,6 +1018,37 @@ const translations: Record<PrivacyLanguage, any> = {
       para1: 'אנחנו עשויים לעדכן מדיניות זו מעת לעת. תאריך העדכון האחרון מוצג למעלה.',
       para2: 'שינויים מהותיים יועברו אליך באימייל או בהודעה בולטת באתר.'
     },
+    section14: {
+      title: 'תוספת GDPR לתושבי האיחוד האירופי והמרחב הכלכלי האירופי',
+      notice: 'סעיף זה חל רק על תושבי אירופה שנמצאים באיחוד האירופי (EU), המרחב הכלכלי האירופי (EEA), או הממלכה המאוחדת בעת איסוף המידע.',
+      intro: 'החוק הכללי להגנת מידע (GDPR) מספק הגנות נוספות על המידע האישי שלך. להלן הזכויות והבסיס המשפטי שחלים עליך כתושב אירופה:',
+      legalBasisTitle: 'בסיס משפטי לעיבוד המידע (סעיף 6 ל-GDPR)',
+      table: {
+        activity: 'פעילות עיבוד',
+        legalBasis: 'בסיס משפטי',
+        row1: { activity: 'מתן מענה לפניות ואבטחת האתר', basis: 'סעיף 6(1)(ג) - אינטרס חוקי' },
+        row2: { activity: 'עוגיות ניתוח (Google Analytics)', basis: 'סעיף 6(1)(א) - הסכמה' },
+        row3: { activity: 'עוגיות שיווק (פרסום ממוקד)', basis: 'סעיף 6(1)(א) - הסכמה' },
+        row4: { activity: 'שיפור שירותים וחוויית משתמש', basis: 'סעיף 6(1)(ו) - אינטרס חוקי' }
+      },
+      additionalRightsTitle: 'זכויות נוספות לפי GDPR',
+      rightPortability: 'זכות לניידות נתונים (Article 20)',
+      rightPortabilityDesc: 'תוכל לבקש לקבל את המידע האישי שלך בפורמט מובנה וממוכן (JSON/CSV), או להעבירו לספק אחר.',
+      rightRestriction: 'זכות להגבלת עיבוד (Article 18)',
+      rightRestrictionDesc: 'תוכל לבקש שנגביל את השימוש במידע שלך במקום למחוק אותו, למשל במקרה של סכסוך משפטי.',
+      supervisoryAuthorityTitle: 'זכות להגיש תלונה לרשות פיקוח מקומית',
+      supervisoryAuthorityDesc: 'לצד הזכות להגיש תלונה לרשות הישראלית, כתושב אירופה יש לך גם הזכות להגיש תלונה לרשות הפיקוח במדינת האיחוד שבה אתה גר:',
+      supervisoryAuthority1: 'בגרמניה: Der Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)',
+      supervisoryAuthority2: 'בצרפת: Commission Nationale de l\'Informatique et des Libertés (CNIL) — ורשויות מקבילות בכל מדינות האיחוד',
+      internationalTransfersTitle: 'העברת מידמחוץ לאירופה',
+      internationalTransfersDesc: 'המידע שלך עשוי להיות מועבר למדינות שמחוץ לאירופה (כגון ישראל, ארה״ב). אנחנו דואגים להעברה מאובטחת:',
+      sccDesc: 'העברות מחוץ לאירופה מוגנות על ידי סעיפים חוזיים סטנדרטיים (Standard Contractual Clauses - SCC) המאושרים על ידי הנציבות האירופית.',
+      requestFormTitle: 'טופס בקשה לזכויות GDPR',
+      requestFormDesc: 'להגשת בקשה לגישה, תיקון, מחיקה, ניידות נתונים או הגבלת עיבוד, השתמש בטופס הבקשה הייעודי ל-GDPR:',
+      requestFormButton: 'פתח טופס בקשה ל-GDPR',
+      responseTime: 'זמן תגובה',
+      within30Days: 'תוך 30 יום מקבלת הבקשה (סעיף 12(3) ל-GDPR)'
+    },
     footerNote: 'מדיניות זו נכתבה בהתאם לחוק הגנת הפרטיות (התשמ״א-1981) סעיף 11 ותיקון 13, והנחיות רשות הגנת הפרטיות מיולי 2022.'
   },
   ar: {
@@ -905,7 +1076,8 @@ const translations: Record<PrivacyLanguage, any> = {
       cookies: 'ملفات تعريف الارتباط',
       automatedDecisions: 'القرارات الآلية والذكاء الاصطناعي',
       security: 'أمان البيانات',
-      updates: 'تحديثات السياسة'
+      updates: 'تحديثات السياسة',
+      gdprAddendum: 'ملحق GDPR لسكان الاتحاد الأوروبي'
     },
     section1: {
       title: 'المقدمة وهوية مسيطر البيانات',
@@ -1053,6 +1225,37 @@ const translations: Record<PrivacyLanguage, any> = {
       para1: 'قد نقوم بتحديث هذه السياسة من وقت لآخر. تاريخ آخر تحديث معروض أعلاه.',
       para2: 'سيتم إبلاغك بالتغييرات الجوهرية عبر البريد الإلكتروني أو إشعار بارز في الموقع.'
     },
+    section14: {
+      title: 'ملحق GDPR لسكان الاتحاد الأوروبي والمنطقة الاقتصادية الأوروبية',
+      notice: 'ينطبق هذا القسم فقط على المقيمين في أوروبا الموجودين في الاتحاد الأوروبي (EU) أو المنطقة الاقتصادية الأوروبية (EEA) أو المملكة المتحدة عند جمع البيانات.',
+      intro: 'اللائحة العامة لحماية البيانات (GDPR) توفر حماية إضافية لبياناتك الشخصية. فيما يلي الحقوق والأساس القانوني المطبق عليك كمقيم في أوروبا:',
+      legalBasisTitle: 'الأساس القانوني لمعالجة البيانات (المادة 6 من GDPR)',
+      table: {
+        activity: 'نشاط المعالجة',
+        legalBasis: 'الأساس القانوني',
+        row1: { activity: 'الرد على الاستفسارات وأمان الموقع', basis: 'المادة 6(1)(ج) - المصلحة المشروعة' },
+        row2: { activity: 'ملفات تعريف الارتباط للتحليل (Google Analytics)', basis: 'المادة 6(1)(أ) - الموافقة' },
+        row3: { activity: 'ملفات تعريف الارتباط للتسويق (الإعلانات الموجهة)', basis: 'المادة 6(1)(أ) - الموافقة' },
+        row4: { activity: 'تحسين الخدمات وتجربة المستخدم', basis: 'المادة 6(1)(و) - المصلحة المشروعة' }
+      },
+      additionalRightsTitle: 'حقوق إضافية بموجب GDPR',
+      rightPortability: 'حق نقل البيانات (المادة 20)',
+      rightPortabilityDesc: 'يمكنك طلب بياناتك الشخصية بتنسيق منظم وم可以直接阅读 (JSON/CSV) أو نقلها إلى مزود آخر.',
+      rightRestriction: 'حق تقييد المعالجة (المادة 18)',
+      rightRestrictionDesc: 'يمكنك طلب تقييد استخدام بياناتك بدلاً من حذفها، على سبيل المثال في حالة نزاع قانوني.',
+      supervisoryAuthorityTitle: 'الحق في تقديم شكوى إلى هيئة رقابية محلية',
+      supervisoryAuthorityDesc: 'إلى جانب الحق في تقديم شكوى إلى الهيئة الإسرائيلية، بصفتك مقيمًا في أوروبا، لديك أيضًا الحق في تقديم شكوى إلى هيئة الرقابة في دولة الاتحاد التي تقيم فيها:',
+      supervisoryAuthority1: 'في ألمانيا: Der Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)',
+      supervisoryAuthority2: 'في فرنسا: Commission Nationale de l\'Informatique et des Libertés (CNIL) — وهيئات مماثلة في جميع دول الاتحاد',
+      internationalTransfersTitle: 'النقل الدولي للبيانات خارج أوروبا',
+      internationalTransfersDesc: 'قد يتم نقل بياناتك إلى دول خارج أوروبا (مثل إسرائيل والولايات المتحدة). نحن نضمن النقل الآمن:',
+      sccDesc: 'النقل خارج أوروبا محمي بواسطة البنود التعاقدية القياسية (Standard Contractual Clauses - SCC) المعتمدة من المفوضية الأوروبية.',
+      requestFormTitle: 'نموذج طلب حقوق GDPR',
+      requestFormDesc: 'لتقديم طلب للوصول أو التصحيح أو الحذف أو نقل البيانات أو تقييد المعالجة، استخدم نموذج طلب GDPR المخصص:',
+      requestFormButton: 'افتح نموذج طلب GDPR',
+      responseTime: 'وقت الاستجابة',
+      within30Days: 'خلال 30 يومًا من استلام الطلب (المادة 12(3) من GDPR)'
+    },
     footerNote: 'تمت كتابة هذه السياسة وفقًا لقانون حماية الخصوصية (5741-1981) المادة 11 والتعديل 13، وإرشادات هيئة حماية الخصوصية يوليو 2022.'
   },
   en: {
@@ -1080,7 +1283,8 @@ const translations: Record<PrivacyLanguage, any> = {
       cookies: 'Cookies',
       automatedDecisions: 'Automated Decision-Making and AI',
       security: 'Data Security',
-      updates: 'Policy Updates'
+      updates: 'Policy Updates',
+      gdprAddendum: 'GDPR Addendum for EU/EEA Residents'
     },
     section1: {
       title: 'Introduction & Data Controller Identity',
@@ -1228,6 +1432,37 @@ const translations: Record<PrivacyLanguage, any> = {
       para1: 'We may update this policy from time to time. The last updated date is shown above.',
       para2: 'Material changes will be communicated to you via email or prominent notice on the website.'
     },
+    section14: {
+      title: 'GDPR Addendum for European Union and European Economic Area Residents',
+      notice: 'This section only applies to residents located in the European Union (EU), European Economic Area (EEA), or United Kingdom at the time of data collection.',
+      intro: 'The General Data Protection Regulation (GDPR) provides additional protections for your personal data. Below are your rights and the legal basis that apply to you as a European resident:',
+      legalBasisTitle: 'Legal Basis for Data Processing (GDPR Article 6)',
+      table: {
+        activity: 'Processing Activity',
+        legalBasis: 'Legal Basis',
+        row1: { activity: 'Responding to inquiries and website security', basis: 'Article 6(1)(c) - Legitimate Interests' },
+        row2: { activity: 'Analytics cookies (Google Analytics)', basis: 'Article 6(1)(a) - Consent' },
+        row3: { activity: 'Marketing cookies (targeted advertising)', basis: 'Article 6(1)(a) - Consent' },
+        row4: { activity: 'Service improvements and user experience', basis: 'Article 6(1)(f) - Legitimate Interests' }
+      },
+      additionalRightsTitle: 'Additional Rights Under GDPR',
+      rightPortability: 'Right to Data Portability (Article 20)',
+      rightPortabilityDesc: 'You may request your personal data in a structured, machine-readable format (JSON/CSV) or have it transferred to another provider.',
+      rightRestriction: 'Right to Restrict Processing (Article 18)',
+      rightRestrictionDesc: 'You may request we restrict the use of your data instead of deleting it, for example during a legal dispute.',
+      supervisoryAuthorityTitle: 'Right to Complain to a Local Supervisory Authority',
+      supervisoryAuthorityDesc: 'In addition to your right to complain to the Israeli authority, as a European resident you also have the right to complain to the supervisory authority in the EU member state where you reside:',
+      supervisoryAuthority1: 'In Germany: Der Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)',
+      supervisoryAuthority2: 'In France: Commission Nationale de l\'Informatique et des Libertés (CNIL) — and equivalent authorities in all EU member states',
+      internationalTransfersTitle: 'International Data Transfers Outside Europe',
+      internationalTransfersDesc: 'Your data may be transferred to countries outside Europe (such as Israel, USA). We ensure secure transfers:',
+      sccDesc: 'Transfers outside Europe are protected by Standard Contractual Clauses (SCC) approved by the European Commission.',
+      requestFormTitle: 'GDPR Rights Request Form',
+      requestFormDesc: 'To submit a request for access, correction, deletion, data portability, or processing restriction, use the dedicated GDPR request form:',
+      requestFormButton: 'Open GDPR Request Form',
+      responseTime: 'Response Time',
+      within30Days: 'Within 30 days of receiving the request (GDPR Article 12(3))'
+    },
     footerNote: 'This policy is written in accordance with the Privacy Protection Law (5741-1981) Section 11 and Amendment 13, and the PPA July 2022 guidelines.'
   },
   ru: {
@@ -1255,7 +1490,8 @@ const translations: Record<PrivacyLanguage, any> = {
       cookies: 'Файлы cookie',
       automatedDecisions: 'Автоматические решения и ИИ',
       security: 'Безопасность данных',
-      updates: 'Обновления политики'
+      updates: 'Обновления политики',
+      gdprAddendum: 'Дополнение GDPR для резидентов ЕЭС/ЕС'
     },
     section1: {
       title: 'Введение и личность контролера данных',
@@ -1402,6 +1638,37 @@ const translations: Record<PrivacyLanguage, any> = {
       title: 'Обновления политики',
       para1: 'Мы можем время от времени обновлять эту политику. Дата последнего обновления показана выше.',
       para2: 'О существенных изменениях будет сообщено вам по электронной почте или с помощью заметного уведомления на веб-сайте.'
+    },
+    section14: {
+      title: 'Дополнение GDPR для резидентов Европейского союза и Европейской экономической зоны',
+      notice: 'Этот раздел применяется только к резидентам, находящимся в Европейском союзе (ЕС), Европейской экономической зоне (ЕЭЗ) или Великобритании во время сбора данных.',
+      intro: 'Общий регламент защиты данных (GDPR) предоставляет дополнительную защиту ваших личных данных. Ниже приведены ваши права и правовая основа, применяемые к вам как к резиденту Европы:',
+      legalBasisTitle: 'Правовая основа для обработки данных (Статья 6 GDPR)',
+      table: {
+        activity: 'Деятельность по обработке',
+        legalBasis: 'Правовая основа',
+        row1: { activity: 'Ответ на запросы и безопасность веб-сайта', basis: 'Статья 6(1)(c) - Законные интересы' },
+        row2: { activity: 'Файлы cookie аналитики (Google Analytics)', basis: 'Статья 6(1)(a) - Согласие' },
+        row3: { activity: 'Файлы cookie маркетинга (таргетированная реклама)', basis: 'Статья 6(1)(a) - Согласие' },
+        row4: { activity: 'Улучшение услуг и пользовательского опыта', basis: 'Статья 6(1)(f) - Законные интересы' }
+      },
+      additionalRightsTitle: 'Дополнительные права согласно GDPR',
+      rightPortability: 'Право на переносимость данных (Статья 20)',
+      rightPortabilityDesc: 'Вы можете запросить свои личные данные в структурированном, машиночитаемом формате (JSON/CSV) или передать их другому поставщику.',
+      rightRestriction: 'Право на ограничение обработки (Статья 18)',
+      rightRestrictionDesc: 'Вы можете запросить ограничение использования ваших данных вместо их удаления, например, во время судебного спора.',
+      supervisoryAuthorityTitle: 'Право на жалобу в местный надзорный орган',
+      supervisoryAuthorityDesc: 'Помимо права на жалобу в израильский орган, как резидент Европы вы также имеете право подать жалобу в надзорный орган в государстве-члене ЕС, в котором вы проживаете:',
+      supervisoryAuthority1: 'В Германии: Der Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)',
+      supervisoryAuthority2: 'Во Франции: Commission Nationale de l\'Informatique et des Libertés (CNIL) — и аналогичные органы во всех государствах-членах ЕС',
+      internationalTransfersTitle: 'Международная передача данных за пределы Европы',
+      internationalTransfersDesc: 'Ваши данные могут передаваться в страны за пределами Европы (например, Израиль, США). Мы обеспечиваем безопасную передачу:',
+      sccDesc: 'Передачи за пределы Европы защищены стандартными контрактными условиями (Standard Contractual Clauses - SCC), утвержденными Европейской комиссией.',
+      requestFormTitle: 'Форма запроса прав GDPR',
+      requestFormDesc: 'Для подачи запроса на доступ, исправление, удаление, переносимость данных или ограничение обработки используйте специальную форму запроса GDPR:',
+      requestFormButton: 'Открыть форму запроса GDPR',
+      responseTime: 'Время ответа',
+      within30Days: 'В течение 30 дней с момента получения запроса (Статья 12(3) GDPR)'
     },
     footerNote: 'Эта политика написана в соответствии с Законом о защите конфиденциальности (5741-1981) раздел 11 и поправкой 13, а также рекомендациями PPA от июля 2022 года.'
   }
