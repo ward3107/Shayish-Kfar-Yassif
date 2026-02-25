@@ -233,13 +233,13 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      {/* Music Player - Bottom Right Corner */}
+      {/* Music Player - Top Left Corner */}
       <MusicPlayer
         tracks={musicTracks}
         autoPlay={true}
         shuffle={true}
         loop={true}
-        position="bottom-right"
+        position="top-left"
       />
       {/* Hero Section - Text remains white due to video background */}
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">

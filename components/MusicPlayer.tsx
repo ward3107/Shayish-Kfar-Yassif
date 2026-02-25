@@ -242,7 +242,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       {!isExpanded && (
         <button
           onClick={() => { setHasInteracted(true); setIsExpanded(true); }}
-          className="flex items-center gap-3 bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/20 hover:bg-black/60 transition-all duration-300 group"
+          className="flex items-center gap-3 bg-black/25 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/20 hover:bg-black/40 transition-all duration-300 group"
           aria-label={t('music.open_player')}
         >
           <div className={`w-8 h-8 rounded-full bg-accent flex items-center justify-center ${isPlaying ? 'animate-pulse' : ''}`}>
@@ -261,7 +261,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
       {/* Expanded player */}
       {isExpanded && (
-        <div className="bg-black/90 backdrop-blur-xl text-white rounded-2xl border border-white/20 p-4 w-72 sm:w-80 shadow-2xl">
+        <div className="bg-black/40 backdrop-blur-xl text-white rounded-2xl border border-white/20 p-4 w-72 sm:w-80 shadow-2xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
