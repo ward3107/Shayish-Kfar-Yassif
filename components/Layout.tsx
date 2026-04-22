@@ -38,7 +38,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   ];
 
   const cycleLanguage = () => {
-      const langs = ['en', 'he', 'ar'] as const;
+      const langs = ['en', 'he', 'ar', 'ru'] as const;
       const currentIndex = langs.indexOf(language);
       const nextIndex = (currentIndex + 1) % langs.length;
       setLanguage(langs[nextIndex]);

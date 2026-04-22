@@ -58,7 +58,7 @@ const Materials: React.FC = () => {
                 {finishes.map((item, i) => (
                     <div key={i} className="group cursor-pointer">
                         <div className="overflow-hidden aspect-[4/5] mb-6 grayscale group-hover:grayscale-0 transition-all duration-500">
-                            <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform group-hover:scale-110"/>
+                            <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform group-hover:scale-110"/>
                         </div>
                         <h3 className="font-serif text-xl mb-2 text-light group-hover:text-accent transition-colors">{item.title}</h3>
                         <p className="text-muted text-xs tracking-wide">{item.desc}</p>
