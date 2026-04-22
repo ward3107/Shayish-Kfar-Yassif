@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
-import MusicPlayer from '../components/MusicPlayer';
 import { PROJECTS, TESTIMONIALS } from '../constants';
 import { ArrowRight, Star, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -208,39 +207,8 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  // Music tracks - relaxing ambient music for the site
-  // Using reliable SoundHelix sources
-  const musicTracks = [
-    {
-      id: 'track1',
-      title: 'Ambient Dreams',
-      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      artist: 'SoundHelix'
-    },
-    {
-      id: 'track2',
-      title: 'Soft Atmosphere',
-      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
-      artist: 'SoundHelix'
-    },
-    {
-      id: 'track3',
-      title: 'Gentle Flow',
-      src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
-      artist: 'SoundHelix'
-    }
-  ];
-
   return (
     <div className="flex flex-col">
-      {/* Music Player - Top Left Corner */}
-      <MusicPlayer
-        tracks={musicTracks}
-        autoPlay={true}
-        shuffle={true}
-        loop={true}
-        position="top-left"
-      />
       {/* Hero Section - Text remains white due to video background */}
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         {/* Background Video */}
