@@ -157,21 +157,6 @@ export const translations = {
       finish_honed: 'Honed',
       finish_honed_desc: 'Smooth matte finish with natural stone authenticity.'
     },
-    // Music Player
-    music: {
-      open_player: 'Open music player',
-      collapse_player: 'Collapse player',
-      play: 'Play',
-      pause: 'Pause',
-      next: 'Next track',
-      previous: 'Previous track',
-      shuffle: 'Shuffle',
-      mute: 'Mute',
-      unmute: 'Unmute',
-      volume: 'Volume',
-      playlist: 'Playlist',
-      track: 'Track'
-    },
     // Legal Pages
     privacy: {
       nav_home: 'Home',
@@ -413,21 +398,6 @@ export const translations = {
       finish_concrete_desc: 'מראה ותחושה של מרקם תעשייתי.',
       finish_honed: 'מלוט',
       finish_honed_desc: 'גימור מט חלק עם אותנטיות של אבן טבעית.'
-    },
-    // Music Player
-    music: {
-      open_player: 'פתח נגן מוזיקה',
-      collapse_player: 'כווץ נגן',
-      play: 'נגן',
-      pause: 'השהה',
-      next: 'רצועה הבאה',
-      previous: 'רצועה קודמת',
-      shuffle: 'ערבול',
-      mute: 'השתק',
-      unmute: 'בטל השתקה',
-      volume: 'עוצמה',
-      playlist: 'רשימת השמעה',
-      track: 'רצועה'
     },
     // Legal Pages
     privacy: {
@@ -671,21 +641,6 @@ export const translations = {
       finish_honed: 'مصقول ناعم',
       finish_honed_desc: 'تشطيب ناعم غير لامع مع أصالة الحجر الطبيعي.'
     },
-    // Music Player
-    music: {
-      open_player: 'فتح مشغل الموسيقى',
-      collapse_player: 'طي المشغل',
-      play: 'تشغيل',
-      pause: 'إيقاف مؤقت',
-      next: 'المقطع التالي',
-      previous: 'المقطع السابق',
-      shuffle: 'خلط',
-      mute: 'كتم الصوت',
-      unmute: 'إلغاء الكتم',
-      volume: 'مستوى الصوت',
-      playlist: 'قائمة التشغيل',
-      track: 'المقطع'
-    },
     // Legal Pages
     privacy: {
       nav_home: 'الرئيسية',
@@ -927,21 +882,6 @@ export const translations = {
       finish_concrete_desc: 'Промышленная текстура и ощущение.',
       finish_honed: 'Гладкий',
       finish_honed_desc: 'Гладкая матовая отделка с естественной аутентичностью камня.'
-    },
-    // Music Player
-    music: {
-      open_player: 'Открыть музыкальный плеер',
-      collapse_player: 'Свернуть плеер',
-      play: 'Играть',
-      pause: 'Пауза',
-      next: 'Следующий трек',
-      previous: 'Предыдущий трек',
-      shuffle: 'Перемешать',
-      mute: 'Выключить звук',
-      unmute: 'Включить звук',
-      volume: 'Громкость',
-      playlist: 'Плейлист',
-      track: 'Трек'
     },
     // Legal Pages
     privacy: {
