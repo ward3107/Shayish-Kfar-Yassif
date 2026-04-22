@@ -79,6 +79,14 @@
       pauseAnimations: 'השהה אנימציות',
       highlightHover: 'הדגשה בעכבר/פוקוס',
       reset: 'אפס הכל',
+      shareTitle: 'שתפו את האתר',
+      shareWhatsApp: 'שתפו בוואטסאפ',
+      shareFacebook: 'שתפו בפייסבוק',
+      shareEmail: 'שתפו באימייל',
+      shareCopy: 'העתיקו קישור',
+      shareNative: 'שיתוף',
+      shareSubject: 'שיש כפר יאסיף',
+      shareMessage: 'בקרו באתר של שיש כפר יאסיף:',
       statementLink: 'הצהרת נגישות',
       statementUrl: '/accessibility-statement',
       announcements: {
@@ -99,7 +107,9 @@
         animOff: 'האנימציות חודשו',
         highlightOn: 'הדגשה בעכבר ופוקוס הופעלה',
         highlightOff: 'הדגשה בעכבר ופוקוס כובתה',
-        reset: 'כל הגדרות הנגישות אופסו'
+        reset: 'כל הגדרות הנגישות אופסו',
+        copied: 'הקישור הועתק ללוח',
+        copyFailed: 'העתקת הקישור נכשלה'
       }
     },
     en: {
@@ -119,6 +129,14 @@
       pauseAnimations: 'Pause Animations',
       highlightHover: 'Highlight on Hover/Focus',
       reset: 'Reset All',
+      shareTitle: 'Share This Site',
+      shareWhatsApp: 'Share on WhatsApp',
+      shareFacebook: 'Share on Facebook',
+      shareEmail: 'Share by Email',
+      shareCopy: 'Copy link',
+      shareNative: 'Share',
+      shareSubject: 'Shayish Kfar Yassif',
+      shareMessage: 'Check out Shayish Kfar Yassif:',
       statementLink: 'Accessibility Statement',
       statementUrl: '/accessibility-statement',
       announcements: {
@@ -139,7 +157,9 @@
         animOff: 'Animations resumed',
         highlightOn: 'Highlight on hover and focus enabled',
         highlightOff: 'Highlight on hover and focus disabled',
-        reset: 'All accessibility settings have been reset'
+        reset: 'All accessibility settings have been reset',
+        copied: 'Link copied to clipboard',
+        copyFailed: 'Failed to copy link'
       }
     }
   };
@@ -892,6 +912,33 @@
           <button type="button" class="a11y-toggle-btn" data-feature="highlight" aria-pressed="false" aria-label="${t.highlightHover}"></button>
         </div>
 
+        <!-- SHARE THIS SITE -->
+        <div class="a11y-share-section" role="group" aria-label="${t.shareTitle}">
+          <div class="a11y-share-title">${t.shareTitle}</div>
+          <div class="a11y-share-grid">
+            <button type="button" class="a11y-share-btn a11y-share-whatsapp" data-share="whatsapp" aria-label="${t.shareWhatsApp}" title="${t.shareWhatsApp}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.746.456 3.45 1.32 4.951L2.05 22l5.25-1.38a9.87 9.87 0 004.74 1.207h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.648-1.03-5.138-2.902-7.01A9.872 9.872 0 0012.04 2z"/>
+              </svg>
+            </button>
+            <button type="button" class="a11y-share-btn a11y-share-facebook" data-share="facebook" aria-label="${t.shareFacebook}" title="${t.shareFacebook}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+              </svg>
+            </button>
+            <button type="button" class="a11y-share-btn a11y-share-email" data-share="email" aria-label="${t.shareEmail}" title="${t.shareEmail}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </button>
+            <button type="button" class="a11y-share-btn a11y-share-copy" data-share="copy" aria-label="${t.shareCopy}" title="${t.shareCopy}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
         <!-- FEATURE 10: Reset All -->
         <button type="button" id="a11y-reset" class="a11y-reset-btn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -999,8 +1046,67 @@
     // Reset button (Feature 10)
     document.getElementById('a11y-reset').addEventListener('click', resetAll);
 
+    // Share buttons
+    const shareButtons = panel.querySelectorAll('.a11y-share-btn');
+    shareButtons.forEach(btn => {
+      btn.addEventListener('click', () => handleShare(btn.dataset.share));
+    });
+
     // Dismiss link
     document.getElementById('a11y-dismiss-link').addEventListener('click', dismissWidget);
+  }
+
+  /**
+   * Handle share actions for WhatsApp, Facebook, email, and copy-to-clipboard
+   */
+  function handleShare(channel) {
+    const t = translations[currentLang];
+    const url = window.location.origin + '/';
+    const message = t.shareMessage + ' ' + url;
+
+    switch (channel) {
+      case 'whatsapp':
+        window.open('https://wa.me/?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+        break;
+      case 'facebook':
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'noopener,noreferrer');
+        break;
+      case 'email':
+        window.location.href = 'mailto:?subject=' + encodeURIComponent(t.shareSubject) + '&body=' + encodeURIComponent(message);
+        break;
+      case 'copy':
+        copyToClipboard(url);
+        break;
+    }
+  }
+
+  /**
+   * Copy text to clipboard with a fallback for non-secure contexts
+   */
+  function copyToClipboard(text) {
+    const t = translations[currentLang];
+    const onSuccess = () => announce(t.announcements.copied);
+    const onFail = () => announce(t.announcements.copyFailed);
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(onFail);
+      return;
+    }
+
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'absolute';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      ok ? onSuccess() : onFail();
+    } catch (e) {
+      onFail();
+    }
   }
 
   /**

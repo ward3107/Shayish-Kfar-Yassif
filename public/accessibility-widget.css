@@ -349,6 +349,61 @@
 }
 
 /* ============================================
+   SHARE SECTION
+   ============================================ */
+.a11y-share-section {
+  margin-top: 16px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid var(--a11y-border) !important;
+}
+
+.a11y-share-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--a11y-text) !important;
+  margin-bottom: 10px !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+}
+
+.a11y-share-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 8px !important;
+}
+
+.a11y-share-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 40px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  color: white !important;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.a11y-share-btn:hover,
+.a11y-share-btn:focus {
+  transform: translateY(-1px) !important;
+  opacity: 0.92 !important;
+}
+
+.a11y-share-btn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.35) !important;
+}
+
+.a11y-share-whatsapp { background: #25D366 !important; }
+.a11y-share-facebook { background: #1877F2 !important; }
+.a11y-share-email    { background: #6b7280 !important; }
+.a11y-share-copy     { background: var(--a11y-brand) !important; }
+
+.a11y-share-copy:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ============================================
    RESET BUTTON (Feature 10)
    ============================================ */
 .a11y-reset-btn {
