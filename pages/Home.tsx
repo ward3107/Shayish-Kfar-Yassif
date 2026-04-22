@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
-import ContactForm from '../components/ContactForm';
+import WhatsAppCTA from '../components/WhatsAppCTA';
 import MusicPlayer from '../components/MusicPlayer';
 import { PROJECTS, TESTIMONIALS } from '../constants';
 import { ArrowRight, Star, ArrowUpRight } from 'lucide-react';
@@ -333,9 +333,11 @@ const Home: React.FC = () => {
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {PROJECTS.slice(0, 4).map((project, index) => (
               <Link to="/gallery" key={project.id} className={`group relative overflow-hidden h-[400px] md:h-[600px] ${index === 1 || index === 2 ? 'md:h-[500px]' : ''}`}>
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90"></div>
@@ -380,6 +382,8 @@ const Home: React.FC = () => {
                  <img
                     src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
                     alt="Marble Texture"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover grayscale contrast-125"
                  />
              </div>
@@ -437,7 +441,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
                 <div className="lg:w-1/2 w-full">
-                    <ContactForm />
+                    <WhatsAppCTA />
                 </div>
             </div>
         </div>

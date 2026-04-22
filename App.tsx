@@ -13,6 +13,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import AccessibilityStatement from './pages/AccessibilityStatement';
 import GdprRequestForm from './pages/GdprRequestForm';
+import NotFound from './pages/NotFound';
 
 const App: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const App: React.FC = () => {
               <Route path="/terms-of-use" element={<TermsOfUse />} />
               <Route path="/accessibility-statement" element={<AccessibilityStatement />} />
               <Route path="/gdpr-request" element={<GdprRequestForm />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
         </Router>

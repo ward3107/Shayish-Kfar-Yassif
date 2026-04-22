@@ -1,6 +1,17 @@
 import { Project, Testimonial, FaqItem, ProcessStep } from './types';
 import { Ruler, PenTool, Hammer, Truck, ShieldCheck, Phone } from 'lucide-react';
 
+export const CONTACT = {
+  whatsappNumber: '972500000000',
+  phoneDisplay: '050-000-0000',
+  phoneTel: '+972500000000',
+  instagramUrl: 'https://www.instagram.com',
+  facebookUrl: 'https://www.facebook.com',
+};
+
+export const whatsappLink = (message: string) =>
+  `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
 export const PROJECTS: Project[] = [
   {
     id: 1,

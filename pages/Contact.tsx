@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import ContactForm from '../components/ContactForm';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import WhatsAppCTA from '../components/WhatsAppCTA';
+import { Phone, MapPin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { CONTACT } from '../constants';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
@@ -29,15 +30,7 @@ const Contact: React.FC = () => {
                                 <Phone className="text-accent" size={20} />
                                 <span className="text-xs font-bold uppercase tracking-widest text-muted">{t('contact.phone')}</span>
                             </div>
-                            <a href="tel:+972500000000" className="text-3xl font-serif text-light hover:text-accent transition-colors" dir="ltr">050-000-0000</a>
-                        </div>
-
-                        <div className="group">
-                            <div className="flex items-center gap-4 mb-2">
-                                <Mail className="text-accent" size={20} />
-                                <span className="text-xs font-bold uppercase tracking-widest text-muted">{t('contact.email')}</span>
-                            </div>
-                            <a href="mailto:info@shayish-yasif.co.il" className="text-2xl font-serif text-light hover:text-accent transition-colors">info@shayish-yasif.co.il</a>
+                            <a href={CONTACT.phoneTel} className="text-3xl font-serif text-light hover:text-accent transition-colors" dir="ltr">{CONTACT.phoneDisplay}</a>
                         </div>
 
                         <div className="group">
@@ -54,9 +47,9 @@ const Contact: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Form */}
+                {/* WhatsApp CTA */}
                 <div className="lg:mt-12">
-                    <ContactForm />
+                    <WhatsAppCTA />
                 </div>
             </div>
         </div>

@@ -71,6 +71,18 @@ export const translations = {
         villa: 'Private Villa'
       }
     },
+    whatsapp: {
+      title: 'Chat With Us',
+      description: 'The fastest way to reach us. Send a message on WhatsApp and our designers will respond shortly.',
+      chat: 'Chat on WhatsApp',
+      or_call: 'Or call the studio',
+      default_message: "Hi, I'm interested in a consultation with Shayish Kfar Yassif."
+    },
+    notFound: {
+      title: 'Page Not Found',
+      description: 'The page you are looking for does not exist or has been moved.',
+      home: 'Back to Home'
+    },
     about: {
       title_line1: 'Legacy of',
       title_line2: 'Stone & Porcelain',
@@ -315,6 +327,18 @@ export const translations = {
         reno: 'שיפוץ',
         villa: 'וילה פרטית'
       }
+    },
+    whatsapp: {
+      title: 'דברו איתנו',
+      description: 'הדרך המהירה ביותר ליצור קשר. שלחו הודעה בוואטסאפ והמעצבים שלנו יחזרו אליכם בהקדם.',
+      chat: 'שלחו הודעה בוואטסאפ',
+      or_call: 'או התקשרו לסטודיו',
+      default_message: 'שלום, אשמח לקבל ייעוץ משיש כפר יאסיף.'
+    },
+    notFound: {
+      title: 'העמוד לא נמצא',
+      description: 'העמוד שחיפשת אינו קיים או הועבר למקום אחר.',
+      home: 'חזרה לעמוד הבית'
     },
     about: {
       title_line1: 'מורשת של',
@@ -561,6 +585,18 @@ export const translations = {
         villa: 'فيلا خاصة'
       }
     },
+    whatsapp: {
+      title: 'تحدث معنا',
+      description: 'أسرع طريقة للتواصل معنا. أرسل رسالة عبر واتساب وسيرد عليك مصممونا قريبًا.',
+      chat: 'الدردشة عبر واتساب',
+      or_call: 'أو اتصل بالاستوديو',
+      default_message: 'مرحبًا، أود الحصول على استشارة من شايش كفر ياسيف.'
+    },
+    notFound: {
+      title: 'الصفحة غير موجودة',
+      description: 'الصفحة التي تبحث عنها غير موجودة أو تم نقلها.',
+      home: 'العودة إلى الرئيسية'
+    },
     about: {
       title_line1: 'تراث من',
       title_line2: 'الحجر والبورسلين',
@@ -805,6 +841,18 @@ export const translations = {
         reno: 'Реновация',
         villa: 'Частная вилла'
       }
+    },
+    whatsapp: {
+      title: 'Напишите нам',
+      description: 'Самый быстрый способ связаться с нами. Напишите в WhatsApp — наши дизайнеры ответят в ближайшее время.',
+      chat: 'Написать в WhatsApp',
+      or_call: 'Или позвоните в студию',
+      default_message: 'Здравствуйте, меня интересует консультация в Шаиш Кфар Ясиф.'
+    },
+    notFound: {
+      title: 'Страница не найдена',
+      description: 'Страница, которую вы ищете, не существует или была перемещена.',
+      home: 'Вернуться на главную'
     },
     about: {
       title_line1: 'Наследие',

@@ -22,7 +22,7 @@ const About: React.FC = () => {
                 </p>
             </div>
             <div className="md:col-span-8">
-                 <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=2070&auto=format&fit=crop" alt="Factory Interior" className="w-full h-[500px] object-cover grayscale opacity-80" />
+                 <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=2070&auto=format&fit=crop" alt="Factory Interior" loading="lazy" decoding="async" className="w-full h-[500px] object-cover grayscale opacity-80" />
             </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ const About: React.FC = () => {
          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div className="relative">
                <div className={`absolute -top-4 w-20 h-20 border-t border-accent ${dir === 'rtl' ? '-right-4 border-r' : '-left-4 border-l'}`}></div>
-               <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?q=80&w=1974&auto=format&fit=crop" alt="Our Team" className="w-full grayscale contrast-125" />
+               <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?q=80&w=1974&auto=format&fit=crop" alt="Our Team" loading="lazy" decoding="async" className="w-full grayscale contrast-125" />
             </div>
             <div>
                <h3 className="text-3xl font-serif mb-6 text-light">{t('about.family_title')}</h3>
