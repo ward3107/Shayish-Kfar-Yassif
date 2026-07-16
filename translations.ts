@@ -22,9 +22,9 @@ export const translations = {
       quote: '"We believe that stone is not just a material, but the foundation of design. Shayish Kfar Yassif brings the durability of porcelain and the elegance of marble into your home."'
     },
     home: {
-      selected_works: 'Selected Works',
-      curated: 'CURATED SURFACES',
-      view_all: 'View All',
+      instagram_title: 'Follow Us on Instagram',
+      instagram_subtitle: 'Daily work, latest installations, and behind-the-scenes moments — every project we finish, live on our feed.',
+      instagram_cta: 'View Our Instagram',
       art_title: 'The Art of Stone & Porcelain',
       art_desc: 'Our name, Shayish, is our heritage. We specialize in precision cutting and installation in Kfar Yassif. From Italian marble to advanced porcelain surfaces, we engineer durability and beauty.',
       discover: 'Discover Materials',
@@ -119,15 +119,12 @@ export const translations = {
         }
       }
     },
-    // Gallery Page
+    // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
-      title: 'Collections',
-      subtitle: 'Each project is a unique dialogue between material, space, and client aspirations.',
-      filter_all: 'All',
-      filter_modern: 'Modern',
-      filter_classic: 'Classic',
-      filter_luxury: 'Luxury',
-      view_project: 'View Project'
+      title: 'Our Work',
+      subtitle: 'Every kitchen, every countertop, every install — posted daily on our Instagram.',
+      instagram_cta: 'View Full Portfolio on Instagram',
+      handle_note: 'Follow @shayish_kfar_yassif for real-time updates.'
     },
     // Process Page
     process: {
@@ -264,9 +261,9 @@ export const translations = {
       quote: '״אנחנו מאמינים שאבן היא לא רק חומר, אלא הבסיס לעיצוב. שיש כפר יאסיף מביא את העמידות של הפורצלן והאלגנטיות של השיש לביתכם.״'
     },
     home: {
-      selected_works: 'פרויקטים נבחרים',
-      curated: 'משטחים נבחרים',
-      view_all: 'לכל הפרויקטים',
+      instagram_title: 'עקבו אחרינו באינסטגרם',
+      instagram_subtitle: 'עבודות יומיומיות, התקנות אחרונות, ורגעים מאחורי הקלעים — כל פרויקט שאנחנו מסיימים, ישר לפיד.',
+      instagram_cta: 'לצפייה באינסטגרם',
       art_title: 'אומנות האבן והפורצלן',
       art_desc: 'השם שלנו, שיש, הוא המורשת שלנו. אנו מתמחים בחיתוך והתקנה מדויקים בכפר יאסיף. משיש איטלקי ועד משטחי פורצלן מתקדמים, אנו מהנדסים עמידות ויופי.',
       discover: 'גלה חומרים',
@@ -361,15 +358,12 @@ export const translations = {
         }
       }
     },
-    // Gallery Page
+    // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
-      title: 'קולקציות',
-      subtitle: 'כל פרויקט הוא דיאלוג ייחודי בין חומר, מרחב, ושאיפות הלקוח.',
-      filter_all: 'הכל',
-      filter_modern: 'מודרני',
-      filter_classic: 'קלאסי',
-      filter_luxury: 'יוקרה',
-      view_project: 'צפה בפרויקט'
+      title: 'העבודות שלנו',
+      subtitle: 'כל מטבח, כל משטח, כל התקנה — מתפרסמים מדי יום באינסטגרם שלנו.',
+      instagram_cta: 'לצפייה בכל התיק באינסטגרם',
+      handle_note: 'עקבו אחר @shayish_kfar_yassif לעדכונים בזמן אמת.'
     },
     // Process Page
     process: {
@@ -506,9 +500,9 @@ export const translations = {
       quote: '"نحن نؤمن أن الحجر ليس مجرد مادة، بل هو أساس التصميم. شايش كفر ياسيف يجمع بين متانة البورسلين وأناقة الرخام في منزلك."'
     },
     home: {
-      selected_works: 'أعمال مختارة',
-      curated: 'أسطح منتقاة',
-      view_all: 'عرض الكل',
+      instagram_title: 'تابعونا على إنستغرام',
+      instagram_subtitle: 'أعمال يومية، أحدث التركيبات، ولحظات من وراء الكواليس — كل مشروع ننجزه، مباشرة على صفحتنا.',
+      instagram_cta: 'شاهدوا إنستغرام',
       art_title: 'فن الحجر والبورسلين',
       art_desc: 'اسمنا، شايش، هو تراثنا. نحن متخصصون في القص والتركيب الدقيق في كفر ياسيف. من الرخام الإيطالي إلى أسطح البورسلين المتقدمة، نحن نهندس المتانة والجمال.',
       discover: 'اكتشف المواد',
@@ -603,15 +597,12 @@ export const translations = {
         }
       }
     },
-    // Gallery Page
+    // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
-      title: 'المجموعات',
-      subtitle: 'كل مشروع هو حوار فريد بين المادة والمساحة وتطلعات العميل.',
-      filter_all: 'الكل',
-      filter_modern: 'عصري',
-      filter_classic: 'كلاسيكي',
-      filter_luxury: 'فاخر',
-      view_project: 'عرض المشروع'
+      title: 'أعمالنا',
+      subtitle: 'كل مطبخ، كل سطح، كل تركيب — يُنشر يوميًا على إنستغرام.',
+      instagram_cta: 'شاهدوا الأعمال الكاملة على إنستغرام',
+      handle_note: 'تابعوا @shayish_kfar_yassif للتحديثات المباشرة.'
     },
     // Process Page
     process: {
@@ -748,9 +739,9 @@ export const translations = {
       quote: '"Мы верим, что камень — это не просто материал, а основа дизайна. Шаиш Кфар Ясиф сочетает прочность фарфора и элегантность мрамора в вашем доме."'
     },
     home: {
-      selected_works: 'Избранные работы',
-      curated: 'ПОДОБРАННЫЕ ПОВЕРХНОСТИ',
-      view_all: 'Смотреть все',
+      instagram_title: 'Подписывайтесь на нас в Instagram',
+      instagram_subtitle: 'Ежедневные работы, последние установки и моменты за кулисами — каждый завершённый проект прямо в нашей ленте.',
+      instagram_cta: 'Смотреть Instagram',
       art_title: 'Искусство Камня и Фарфора',
       art_desc: 'Наше имя, Шаиш, — это наше наследие. Мы специализируемся на точной резке и установке в Кфар Ясиф. От итальянского мрамора до продвинутых фарфоровых поверхностей — мы создаём прочность и красоту.',
       discover: 'Открыть материалы',
@@ -845,15 +836,12 @@ export const translations = {
         }
       }
     },
-    // Gallery Page
+    // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
-      title: 'Коллекции',
-      subtitle: 'Каждый проект — это уникальный диалог между материалом, пространством и стремлениями клиента.',
-      filter_all: 'Все',
-      filter_modern: 'Современные',
-      filter_classic: 'Классические',
-      filter_luxury: 'Роскошь',
-      view_project: 'Смотреть проект'
+      title: 'Наши работы',
+      subtitle: 'Каждая кухня, каждая столешница, каждая установка — публикуются ежедневно в нашем Instagram.',
+      instagram_cta: 'Смотреть полное портфолио в Instagram',
+      handle_note: 'Подписывайтесь на @shayish_kfar_yassif для обновлений в реальном времени.'
     },
     // Process Page
     process: {

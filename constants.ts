@@ -1,61 +1,20 @@
-import { Project, Testimonial, FaqItem, ProcessStep } from './types';
+import { Testimonial } from './types';
 import { Ruler, PenTool, Hammer, Truck, ShieldCheck, Phone } from 'lucide-react';
+
+// TODO: replace placeholders below with the owner's real handles once the accounts exist.
+// The whole site reads from this file — a single change here propagates everywhere.
+const INSTAGRAM_HANDLE = 'shayish_kfar_yassif';
 
 export const CONTACT = {
   whatsappNumber: '972500000000',
   phoneDisplay: '050-000-0000',
   phoneTel: '+972500000000',
-  instagramUrl: 'https://www.instagram.com',
-  facebookUrl: 'https://www.facebook.com',
+  instagramHandle: INSTAGRAM_HANDLE,
+  instagramUrl: `https://www.instagram.com/${INSTAGRAM_HANDLE}/`,
 };
 
 export const whatsappLink = (message: string) =>
   `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-export const PROJECTS: Project[] = [
-  {
-    id: 1,
-    title: "Minimalist Matte Black",
-    category: "Modern",
-    image: "https://picsum.photos/seed/k1/800/600",
-    description: "Sleek handleless design with nano-tech matte finish."
-  },
-  {
-    id: 2,
-    title: "Provence White Oak",
-    category: "Classic",
-    image: "https://picsum.photos/seed/k2/800/600",
-    description: "Timeless classic design with natural oak elements."
-  },
-  {
-    id: 3,
-    title: "Gold & Marble Fusion",
-    category: "Luxury",
-    image: "https://picsum.photos/seed/k3/800/600",
-    description: "Premium Italian marble countertops paired with brass accents."
-  },
-  {
-    id: 4,
-    title: "Urban Industrial",
-    category: "Modern",
-    image: "https://picsum.photos/seed/k4/800/600",
-    description: "Concrete textures and open shelving for a loft vibe."
-  },
-  {
-    id: 5,
-    title: "Country Farmhouse",
-    category: "Classic",
-    image: "https://picsum.photos/seed/k5/800/600",
-    description: "Warm tones, shaker doors, and a spacious island."
-  },
-  {
-    id: 6,
-    title: "Penthouse Suite",
-    category: "Luxury",
-    image: "https://picsum.photos/seed/k6/800/600",
-    description: "High-gloss finish with integrated smart appliances."
-  }
-];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
@@ -78,25 +37,6 @@ export const TESTIMONIALS: Testimonial[] = [
     location: "Haifa",
     text: "The process was so smooth. They finished ahead of schedule and the kitchen looks exactly like the 3D render.",
     rating: 5
-  }
-];
-
-export const FAQS: FaqItem[] = [
-  {
-    question: "Do you offer a warranty?",
-    answer: "Yes, we offer a comprehensive 10-year warranty on all our cabinets and hardware, ensuring peace of mind for years to come."
-  },
-  {
-    question: "What is the typical production time?",
-    answer: "Our standard production time is between 6 to 8 weeks from the final measurement, depending on the complexity of the design and materials selected."
-  },
-  {
-    question: "Do you provide 3D designs?",
-    answer: "Absolutely! Our design consultation includes a detailed 3D rendering of your future kitchen so you can visualize every detail before production begins."
-  },
-  {
-    question: "Do you serve all of Israel?",
-    answer: "Yes, we install kitchens nationwide, from the north to the south."
   }
 ];
 
