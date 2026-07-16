@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
-import { PROJECTS, TESTIMONIALS } from '../constants';
-import { ArrowRight, Star, ArrowUpRight } from 'lucide-react';
+import { CONTACT, TESTIMONIALS } from '../constants';
+import { ArrowRight, Star, ArrowUpRight, Instagram } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import gsap from 'gsap';
@@ -285,48 +285,55 @@ const Home: React.FC = () => {
           </div>
       </section>
 
-      {/* Collections / Grid */}
+      {/* Instagram Section — the site's live portfolio lives on the owner's Instagram.
+          This section drives visitors there. Once a real handle exists in constants.ts,
+          the four tiles can be replaced with a live embed. */}
       <section ref={collectionsRef as React.RefObject<HTMLElement>} className="py-20 bg-primary transition-colors duration-300">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-16 border-b border-neutral-800 pb-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-serif text-light mb-2">{t('home.selected_works')}</h2>
-              <p className="text-muted font-light tracking-wide">{t('home.curated')}</p>
+              <div className="flex items-center gap-3 text-accent text-xs uppercase tracking-widest mb-3">
+                <Instagram size={16} />
+                <span>@{CONTACT.instagramHandle}</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-serif text-light mb-2">{t('home.instagram_title')}</h2>
+              <p className="text-muted font-light tracking-wide max-w-xl">{t('home.instagram_subtitle')}</p>
             </div>
-            <Link to="/gallery" className="hidden md:flex items-center text-accent uppercase text-xs tracking-widest hover:text-light transition-colors">
-              {t('home.view_all')} <ArrowIcon size={16} className="mx-2" />
-            </Link>
+            <a
+              href={CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center text-accent uppercase text-xs tracking-widest hover:text-light transition-colors"
+            >
+              {t('home.instagram_cta')} <ArrowIcon size={16} className="mx-2" />
+            </a>
           </div>
 
-          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {PROJECTS.slice(0, 4).map((project, index) => (
-              <Link to="/gallery" key={project.id} className={`group relative overflow-hidden h-[400px] md:h-[600px] ${index === 1 || index === 2 ? 'md:h-[500px]' : ''}`}>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90"></div>
-                
-                <div className="absolute bottom-8 left-8 right-8 z-10 transition-transform duration-500 group-hover:-translate-y-2">
-                   <div className="text-accent text-xs uppercase tracking-widest mb-2">{project.category}</div>
-                   <h3 className="text-3xl font-serif text-white">{project.title}</h3>
-                   <div className="h-[1px] w-0 bg-accent mt-4 transition-all duration-500 group-hover:w-full"></div>
+          <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <a
+                key={index}
+                href={CONTACT.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t('home.instagram_cta')} — ${index + 1}`}
+                className="group relative overflow-hidden aspect-square bg-gradient-to-br from-secondary via-neutral-900 to-secondary border border-neutral-800 hover:border-accent/50 transition-colors"
+              >
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Instagram size={48} className="text-muted/40 group-hover:text-accent transition-colors" />
                 </div>
-                
-                <div className="absolute top-8 right-8 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white text-black p-2 rounded-full rtl:left-8 rtl:right-auto">
-                    <ArrowUpRight size={20} />
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black p-2 rounded-full rtl:left-3 rtl:right-auto">
+                  <ArrowUpRight size={16} />
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
-          
+
           <div className="mt-12 text-center md:hidden">
-            <Link to="/gallery">
-              <Button variant="outline" fullWidth>{t('home.view_all')}</Button>
-            </Link>
+            <a href={CONTACT.instagramUrl} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" fullWidth>{t('home.instagram_cta')}</Button>
+            </a>
           </div>
         </div>
       </section>

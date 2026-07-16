@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Facebook, Globe, Sun, Moon } from 'lucide-react';
+import { Menu, X, Instagram, Globe, Sun, Moon } from 'lucide-react';
 import Button from './Button';
 import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
+import { CONTACT } from '../constants';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,8 +67,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-             {/* Language & Theme Switcher */}
+             {/* Instagram + Language + Theme Switcher */}
             <div className="flex items-center gap-6 border-e border-gray-700 pe-6 me-4">
+
+              {/* Instagram — primary social presence */}
+              <a
+                href={CONTACT.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={`hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`}
+              >
+                <Instagram size={18} />
+              </a>
 
               {/* Language Toggle - Cycles on click */}
               <button onClick={cycleLanguage} className={`flex items-center gap-2 hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Switch Language">
@@ -101,10 +113,20 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-5 md:hidden z-50">
+            <a
+              href={CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={isScrolled ? 'text-light' : 'text-white'}
+            >
+              <Instagram size={20} />
+            </a>
+
             <button onClick={toggleTheme} className={isScrolled ? 'text-light' : 'text-white'} aria-label="Toggle Theme">
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            
+
             <button onClick={cycleLanguage} className={`flex items-center gap-1 ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Switch Language">
                <Globe size={20} />
                <span className="text-xs font-bold uppercase w-4">{language}</span>
@@ -137,6 +159,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-8">
               <Button size="lg" variant="gold">{t('nav.consultation')}</Button>
             </Link>
+            <a
+              href={CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="mt-6 flex items-center gap-2 text-white hover:text-accent transition-colors text-sm uppercase tracking-widest"
+            >
+              <Instagram size={20} />
+              <span>@{CONTACT.instagramHandle}</span>
+            </a>
           </nav>
       </div>
 
@@ -156,8 +188,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               {t('footer.desc')}
             </p>
             <div className="flex gap-6">
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-accent transition-colors"><Instagram size={20} /></a>
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-accent transition-colors"><Facebook size={20} /></a>
+              <a
+                href={CONTACT.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-muted hover:text-accent transition-colors"
+              >
+                <Instagram size={20} />
+              </a>
             </div>
           </div>
           
