@@ -104,7 +104,9 @@ export const translations = {
       pause: 'Pause',
       prev: 'Previous track',
       next: 'Next track',
-      volume: 'Volume'
+      volume: 'Volume',
+      click_sounds: 'Click sounds',
+      error: "Couldn't play this track"
     },
     explorer: {
       section_title: 'Interactive 3D Viewer',
@@ -430,7 +432,9 @@ export const translations = {
       pause: 'עצור',
       prev: 'רצועה קודמת',
       next: 'רצועה הבאה',
-      volume: 'עוצמה'
+      volume: 'עוצמה',
+      click_sounds: 'צלילי לחיצה',
+      error: 'לא ניתן לנגן את הרצועה'
     },
     explorer: {
       section_title: 'צפייה תלת־מימדית אינטראקטיבית',
@@ -756,7 +760,9 @@ export const translations = {
       pause: 'إيقاف',
       prev: 'المسار السابق',
       next: 'المسار التالي',
-      volume: 'مستوى الصوت'
+      volume: 'مستوى الصوت',
+      click_sounds: 'أصوات النقر',
+      error: 'تعذّر تشغيل المسار'
     },
     explorer: {
       section_title: 'عارض ثلاثي الأبعاد تفاعلي',
@@ -1082,7 +1088,9 @@ export const translations = {
       pause: 'Пауза',
       prev: 'Предыдущий трек',
       next: 'Следующий трек',
-      volume: 'Громкость'
+      volume: 'Громкость',
+      click_sounds: 'Звуки нажатий',
+      error: 'Не удалось воспроизвести трек'
     },
     explorer: {
       section_title: 'Интерактивный 3D-просмотр',

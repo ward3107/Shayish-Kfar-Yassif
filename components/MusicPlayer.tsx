@@ -1,42 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Music, ChevronDown } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Music, ChevronDown, Volume2, VolumeX, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSound } from '../contexts/SoundContext';
 import { MUSIC_TRACKS, MUSIC_DEFAULT_VOLUME } from '../constants';
 
 /**
- * Compact floating background-music player.
+ * The site's single audio hub. One floating widget, bottom corner.
+ *
+ * It controls BOTH:
+ *   - Background music (play/pause/skip/volume over MUSIC_TRACKS)
+ *   - The opt-in marble-tap click SFX (via SoundContext) — folded in here
+ *     so the whole site has exactly one audio entry point instead of a
+ *     confusing second speaker button up in the header.
  *
  * Rules of good background music on the web:
- *   - NEVER autoplay with sound. Browsers block it and it's aggressive UX.
- *     The player starts collapsed and silent until the user hits Play.
- *   - Remember the user's choice across pages/sessions so it doesn't
- *     re-collapse on every route change.
- *   - Respect prefers-reduced-motion → widget doesn't autoplay ever.
- *   - Keep the widget small, dismissible, and never over important content.
- *
- * Placeholder tracks come from constants.MUSIC_TRACKS (SoundHelix demos).
- * The owner can replace them with self-hosted marble-showroom ambience.
+ *   - NEVER autoplay with sound. Starts collapsed and silent until a click.
+ *   - Persist expanded/volume across sessions; keep "playing" per-session so
+ *     users are never surprised with sound on next visit (browsers block it
+ *     anyway).
  */
 
 const STORAGE_KEY = 'shayish.music.state';
 
 interface StoredState {
   expanded: boolean;
-  playing: boolean;
   trackIndex: number;
   volume: number;
 }
 
 const MusicPlayer: React.FC = () => {
   const { t } = useLanguage();
+  const { enabled: sfxEnabled, toggle: toggleSfx } = useSound();
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [expanded, setExpanded] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const [volume, setVolume] = useState(MUSIC_DEFAULT_VOLUME);
+  const [error, setError] = useState(false);
 
-  // Restore prior state on mount.
+  // Restore prior state on mount (never "playing" — see note above).
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -45,17 +48,15 @@ const MusicPlayer: React.FC = () => {
       setExpanded(!!s.expanded);
       setTrackIndex(Math.min(Math.max(0, s.trackIndex ?? 0), MUSIC_TRACKS.length - 1));
       setVolume(typeof s.volume === 'number' ? s.volume : MUSIC_DEFAULT_VOLUME);
-      // Do NOT restore "playing: true" — browsers block cross-visit autoplay
-      // and the user shouldn't be surprised with sound on page load.
     } catch {
-      // localStorage unavailable — safe to ignore, defaults are fine.
+      // localStorage unavailable — defaults are fine.
     }
   }, []);
 
-  // Persist state (except `playing`, which is per-session by design).
+  // Persist state.
   useEffect(() => {
     try {
-      const s: StoredState = { expanded, playing: false, trackIndex, volume };
+      const s: StoredState = { expanded, trackIndex, volume };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
     } catch {
       // ignore
@@ -69,27 +70,35 @@ const MusicPlayer: React.FC = () => {
     el.volume = volume;
     if (playing) {
       const p = el.play();
-      // Some browsers reject the play promise (e.g., no gesture yet). Log,
-      // don't crash, and reset UI so the button reflects reality.
-      if (p && typeof p.catch === 'function') p.catch(() => setPlaying(false));
+      // play() rejects if the browser blocks it (no gesture) or the source
+      // fails to load. Reflect that back in the UI instead of lying.
+      if (p && typeof p.catch === 'function') {
+        p.then(() => setError(false)).catch(() => {
+          setPlaying(false);
+          setError(true);
+        });
+      }
     } else {
       el.pause();
     }
   }, [playing, trackIndex, volume]);
 
   const currentTrack = MUSIC_TRACKS[trackIndex];
-  const goPrev = () => setTrackIndex((i) => (i - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length);
-  const goNext = () => setTrackIndex((i) => (i + 1) % MUSIC_TRACKS.length);
-  const togglePlay = () => setPlaying((p) => !p);
+  const goPrev = () => { setError(false); setTrackIndex((i) => (i - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length); };
+  const goNext = () => { setError(false); setTrackIndex((i) => (i + 1) % MUSIC_TRACKS.length); };
+  const togglePlay = () => { setError(false); setPlaying((p) => !p); };
 
   return (
     <div className="fixed bottom-6 right-6 z-40 md:bottom-8 md:right-8 rtl:right-auto rtl:left-6 md:rtl:left-8">
+      {/* No crossOrigin — we only play the stream, never analyse it, and
+          the placeholder host (SoundHelix) doesn't send CORS headers, so
+          crossOrigin would make the load fail outright. */}
       <audio
         ref={audioRef}
         src={currentTrack.src}
         preload="none"
         onEnded={goNext}
-        crossOrigin="anonymous"
+        onError={() => { setError(true); setPlaying(false); }}
       />
 
       {expanded ? (
@@ -131,7 +140,14 @@ const MusicPlayer: React.FC = () => {
             </button>
           </div>
 
-          <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted">
+          {error && (
+            <div className="flex items-center gap-2 text-[10px] text-red-400 mb-3">
+              <AlertCircle size={12} />
+              <span>{t('music.error')}</span>
+            </div>
+          )}
+
+          <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted mb-3">
             <span>{t('music.volume')}</span>
             <input
               type="range"
@@ -144,6 +160,18 @@ const MusicPlayer: React.FC = () => {
               className="flex-1 h-1 accent-accent"
             />
           </label>
+
+          {/* Click-sound (marble tap) SFX toggle — consolidated here so the
+              whole site has one audio control, not two. */}
+          <button
+            type="button"
+            onClick={toggleSfx}
+            aria-pressed={sfxEnabled}
+            className="flex items-center justify-between w-full pt-3 border-t border-divider text-[10px] uppercase tracking-widest text-muted hover:text-light transition-colors"
+          >
+            <span>{t('music.click_sounds')}</span>
+            {sfxEnabled ? <Volume2 size={14} className="text-accent" /> : <VolumeX size={14} />}
+          </button>
         </div>
       ) : (
         <button
@@ -151,9 +179,9 @@ const MusicPlayer: React.FC = () => {
           onClick={() => setExpanded(true)}
           aria-label={t('music.open')}
           title={t('music.open')}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-secondary/80 backdrop-blur-md border border-divider text-muted hover:text-accent hover:border-accent transition-colors shadow-lg"
+          className="flex items-center justify-center w-14 h-14 rounded-full bg-secondary/80 backdrop-blur-md border border-divider text-muted hover:text-accent hover:border-accent transition-colors shadow-lg"
         >
-          {playing ? <Pause size={18} /> : <Music size={18} />}
+          {playing ? <Pause size={20} /> : <Music size={20} />}
         </button>
       )}
     </div>
