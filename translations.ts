@@ -108,6 +108,15 @@ export const translations = {
       click_sounds: 'Click sounds',
       error: "Couldn't play this track"
     },
+    fab: {
+      open: 'Contact us',
+      close: 'Close',
+      instagram: 'Instagram',
+      whatsapp: 'WhatsApp',
+      call: 'Call',
+      share: 'Share this site',
+      share_text: 'Check out Shayish Kfar Yassif — premium marble & porcelain surfaces'
+    },
     explorer: {
       section_title: 'Interactive 3D Viewer',
       section_desc: 'Rotate a marble slab and switch between finishes to see how the same material behaves polished, matte, or honed. Drag to rotate, scroll to zoom.',
@@ -443,6 +452,15 @@ export const translations = {
       volume: 'עוצמה',
       click_sounds: 'צלילי לחיצה',
       error: 'לא ניתן לנגן את הרצועה'
+    },
+    fab: {
+      open: 'צור קשר',
+      close: 'סגור',
+      instagram: 'אינסטגרם',
+      whatsapp: 'וואטסאפ',
+      call: 'התקשר',
+      share: 'שתף את האתר',
+      share_text: 'תראו את שיש כפר יאסיף — משטחי שיש ופורצלן יוקרתיים'
     },
     explorer: {
       section_title: 'צפייה תלת־מימדית אינטראקטיבית',
@@ -780,6 +798,15 @@ export const translations = {
       click_sounds: 'أصوات النقر',
       error: 'تعذّر تشغيل المسار'
     },
+    fab: {
+      open: 'اتصل بنا',
+      close: 'إغلاق',
+      instagram: 'إنستغرام',
+      whatsapp: 'واتساب',
+      call: 'اتصال',
+      share: 'شارك الموقع',
+      share_text: 'شاهدوا شايش كفر ياسيف — أسطح رخام وبورسلين فاخرة'
+    },
     explorer: {
       section_title: 'عارض ثلاثي الأبعاد تفاعلي',
       section_desc: 'دور لوح رخام وبدل بين التشطيبات لترى كيف تتصرف نفس المادة مصقولة، مطفية أو ملساء. اسحب للدوران، مرر للتكبير.',
@@ -1115,6 +1142,15 @@ export const translations = {
       volume: 'Громкость',
       click_sounds: 'Звуки нажатий',
       error: 'Не удалось воспроизвести трек'
+    },
+    fab: {
+      open: 'Связаться',
+      close: 'Закрыть',
+      instagram: 'Instagram',
+      whatsapp: 'WhatsApp',
+      call: 'Позвонить',
+      share: 'Поделиться сайтом',
+      share_text: 'Загляните в Shayish Kfar Yassif — премиальные поверхности из мрамора и фарфора'
     },
     explorer: {
       section_title: 'Интерактивный 3D-просмотр',

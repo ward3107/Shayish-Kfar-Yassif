@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Instagram, Globe, Sun, Moon } from 'lucide-react';
 import Button from './Button';
-import FloatingActions from './FloatingActions';
+import ContactFAB from './ContactFAB';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
 import ShowroomStatus from './ShowroomStatus';
@@ -258,7 +258,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </footer>
 
-      <FloatingActions />
+      <ContactFAB />
       <ScrollToTop />
       <MusicPlayer />
       <CookieBanner />

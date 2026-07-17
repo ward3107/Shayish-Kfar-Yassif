@@ -48,6 +48,30 @@ body[dir="rtl"] {
   font-family: 'Heebo', 'Tajawal', sans-serif;
 }
 
+/* Move the accessibility widget (vendored, hardcoded bottom-right) to the
+   bottom-LEFT so the floating controls read as a clean left/right split:
+   left = accessibility + contact FAB, right = music + scroll-to-top.
+   `body #...` raises specificity above the widget's own `#...` !important
+   rules so this wins regardless of stylesheet load order. */
+body #a11y-trigger {
+  right: auto !important;
+  left: 24px !important;
+}
+body #a11y-panel {
+  right: auto !important;
+  left: 24px !important;
+}
+@media (max-width: 400px) {
+  body #a11y-trigger {
+    right: auto !important;
+    left: 16px !important;
+  }
+  body #a11y-panel {
+    right: auto !important;
+    left: 16px !important;
+  }
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

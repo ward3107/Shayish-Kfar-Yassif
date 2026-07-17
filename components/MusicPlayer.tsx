@@ -89,7 +89,7 @@ const MusicPlayer: React.FC = () => {
   const togglePlay = () => { setError(false); setPlaying((p) => !p); };
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 md:bottom-8 md:right-8 rtl:right-auto rtl:left-4 md:rtl:left-8">
+    <div className="fixed bottom-20 left-4 z-40 md:bottom-24 md:left-8 rtl:left-auto rtl:right-4 md:rtl:right-8">
       {/* No crossOrigin — we only play the stream, never analyse it, and
           the placeholder host (SoundHelix) doesn't send CORS headers, so
           crossOrigin would make the load fail outright. */}
