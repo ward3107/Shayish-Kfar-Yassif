@@ -434,7 +434,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
       aria-label={t.aria.banner}
       aria-live="polite"
       dir={dir}
-      className={`fixed bottom-0 left-0 right-0 z-[9999] bg-secondary/98 backdrop-blur-md border-t border-neutral-700 shadow-2xl transition-all duration-300 ${
+      className={`fixed bottom-0 left-0 right-0 z-[9999] bg-secondary/98 backdrop-blur-md border-t border-divider shadow-2xl transition-all duration-300 ${
         isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
     >
@@ -522,12 +522,12 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
         {/* Expanded customization panel */}
         {isExpanded && (
           <div
-            className="mt-6 pt-6 border-t border-neutral-700 animate-in slide-in-from-top-2 duration-300"
+            className="mt-6 pt-6 border-t border-divider animate-in slide-in-from-top-2 duration-300"
             role="region"
             aria-label={t.customize}
           >
             {/* Necessary Cookies - Always ON */}
-            <div className="mb-5 p-4 bg-neutral-800/50 rounded-sm border border-neutral-700">
+            <div className="mb-5 p-4 bg-neutral-800/50 rounded-sm border border-divider">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 mt-1">
                   <div className="w-5 h-5 rounded-sm bg-accent/20 border-2 border-accent flex items-center justify-center">
@@ -583,7 +583,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             )}
 
             {/* Analytics Toggle */}
-            <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-neutral-700 hover:border-neutral-600 transition-colors">
+            <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-divider hover:border-neutral-600 transition-colors">
               <div className="flex items-start gap-4">
                 <button
                   onClick={() => setAnalytics(!analytics)}
@@ -625,7 +625,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             </div>
 
             {/* Marketing Toggle */}
-            <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-neutral-700 hover:border-neutral-600 transition-colors">
+            <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-divider hover:border-neutral-600 transition-colors">
               <div className="flex items-start gap-4">
                 <button
                   onClick={() => setMarketing(!marketing)}
@@ -667,7 +667,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             </div>
 
             {/* Language selector and save button */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-6 pt-4 border-t border-neutral-700">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-6 pt-4 border-t border-divider">
               {/* Language switcher */}
               <div className="flex items-center gap-2">
                 <span className="text-xs text-muted uppercase tracking-wider">{t.privacyPolicy}:</span>

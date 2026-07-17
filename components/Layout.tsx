@@ -6,6 +6,7 @@ import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
 import ShowroomStatus from './ShowroomStatus';
+import MusicPlayer from './MusicPlayer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSound } from '../contexts/SoundContext';
@@ -33,6 +34,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  // Only the Home page starts with a dark hero video behind the header.
+  // Everywhere else, "not scrolled" means the header sits over the page's
+  // own background (white in light mode) — so header text must be
+  // theme-aware, not hardcoded white.
+  const isOverDarkHero = !isScrolled && location.pathname === '/';
+  // Header color helpers — used everywhere the old code did
+  // `headerText` etc.
+  const headerText = isOverDarkHero ? 'text-white' : 'text-light';
+  const headerMuted = isOverDarkHero ? 'text-gray-300' : 'text-muted';
+
   const navLinks = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.collections'), path: '/gallery' },
@@ -55,16 +66,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled 
-            ? 'bg-primary/95 backdrop-blur-md border-neutral-800 py-4 shadow-sm' 
+            ? 'bg-primary/95 backdrop-blur-md border-divider py-4 shadow-sm' 
             : 'bg-transparent border-transparent py-6'
         }`}
       >
         <div className="container mx-auto px-8 flex items-center justify-between">
           <Link to="/" className="z-50 group">
-             <div className={`text-xl md:text-2xl font-serif tracking-tighter ${isScrolled ? 'text-light' : 'text-white'} transition-colors`}>
+             <div className={`text-xl md:text-2xl font-serif tracking-tighter ${headerText} transition-colors`}>
                 <span className="text-accent">Shayish</span> Kfar Yassif
              </div>
-             <div className={`text-xs text-gray-400 group-hover:text-accent transition-colors mt-1 font-light tracking-widest ${isScrolled ? 'text-muted' : 'text-gray-300'}`}>
+             <div className={`text-xs group-hover:text-accent transition-colors mt-1 font-light tracking-widest ${headerMuted}`}>
                  שיש כפר יאסיף
              </div>
           </Link>
@@ -72,11 +83,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
              {/* Live showroom status pill — reads BUSINESS_HOURS + BUSINESS_TIMEZONE */}
-            <div className="border-e border-gray-700 pe-6 me-2">
+            <div className="border-e border-divider pe-6 me-2">
               <ShowroomStatus />
             </div>
              {/* Instagram + Language + Theme Switcher */}
-            <div className="flex items-center gap-6 border-e border-gray-700 pe-6 me-4">
+            <div className="flex items-center gap-6 border-e border-divider pe-6 me-4">
 
               {/* Instagram — primary social presence */}
               <a
@@ -84,19 +95,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className={`hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`}
+                className={`hover:text-accent transition-colors ${headerText}`}
               >
                 <Instagram size={18} />
               </a>
 
               {/* Language Toggle - Cycles on click */}
-              <button onClick={cycleLanguage} className={`flex items-center gap-2 hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Switch Language">
+              <button onClick={cycleLanguage} className={`flex items-center gap-2 hover:text-accent transition-colors ${headerText}`} aria-label="Switch Language">
                 <Globe size={18} />
                 <span className="text-xs font-bold uppercase">{language}</span>
               </button>
 
               {/* Theme Toggle */}
-              <button onClick={toggleTheme} className={`hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Toggle Theme">
+              <button onClick={toggleTheme} className={`hover:text-accent transition-colors ${headerText}`} aria-label="Toggle Theme">
                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
               </button>
 
@@ -106,7 +117,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 aria-pressed={soundEnabled}
                 aria-label={soundEnabled ? t('sound.disable') : t('sound.enable')}
                 title={soundEnabled ? t('sound.disable') : t('sound.enable')}
-                className={`hover:text-accent transition-colors ${isScrolled ? 'text-light' : 'text-white'}`}
+                className={`hover:text-accent transition-colors ${headerText}`}
               >
                 {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
               </button>
@@ -117,7 +128,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 key={link.path} 
                 to={link.path}
                 className={`text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
-                    location.pathname === link.path ? 'text-accent after:w-full' : (isScrolled ? 'text-light' : 'text-gray-300')
+                    location.pathname === link.path ? 'text-accent after:w-full' : headerMuted
                 }`}
               >
                 {link.name}
@@ -137,22 +148,22 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className={isScrolled ? 'text-light' : 'text-white'}
+              className={headerText}
             >
               <Instagram size={20} />
             </a>
 
-            <button onClick={toggleTheme} className={isScrolled ? 'text-light' : 'text-white'} aria-label="Toggle Theme">
+            <button onClick={toggleTheme} className={headerText} aria-label="Toggle Theme">
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
-            <button onClick={cycleLanguage} className={`flex items-center gap-1 ${isScrolled ? 'text-light' : 'text-white'}`} aria-label="Switch Language">
+            <button onClick={cycleLanguage} className={`flex items-center gap-1 ${headerText}`} aria-label="Switch Language">
                <Globe size={20} />
                <span className="text-xs font-bold uppercase w-4">{language}</span>
             </button>
 
             <button 
-              className={isScrolled ? 'text-light' : 'text-white'}
+              className={headerText}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Open Menu"
             >
@@ -200,7 +211,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-secondary text-light border-t border-neutral-800 pt-20 pb-10 transition-colors duration-300">
+      <footer className="bg-secondary text-light border-t border-divider pt-20 pb-10 transition-colors duration-300">
         <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="col-span-1 md:col-span-1">
              <div className="text-2xl font-serif tracking-tighter text-light mb-6">
@@ -250,7 +261,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted px-8">
+        <div className="border-t border-divider pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted px-8">
           <p>&copy; {new Date().getFullYear()} {t('footer.rights')}</p>
           <div className="flex gap-6 mt-4 md:mt-0">
              <Link to="/privacy-policy" className="hover:text-accent transition-colors">{t('footer.privacyPolicy')}</Link>
@@ -262,6 +273,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       <FloatingActions />
       <ScrollToTop />
+      <MusicPlayer />
       <CookieBanner />
     </div>
   );

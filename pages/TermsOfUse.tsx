@@ -682,7 +682,7 @@ const TermsOfUse: React.FC = () => {
           </div>
 
           {/* Language Switcher */}
-          <div className="flex items-center gap-3 mb-8 p-4 bg-secondary/30 rounded-lg border border-neutral-800">
+          <div className="flex items-center gap-3 mb-8 p-4 bg-secondary/30 rounded-lg border border-divider">
             <Globe size={18} className="text-muted" />
             <span className="text-sm text-muted">{t.language}:</span>
             <div className="flex gap-2">
@@ -704,7 +704,7 @@ const TermsOfUse: React.FC = () => {
           </div>
 
           {/* Business Info */}
-          <div className="bg-secondary/30 p-6 rounded-lg border border-neutral-800 mb-8">
+          <div className="bg-secondary/30 p-6 rounded-lg border border-divider mb-8">
             <h2 className="text-lg font-semibold text-accent mb-3">{t.businessName}</h2>
             <p className="text-muted mb-1">{t.businessAddress}</p>
             <a
@@ -722,7 +722,7 @@ const TermsOfUse: React.FC = () => {
           {/* Table of Contents - Desktop Sidebar */}
           <aside className="hidden md:block w-64 shrink-0">
             <nav
-              className="sticky top-24 bg-secondary/20 p-6 rounded-lg border border-neutral-800 max-h-[calc(100vh-8rem)] overflow-y-auto"
+              className="sticky top-24 bg-secondary/20 p-6 rounded-lg border border-divider max-h-[calc(100vh-8rem)] overflow-y-auto"
               aria-label="Table of Contents"
             >
               <h3 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">
@@ -931,7 +931,7 @@ const TermsOfUse: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-neutral-800">
+        <footer className="mt-16 pt-8 border-t border-divider">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted gap-4">
             <span>{t.footer.updated}: {t.effectiveDate}</span>
             <span className="text-accent">⚖️ {t.footer.hebrewPrevails}</span>

@@ -316,7 +316,7 @@ const Home: React.FC = () => {
           the four tiles can be replaced with a live embed. */}
       <section ref={collectionsRef as React.RefObject<HTMLElement>} className="py-20 bg-primary transition-colors duration-300">
         <div className="container mx-auto px-6">
-          <div className="flex justify-between items-end mb-16 border-b border-neutral-800 pb-6">
+          <div className="flex justify-between items-end mb-16 border-b border-divider pb-6">
             <div>
               <div className="flex items-center gap-3 text-accent text-xs uppercase tracking-widest mb-3">
                 <Instagram size={16} />
@@ -370,7 +370,7 @@ const Home: React.FC = () => {
                  </Link>
              </div>
              <div className="order-1 md:order-2 relative h-[500px] w-full art-image">
-                 <div className="absolute inset-0 border border-neutral-700 transform translate-x-4 translate-y-4 rtl:-translate-x-4"></div>
+                 <div className="absolute inset-0 border border-divider transform translate-x-4 translate-y-4 rtl:-translate-x-4"></div>
                  <img
                     src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
                     alt="Marble Texture"

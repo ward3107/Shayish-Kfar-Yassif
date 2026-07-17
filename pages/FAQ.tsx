@@ -53,7 +53,7 @@ const FAQ: React.FC = () => {
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen transition-colors duration-300">
       <div className="container mx-auto px-6 max-w-4xl">
-        <header className="mb-16 border-b border-neutral-800 pb-8">
+        <header className="mb-16 border-b border-divider pb-8">
           <div className="inline-flex items-center gap-2 text-accent text-xs uppercase tracking-widest mb-4">
             <HelpCircle size={14} />
             <span>{t('faq.eyebrow')}</span>
@@ -62,7 +62,7 @@ const FAQ: React.FC = () => {
           <p className="text-muted font-light max-w-2xl">{t('faq.subtitle')}</p>
         </header>
 
-        <div className="divide-y divide-neutral-800 border-t border-b border-neutral-800">
+        <div className="divide-y divide-divider border-t border-b border-divider">
           {items.map((item, i) => {
             const isOpen = openIndex === i;
             return (
@@ -97,7 +97,7 @@ const FAQ: React.FC = () => {
         </div>
 
         {/* Fallback CTA — questions we didn't answer go straight to WhatsApp */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-6 border-t border-neutral-800 pt-12">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-6 border-t border-divider pt-12">
           <div>
             <div className="text-xs uppercase tracking-widest text-muted mb-2">{t('faq.still_asking')}</div>
             <p className="text-light text-lg font-serif max-w-xl">{t('faq.still_asking_desc')}</p>

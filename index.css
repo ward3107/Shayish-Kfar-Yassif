@@ -10,6 +10,9 @@
   --color-accent: #b08d4b;
   --color-text-main: #18181b; /* Zinc 900 */
   --color-text-muted: #52525b; /* Zinc 600 */
+  --color-border: #d4d4d8; /* Zinc 300 — visible on white without shouting */
+  --color-overlay: rgba(0, 0, 0, 0.6); /* Dark scrim over media (unchanged across themes) */
+  --color-header-text: #18181b; /* Header text when NOT over a video/dark hero */
 }
 
 [data-theme="dark"] {
@@ -20,6 +23,8 @@
   --color-accent: #C5A059;
   --color-text-main: #e5e5e5;
   --color-text-muted: #9ca3af; /* Gray 400 */
+  --color-border: #262626; /* Neutral 800 */
+  --color-header-text: #ffffff;
 }
 
 body {

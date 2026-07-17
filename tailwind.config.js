@@ -18,6 +18,9 @@ export default {
         light: 'var(--color-text-main)',
         surface: 'var(--color-surface)',
         muted: 'var(--color-text-muted)',
+        // Theme-aware border. In dark mode it's neutral-800; in light mode
+        // it's zinc-300 — visible on white without being harsh.
+        divider: 'var(--color-border)',
       },
       fontFamily: {
         sans: ['Heebo', 'Assistant', 'sans-serif'],

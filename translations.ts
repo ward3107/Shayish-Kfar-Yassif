@@ -96,6 +96,16 @@ export const translations = {
       enable: 'Enable sound',
       disable: 'Disable sound'
     },
+    music: {
+      title: 'Ambient music',
+      open: 'Open music player',
+      collapse: 'Collapse player',
+      play: 'Play',
+      pause: 'Pause',
+      prev: 'Previous track',
+      next: 'Next track',
+      volume: 'Volume'
+    },
     explorer: {
       section_title: 'Interactive 3D Viewer',
       section_desc: 'Rotate a marble slab and switch between finishes to see how the same material behaves polished, matte, or honed. Drag to rotate, scroll to zoom.',
@@ -411,6 +421,16 @@ export const translations = {
     sound: {
       enable: 'הפעל צליל',
       disable: 'השתק צליל'
+    },
+    music: {
+      title: 'מוזיקת רקע',
+      open: 'פתח נגן מוזיקה',
+      collapse: 'צמצם נגן',
+      play: 'נגן',
+      pause: 'עצור',
+      prev: 'רצועה קודמת',
+      next: 'רצועה הבאה',
+      volume: 'עוצמה'
     },
     explorer: {
       section_title: 'צפייה תלת־מימדית אינטראקטיבית',
@@ -728,6 +748,16 @@ export const translations = {
       enable: 'تفعيل الصوت',
       disable: 'كتم الصوت'
     },
+    music: {
+      title: 'موسيقى الخلفية',
+      open: 'فتح مشغل الموسيقى',
+      collapse: 'تصغير المشغل',
+      play: 'تشغيل',
+      pause: 'إيقاف',
+      prev: 'المسار السابق',
+      next: 'المسار التالي',
+      volume: 'مستوى الصوت'
+    },
     explorer: {
       section_title: 'عارض ثلاثي الأبعاد تفاعلي',
       section_desc: 'دور لوح رخام وبدل بين التشطيبات لترى كيف تتصرف نفس المادة مصقولة، مطفية أو ملساء. اسحب للدوران، مرر للتكبير.',
@@ -1043,6 +1073,16 @@ export const translations = {
     sound: {
       enable: 'Включить звук',
       disable: 'Выключить звук'
+    },
+    music: {
+      title: 'Фоновая музыка',
+      open: 'Открыть плеер',
+      collapse: 'Свернуть плеер',
+      play: 'Воспроизвести',
+      pause: 'Пауза',
+      prev: 'Предыдущий трек',
+      next: 'Следующий трек',
+      volume: 'Громкость'
     },
     explorer: {
       section_title: 'Интерактивный 3D-просмотр',

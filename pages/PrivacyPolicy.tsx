@@ -109,7 +109,7 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <div className={`min-h-screen bg-primary text-light transition-colors duration-300`} dir={textDir}>
       {/* Header */}
-      <header className="bg-secondary border-b border-neutral-800 py-16">
+      <header className="bg-secondary border-b border-divider py-16">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-accent text-sm font-bold uppercase tracking-widest mb-4">
             <Link to="/" className="hover:text-light transition-colors">
@@ -168,7 +168,7 @@ const PrivacyPolicy: React.FC = () => {
             {/* Mobile TOC Toggle */}
             <button
               onClick={() => setMobileTocOpen(!mobileTocOpen)}
-              className="lg:hidden w-full flex items-center justify-between p-4 bg-secondary border border-neutral-700 rounded-sm mb-6"
+              className="lg:hidden w-full flex items-center justify-between p-4 bg-secondary border border-divider rounded-sm mb-6"
               aria-label="Toggle table of contents"
             >
               <span className="font-bold text-sm uppercase tracking-wider">{t.tableOfContents}</span>
@@ -179,7 +179,7 @@ const PrivacyPolicy: React.FC = () => {
             <nav
               className={`${
                 mobileTocOpen ? 'block' : 'hidden'
-              } lg:block sticky top-32 bg-secondary border border-neutral-700 rounded-sm p-6 max-h-[calc(100vh-200px)] overflow-y-auto`}
+              } lg:block sticky top-32 bg-secondary border border-divider rounded-sm p-6 max-h-[calc(100vh-200px)] overflow-y-auto`}
             >
               <h3 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">
                 {t.tableOfContents}
@@ -206,16 +206,16 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* Main Content */}
           <main className="flex-1 max-w-4xl">
-            <div className="bg-secondary border border-neutral-700 rounded-sm p-8 md:p-12 space-y-12">
+            <div className="bg-secondary border border-divider rounded-sm p-8 md:p-12 space-y-12">
               {/* Section 1 - Introduction */}
               <section data-section="introduction" id="introduction" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">1.</span> {t.section1.title}
                 </h2>
                 <div className="prose prose-invert max-w-none">
                   <p className="text-muted leading-relaxed mb-4">{t.section1.para1}</p>
 
-                  <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 my-6">
+                  <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 my-6">
                     <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                       {t.section1.controllerTitle}
                     </h4>
@@ -259,13 +259,13 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 2 - Data Collected */}
               <section data-section="data-collected" id="data-collected" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">2.</span> {t.section2.title}
                 </h2>
 
                 <div className="space-y-6">
                   {/* Direct Data */}
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-6">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-6">
                     <h3 className="text-lg font-bold text-light mb-4 flex items-center gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm">א</span>
                       {t.section2.directData.title}
@@ -288,7 +288,7 @@ const PrivacyPolicy: React.FC = () => {
                   </div>
 
                   {/* Automatic Data */}
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-6">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-6">
                     <h3 className="text-lg font-bold text-light mb-4 flex items-center gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm">ב</span>
                       {t.section2.autoData.title}
@@ -324,7 +324,7 @@ const PrivacyPolicy: React.FC = () => {
                   </div>
 
                   {/* Third-party Data */}
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-6">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-6">
                     <h3 className="text-lg font-bold text-light mb-4 flex items-center gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm">ג</span>
                       {t.section2.thirdPartyData.title}
@@ -356,7 +356,7 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 3 - Purpose and Legal Basis */}
               <section data-section="purpose-basis" id="purpose-basis" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">3.</span> {t.section3.title}
                 </h2>
 
@@ -371,7 +371,7 @@ const PrivacyPolicy: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-neutral-700 bg-neutral-800/30">
+                      <tr className="border-b border-divider bg-neutral-800/30">
                         <td className="p-4 text-light">{t.section3.table.row1.purpose}</td>
                         <td className="p-4">
                           <span className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 rounded text-xs font-bold uppercase">
@@ -379,7 +379,7 @@ const PrivacyPolicy: React.FC = () => {
                           </span>
                         </td>
                       </tr>
-                      <tr className="border-b border-neutral-700">
+                      <tr className="border-b border-divider">
                         <td className="p-4 text-light">{t.section3.table.row2.purpose}</td>
                         <td className="p-4">
                           <span className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded text-xs font-bold uppercase">
@@ -387,7 +387,7 @@ const PrivacyPolicy: React.FC = () => {
                           </span>
                         </td>
                       </tr>
-                      <tr className="border-b border-neutral-700 bg-neutral-800/30">
+                      <tr className="border-b border-divider bg-neutral-800/30">
                         <td className="p-4 text-light">{t.section3.table.row3.purpose}</td>
                         <td className="p-4">
                           <span className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded text-xs font-bold uppercase">
@@ -410,14 +410,14 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 4 - Data Recipients */}
               <section data-section="data-recipients" id="data-recipients" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">4.</span> {t.section4.title}
                 </h2>
 
                 <p className="text-muted leading-relaxed mb-6">{t.section4.intro}</p>
 
                 <div className="space-y-4">
-                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-lg">G</div>
                     <div>
                       <h4 className="font-bold text-light">Google LLC</h4>
@@ -426,7 +426,7 @@ const PrivacyPolicy: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-lg">M</div>
                     <div>
                       <h4 className="font-bold text-light">Meta Platforms Inc.</h4>
@@ -435,7 +435,7 @@ const PrivacyPolicy: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-lg">H</div>
                     <div>
                       <h4 className="font-bold text-light">{t.section4.hosting}</h4>
@@ -453,14 +453,14 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 5 - International Transfers */}
               <section data-section="international-transfer" id="international-transfer" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">5.</span> {t.section5.title}
                 </h2>
 
                 <p className="text-muted leading-relaxed mb-4">{t.section5.para1}</p>
                 <p className="text-muted leading-relaxed mb-4">{t.section5.para2}</p>
 
-                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 my-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 my-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-3">
                     {t.section5.safeguards}
                   </h4>
@@ -483,26 +483,26 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 6 - Data Retention */}
               <section data-section="retention" id="retention" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">6.</span> {t.section6.title}
                 </h2>
 
                 <p className="text-muted leading-relaxed mb-6">{t.section6.intro}</p>
 
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <span className="text-light">{t.section6.contactForm}</span>
                     <span className="text-accent font-bold">24 {t.section6.months}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <span className="text-light">{t.section6.analytics}</span>
                     <span className="text-accent font-bold">14 {t.section6.months}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <span className="text-light">{t.section6.marketing}</span>
                     <span className="text-accent font-bold">{t.section6.untilUnsubscribe}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-neutral-700 rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
                     <span className="text-light">{t.section6.serverLogs}</span>
                     <span className="text-accent font-bold">90 {t.section6.days}</span>
                   </div>
@@ -511,7 +511,7 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 7 - Consequences (MANDATORY under Section 11) */}
               <section data-section="consequences" id="consequences" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">7.</span> {t.section7.title}
                   <span className="ml-2 text-xs bg-red-900/50 text-red-400 px-2 py-1 rounded uppercase tracking-wider">{t.section7.mandatory}</span>
                 </h2>
@@ -531,30 +531,30 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 8 - Your Rights */}
               <section data-section="your-rights" id="your-rights" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">8.</span> {t.section8.title}
                 </h2>
 
                 <p className="text-muted leading-relaxed mb-6">{t.section8.intro}</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right1.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right1.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right2.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right2.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right3.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right3.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right4.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right4.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right5.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right5.desc}</p>
                   </div>
@@ -578,13 +578,13 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 9 - Right to Complain */}
               <section data-section="complaint" id="complaint" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">9.</span> {t.section9.title}
                 </h2>
 
                 <p className="text-muted leading-relaxed mb-6">{t.section9.intro}</p>
 
-                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     Privacy Protection Authority (PPA)
                   </h4>
@@ -611,22 +611,22 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 10 - Cookies */}
               <section data-section="cookies" id="cookies" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">10.</span> {t.section10.title}
                 </h2>
 
                 <p className="text-muted leading-relaxed mb-6">{t.section10.intro}</p>
 
                 <div className="space-y-4">
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-light mb-2">{t.section10.necessary.title}</h4>
                     <p className="text-sm text-muted">{t.section10.necessary.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-light mb-2">{t.section10.analytics.title}</h4>
                     <p className="text-sm text-muted">{t.section10.analytics.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-neutral-700 rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
                     <h4 className="font-bold text-light mb-2">{t.section10.marketing.title}</h4>
                     <p className="text-sm text-muted">{t.section10.marketing.desc}</p>
                   </div>
@@ -641,7 +641,7 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 11 - Automated Decisions */}
               <section data-section="automated-decisions" id="automated-decisions" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">11.</span> {t.section11.title}
                 </h2>
 
@@ -652,7 +652,7 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 12 - Data Security */}
               <section data-section="security" id="security" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">12.</span> {t.section12.title}
                 </h2>
 
@@ -683,7 +683,7 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 13 - Policy Updates */}
               <section data-section="updates" id="updates" className="scroll-mt-32">
-                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-neutral-700">
+                <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">13.</span> {t.section13.title}
                 </h2>
 
@@ -706,7 +706,7 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-6">{t.section14.intro}</p>
 
                 {/* GDPR Legal Bases Table */}
-                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.legalBasisTitle}
                   </h4>
@@ -719,7 +719,7 @@ const PrivacyPolicy: React.FC = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b border-neutral-700 bg-neutral-800/30">
+                        <tr className="border-b border-divider bg-neutral-800/30">
                           <td className="p-3 text-light">{t.section14.table.row1.activity}</td>
                           <td className="p-3">
                             <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">
@@ -727,7 +727,7 @@ const PrivacyPolicy: React.FC = () => {
                             </span>
                           </td>
                         </tr>
-                        <tr className="border-b border-neutral-700">
+                        <tr className="border-b border-divider">
                           <td className="p-3 text-light">{t.section14.table.row2.activity}</td>
                           <td className="p-3">
                             <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">
@@ -735,7 +735,7 @@ const PrivacyPolicy: React.FC = () => {
                             </span>
                           </td>
                         </tr>
-                        <tr className="border-b border-neutral-700 bg-neutral-800/30">
+                        <tr className="border-b border-divider bg-neutral-800/30">
                           <td className="p-3 text-light">{t.section14.table.row3.activity}</td>
                           <td className="p-3">
                             <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">
@@ -757,7 +757,7 @@ const PrivacyPolicy: React.FC = () => {
                 </div>
 
                 {/* GDPR Additional Rights */}
-                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.additionalRightsTitle}
                   </h4>
@@ -782,7 +782,7 @@ const PrivacyPolicy: React.FC = () => {
                 </div>
 
                 {/* Supervisory Authority */}
-                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.supervisoryAuthorityTitle}
                   </h4>
@@ -800,7 +800,7 @@ const PrivacyPolicy: React.FC = () => {
                 </div>
 
                 {/* International Transfers */}
-                <div className="bg-neutral-800/50 border border-neutral-700 rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.internationalTransfersTitle}
                   </h4>
