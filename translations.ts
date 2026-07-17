@@ -220,7 +220,15 @@ export const translations = {
       title: 'The Methodology',
       subtitle: 'Precision planning meets artisanal execution.',
       start_project: 'Start Your Project',
-      book_consultation: 'Book Consultation'
+      book_consultation: 'Book Consultation',
+      steps: {
+        consultation: { title: 'Consultation', description: 'We meet to discuss your vision, needs, and budget.' },
+        design:       { title: 'Design & Plan', description: 'Our designers create a custom 3D plan for your space.' },
+        measurements: { title: 'Measurements', description: 'Precise laser measurements are taken at your home.' },
+        production:   { title: 'Production', description: 'Your surface is crafted in our advanced factory.' },
+        installation: { title: 'Installation', description: 'Professional delivery and installation by our expert team.' },
+        warranty:     { title: 'Warranty', description: 'Enjoy your new surfaces with our full support and warranty.' }
+      }
     },
     // Materials Page
     materials: {
@@ -548,7 +556,15 @@ export const translations = {
       title: 'שיטת העבודה',
       subtitle: 'תכנון מדויק פוגש ביצוע אומנותי.',
       start_project: 'התחל פרויקט',
-      book_consultation: 'תאם ייעוץ'
+      book_consultation: 'תאם ייעוץ',
+      steps: {
+        consultation: { title: 'ייעוץ', description: 'נפגשים כדי לדבר על החזון, הצרכים והתקציב שלכם.' },
+        design:       { title: 'עיצוב ותכנון', description: 'המעצבים שלנו יוצרים תכנית תלת-מימד מותאמת לחלל שלכם.' },
+        measurements: { title: 'מדידות', description: 'מדידות לייזר מדויקות מתבצעות בביתכם.' },
+        production:   { title: 'ייצור', description: 'המשטח שלכם מיוצר במפעל המתקדם שלנו.' },
+        installation: { title: 'התקנה', description: 'משלוח והתקנה מקצועיים על ידי צוות המומחים שלנו.' },
+        warranty:     { title: 'אחריות', description: 'תיהנו מהמשטחים החדשים עם התמיכה והאחריות המלאה שלנו.' }
+      }
     },
     // Materials Page
     materials: {
@@ -876,7 +892,15 @@ export const translations = {
       title: 'المنهجية',
       subtitle: 'تخطيط دقيق يلتقي بتنفيذ حرفي.',
       start_project: 'ابدأ مشروعك',
-      book_consultation: 'حجز استشارة'
+      book_consultation: 'حجز استشارة',
+      steps: {
+        consultation: { title: 'استشارة', description: 'نلتقي لمناقشة رؤيتك واحتياجاتك وميزانيتك.' },
+        design:       { title: 'التصميم والتخطيط', description: 'يصمم فريقنا مخططًا ثلاثي الأبعاد مخصصًا لمساحتك.' },
+        measurements: { title: 'القياسات', description: 'تُؤخذ قياسات ليزر دقيقة في منزلك.' },
+        production:   { title: 'الإنتاج', description: 'يُصنع سطحك في مصنعنا المتطور.' },
+        installation: { title: 'التركيب', description: 'توصيل وتركيب احترافي على يد فريق الخبراء لدينا.' },
+        warranty:     { title: 'الضمان', description: 'استمتع بأسطحك الجديدة مع دعمنا وضماننا الكامل.' }
+      }
     },
     // Materials Page
     materials: {
@@ -1204,7 +1228,15 @@ export const translations = {
       title: 'Методология',
       subtitle: 'Точное планирование встречается с мастерским исполнением.',
       start_project: 'Начать проект',
-      book_consultation: 'Записаться на консультацию'
+      book_consultation: 'Записаться на консультацию',
+      steps: {
+        consultation: { title: 'Консультация', description: 'Встречаемся, чтобы обсудить ваше видение, потребности и бюджет.' },
+        design:       { title: 'Дизайн и план', description: 'Наши дизайнеры создают индивидуальный 3D-план вашего пространства.' },
+        measurements: { title: 'Замеры', description: 'Точные лазерные замеры выполняются у вас дома.' },
+        production:   { title: 'Производство', description: 'Ваша поверхность изготавливается на нашей современной фабрике.' },
+        installation: { title: 'Установка', description: 'Профессиональная доставка и установка нашей командой экспертов.' },
+        warranty:     { title: 'Гарантия', description: 'Наслаждайтесь новыми поверхностями с нашей полной поддержкой и гарантией.' }
+      }
     },
     // Materials Page
     materials: {

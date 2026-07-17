@@ -95,35 +95,14 @@ export const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
+// Only the icon + a translation key live here now. Titles and descriptions
+// come from translations.ts (process.steps.<key>) so the page renders in the
+// visitor's language instead of hardcoded English.
 export const PROCESS_STEPS = [
-  {
-    title: "Consultation",
-    description: "We meet to discuss your vision, needs, and budget.",
-    Icon: Phone
-  },
-  {
-    title: "Design & Plan",
-    description: "Our designers create a custom 3D plan for your space.",
-    Icon: PenTool
-  },
-  {
-    title: "Measurements",
-    description: "Precise laser measurements are taken at your home.",
-    Icon: Ruler
-  },
-  {
-    title: "Production",
-    description: "Your kitchen is crafted in our advanced factory.",
-    Icon: Hammer
-  },
-  {
-    title: "Installation",
-    description: "Professional delivery and installation by our expert team.",
-    Icon: Truck
-  },
-  {
-    title: "Warranty",
-    description: "Enjoy your kitchen with our full support and warranty.",
-    Icon: ShieldCheck
-  }
+  { key: 'consultation', Icon: Phone },
+  { key: 'design',       Icon: PenTool },
+  { key: 'measurements', Icon: Ruler },
+  { key: 'production',   Icon: Hammer },
+  { key: 'installation', Icon: Truck },
+  { key: 'warranty',     Icon: ShieldCheck },
 ];

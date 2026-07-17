@@ -24,15 +24,15 @@ const Process: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROCESS_STEPS.map((step, index) => (
-                <div key={index} className="group p-10 border border-divider hover:border-accent transition-colors duration-500 bg-secondary relative">
+                <div key={step.key} className="group p-10 border border-divider hover:border-accent transition-colors duration-500 bg-secondary relative">
                     <div className="text-6xl font-serif text-neutral-500 opacity-20 absolute top-4 right-6 group-hover:text-accent group-hover:opacity-40 transition-all">
                         0{index + 1}
                     </div>
                     <div className="mb-8 text-accent">
                         <step.Icon size={32} strokeWidth={1} />
                     </div>
-                    <h3 className="text-2xl font-serif text-light mb-4">{step.title}</h3>
-                    <p className="text-muted font-light leading-relaxed">{step.description}</p>
+                    <h3 className="text-2xl font-serif text-light mb-4">{t(`process.steps.${step.key}.title`)}</h3>
+                    <p className="text-muted font-light leading-relaxed">{t(`process.steps.${step.key}.description`)}</p>
                 </div>
             ))}
         </div>
