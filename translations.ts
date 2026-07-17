@@ -92,6 +92,24 @@ export const translations = {
       opens_tomorrow: 'Opens tomorrow at',
       opens_in_days: 'Opens in {days} days at'
     },
+    sound: {
+      enable: 'Enable sound',
+      disable: 'Disable sound'
+    },
+    explorer: {
+      section_title: 'Interactive 3D Viewer',
+      section_desc: 'Rotate a marble slab and switch between finishes to see how the same material behaves polished, matte, or honed. Drag to rotate, scroll to zoom.',
+      launch: 'Launch 3D Viewer',
+      launch_hint: 'Loads on demand · ~800 KB',
+      loading: 'Loading 3D viewer…',
+      canvas_label: 'Interactive 3D marble slab',
+      polished: 'Polished',
+      matte: 'Matte',
+      honed: 'Honed',
+      pause: 'Pause rotation',
+      rotate: 'Auto-rotate',
+      hint: 'Drag · Scroll to zoom'
+    },
     about: {
       title_line1: 'Legacy of',
       title_line2: 'Stone & Porcelain',
@@ -389,6 +407,24 @@ export const translations = {
       opens_at: 'נפתח ב־',
       opens_tomorrow: 'נפתח מחר ב־',
       opens_in_days: 'נפתח בעוד {days} ימים ב־'
+    },
+    sound: {
+      enable: 'הפעל צליל',
+      disable: 'השתק צליל'
+    },
+    explorer: {
+      section_title: 'צפייה תלת־מימדית אינטראקטיבית',
+      section_desc: 'סובב לוח שיש ועבור בין גימורים לראות איך אותו חומר מתנהג במבריק, מט או מלוט. גרור לסיבוב, גלגל לזום.',
+      launch: 'הפעל צופה תלת־מימד',
+      launch_hint: 'נטען לפי דרישה · ~800KB',
+      loading: 'טוען צופה תלת־מימד…',
+      canvas_label: 'לוח שיש תלת־מימדי אינטראקטיבי',
+      polished: 'מבריק',
+      matte: 'מט',
+      honed: 'מלוט',
+      pause: 'עצור סיבוב',
+      rotate: 'סיבוב אוטומטי',
+      hint: 'גרור · גלגל לזום'
     },
     about: {
       title_line1: 'מורשת של',
@@ -688,6 +724,24 @@ export const translations = {
       opens_tomorrow: 'يفتح غدًا في',
       opens_in_days: 'يفتح خلال {days} أيام في'
     },
+    sound: {
+      enable: 'تفعيل الصوت',
+      disable: 'كتم الصوت'
+    },
+    explorer: {
+      section_title: 'عارض ثلاثي الأبعاد تفاعلي',
+      section_desc: 'دور لوح رخام وبدل بين التشطيبات لترى كيف تتصرف نفس المادة مصقولة، مطفية أو ملساء. اسحب للدوران، مرر للتكبير.',
+      launch: 'شغل العارض ثلاثي الأبعاد',
+      launch_hint: 'يحمّل عند الطلب · ~800KB',
+      loading: 'جاري تحميل العارض ثلاثي الأبعاد…',
+      canvas_label: 'لوح رخام ثلاثي الأبعاد تفاعلي',
+      polished: 'مصقول',
+      matte: 'مطفي',
+      honed: 'ملساء',
+      pause: 'إيقاف الدوران',
+      rotate: 'دوران تلقائي',
+      hint: 'اسحب · مرر للتكبير'
+    },
     about: {
       title_line1: 'تراث من',
       title_line2: 'الحجر والبورسلين',
@@ -985,6 +1039,24 @@ export const translations = {
       opens_at: 'Откроется в',
       opens_tomorrow: 'Откроется завтра в',
       opens_in_days: 'Откроется через {days} дн. в'
+    },
+    sound: {
+      enable: 'Включить звук',
+      disable: 'Выключить звук'
+    },
+    explorer: {
+      section_title: 'Интерактивный 3D-просмотр',
+      section_desc: 'Вращайте мраморную плиту и переключайтесь между отделками, чтобы увидеть один и тот же материал полированным, матовым или шлифованным. Тащите для вращения, прокрутка — зум.',
+      launch: 'Открыть 3D-просмотр',
+      launch_hint: 'Загружается по требованию · ~800 КБ',
+      loading: 'Загрузка 3D-просмотра…',
+      canvas_label: 'Интерактивная 3D-плита из мрамора',
+      polished: 'Полированный',
+      matte: 'Матовый',
+      honed: 'Шлифованный',
+      pause: 'Остановить вращение',
+      rotate: 'Авто-вращение',
+      hint: 'Тащите · Прокрутка для зума'
     },
     about: {
       title_line1: 'Наследие',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMagneticCursor } from '../hooks/useMagneticCursor';
+import { useMarbleTap } from '../hooks/useMarbleTap';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'outline' | 'gold' | 'white';
@@ -20,9 +21,16 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   magnetic = false,
   className = '',
+  onClick,
   ...props
 }) => {
   const magneticRef = useMagneticCursor<HTMLButtonElement>({ strength: 20, radius: 60 });
+  const tap = useMarbleTap();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    tap();
+    onClick?.(e);
+  };
 
   const baseStyles = "inline-flex items-center justify-center uppercase tracking-widest font-medium transition-all duration-500 rounded-none disabled:opacity-50 disabled:cursor-not-allowed border focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-white";
 
@@ -44,6 +52,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       ref={magnetic ? magneticRef : undefined}
+      onClick={handleClick}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${widthStyle} ${className}`}
       {...props}
     >

@@ -1,6 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
+import { Box, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+// Three.js is heavy (~800 kB with fiber + drei). The explorer chunk only
+// downloads when the user actually clicks "Launch 3D Viewer" below —
+// visitors who don't engage pay nothing.
+const MarbleExplorer = lazy(() => import('../components/MarbleExplorer'));
 
 const Materials: React.FC = () => {
   const { t } = useLanguage();
@@ -14,6 +20,8 @@ const Materials: React.FC = () => {
   // set into place instead of a generic fade-in.
   const stoneGridRef = useScrollAnimation({ type: 'slabStagger', stagger: 0.15 });
   const finishGridRef = useScrollAnimation({ type: 'slabStagger', stagger: 0.12 });
+
+  const [explorerLaunched, setExplorerLaunched] = useState(false);
 
   const finishes = [
     { title: t('materials.finish_polished'), desc: t('materials.finish_polished_desc'), img: "https://picsum.photos/seed/m1/400/300" },
@@ -71,6 +79,38 @@ const Materials: React.FC = () => {
                     </div>
                 ))}
             </div>
+        </div>
+        {/* Section 3: Interactive 3D Explorer.
+            Deliberately gated behind a click — Three.js is ~800 kB. */}
+        <div className="mb-8">
+          <div className="flex items-end justify-between border-b border-neutral-800 pb-4 mb-8">
+            <h2 className="text-3xl font-serif">{t('explorer.section_title')}</h2>
+            <span className="text-accent text-xs uppercase tracking-widest">03</span>
+          </div>
+          <p className="text-muted font-light max-w-2xl mb-8">{t('explorer.section_desc')}</p>
+
+          {explorerLaunched ? (
+            <Suspense
+              fallback={
+                <div className="w-full h-[500px] md:h-[600px] flex items-center justify-center bg-neutral-900 border border-neutral-800 rounded-sm">
+                  <Loader2 size={32} className="text-accent animate-spin" aria-label={t('explorer.loading')} />
+                </div>
+              }
+            >
+              <MarbleExplorer />
+            </Suspense>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setExplorerLaunched(true)}
+              className="w-full h-[280px] md:h-[360px] flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-secondary via-neutral-900 to-secondary border border-neutral-800 hover:border-accent transition-colors group"
+              aria-label={t('explorer.launch')}
+            >
+              <Box size={64} className="text-muted group-hover:text-accent transition-colors" />
+              <div className="text-lg font-serif text-light">{t('explorer.launch')}</div>
+              <div className="text-xs uppercase tracking-widest text-muted">{t('explorer.launch_hint')}</div>
+            </button>
+          )}
         </div>
       </div>
     </div>
