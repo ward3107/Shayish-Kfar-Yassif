@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Instagram, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT } from '../constants';
+import InstagramFeed from '../components/InstagramFeed';
+import WhatsAppCTA from '../components/WhatsAppCTA';
 
 const Gallery: React.FC = () => {
   const { t } = useLanguage();
@@ -25,7 +27,7 @@ const Gallery: React.FC = () => {
           <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
 
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-0">
-            {/* Left: message */}
+            {/* Left: message + primary CTA */}
             <div className="p-10 md:p-16 flex flex-col justify-center">
               <div className="inline-flex items-center gap-2 text-accent text-xs uppercase tracking-widest mb-6">
                 <Instagram size={16} />
@@ -49,31 +51,25 @@ const Gallery: React.FC = () => {
               </a>
             </div>
 
-            {/* Right: visual — Instagram phone-mock preview.
-                Once the real account exists, swap this block for a live feed embed
-                (e.g. LightWidget iframe, or Instagram oEmbed of a pinned reel). */}
+            {/* Right: live feed (LightWidget iframe when configured) or a
+                designed phone-mock placeholder while the account doesn't exist. */}
             <div className="relative min-h-[320px] md:min-h-[520px] flex items-center justify-center p-10 border-t md:border-t-0 md:border-s border-neutral-800">
-              <div className="relative w-full max-w-[280px] aspect-[9/16] bg-primary border border-neutral-700 shadow-2xl overflow-hidden">
-                <div className="flex items-center gap-2 px-3 py-2 border-b border-neutral-800">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-accent to-accent/40" aria-hidden="true" />
-                  <div className="text-[10px] text-light font-bold">@{CONTACT.instagramHandle}</div>
-                </div>
-                <div className="grid grid-cols-3 gap-[2px] p-[2px]">
-                  {Array.from({ length: 9 }).map((_, i) => (
-                    <div key={i} className="aspect-square bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent" />
-                    </div>
-                  ))}
-                </div>
-                <div className="absolute bottom-3 left-3 right-3 text-center">
-                  <div className="text-[9px] text-muted uppercase tracking-widest">Live feed preview</div>
-                </div>
-              </div>
+              <InstagramFeed variant="phone" ariaLabel={t('gallery.instagram_cta')} />
             </div>
           </div>
         </section>
 
-        {/* Secondary CTA — mobile-friendly big button at the bottom */}
+        {/* Secondary path — visitors who won't leave for Instagram get a
+            direct WhatsApp option here. */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-6 border-t border-neutral-800 pt-12">
+          <div>
+            <div className="text-xs uppercase tracking-widest text-muted mb-2">{t('whatsapp.title')}</div>
+            <p className="text-light text-lg font-serif max-w-xl">{t('whatsapp.description')}</p>
+          </div>
+          <WhatsAppCTA variant="inline" />
+        </div>
+
+        {/* Handle footer */}
         <div className="mt-12 text-center">
           <a
             href={CONTACT.instagramUrl}
