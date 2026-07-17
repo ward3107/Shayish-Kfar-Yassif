@@ -17,6 +17,17 @@ const Home: React.FC = () => {
   const { t, dir, language } = useLanguage();
   const location = useLocation();
 
+  // Mobile users don't get the 15MB hero video — poster image only.
+  // Desktop-first default so SSR / first paint doesn't flash the wrong thing.
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
   // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
   useEffect(() => {
     if (location.pathname === '/') {
@@ -212,21 +223,33 @@ const Home: React.FC = () => {
     <div className="flex flex-col">
       {/* Hero Section - Text remains white due to video background */}
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
+        {/* Background: video on desktop, static poster on mobile.
+            Video is ~15 MB — never worth downloading over 4G just for a
+            decorative loop. Poster stays crisp and identical visually. */}
         <div className="absolute inset-0 z-0">
-            <video 
-                autoPlay 
-                loop 
-                muted
-                playsInline 
-                preload="auto"
-                disablePictureInPicture
-                className="w-full h-full object-cover"
-                poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-            >
-                {/* Optimized HD Video of Carpentry/Kitchen Making */}
-                <source src="https://videos.pexels.com/video-files/7578552/7578552-hd_1920_1080_30fps.mp4" type="video/mp4" />
-            </video>
+            {isDesktop ? (
+              <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  disablePictureInPicture
+                  className="w-full h-full object-cover"
+                  poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+              >
+                  {/* TODO: self-host the video under /public to cut this
+                      third-party dependency (Pexels CDN can rate-limit). */}
+                  <source src="https://videos.pexels.com/video-files/7578552/7578552-hd_1920_1080_30fps.mp4" type="video/mp4" />
+              </video>
+            ) : (
+              <div
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop')" }}
+                role="img"
+                aria-label="Marble kitchen surface"
+              />
+            )}
             {/* Dark Gradient Overlay for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
         </div>
