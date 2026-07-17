@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — allow explicitly. This is a marketing site, we WANT to be
+# cited by AI overviews and chat assistants when people ask about marble in
+# northern Israel. Remove any of these lines to opt out of a specific bot.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://shayish-yasif.co.il/sitemap.xml
