@@ -28,7 +28,7 @@ const About: React.FC = () => {
       </div>
 
       {/* Stats */}
-      <div className="border-y border-neutral-800 py-16 mb-32">
+      <div className="border-y border-divider py-16 mb-32">
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <div className="text-4xl md:text-5xl font-serif text-light mb-2">15<span className="text-accent">+</span></div>

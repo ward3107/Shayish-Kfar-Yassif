@@ -424,7 +424,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                   className={`p-4 rounded-lg border text-left transition-all ${
                     requestType === type.id
                       ? 'border-accent bg-accent/10'
-                      : 'border-neutral-700 bg-neutral-800/30 hover:border-neutral-600'
+                      : 'border-divider bg-neutral-800/30 hover:border-neutral-600'
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -440,7 +440,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
           </div>
 
           {/* User Details */}
-          <div className="bg-secondary/30 rounded-lg p-6 border border-neutral-800">
+          <div className="bg-secondary/30 rounded-lg p-6 border border-divider">
             <h3 className="text-lg font-bold text-accent mb-4">{t.yourDetails}</h3>
 
             <div className="space-y-4">
@@ -454,7 +454,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-sm text-light focus:outline-none focus:border-accent transition-colors"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-sm text-light focus:outline-none focus:border-accent transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -472,7 +472,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                     setConfirmEmail(e.target.value);
                     setEmailError('');
                   }}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-sm text-light focus:outline-none focus:border-accent transition-colors"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-sm text-light focus:outline-none focus:border-accent transition-colors"
                   placeholder="your@email.com"
                 />
                 {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
@@ -487,7 +487,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-sm text-light focus:outline-none focus:border-accent transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-sm text-light focus:outline-none focus:border-accent transition-colors resize-none"
                   placeholder="Please provide any additional details about your request..."
                 />
               </div>
@@ -497,7 +497,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
           </div>
 
           {/* Response Time Notice */}
-          <div className="bg-neutral-800/50 rounded-lg p-4 border border-neutral-700">
+          <div className="bg-neutral-800/50 rounded-lg p-4 border border-divider">
             <p className="text-sm text-muted">
               <span className="font-semibold text-light">{t.responseTime}</span>{' '}
               <span className="text-accent">{t.responseTimeDays}</span>
@@ -533,7 +533,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
         </form>
 
         {/* Footer Info */}
-        <div className="mt-12 pt-8 border-t border-neutral-800 text-center text-sm text-muted">
+        <div className="mt-12 pt-8 border-t border-divider text-center text-sm text-muted">
           <p className="mb-2">
             <strong className="text-light">{t.rights}:</strong>{' '}
             GDPR Articles 15, 16, 17, 18, 20, 21

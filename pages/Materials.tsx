@@ -42,20 +42,20 @@ const Materials: React.FC = () => {
 
         {/* Section 1: Stone */}
         <div className="mb-32">
-            <div className="flex items-end justify-between border-b border-neutral-800 pb-4 mb-12">
+            <div className="flex items-end justify-between border-b border-divider pb-4 mb-12">
                 <h2 className="text-3xl font-serif">{t('materials.section_stone')}</h2>
                 <span className="text-accent text-xs uppercase tracking-widest">01</span>
             </div>
             <div ref={stoneGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-1">
-                 <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-neutral-900/50">
+                 <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-divider/50">
                      <h3 className="font-serif text-2xl mb-4 text-light">{t('materials.porcelain_title')}</h3>
                      <p className="text-muted text-sm font-light leading-relaxed">{t('materials.porcelain_desc')}</p>
                  </div>
-                 <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-neutral-900/50">
+                 <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-divider/50">
                      <h3 className="font-serif text-2xl mb-4 text-light">{t('materials.caesarstone_title')}</h3>
                      <p className="text-muted text-sm font-light leading-relaxed">{t('materials.caesarstone_desc')}</p>
                  </div>
-                 <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-neutral-900/50">
+                 <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-divider/50">
                      <h3 className="font-serif text-2xl mb-4 text-light">{t('materials.marble_title')}</h3>
                      <p className="text-muted text-sm font-light leading-relaxed">{t('materials.marble_desc')}</p>
                  </div>
@@ -64,7 +64,7 @@ const Materials: React.FC = () => {
 
         {/* Section 2: Finishes */}
         <div className="mb-32">
-            <div className="flex items-end justify-between border-b border-neutral-800 pb-4 mb-12">
+            <div className="flex items-end justify-between border-b border-divider pb-4 mb-12">
                 <h2 className="text-3xl font-serif">{t('materials.section_finishes')}</h2>
                 <span className="text-accent text-xs uppercase tracking-widest">02</span>
             </div>
@@ -83,7 +83,7 @@ const Materials: React.FC = () => {
         {/* Section 3: Interactive 3D Explorer.
             Deliberately gated behind a click — Three.js is ~800 kB. */}
         <div className="mb-8">
-          <div className="flex items-end justify-between border-b border-neutral-800 pb-4 mb-8">
+          <div className="flex items-end justify-between border-b border-divider pb-4 mb-8">
             <h2 className="text-3xl font-serif">{t('explorer.section_title')}</h2>
             <span className="text-accent text-xs uppercase tracking-widest">03</span>
           </div>
@@ -92,7 +92,7 @@ const Materials: React.FC = () => {
           {explorerLaunched ? (
             <Suspense
               fallback={
-                <div className="w-full h-[500px] md:h-[600px] flex items-center justify-center bg-neutral-900 border border-neutral-800 rounded-sm">
+                <div className="w-full h-[500px] md:h-[600px] flex items-center justify-center bg-neutral-900 border border-divider rounded-sm">
                   <Loader2 size={32} className="text-accent animate-spin" aria-label={t('explorer.loading')} />
                 </div>
               }
@@ -103,7 +103,7 @@ const Materials: React.FC = () => {
             <button
               type="button"
               onClick={() => setExplorerLaunched(true)}
-              className="w-full h-[280px] md:h-[360px] flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-secondary via-neutral-900 to-secondary border border-neutral-800 hover:border-accent transition-colors group"
+              className="w-full h-[280px] md:h-[360px] flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-secondary via-neutral-900 to-secondary border border-divider hover:border-accent transition-colors group"
               aria-label={t('explorer.launch')}
             >
               <Box size={64} className="text-muted group-hover:text-accent transition-colors" />

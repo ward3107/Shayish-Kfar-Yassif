@@ -491,7 +491,7 @@ const AccessibilityStatement: React.FC = () => {
   return (
     <div className="min-h-screen bg-primary text-light transition-colors duration-300" dir={dir}>
       {/* Header */}
-      <header className="bg-secondary border-b border-neutral-800 py-16">
+      <header className="bg-secondary border-b border-divider py-16">
         <div className="container mx-auto px-6">
           <Link to="/" className="text-accent hover:text-light transition-colors mb-4 inline-block">
             {isRTL ? '→ חזרה לדף הבית' : '← Back to Home'}
@@ -534,7 +534,7 @@ const AccessibilityStatement: React.FC = () => {
         <div className="space-y-8">
 
           {/* Section 1: Our Commitment */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="commitment-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="commitment-title">
             <h2 id="commitment-title" className="text-2xl font-serif text-accent mb-4">
               {t.commitment.title}
             </h2>
@@ -544,7 +544,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 2: Compliance Level */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="compliance-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="compliance-title">
             <h2 id="compliance-title" className="text-2xl font-serif text-accent mb-4">
               {t.compliance.title}
             </h2>
@@ -576,7 +576,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 3: Accessibility Features */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="features-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="features-title">
             <h2 id="features-title" className="text-2xl font-serif text-accent mb-4">
               {t.features.title}
             </h2>
@@ -593,7 +593,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 4: Known Limitations */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="limitations-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="limitations-title">
             <h2 id="limitations-title" className="text-2xl font-serif text-accent mb-4 flex items-center gap-3">
               <AlertCircle size={24} aria-hidden="true" />
               {t.limitations.title}
@@ -666,7 +666,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 6: How to Report */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="report-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="report-title">
             <h2 id="report-title" className="text-2xl font-serif text-accent mb-4">
               {t.report.title}
             </h2>
@@ -699,7 +699,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 7: Continuous Improvement */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="improvement-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="improvement-title">
             <h2 id="improvement-title" className="text-2xl font-serif text-accent mb-4">
               {t.improvement.title}
             </h2>
@@ -709,7 +709,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Widget Info Section */}
-          <section className="bg-secondary border border-neutral-700 rounded-sm p-8" aria-labelledby="widget-title">
+          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="widget-title">
             <h2 id="widget-title" className="text-2xl font-serif text-accent mb-4">
               {t.widget.title}
             </h2>
@@ -751,7 +751,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Last Updated */}
-          <div className="text-center text-sm text-muted py-4 border-t border-neutral-800">
+          <div className="text-center text-sm text-muted py-4 border-t border-divider">
             <p>{t.lastUpdated}: {t.lastUpdatedDate}</p>
           </div>
 
