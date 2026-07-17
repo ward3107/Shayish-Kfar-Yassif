@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Globe, Sun, Moon, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, Instagram, Globe, Sun, Moon } from 'lucide-react';
 import Button from './Button';
 import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
@@ -9,7 +9,6 @@ import ShowroomStatus from './ShowroomStatus';
 import MusicPlayer from './MusicPlayer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { useSound } from '../contexts/SoundContext';
 import { CONTACT } from '../constants';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -19,7 +18,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const { language, setLanguage, t, dir } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const { enabled: soundEnabled, toggle: toggleSound } = useSound();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,17 +107,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               {/* Theme Toggle */}
               <button onClick={toggleTheme} className={`hover:text-accent transition-colors ${headerText}`} aria-label="Toggle Theme">
                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-
-              {/* Sound Toggle — opt-in marble-tap sound on Button clicks */}
-              <button
-                onClick={toggleSound}
-                aria-pressed={soundEnabled}
-                aria-label={soundEnabled ? t('sound.disable') : t('sound.enable')}
-                title={soundEnabled ? t('sound.disable') : t('sound.enable')}
-                className={`hover:text-accent transition-colors ${headerText}`}
-              >
-                {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
               </button>
             </div>
 
