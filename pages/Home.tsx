@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
-import { CONTACT, TESTIMONIALS } from '../constants';
-import { ArrowRight, Star, ArrowUpRight, Instagram } from 'lucide-react';
+import InstagramFeed from '../components/InstagramFeed';
+import { CONTACT, TESTIMONIALS, TESTIMONIALS_ENABLED } from '../constants';
+import { ArrowRight, Star, Instagram } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import gsap from 'gsap';
@@ -309,31 +310,22 @@ const Home: React.FC = () => {
             </a>
           </div>
 
-          <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <a
-                key={index}
-                href={CONTACT.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t('home.instagram_cta')} — ${index + 1}`}
-                className="group relative overflow-hidden aspect-square bg-gradient-to-br from-secondary via-neutral-900 to-secondary border border-neutral-800 hover:border-accent/50 transition-colors"
-              >
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Instagram size={48} className="text-muted/40 group-hover:text-accent transition-colors" />
-                </div>
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black p-2 rounded-full rtl:left-3 rtl:right-auto">
-                  <ArrowUpRight size={16} />
-                </div>
-              </a>
-            ))}
+          <div ref={gridRef}>
+            <InstagramFeed variant="grid" ariaLabel={t('home.instagram_cta')} />
           </div>
 
-          <div className="mt-12 text-center md:hidden">
-            <a href={CONTACT.instagramUrl} target="_blank" rel="noopener noreferrer">
+          {/* Dual CTA — Instagram for browsing, WhatsApp for direct contact.
+              Many visitors won't leave the site for Instagram but will DM on WhatsApp. */}
+          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-stretch">
+            <a
+              href={CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-initial md:hidden"
+            >
               <Button variant="outline" fullWidth>{t('home.instagram_cta')}</Button>
             </a>
+            <WhatsAppCTA variant="inline" />
           </div>
         </div>
       </section>
@@ -383,25 +375,28 @@ const Home: React.FC = () => {
          </div>
       </section>
 
-      {/* Testimonials - Minimal */}
-      <section ref={testimonialsRef as React.RefObject<HTMLElement>} className="py-32 bg-primary transition-colors duration-300">
-          <div className="container mx-auto px-6 max-w-5xl">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                  {TESTIMONIALS.map((review) => (
-                      <div key={review.id} className="text-center">
-                          <div className="flex justify-center gap-1 text-accent mb-6">
-                              {[...Array(review.rating)].map((_, i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}
-                          </div>
-                          <p className="text-muted mb-8 font-serif italic text-lg leading-relaxed">"{review.text}"</p>
-                          <div>
-                              <div className="text-xs font-bold uppercase tracking-widest text-light">{review.name}</div>
-                              <div className="text-xs text-muted mt-1">{review.location}</div>
-                          </div>
-                      </div>
-                  ))}
-              </div>
-          </div>
-      </section>
+      {/* Testimonials — hidden until real, attributed reviews replace the placeholder
+          data in constants.ts (see TESTIMONIALS_ENABLED). */}
+      {TESTIMONIALS_ENABLED && (
+        <section ref={testimonialsRef as React.RefObject<HTMLElement>} className="py-32 bg-primary transition-colors duration-300">
+            <div className="container mx-auto px-6 max-w-5xl">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    {TESTIMONIALS.map((review) => (
+                        <div key={review.id} className="text-center">
+                            <div className="flex justify-center gap-1 text-accent mb-6">
+                                {[...Array(review.rating)].map((_, i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}
+                            </div>
+                            <p className="text-muted mb-8 font-serif italic text-lg leading-relaxed">"{review.text}"</p>
+                            <div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-light">{review.name}</div>
+                                <div className="text-xs text-muted mt-1">{review.location}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+      )}
 
       {/* Contact Section */}
       <section ref={contactRef as React.RefObject<HTMLElement>} className="relative py-24 bg-surface transition-colors duration-300">

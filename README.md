@@ -64,19 +64,25 @@ Built-in accessibility widget with 10 features:
 - **Accessibility Statement** - WCAG compliance details
 - **GDPR Request Form** - Data subject rights portal
 
-### 🎵 Background Music
-- 3 ambient tracks with shuffle
-- Collapsible music player
-- Full playback controls
-- Volume management
+### 📸 Instagram-Driven Content
+The site's live portfolio lives on the owner's Instagram — a single post
+there appears on the site. No CMS, no admin panel, no upload flow to
+maintain. The site renders the feed via an optional LightWidget iframe
+(free tier) and gracefully falls back to a designed placeholder when the
+account isn't configured yet.
+
+- Single source of truth for the handle: `constants.ts` → `INSTAGRAM_HANDLE`
+- Live feed enabled by setting `INSTAGRAM_LIGHTWIDGET_ID` in the same file
+- Header, footer, mobile menu, homepage promo section, and gallery all
+  read from those two values — change once, the whole site updates
 
 ### 📄 Pages
-- **Home** - Hero with video, featured projects
-- **Gallery** - Project portfolio
-- **Process** - Our craftsmanship process
-- **Materials** - Materials catalog
-- **About** - Company information
-- **Contact** - Contact form
+- **Home** — Hero with video, Instagram promo section, contact
+- **Gallery** — Instagram-first portfolio (live feed or placeholder)
+- **Process** — Our craftsmanship process
+- **Materials** — Materials catalog
+- **About** — Company information
+- **Contact** — WhatsApp-first contact page
 
 ---
 
@@ -212,6 +218,19 @@ shayish-kfar-yassif/
 - Data subject request handling
 
 ---
+
+## ⚠️ Placeholder Values | ערכים זמניים
+
+Before the site goes to production, the following `constants.ts` fields
+must be replaced with real values. Until they are, visitors will see
+fake phone numbers and no customer reviews:
+
+- `INSTAGRAM_HANDLE` — the owner's real Instagram username
+- `CONTACT.whatsappNumber` — the owner's WhatsApp number (E.164, no `+`)
+- `CONTACT.phoneDisplay` / `phoneTel` — the owner's real phone
+- `TESTIMONIALS` — real, attributed customer reviews (with permission)
+- `TESTIMONIALS_ENABLED` — flip to `true` once the reviews above are real
+- `INSTAGRAM_LIGHTWIDGET_ID` — optional; enables the live feed embed
 
 ## 📞 Contact | צור קשר
 
