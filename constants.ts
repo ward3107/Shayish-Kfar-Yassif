@@ -38,6 +38,21 @@ export const CONTACT = {
 // Flip to true once TESTIMONIALS below are replaced with real, attributed reviews.
 export const TESTIMONIALS_ENABLED = false;
 
+// Showroom opening hours — used by the header status pill to show a live
+// open/closed indicator. Times are 24h in Asia/Jerusalem.
+// TODO: replace with the real showroom hours. Empty array = closed that day.
+// dayOfWeek: 0=Sunday, 1=Monday ... 5=Friday, 6=Saturday
+export const BUSINESS_HOURS: Array<{ dayOfWeek: number; open: string; close: string } | null> = [
+  { dayOfWeek: 0, open: '08:00', close: '18:00' }, // Sunday
+  { dayOfWeek: 1, open: '08:00', close: '18:00' }, // Monday
+  { dayOfWeek: 2, open: '08:00', close: '18:00' }, // Tuesday
+  { dayOfWeek: 3, open: '08:00', close: '18:00' }, // Wednesday
+  { dayOfWeek: 4, open: '08:00', close: '18:00' }, // Thursday
+  { dayOfWeek: 5, open: '08:00', close: '13:00' }, // Friday (short day)
+  null,                                             // Saturday (closed)
+];
+export const BUSINESS_TIMEZONE = 'Asia/Jerusalem';
+
 export const whatsappLink = (message: string) =>
   `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
 

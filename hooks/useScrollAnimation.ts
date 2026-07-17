@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type AnimationType = 'fadeIn' | 'fadeInUp' | 'stagger' | 'parallax' | 'scaleIn';
+type AnimationType = 'fadeIn' | 'fadeInUp' | 'stagger' | 'parallax' | 'scaleIn' | 'slab' | 'slabStagger';
 
 interface UseScrollAnimationOptions {
   type?: AnimationType;
@@ -105,6 +105,45 @@ export const useScrollAnimation = (
               scrub: typeof scrub === 'number' ? scrub : 1,
             },
           });
+          break;
+
+        // "Slab" — feels like a heavy stone slab dropping into place.
+        // Enters from above with weight (higher y offset, tiny tilt),
+        // slight overshoot, then settles. On-brand for a marble business.
+        case 'slab':
+          gsap.fromTo(
+            element,
+            { opacity: 0, y: -100, rotation: -2, scale: 1.02 },
+            {
+              opacity: 1,
+              y: 0,
+              rotation: 0,
+              scale: 1,
+              duration: 1.1,
+              delay,
+              ease: 'back.out(1.4)',
+              scrollTrigger: { trigger: element, start },
+            }
+          );
+          break;
+
+        // Same slab feel, but each child drops one after the other. Use on
+        // the container that holds multiple cards/tiles.
+        case 'slabStagger':
+          gsap.fromTo(
+            element.children,
+            { opacity: 0, y: -80, rotation: -1.5, scale: 1.02 },
+            {
+              opacity: 1,
+              y: 0,
+              rotation: 0,
+              scale: 1,
+              duration: 0.9,
+              stagger,
+              ease: 'back.out(1.3)',
+              scrollTrigger: { trigger: element, start },
+            }
+          );
           break;
       }
     }, element);

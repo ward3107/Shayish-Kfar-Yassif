@@ -41,7 +41,9 @@ const Home: React.FC = () => {
   const introRef = useScrollAnimation({ type: 'fadeInUp', delay: 0.2 });
   const collectionsRef = useScrollAnimation({ type: 'fadeInUp', delay: 0.1 });
   const gridRef = useRef<HTMLDivElement>(null);
-  const artSectionRef = useScrollAnimation({ type: 'fadeInUp' });
+  // Slab reveal on the art section — it IS a marble image, so a heavy drop
+  // reads more literally on brand than a generic fadeInUp.
+  const artSectionRef = useScrollAnimation({ type: 'slab' });
   const testimonialsRef = useScrollAnimation({ type: 'stagger', stagger: 0.2 });
   const contactRef = useRef<HTMLDivElement>(null);
   const heroButtonsRef = useRef<HTMLDivElement>(null);
@@ -282,10 +284,10 @@ const Home: React.FC = () => {
           </p>
           <div ref={heroButtonsRef} className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/gallery">
-              <Button variant="outline" size="lg">{t('hero.explore')}</Button>
+              <Button variant="outline" size="lg" magnetic>{t('hero.explore')}</Button>
             </Link>
             <Link to="/contact">
-              <Button variant="gold" size="lg">{t('hero.book')}</Button>
+              <Button variant="gold" size="lg" magnetic>{t('hero.book')}</Button>
             </Link>
           </div>
         </div>
