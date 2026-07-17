@@ -27,6 +27,15 @@
   --color-header-text: #ffffff;
 }
 
+html,
+body {
+  /* Kill horizontal scroll on mobile — a stray wide element (RTL negative
+     offsets, full-bleed sections) must never make the whole page slide
+     sideways. */
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: 'Heebo', sans-serif;
   background-color: var(--color-primary);

@@ -89,7 +89,7 @@ const MusicPlayer: React.FC = () => {
   const togglePlay = () => { setError(false); setPlaying((p) => !p); };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 md:bottom-8 md:right-8 rtl:right-auto rtl:left-6 md:rtl:left-8">
+    <div className="fixed bottom-4 right-4 z-40 md:bottom-8 md:right-8 rtl:right-auto rtl:left-4 md:rtl:left-8">
       {/* No crossOrigin — we only play the stream, never analyse it, and
           the placeholder host (SoundHelix) doesn't send CORS headers, so
           crossOrigin would make the load fail outright. */}
@@ -179,9 +179,9 @@ const MusicPlayer: React.FC = () => {
           onClick={() => setExpanded(true)}
           aria-label={t('music.open')}
           title={t('music.open')}
-          className="flex items-center justify-center w-14 h-14 rounded-full bg-secondary/80 backdrop-blur-md border border-divider text-muted hover:text-accent hover:border-accent transition-colors shadow-lg"
+          className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-secondary/80 backdrop-blur-md border border-divider text-muted hover:text-accent hover:border-accent transition-colors shadow-lg"
         >
-          {playing ? <Pause size={20} /> : <Music size={20} />}
+          {playing ? <Pause size={18} /> : <Music size={18} />}
         </button>
       )}
     </div>
