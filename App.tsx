@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { SoundProvider } from './contexts/SoundContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 
@@ -31,6 +32,7 @@ const App: React.FC = () => {
   return (
     <LanguageProvider>
       <ThemeProvider>
+       <SoundProvider>
         <Router>
           <Layout>
             <Suspense fallback={<RouteFallback />}>
@@ -51,6 +53,7 @@ const App: React.FC = () => {
             </Suspense>
           </Layout>
         </Router>
+       </SoundProvider>
       </ThemeProvider>
     </LanguageProvider>
   );
