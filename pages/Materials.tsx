@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Materials: React.FC = () => {
   const { t } = useLanguage();
@@ -8,6 +9,11 @@ const Materials: React.FC = () => {
   useEffect(() => {
     document.title = `${t('materials.title')} - Materials | שיש כפר יאסיף - Shayish Kfar Yassif`;
   }, []);
+
+  // Slab-drop reveal on both card grids — feels like slabs of stone being
+  // set into place instead of a generic fade-in.
+  const stoneGridRef = useScrollAnimation({ type: 'slabStagger', stagger: 0.15 });
+  const finishGridRef = useScrollAnimation({ type: 'slabStagger', stagger: 0.12 });
 
   const finishes = [
     { title: t('materials.finish_polished'), desc: t('materials.finish_polished_desc'), img: "https://picsum.photos/seed/m1/400/300" },
@@ -32,7 +38,7 @@ const Materials: React.FC = () => {
                 <h2 className="text-3xl font-serif">{t('materials.section_stone')}</h2>
                 <span className="text-accent text-xs uppercase tracking-widest">01</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+            <div ref={stoneGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-3 gap-1">
                  <div className="bg-secondary p-12 hover:bg-surface transition-colors border border-neutral-900/50">
                      <h3 className="font-serif text-2xl mb-4 text-light">{t('materials.porcelain_title')}</h3>
                      <p className="text-muted text-sm font-light leading-relaxed">{t('materials.porcelain_desc')}</p>
@@ -54,7 +60,7 @@ const Materials: React.FC = () => {
                 <h2 className="text-3xl font-serif">{t('materials.section_finishes')}</h2>
                 <span className="text-accent text-xs uppercase tracking-widest">02</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div ref={finishGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {finishes.map((item, i) => (
                     <div key={i} className="group cursor-pointer">
                         <div className="overflow-hidden aspect-[4/5] mb-6 grayscale group-hover:grayscale-0 transition-all duration-500">

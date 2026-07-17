@@ -14,6 +14,7 @@ const Process = lazy(() => import('./pages/Process'));
 const Materials = lazy(() => import('./pages/Materials'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
+const FAQ = lazy(() => import('./pages/FAQ'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const AccessibilityStatement = lazy(() => import('./pages/AccessibilityStatement'));
@@ -40,6 +41,7 @@ const App: React.FC = () => {
                 <Route path="/materials" element={<Materials />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-use" element={<TermsOfUse />} />
                 <Route path="/accessibility-statement" element={<AccessibilityStatement />} />

@@ -5,6 +5,7 @@ import Button from './Button';
 import FloatingActions from './FloatingActions';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
+import ShowroomStatus from './ShowroomStatus';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { CONTACT } from '../constants';
@@ -36,6 +37,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { name: t('nav.process'), path: '/process' },
     { name: t('nav.materials'), path: '/materials' },
     { name: t('nav.studio'), path: '/about' },
+    { name: t('nav.faq'), path: '/faq' },
   ];
 
   const cycleLanguage = () => {
@@ -48,7 +50,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className={`min-h-screen flex flex-col font-sans text-light bg-primary transition-colors duration-300 ${language === 'ar' ? 'font-arabic' : ''}`} dir={dir}>
       {/* Navigation */}
-      <header 
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled 
             ? 'bg-primary/95 backdrop-blur-md border-neutral-800 py-4 shadow-sm' 
@@ -67,6 +69,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
+             {/* Live showroom status pill — reads BUSINESS_HOURS + BUSINESS_TIMEZONE */}
+            <div className="border-e border-gray-700 pe-6 me-2">
+              <ShowroomStatus />
+            </div>
              {/* Instagram + Language + Theme Switcher */}
             <div className="flex items-center gap-6 border-e border-gray-700 pe-6 me-4">
 
@@ -145,6 +151,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}>
+          <div className="mb-8">
+            <ShowroomStatus />
+          </div>
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
               <Link 

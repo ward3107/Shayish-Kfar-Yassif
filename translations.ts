@@ -8,6 +8,7 @@ export const translations = {
       process: 'Process',
       materials: 'Materials',
       studio: 'Studio',
+      faq: 'FAQ',
       consultation: 'Consultation'
     },
     hero: {
@@ -83,6 +84,14 @@ export const translations = {
       description: 'The page you are looking for does not exist or has been moved.',
       home: 'Back to Home'
     },
+    showroom: {
+      open_now: 'Open Now',
+      closed_now: 'Closed Now',
+      until: 'Until',
+      opens_at: 'Opens at',
+      opens_tomorrow: 'Opens tomorrow at',
+      opens_in_days: 'Opens in {days} days at'
+    },
     about: {
       title_line1: 'Legacy of',
       title_line2: 'Stone & Porcelain',
@@ -125,6 +134,56 @@ export const translations = {
       subtitle: 'Every kitchen, every countertop, every install — posted daily on our Instagram.',
       instagram_cta: 'View Full Portfolio on Instagram',
       handle_note: 'Follow @shayish_kfar_yassif for real-time updates.'
+    },
+    // FAQ Page
+    faq: {
+      eyebrow: 'Frequently Asked',
+      title: 'Questions & Answers',
+      subtitle: 'The things people ask us most often, before, during, and after their project.',
+      still_asking: "Didn't find your answer?",
+      still_asking_desc: 'We answer WhatsApp within business hours. Real people, no bots.',
+      items: [
+        {
+          q: 'What is the difference between marble, porcelain, and Caesarstone?',
+          a: 'Marble is a natural stone — soft, unique veining, warm feel, but stains easily and needs sealing. Porcelain is engineered — extremely hard, stain-proof, heat-proof, unlimited designs including marble looks. Caesarstone is Israeli quartz — 90% natural quartz bound in resin, non-porous, resistant to almost everything except direct high heat.'
+        },
+        {
+          q: 'How long does production take from measurement to installation?',
+          a: 'Typically 6 to 8 weeks from the final on-site measurement, depending on the material, size, and any custom cutouts (sink, cooktop, edge profile). Rush jobs are possible for an extra fee.'
+        },
+        {
+          q: 'Do you offer a warranty?',
+          a: 'Yes — 10-year warranty on manufacturing defects and craftsmanship. Natural stones carry an inherent-imperfection notice; porcelain and quartz are fully covered.'
+        },
+        {
+          q: 'Do you provide 3D designs before production?',
+          a: 'Every consultation includes a detailed 3D rendering of your countertop or installation, so you can approve the design before we cut a single slab.'
+        },
+        {
+          q: 'Do you deliver and install throughout Israel?',
+          a: 'Yes — nationwide, from Metula to Eilat. Delivery cost depends on distance and access; the north is included in standard pricing.'
+        },
+        {
+          q: 'Can I visit the factory showroom?',
+          a: 'Yes, by appointment. We prefer scheduled visits so a designer can walk you through material samples and answer questions properly. Reach out on WhatsApp to book.'
+        },
+        {
+          q: 'How do polished, matte, and honed finishes differ?',
+          a: 'Polished is high-gloss, mirror-like, reflects light. Matte (or silk) is smooth without shine. Honed is smooth-matte but shows the natural stone character more strongly. Choice is mostly aesthetic — durability is the same.'
+        },
+        {
+          q: 'How do I care for a marble surface? Will it stain?',
+          a: 'Marble needs sealing once every 6-12 months and immediate cleanup of acidic spills (wine, lemon, tomato). Use a stone-safe cleaner, never acidic ones. Porcelain and Caesarstone need no such care — just soap and water.'
+        },
+        {
+          q: 'How is pricing calculated?',
+          a: 'Per square meter of the material you choose, plus edge finishing, cutouts, and installation. Prices vary widely: Caesarstone from ~₪1,200/sqm, mid-range porcelain from ~₪1,800/sqm, exotic marble can be much higher. Free quotes on request.'
+        },
+        {
+          q: 'Can I choose the exact slab I get?',
+          a: 'For natural stone, yes — we invite you to see and reserve specific slabs at the showroom, since no two are identical. For engineered materials, the pattern is consistent and slab selection is not needed.'
+        }
+      ]
     },
     // Process Page
     process: {
@@ -247,6 +306,7 @@ export const translations = {
       process: 'תהליך',
       materials: 'חומרים',
       studio: 'סטודיו',
+      faq: 'שאלות נפוצות',
       consultation: 'ייעוץ'
     },
     hero: {
@@ -322,6 +382,14 @@ export const translations = {
       description: 'העמוד שחיפשת אינו קיים או הועבר למקום אחר.',
       home: 'חזרה לעמוד הבית'
     },
+    showroom: {
+      open_now: 'פתוח כעת',
+      closed_now: 'סגור כעת',
+      until: 'עד',
+      opens_at: 'נפתח ב־',
+      opens_tomorrow: 'נפתח מחר ב־',
+      opens_in_days: 'נפתח בעוד {days} ימים ב־'
+    },
     about: {
       title_line1: 'מורשת של',
       title_line2: 'שיש ופורצלן',
@@ -364,6 +432,56 @@ export const translations = {
       subtitle: 'כל מטבח, כל משטח, כל התקנה — מתפרסמים מדי יום באינסטגרם שלנו.',
       instagram_cta: 'לצפייה בכל התיק באינסטגרם',
       handle_note: 'עקבו אחר @shayish_kfar_yassif לעדכונים בזמן אמת.'
+    },
+    // FAQ Page
+    faq: {
+      eyebrow: 'שאלות נפוצות',
+      title: 'שאלות ותשובות',
+      subtitle: 'הדברים שהכי הרבה שואלים אותנו — לפני, במהלך ואחרי הפרויקט.',
+      still_asking: 'לא מצאת את התשובה?',
+      still_asking_desc: 'עונים בוואטסאפ בשעות פעילות. אנשים אמיתיים, לא בוטים.',
+      items: [
+        {
+          q: 'מה ההבדל בין שיש, פורצלן וקיסרסטון?',
+          a: 'שיש הוא אבן טבעית — רך, ורידים ייחודיים, תחושה חמה, אבל נכתם בקלות ודורש שיקוע. פורצלן מהונדס — עמיד מאוד, לא נכתם, עמיד בחום, אינסוף עיצובים כולל מראה שיש. קיסרסטון הוא קוורץ ישראלי — 90% קוורץ טבעי מחובר בשרף, לא נקבובי, עמיד כמעט בכל דבר חוץ מחום ישיר גבוה.'
+        },
+        {
+          q: 'כמה זמן לוקח מהמדידה ועד ההתקנה?',
+          a: 'בדרך כלל 6 עד 8 שבועות מהמדידה הסופית בשטח, תלוי בחומר, בגודל, ובחיתוכים מיוחדים (כיור, כיריים, פרופיל קצה). ניתן להזמין ייצור מזורז בתוספת תשלום.'
+        },
+        {
+          q: 'האם יש אחריות?',
+          a: 'כן — אחריות של 10 שנים על פגמי ייצור ואומנות. אבן טבעית כוללת הודעה על פגמים אינהרנטיים; פורצלן וקוורץ מכוסים במלואם.'
+        },
+        {
+          q: 'האם אתם מכינים תכנון תלת-מימד לפני ייצור?',
+          a: 'כל ייעוץ כולל הדמיה תלת-מימדית מפורטת של המשטח או ההתקנה, כדי שתוכלו לאשר את העיצוב לפני שאנחנו חותכים לוח אחד.'
+        },
+        {
+          q: 'האם אתם מתקינים בכל הארץ?',
+          a: 'כן — מכל מקום בארץ, ממטולה עד אילת. עלות המשלוח תלויה במרחק ובגישה; הצפון כלול במחיר הסטנדרטי.'
+        },
+        {
+          q: 'האם אפשר לבקר באולם התצוגה במפעל?',
+          a: 'כן, בתיאום מראש. אנחנו מעדיפים ביקורים מתואמים כדי שמעצב יוכל להעביר אתכם על דוגמאות החומרים ולענות על שאלות בצורה מסודרת. פנו בוואטסאפ לתיאום.'
+        },
+        {
+          q: 'מה ההבדל בין גימור מבריק, מט ומלוט?',
+          a: 'מבריק זה בהיר, כמו מראה, משקף אור. מט (או משי) זה חלק בלי ברק. מלוט זה חלק-מט אבל מראה יותר בבירור את האופי הטבעי של האבן. הבחירה בעיקר אסתטית — העמידות זהה.'
+        },
+        {
+          q: 'איך מטפלים במשטח שיש? האם הוא נכתם?',
+          a: 'שיש דורש שיקוע כל 6-12 חודשים וניקוי מיידי של נוזלים חומציים (יין, לימון, עגבנייה). השתמשו בחומר ניקוי בטוח לאבן, אף פעם לא בחומצי. פורצלן וקיסרסטון לא דורשים טיפול מיוחד — סבון ומים.'
+        },
+        {
+          q: 'איך מתמחרים?',
+          a: 'לפי מטר רבוע של החומר שבחרתם, בתוספת גימור קצה, חיתוכים והתקנה. המחירים משתנים מאוד: קיסרסטון החל מכ־₪1,200/מ״ר, פורצלן בינוני החל מכ־₪1,800/מ״ר, שיש אקזוטי יכול להיות הרבה יותר. הצעות מחיר בחינם.'
+        },
+        {
+          q: 'האם אפשר לבחור את הלוח הספציפי שאני מקבל?',
+          a: 'לאבן טבעית — כן, אנו מזמינים אתכם לראות ולשריין לוחות ספציפיים באולם התצוגה, כי אין שתי אבנים זהות. לחומרים מהונדסים — הדוגמה עקבית וכן בחירת לוח לא נדרשת.'
+        }
+      ]
     },
     // Process Page
     process: {
@@ -486,6 +604,7 @@ export const translations = {
       process: 'العملية',
       materials: 'المواد',
       studio: 'الاستوديو',
+      faq: 'أسئلة شائعة',
       consultation: 'استشارة'
     },
     hero: {
@@ -561,6 +680,14 @@ export const translations = {
       description: 'الصفحة التي تبحث عنها غير موجودة أو تم نقلها.',
       home: 'العودة إلى الرئيسية'
     },
+    showroom: {
+      open_now: 'مفتوح الآن',
+      closed_now: 'مغلق الآن',
+      until: 'حتى',
+      opens_at: 'يفتح في',
+      opens_tomorrow: 'يفتح غدًا في',
+      opens_in_days: 'يفتح خلال {days} أيام في'
+    },
     about: {
       title_line1: 'تراث من',
       title_line2: 'الحجر والبورسلين',
@@ -603,6 +730,56 @@ export const translations = {
       subtitle: 'كل مطبخ، كل سطح، كل تركيب — يُنشر يوميًا على إنستغرام.',
       instagram_cta: 'شاهدوا الأعمال الكاملة على إنستغرام',
       handle_note: 'تابعوا @shayish_kfar_yassif للتحديثات المباشرة.'
+    },
+    // FAQ Page
+    faq: {
+      eyebrow: 'الأسئلة الشائعة',
+      title: 'أسئلة وأجوبة',
+      subtitle: 'الأمور التي يسألنا عنها العملاء أكثر — قبل المشروع وأثناءه وبعده.',
+      still_asking: 'لم تجد إجابتك؟',
+      still_asking_desc: 'نرد على واتساب خلال ساعات العمل. أشخاص حقيقيون، لا روبوتات.',
+      items: [
+        {
+          q: 'ما الفرق بين الرخام والبورسلين والكوارتز (سيزارستون)؟',
+          a: 'الرخام حجر طبيعي — ناعم، عروق فريدة، إحساس دافئ، لكنه يتلطخ بسهولة ويحتاج إلى مانع تسرب. البورسلين مُهندس — صلب جدًا، مقاوم للبقع والحرارة، تصاميم لا نهائية بما فيها مظهر الرخام. سيزارستون هو كوارتز إسرائيلي — 90% كوارتز طبيعي مربوط بالراتنج، غير مسامي، مقاوم لكل شيء تقريبًا باستثناء الحرارة المباشرة العالية.'
+        },
+        {
+          q: 'كم يستغرق الإنتاج من القياس إلى التركيب؟',
+          a: 'عادة 6 إلى 8 أسابيع من القياس النهائي في الموقع، حسب المادة والحجم وأي قطع مخصصة (حوض، موقد، حواف). الإنتاج السريع ممكن مقابل رسوم إضافية.'
+        },
+        {
+          q: 'هل يوجد ضمان؟',
+          a: 'نعم — ضمان 10 سنوات على عيوب التصنيع والحرفية. الأحجار الطبيعية لها إشعار بالعيوب المتأصلة؛ البورسلين والكوارتز مغطاة بالكامل.'
+        },
+        {
+          q: 'هل تقدمون تصميمات ثلاثية الأبعاد قبل الإنتاج؟',
+          a: 'كل استشارة تشمل تصميمًا ثلاثي الأبعاد مفصلًا للسطح أو التركيب، لتتمكنوا من الموافقة على التصميم قبل قص أي لوح.'
+        },
+        {
+          q: 'هل تركبون في جميع أنحاء إسرائيل؟',
+          a: 'نعم — على مستوى البلاد، من ميتولا إلى إيلات. تكلفة التوصيل تعتمد على المسافة والوصول؛ الشمال مشمول في التسعير القياسي.'
+        },
+        {
+          q: 'هل يمكنني زيارة صالة العرض في المصنع؟',
+          a: 'نعم، بموعد مسبق. نفضل الزيارات المنسقة حتى يتمكن المصمم من مرافقتكم عبر عينات المواد والإجابة على الأسئلة بشكل صحيح. تواصلوا عبر واتساب للحجز.'
+        },
+        {
+          q: 'ما الفرق بين التشطيبات المصقولة والمطفية والملساء؟',
+          a: 'المصقول عالي اللمعان، كالمرآة، يعكس الضوء. المطفي (أو الحرير) ناعم بدون لمعان. الملساء ناعم-مطفي لكنه يظهر الطبيعة الفريدة للحجر بشكل أقوى. الاختيار جمالي في الغالب — المتانة واحدة.'
+        },
+        {
+          q: 'كيف أعتني بسطح رخامي؟ هل سيتلطخ؟',
+          a: 'الرخام يحتاج إلى مانع تسرب كل 6-12 شهرًا وتنظيف فوري للانسكابات الحمضية (نبيذ، ليمون، طماطم). استخدموا منظفًا آمنًا للحجر، ليس حمضيًا أبدًا. البورسلين والكوارتز لا يحتاجان لهذه العناية — فقط صابون وماء.'
+        },
+        {
+          q: 'كيف يتم حساب التسعير؟',
+          a: 'لكل متر مربع من المادة التي تختارونها، بالإضافة إلى تشطيب الحواف والقطع والتركيب. الأسعار تختلف كثيرًا: سيزارستون من ~1200 شيكل/م²، بورسلين متوسط من ~1800 شيكل/م²، الرخام النادر يمكن أن يكون أعلى بكثير. عروض أسعار مجانية عند الطلب.'
+        },
+        {
+          q: 'هل يمكنني اختيار اللوح المحدد الذي أحصل عليه؟',
+          a: 'للحجر الطبيعي، نعم — نرحب بكم لرؤية وحجز ألواح محددة في صالة العرض، حيث لا يوجد لوحان متطابقان. للمواد المُهندسة، النمط ثابت واختيار اللوح غير مطلوب.'
+        }
+      ]
     },
     // Process Page
     process: {
@@ -725,6 +902,7 @@ export const translations = {
       process: 'Процесс',
       materials: 'Материалы',
       studio: 'Студия',
+      faq: 'FAQ',
       consultation: 'Консультация'
     },
     hero: {
@@ -800,6 +978,14 @@ export const translations = {
       description: 'Страница, которую вы ищете, не существует или была перемещена.',
       home: 'Вернуться на главную'
     },
+    showroom: {
+      open_now: 'Открыто сейчас',
+      closed_now: 'Закрыто сейчас',
+      until: 'До',
+      opens_at: 'Откроется в',
+      opens_tomorrow: 'Откроется завтра в',
+      opens_in_days: 'Откроется через {days} дн. в'
+    },
     about: {
       title_line1: 'Наследие',
       title_line2: 'Камня и Фарфора',
@@ -842,6 +1028,56 @@ export const translations = {
       subtitle: 'Каждая кухня, каждая столешница, каждая установка — публикуются ежедневно в нашем Instagram.',
       instagram_cta: 'Смотреть полное портфолио в Instagram',
       handle_note: 'Подписывайтесь на @shayish_kfar_yassif для обновлений в реальном времени.'
+    },
+    // FAQ Page
+    faq: {
+      eyebrow: 'Часто задаваемые',
+      title: 'Вопросы и ответы',
+      subtitle: 'То, что нас спрашивают чаще всего — до, во время и после проекта.',
+      still_asking: 'Не нашли ответ?',
+      still_asking_desc: 'Отвечаем в WhatsApp в рабочие часы. Живые люди, без ботов.',
+      items: [
+        {
+          q: 'В чём разница между мрамором, фарфором и Caesarstone?',
+          a: 'Мрамор — натуральный камень, мягкий, уникальные прожилки, тёплое ощущение, но легко пачкается и требует пропитки. Фарфор — инженерный материал, очень прочный, устойчив к пятнам и жару, бесконечные дизайны включая имитацию мрамора. Caesarstone — израильский кварц, 90% натуральный кварц на смоле, непористый, устойчив почти ко всему кроме прямого высокого тепла.'
+        },
+        {
+          q: 'Сколько времени занимает производство от замера до установки?',
+          a: 'Обычно 6-8 недель с момента финального замера на объекте, в зависимости от материала, размера и вырезов (мойка, варочная, профиль края). Срочные заказы возможны за доплату.'
+        },
+        {
+          q: 'Есть ли гарантия?',
+          a: 'Да — 10 лет на производственные дефекты и качество работы. Натуральный камень имеет уведомление о врождённых несовершенствах; фарфор и кварц покрываются полностью.'
+        },
+        {
+          q: 'Предоставляете ли вы 3D-дизайн до производства?',
+          a: 'Каждая консультация включает подробную 3D-визуализацию столешницы или установки, чтобы вы могли одобрить дизайн до того, как мы разрежем плиту.'
+        },
+        {
+          q: 'Доставляете и устанавливаете по всему Израилю?',
+          a: 'Да — по всей стране, от Метулы до Эйлата. Стоимость доставки зависит от расстояния и доступа; север включён в стандартную цену.'
+        },
+        {
+          q: 'Могу ли я посетить шоу-рум на фабрике?',
+          a: 'Да, по предварительной записи. Предпочитаем запланированные визиты, чтобы дизайнер провёл вас по образцам материалов и ответил на вопросы. Пишите в WhatsApp для записи.'
+        },
+        {
+          q: 'В чём разница между полированной, матовой и шлифованной отделкой?',
+          a: 'Полированная — глянцевая, зеркальная, отражает свет. Матовая (или шёлк) — гладкая без блеска. Шлифованная — гладко-матовая, но сильнее показывает природный характер камня. Выбор в основном эстетический — прочность одинаковая.'
+        },
+        {
+          q: 'Как ухаживать за мраморной поверхностью? Будет ли пятна?',
+          a: 'Мрамор требует пропитки раз в 6-12 месяцев и немедленной уборки кислотных пятен (вино, лимон, помидор). Используйте средство, безопасное для камня, никогда не кислотное. Фарфор и Caesarstone не требуют такого ухода — просто мыло и вода.'
+        },
+        {
+          q: 'Как рассчитывается цена?',
+          a: 'За квадратный метр выбранного материала, плюс обработка кромок, вырезы и установка. Цены сильно варьируются: Caesarstone от ~1200 шек/м², средний фарфор от ~1800 шек/м², редкий мрамор может быть значительно дороже. Бесплатные оценки по запросу.'
+        },
+        {
+          q: 'Могу ли я выбрать конкретную плиту?',
+          a: 'Для натурального камня — да, приглашаем вас посмотреть и забронировать конкретные плиты в шоу-руме, так как двух одинаковых не бывает. Для инженерных материалов — узор постоянный и выбор плиты не требуется.'
+        }
+      ]
     },
     // Process Page
     process: {
