@@ -1,8 +1,8 @@
-import React, { Suspense, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, ContactShadows, Environment } from '@react-three/drei';
 import type { Mesh } from 'three';
-import { MeshStandardMaterial } from 'three';
+import { MeshPhysicalMaterial } from 'three';
 import { useLanguage } from '../contexts/LanguageContext';
 
 /**
@@ -32,11 +32,23 @@ const Slab: React.FC<{ finish: Finish; rotating: boolean }> = ({ finish, rotatin
   });
 
   const props = FINISH_PROPS[finish];
-  const material = new MeshStandardMaterial({
-    color: '#e8e4dc',
-    roughness: props.roughness,
-    metalness: props.metalness,
-  });
+  const material = useMemo(
+    () =>
+      new MeshPhysicalMaterial({
+        color: '#e8e4dc',
+        roughness: props.roughness,
+        metalness: props.metalness,
+        clearcoat: props.clearcoat ?? 0,
+        clearcoatRoughness: 0.1,
+      }),
+    [props.roughness, props.metalness, props.clearcoat]
+  );
+
+  useEffect(() => {
+    return () => {
+      material.dispose();
+    };
+  }, [material]);
 
   return (
     <mesh ref={meshRef} material={material} castShadow>

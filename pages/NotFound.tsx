@@ -7,8 +7,8 @@ const NotFound: React.FC = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    document.title = '404 - Not Found | שיש כפר יאסיף - Shayish Kfar Yassif';
-  }, []);
+    document.title = `${t('meta.notfound_title')} | ${t('meta.brand')}`;
+  }, [t]);
 
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen flex items-center justify-center text-light transition-colors duration-300">

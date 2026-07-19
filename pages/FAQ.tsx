@@ -14,10 +14,10 @@ import WhatsAppCTA from '../components/WhatsAppCTA';
  * translator returned and mirrors it into structured data.
  */
 const FAQ: React.FC = () => {
-  const { t, dir } = useLanguage();
+  const { t, tAny, dir } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const items: Array<{ q: string; a: string }> = t('faq.items') ?? [];
+  const items: Array<{ q: string; a: string }> = tAny<Array<{ q: string; a: string }>>('faq.items') ?? [];
 
   useEffect(() => {
     document.title = `${t('faq.title')} | שיש כפר יאסיף - Shayish Kfar Yassif`;

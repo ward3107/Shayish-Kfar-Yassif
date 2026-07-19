@@ -28,7 +28,7 @@
     <meta property="og:locale:alternate" content="ar_IL" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:locale:alternate" content="ru_RU" />
-    <!-- TODO: replace with a real 1200x630 marketing image once the owner picks one -->
+    <!-- 1200x630 marketing image; replace public/og-cover.jpg with a hero shot when available -->
     <meta property="og:image" content="https://shayish-yasif.co.il/og-cover.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -41,7 +41,12 @@
     <meta name="twitter:image" content="https://shayish-yasif.co.il/og-cover.jpg" />
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23050505%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2252%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2240%22%20font-style%3D%22italic%22%20fill%3D%22%23b08d4b%22%3ES%3C%2Ftext%3E%3C%2Fsvg%3E" />
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20180%20180%22%3E%3Crect%20width%3D%22180%22%20height%3D%22180%22%20fill%3D%22%23050505%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2255%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%22110%22%20font-style%3D%22italic%22%20fill%3D%22%23b08d4b%22%3ES%3C%2Ftext%3E%3C%2Fsvg%3E" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Shayish Admin" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
     <!-- Schema.org LocalBusiness — helps Google surface the business as a
          rich card in search results (address, phone, hours, ratings when
@@ -74,11 +79,18 @@
     }
     </script>
 
+    <!-- Perf: establish TLS to third-party origins we WILL hit, before we hit them. -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://api.cloudinary.com" />
+
     <!-- Accessibility Widget (IS 5568 / WCAG 2.0 AA Compliant) -->
     <link rel="stylesheet" href="/accessibility-widget.css" />
     <script src="/accessibility-widget.js" defer></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600;700&family=Heebo:wght@100;300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Fonts: only weights actually used to save bandwidth -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- GTM Consent Mode v2 - Default Consent State (Must be BEFORE GTM loads) -->
     <script>

@@ -9,7 +9,18 @@ export const translations = {
       materials: 'Materials',
       studio: 'Studio',
       faq: 'FAQ',
-      consultation: 'Consultation'
+      consultation: 'Consultation',
+      open_menu: 'Open menu',
+      close_menu: 'Close menu',
+      primary: 'Primary navigation'
+    },
+    meta: {
+      brand: 'Shayish Kfar Yassif',
+      home_title: 'Shayish Kfar Yassif | Custom Marble & Porcelain Surfaces',
+      about_title: 'Studio — About',
+      contact_title: 'Contact',
+      privacy_title: 'Privacy Policy',
+      notfound_title: '404 — Not Found'
     },
     hero: {
       est: 'Est. 2008 • Kfar Yassif',
@@ -172,7 +183,19 @@ export const translations = {
       title: 'Our Work',
       subtitle: 'Every kitchen, every countertop, every install — posted daily on our Instagram.',
       instagram_cta: 'View Full Portfolio on Instagram',
-      handle_note: 'Follow @shayish_kfar_yassif for real-time updates.'
+      handle_note: 'Follow @shayish_kfar_yassif for real-time updates.',
+      load_error: "Couldn't load the gallery — please refresh.",
+      lightbox_label: 'Media viewer',
+      close: 'Close',
+      next: 'Next',
+      prev: 'Previous',
+      reel_eyebrow: 'Studio Reel',
+      reel_title: 'Inside the workshop',
+      watch: 'Watch',
+      mute: 'Mute',
+      unmute: 'Unmute',
+      projects: 'Projects',
+      pieces: 'pieces'
     },
     // FAQ Page
     faq: {
@@ -354,7 +377,18 @@ export const translations = {
       materials: 'חומרים',
       studio: 'סטודיו',
       faq: 'שאלות נפוצות',
-      consultation: 'ייעוץ'
+      consultation: 'ייעוץ',
+      open_menu: 'פתח תפריט',
+      close_menu: 'סגור תפריט',
+      primary: 'ניווט ראשי'
+    },
+    meta: {
+      brand: 'שיש כפר יאסיף',
+      home_title: 'שיש כפר יאסיף | משטחי שיש וקרמיקה בהתאמה אישית',
+      about_title: 'סטודיו — אודות',
+      contact_title: 'צור קשר',
+      privacy_title: 'מדיניות פרטיות',
+      notfound_title: '404 — הדף לא נמצא'
     },
     hero: {
       est: 'נוסד 2008 • כפר יאסיף',
@@ -517,7 +551,19 @@ export const translations = {
       title: 'העבודות שלנו',
       subtitle: 'כל מטבח, כל משטח, כל התקנה — מתפרסמים מדי יום באינסטגרם שלנו.',
       instagram_cta: 'לצפייה בכל התיק באינסטגרם',
-      handle_note: 'עקבו אחר @shayish_kfar_yassif לעדכונים בזמן אמת.'
+      handle_note: 'עקבו אחר @shayish_kfar_yassif לעדכונים בזמן אמת.',
+      load_error: 'לא הצלחנו לטעון את הגלריה — נסו לרענן.',
+      lightbox_label: 'צפייה במדיה',
+      close: 'סגור',
+      next: 'הבא',
+      prev: 'הקודם',
+      reel_eyebrow: 'סרטון סטודיו',
+      reel_title: 'מבט מבפנים',
+      watch: 'צפייה',
+      mute: 'השתקה',
+      unmute: 'ביטול השתקה',
+      projects: 'פרויקטים',
+      pieces: 'פריטים'
     },
     // FAQ Page
     faq: {
@@ -699,7 +745,18 @@ export const translations = {
       materials: 'المواد',
       studio: 'الاستوديو',
       faq: 'أسئلة شائعة',
-      consultation: 'استشارة'
+      consultation: 'استشارة',
+      open_menu: 'فتح القائمة',
+      close_menu: 'إغلاق القائمة',
+      primary: 'التنقل الرئيسي'
+    },
+    meta: {
+      brand: 'شايش كفر ياسيف',
+      home_title: 'شايش كفر ياسيف | أسطح رخام وبورسلين مخصصة',
+      about_title: 'الاستوديو — من نحن',
+      contact_title: 'اتصل بنا',
+      privacy_title: 'سياسة الخصوصية',
+      notfound_title: '404 — الصفحة غير موجودة'
     },
     hero: {
       est: 'تأسست 2008 • كفر ياسيف',
@@ -862,7 +919,19 @@ export const translations = {
       title: 'أعمالنا',
       subtitle: 'كل مطبخ، كل سطح، كل تركيب — يُنشر يوميًا على إنستغرام.',
       instagram_cta: 'شاهدوا الأعمال الكاملة على إنستغرام',
-      handle_note: 'تابعوا @shayish_kfar_yassif للتحديثات المباشرة.'
+      handle_note: 'تابعوا @shayish_kfar_yassif للتحديثات المباشرة.',
+      load_error: 'تعذّر تحميل المعرض — الرجاء التحديث.',
+      lightbox_label: 'عارض الوسائط',
+      close: 'إغلاق',
+      next: 'التالي',
+      prev: 'السابق',
+      reel_eyebrow: 'فيديو الاستوديو',
+      reel_title: 'داخل الورشة',
+      watch: 'مشاهدة',
+      mute: 'كتم',
+      unmute: 'إلغاء الكتم',
+      projects: 'مشاريع',
+      pieces: 'قطعة'
     },
     // FAQ Page
     faq: {
@@ -1044,7 +1113,18 @@ export const translations = {
       materials: 'Материалы',
       studio: 'Студия',
       faq: 'FAQ',
-      consultation: 'Консультация'
+      consultation: 'Консультация',
+      open_menu: 'Открыть меню',
+      close_menu: 'Закрыть меню',
+      primary: 'Основная навигация'
+    },
+    meta: {
+      brand: 'Shayish Kfar Yassif',
+      home_title: 'Shayish Kfar Yassif | Мрамор и фарфор на заказ',
+      about_title: 'Студия — О нас',
+      contact_title: 'Контакты',
+      privacy_title: 'Политика конфиденциальности',
+      notfound_title: '404 — Страница не найдена'
     },
     hero: {
       est: 'Основано в 2008 • Кфар Ясиф',
@@ -1207,7 +1287,19 @@ export const translations = {
       title: 'Наши работы',
       subtitle: 'Каждая кухня, каждая столешница, каждая установка — публикуются ежедневно в нашем Instagram.',
       instagram_cta: 'Смотреть полное портфолио в Instagram',
-      handle_note: 'Подписывайтесь на @shayish_kfar_yassif для обновлений в реальном времени.'
+      handle_note: 'Подписывайтесь на @shayish_kfar_yassif для обновлений в реальном времени.',
+      load_error: 'Не удалось загрузить галерею — обновите страницу.',
+      lightbox_label: 'Просмотр медиа',
+      close: 'Закрыть',
+      next: 'Далее',
+      prev: 'Назад',
+      reel_eyebrow: 'Видео из студии',
+      reel_title: 'Внутри мастерской',
+      watch: 'Смотреть',
+      mute: 'Заглушить',
+      unmute: 'Включить звук',
+      projects: 'Проекты',
+      pieces: 'работ'
     },
     // FAQ Page
     faq: {

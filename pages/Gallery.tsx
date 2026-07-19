@@ -4,12 +4,13 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT } from '../constants';
 import InstagramFeed from '../components/InstagramFeed';
 import WhatsAppCTA from '../components/WhatsAppCTA';
+import GalleryGrid from '../components/GalleryGrid';
 
 const Gallery: React.FC = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    document.title = `${t('gallery.title')} | שיש כפר יאסיף - Shayish Kfar Yassif`;
+    document.title = `${t('gallery.title')} | ${t('meta.brand')}`;
   }, [t]);
 
   return (
@@ -19,6 +20,11 @@ const Gallery: React.FC = () => {
           <h1 className="text-5xl md:text-7xl font-serif text-light mb-4">{t('gallery.title')}</h1>
           <p className="text-muted font-light max-w-2xl">{t('gallery.subtitle')}</p>
         </header>
+
+        {/* Owner-curated project media, uploaded via /admin — powered by Cloudinary. */}
+        <section className="mb-20">
+          <GalleryGrid />
+        </section>
 
         {/* Instagram hero card — the whole page's single call to action. */}
         <section className="relative overflow-hidden rounded-sm border border-divider bg-gradient-to-br from-secondary via-primary to-secondary">

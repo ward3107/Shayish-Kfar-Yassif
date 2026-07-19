@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/
 
 # AI crawlers — allow explicitly. This is a marketing site, we WANT to be
 # cited by AI overviews and chat assistants when people ask about marble in

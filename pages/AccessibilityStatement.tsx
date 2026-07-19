@@ -586,7 +586,7 @@ const AccessibilityStatement: React.FC = () => {
               {Object.entries(t.features.items).map(([key, value]) => (
                 <li key={key} className="flex items-start gap-3 text-muted">
                   <CheckCircle className="text-accent flex-shrink-0 mt-0.5" size={18} aria-hidden="true" />
-                  <span>{value}</span>
+                  <span>{value as string}</span>
                 </li>
               ))}
             </ul>
@@ -653,7 +653,7 @@ const AccessibilityStatement: React.FC = () => {
                 )}
 
                 <div className="flex items-center gap-4">
-                  <div className="text-accent flex-shrink-0 mt-1" size={20} aria-hidden="true">
+                  <div className="text-accent flex-shrink-0 mt-1 text-xl leading-none" aria-hidden="true">
                     ⏱
                   </div>
                   <div>

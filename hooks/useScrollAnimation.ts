@@ -149,7 +149,10 @@ export const useScrollAnimation = (
     }, element);
 
     return () => ctx.revert();
-  }, [options]);
+    // Options are read once on mount; deps intentionally empty to avoid
+    // re-running the effect when callers pass inline object literals.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return elementRef;
 };

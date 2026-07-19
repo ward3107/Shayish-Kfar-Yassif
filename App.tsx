@@ -1,10 +1,11 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { SoundProvider } from './contexts/SoundContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
+import { prefetchKeyRoutesOnIdle } from './utils/routePrefetch';
 
 // Home is bundled with the main chunk (always the first view). Every other
 // route is code-split, so a visitor landing on / doesn't pay the JS cost
@@ -21,22 +22,46 @@ const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const AccessibilityStatement = lazy(() => import('./pages/AccessibilityStatement'));
 const GdprRequestForm = lazy(() => import('./pages/GdprRequestForm'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const Admin = lazy(() => import('./pages/Admin'));
 
-const RouteFallback: React.FC = () => (
-  <div className="min-h-screen bg-primary flex items-center justify-center">
-    <div className="h-8 w-8 border-2 border-accent border-t-transparent rounded-full animate-spin" aria-label="Loading" />
-  </div>
-);
+/**
+ * Delayed loading spinner. Chunks that arrive in <250ms don't flash a
+ * spinner — the page just appears. Only slow loads show feedback.
+ */
+const RouteFallback: React.FC = () => {
+  const [visible, setVisible] = React.useState(false);
+  useEffect(() => {
+    const id = window.setTimeout(() => setVisible(true), 250);
+    return () => window.clearTimeout(id);
+  }, []);
+  if (!visible) return null;
+  return (
+    <div className="min-h-screen bg-primary flex items-center justify-center">
+      <div className="h-8 w-8 border-2 border-accent border-t-transparent rounded-full animate-spin" aria-label="Loading" />
+    </div>
+  );
+};
 
 const App: React.FC = () => {
+  useEffect(() => {
+    prefetchKeyRoutesOnIdle();
+  }, []);
+
   return (
     <LanguageProvider>
       <ThemeProvider>
        <SoundProvider>
         <Router>
-          <Layout>
-            <Suspense fallback={<RouteFallback />}>
-              <Routes>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              {/* Admin lives outside the marketing Layout — no header, footer, or cookie banner. */}
+              <Route path="/admin" element={<Admin />} />
+              <Route
+                path="*"
+                element={
+                  <Layout>
+                    <Suspense fallback={<RouteFallback />}>
+                      <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/process" element={<Process />} />
@@ -49,9 +74,13 @@ const App: React.FC = () => {
                 <Route path="/accessibility-statement" element={<AccessibilityStatement />} />
                 <Route path="/gdpr-request" element={<GdprRequestForm />} />
                 <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </Layout>
+                      </Routes>
+                    </Suspense>
+                  </Layout>
+                }
+              />
+            </Routes>
+          </Suspense>
         </Router>
        </SoundProvider>
       </ThemeProvider>
