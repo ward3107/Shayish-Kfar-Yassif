@@ -10,65 +10,23 @@ interface InstagramFeedProps {
 }
 
 /**
- * Four hand-crafted marble textures — pure CSS, no image files. Each tile
- * evokes a different real stone the workshop actually works with, so the
- * Home page shows range and craft instead of four identical grey squares.
- * The Instagram icon still surfaces on hover to keep the click destination
- * obvious.
+ * Four real marble textures served from Cloudinary. Each tile shows the
+ * actual look of the stone the workshop cuts and installs, so the Home
+ * page reads as a genuine material showcase instead of a gradient mockup.
+ *
+ * Assets live at cloudinary://shayish/materials/<id>. Cloudinary applies
+ * f_auto,q_auto and c_fill so we get WebP/AVIF at correct crop for the
+ * viewer's device.
  */
-const MARBLE_TILES: Array<{ name: string; className: string; style: React.CSSProperties }> = [
-  {
-    name: 'Calacatta',
-    // Warm white with bold grey veins running diagonally.
-    className: 'bg-[#f5f2ec]',
-    style: {
-      backgroundImage: [
-        'linear-gradient(135deg, transparent 0%, rgba(120,110,95,0.35) 40%, transparent 42%, transparent 55%, rgba(90,80,70,0.25) 58%, transparent 62%)',
-        'linear-gradient(115deg, transparent 20%, rgba(180,165,140,0.35) 40%, transparent 45%)',
-        'radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.9) 0%, transparent 55%)',
-        'linear-gradient(135deg, #f8f5ef 0%, #eae4d8 100%)',
-      ].join(', '),
-    },
-  },
-  {
-    name: 'Nero Marquina',
-    // Deep black with thin white veining.
-    className: 'bg-[#0f0f10]',
-    style: {
-      backgroundImage: [
-        'linear-gradient(125deg, transparent 0%, rgba(240,240,240,0.55) 45%, transparent 47%)',
-        'linear-gradient(155deg, transparent 30%, rgba(220,220,220,0.35) 55%, transparent 58%)',
-        'radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.15) 0%, transparent 45%)',
-        'linear-gradient(140deg, #14141a 0%, #050508 100%)',
-      ].join(', '),
-    },
-  },
-  {
-    name: 'Emperador',
-    // Warm brown/tan with lighter tan veins.
-    className: 'bg-[#4a3524]',
-    style: {
-      backgroundImage: [
-        'linear-gradient(120deg, transparent 0%, rgba(220,190,150,0.35) 45%, transparent 48%)',
-        'linear-gradient(160deg, transparent 30%, rgba(180,140,100,0.4) 55%, transparent 60%)',
-        'radial-gradient(ellipse at 25% 60%, rgba(255,220,180,0.3) 0%, transparent 55%)',
-        'linear-gradient(135deg, #5a4130 0%, #382518 100%)',
-      ].join(', '),
-    },
-  },
-  {
-    name: 'Verde Alpi',
-    // Deep green marble with lighter jade veining.
-    className: 'bg-[#1c3028]',
-    style: {
-      backgroundImage: [
-        'linear-gradient(130deg, transparent 0%, rgba(180,220,190,0.35) 45%, transparent 48%)',
-        'linear-gradient(155deg, transparent 30%, rgba(140,190,160,0.35) 55%, transparent 60%)',
-        'radial-gradient(ellipse at 75% 30%, rgba(190,220,200,0.25) 0%, transparent 55%)',
-        'linear-gradient(140deg, #253d33 0%, #12241d 100%)',
-      ].join(', '),
-    },
-  },
+const CLOUD = (import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined) || 'dst5uru0';
+const marbleUrl = (id: string, w = 800) =>
+  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w},h_${w}/shayish/materials/${id}`;
+
+const MARBLE_TILES: Array<{ name: string; id: string; textColor: string }> = [
+  { name: 'Calacatta',     id: 'calacatta',     textColor: 'text-black/70' },
+  { name: 'Nero Marquina', id: 'nero-marquina', textColor: 'text-white/85' },
+  { name: 'Emperador',     id: 'emperador',     textColor: 'text-white/85' },
+  { name: 'Verde Alpi',    id: 'verde-alpi',    textColor: 'text-white/85' },
 ];
 
 /**
@@ -112,12 +70,9 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ variant, ariaLabel }) => 
           {Array.from({ length: 9 }).map((_, i) => {
             const tile = MARBLE_TILES[i % MARBLE_TILES.length];
             return (
-              <div
-                key={i}
-                className={`aspect-square relative overflow-hidden ${tile.className}`}
-                style={tile.style}
-                aria-hidden="true"
-              />
+              <div key={i} className="aspect-square relative overflow-hidden bg-secondary" aria-hidden="true">
+                <img src={marbleUrl(tile.id, 200)} alt="" className="w-full h-full object-cover" loading="lazy" />
+              </div>
             );
           })}
         </div>
@@ -138,19 +93,26 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ variant, ariaLabel }) => 
           target="_blank"
           rel="noopener noreferrer"
           aria-label={ariaLabel ? `${ariaLabel} — ${tile.name}` : `Instagram post ${index + 1}`}
-          className={`group relative overflow-hidden aspect-square border border-divider hover:border-accent transition-colors ${tile.className}`}
-          style={tile.style}
+          className="group relative overflow-hidden aspect-square border border-divider hover:border-accent transition-colors bg-secondary"
         >
+          {/* Real marble texture from Cloudinary */}
+          <img
+            src={marbleUrl(tile.id, 700)}
+            alt={`${tile.name} marble sample`}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+
           {/* Subtle sheen that comes to life on hover, like polish catching light */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-transparent group-hover:via-white/20 transition-colors duration-500" />
 
-          {/* Bottom-left stone name — always visible, small */}
-          <div className="absolute bottom-3 start-3 text-[10px] uppercase tracking-widest text-white/70 mix-blend-difference font-medium pointer-events-none">
+          {/* Bottom-left stone name — always visible, with per-tile contrast */}
+          <div className={`absolute bottom-3 start-3 text-[11px] uppercase tracking-widest font-semibold pointer-events-none drop-shadow ${tile.textColor}`}>
             {tile.name}
           </div>
 
           {/* Instagram overlay — appears on hover to keep the CTA clear */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/45 backdrop-blur-sm">
             <Instagram size={40} className="text-white" />
           </div>
 
