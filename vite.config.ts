@@ -6,6 +6,15 @@ export default defineConfig({
   server: {
     port: 3000,
     host: '0.0.0.0',
+    // In local dev, proxy /api/* to the deployed Vercel functions so the
+    // Gallery and Admin pages work without needing `vercel dev`.
+    proxy: {
+      '/api': {
+        target: 'https://shayish-kfar-yassif.vercel.app',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
   plugins: [react()],
   resolve: {

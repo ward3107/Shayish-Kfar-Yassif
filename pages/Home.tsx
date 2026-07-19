@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
 import InstagramFeed from '../components/InstagramFeed';
 import HeroBackground from '../components/HeroBackground';
+import HomeGalleryPreview from '../components/HomeGalleryPreview';
 import { CONTACT, TESTIMONIALS, TESTIMONIALS_ENABLED } from '../constants';
 import { ArrowRight, Star, Instagram } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -107,36 +108,9 @@ const Home: React.FC = () => {
         },
       });
 
-      // Lightning splash animation - triggered on scroll
-      const lightningFlash = document.querySelector('.lightning-flash');
-      const lightningSplash = document.querySelector('.lightning-splash');
-
-      ScrollTrigger.create({
-        trigger: parallaxSection,
-        start: 'top 70%',
-        onEnter: () => {
-          // Activate lightning flash
-          if (lightningFlash) {
-            lightningFlash.classList.add('active');
-          }
-          // Activate splash glow
-          if (lightningSplash) {
-            setTimeout(() => {
-              lightningSplash.classList.add('active');
-            }, 200);
-          }
-        },
-        onLeaveBack: () => {
-          // Reset when scrolling back up (so it can play again)
-          if (lightningFlash) {
-            lightningFlash.classList.remove('active');
-          }
-          if (lightningSplash) {
-            lightningSplash.classList.remove('active');
-          }
-        },
-        once: false // Allow animation to replay when scrolling back
-      });
+      // Lightning-flash animation removed: it strobed on scroll and was
+      // both distracting and unsafe for users with vestibular / photosensitive
+      // sensitivities. Kept the parallax break itself; only the flash is gone.
     }
 
     // Contact section image parallax
@@ -339,6 +313,10 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Owner-uploaded gallery preview — 8 latest project photos, all
+          click-through to /gallery for the full editorial mosaic. */}
+      <HomeGalleryPreview />
+
       {/* The Stone (Shayish) Highlight */}
       <section ref={artSectionRef as React.RefObject<HTMLElement>} className="py-32 bg-secondary relative transition-colors duration-300">
          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
@@ -356,11 +334,11 @@ const Home: React.FC = () => {
              <div className="order-1 md:order-2 relative h-[500px] w-full art-image">
                  <div className="absolute inset-0 border border-divider transform translate-x-4 translate-y-4 rtl:-translate-x-4"></div>
                  <img
-                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
-                    alt="Marble Texture"
+                    src="https://res.cloudinary.com/dst5uru0/image/upload/f_auto,q_auto,c_fill,g_auto,w_1200,h_1500/shayish/materials/calacatta"
+                    alt="Calacatta marble surface — workshop craft"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover grayscale contrast-125"
+                    className="w-full h-full object-cover"
                  />
              </div>
          </div>
@@ -369,11 +347,12 @@ const Home: React.FC = () => {
       {/* PARALLAX BREAK SECTION */}
       <section
         className="parallax-break relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center overflow-hidden"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1616489953121-2e21b7e0964b?q=80&w=2070&auto=format&fit=crop')" }}
+        style={{ backgroundImage: "url('https://res.cloudinary.com/dst5uru0/image/upload/f_auto,q_auto,c_fill,g_auto,w_2000,h_1200/shayish/materials/nero-marquina')" }}
       >
-         {/* Soft Lightning Splash Overlay */}
-         <div className="absolute inset-0 bg-black/40 lightning-splash"></div>
-         <div className="lightning-flash"></div>
+         {/* Soft dark overlay for text legibility (was a flashing lightning
+             effect — removed; it distracted from the copy and hurt users
+             with vestibular sensitivities). */}
+         <div className="absolute inset-0 bg-black/50"></div>
          <div className="relative z-10 text-center px-6">
             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-wide mb-6">
               {language === 'he' ? 'דיוק בכל פרט' : (language === 'ar' ? 'الدقة في كل التفاصيل' : 'Precision in Every Detail')}

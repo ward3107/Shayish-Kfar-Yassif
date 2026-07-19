@@ -11,14 +11,14 @@ import type { MediaItem } from '../types/media';
  *  - Skips videos here; the reel lives on the Gallery page.
  */
 
-const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
+// Hardcoded fallback so the hero always resolves to the customer's own
+// Cloudinary tenant even when VITE_CLOUDINARY_CLOUD_NAME isn't in the build.
+const CLOUD = (import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined) || 'dst5uru0';
 const FALLBACK_POSTER =
-  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop';
+  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto:good,c_fill,g_auto,w_1920,h_1080/shayish/materials/calacatta`;
 
 const heroUrl = (publicId: string, w: number, h: number) =>
-  CLOUD
-    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto:good,c_fill,g_auto,w_${w},h_${h}/${encodeURIComponent(publicId)}`
-    : FALLBACK_POSTER;
+  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto:good,c_fill,g_auto,w_${w},h_${h}/${encodeURIComponent(publicId)}`;
 
 const SLIDES = 5;
 const INTERVAL_MS = 7000;
