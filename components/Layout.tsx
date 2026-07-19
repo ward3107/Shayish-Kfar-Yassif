@@ -10,6 +10,7 @@ import MusicPlayer from './MusicPlayer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { CONTACT } from '../constants';
+import { prefetchRoute } from '../utils/routePrefetch';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,10 +21,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 50);
+        ticking = false;
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -79,7 +86,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label={t('nav.primary')}>
              {/* Live showroom status pill — reads BUSINESS_HOURS + BUSINESS_TIMEZONE */}
             <div className="border-e border-divider pe-6 me-2">
               <ShowroomStatus />
@@ -111,9 +118,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </div>
 
             {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
+              <Link
+                key={link.path}
                 to={link.path}
+                onMouseEnter={() => prefetchRoute(link.path)}
+                onFocus={() => prefetchRoute(link.path)}
+                onTouchStart={() => prefetchRoute(link.path)}
                 className={`text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
                     location.pathname === link.path ? 'text-accent after:w-full' : headerMuted
                 }`}
@@ -149,10 +159,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                <span className="text-xs font-bold uppercase w-4">{language}</span>
             </button>
 
-            <button 
+            <button
               className={headerText}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Open Menu"
+              aria-label={isMobileMenuOpen ? t('nav.close_menu') : t('nav.open_menu')}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -160,16 +172,24 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}>
+      {/* Mobile Menu Overlay — use `inert` instead of aria-hidden so
+          focusable descendants can't retain focus while hidden. */}
+      <div
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        {...(!isMobileMenuOpen && { inert: '' as unknown as boolean })}
+        className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}
+      >
           <div className="mb-8">
             <ShowroomStatus />
           </div>
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
-                to={link.path} 
+              <Link
+                key={link.path}
+                to={link.path}
+                onTouchStart={() => prefetchRoute(link.path)}
                 className="text-3xl font-serif text-white hover:text-accent transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -244,7 +264,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <ul className="space-y-4 text-sm text-muted">
               <li>{t('contact.address_lines.1')}</li>
               <li>{t('contact.address_lines.0')}</li>
-              <li className="pt-4"><a href="tel:+972500000000" className="text-light hover:text-accent text-lg font-serif" dir="ltr">+972 50-000-0000</a></li>
+              <li className="pt-4"><a href={`tel:${CONTACT.phoneTel}`} className="text-light hover:text-accent text-lg font-serif" dir="ltr">{CONTACT.phoneDisplay}</a></li>
             </ul>
           </div>
         </div>

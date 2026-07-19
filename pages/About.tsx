@@ -6,8 +6,8 @@ const About: React.FC = () => {
 
   // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
   useEffect(() => {
-    document.title = 'סטודיו - About Studio | שיש כפר יאסיף - Shayish Kfar Yassif';
-  }, []);
+    document.title = `${t('meta.about_title')} | ${t('meta.brand')}`;
+  }, [t]);
   return (
     <div className="pt-32 pb-20 bg-primary min-h-screen text-light transition-colors duration-300">
       {/* Hero */}

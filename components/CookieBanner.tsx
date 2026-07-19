@@ -22,6 +22,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { X, ChevronDown, ChevronUp } from 'lucide-react';
 import { doesGDPRApply, GDPRDetectionResult } from '../utils/gdprDetection';
 
+// GTM Consent Mode v2 globals injected by index.html
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 // Types
 export type CookieLanguage = 'he' | 'ar' | 'en' | 'ru';
 
@@ -248,8 +256,8 @@ const updateGTMConsent = (analytics: boolean, marketing: boolean) => {
   window.dataLayer = window.dataLayer || [];
 
   // gtag function for Consent Mode v2
-  window.gtag = window.gtag || function() {
-    window.dataLayer.push(arguments);
+  window.gtag = window.gtag || function(...args: unknown[]) {
+    (window.dataLayer = window.dataLayer || []).push(args);
   };
 
   // Update consent with Granted/Denied for each category
@@ -413,8 +421,6 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
 
     if (isVisible) {
       document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll when banner is open
-      document.body.style.overflow = '';
     }
 
     return () => {

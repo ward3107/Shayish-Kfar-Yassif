@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Slow zoom + drift ("Ken Burns") for hero background images. Runs on every
+   layer; the fade between layers keeps consecutive shots feeling cinematic. */
+@keyframes kenburns {
+  0%   { transform: scale(1.05) translate(0, 0); }
+  100% { transform: scale(1.18) translate(-2%, -1.5%); }
+}
+.hero-kenburns {
+  animation: kenburns 15s ease-out both;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns { animation: none; transform: none; }
+}
+
 :root {
   /* Default (Light) Theme Variables */
   --color-primary: #ffffff;

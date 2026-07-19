@@ -164,7 +164,8 @@ const detectByTimezone = (): boolean => {
  */
 const detectByLocale = (): { isEU: boolean; country?: string } => {
   // Check navigator.language
-  const lang = navigator.language || navigator.userLanguage || '';
+  // navigator.userLanguage is a legacy IE fallback — cast because it's not in lib.dom
+  const lang = navigator.language || (navigator as unknown as { userLanguage?: string }).userLanguage || '';
 
   // Extract country code from locale (e.g., 'en-GB' -> 'GB')
   const parts = lang.split('-');

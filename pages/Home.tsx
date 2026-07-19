@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
 import InstagramFeed from '../components/InstagramFeed';
+import HeroBackground from '../components/HeroBackground';
 import { CONTACT, TESTIMONIALS, TESTIMONIALS_ENABLED } from '../constants';
 import { ArrowRight, Star, Instagram } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -31,9 +32,9 @@ const Home: React.FC = () => {
   // Set page title (WCAG 2.4.2 - Unique descriptive page titles)
   useEffect(() => {
     if (location.pathname === '/') {
-      document.title = 'שיש כפר יאסיף - Shayish Kfar Yassif | משטחי שיש וקרמיקה בהתאמה אישית';
+      document.title = t('meta.home_title');
     }
-  }, [location.pathname]);
+  }, [location.pathname, t]);
 
   const ArrowIcon = dir === 'rtl' ?  (props: any) => <ArrowRight {...props} style={{transform: 'rotate(180deg)'}} /> : ArrowRight;
 
@@ -52,6 +53,10 @@ const Home: React.FC = () => {
   const gridItemsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
+    // Scope every GSAP animation + ScrollTrigger below to this component so
+    // ctx.revert() only kills our triggers on unmount — not global ones from
+    // other pages/components.
+    const ctx = gsap.context(() => {
     // Animate project cards with stagger
     if (gridRef.current) {
       const cards = gridRef.current.children;
@@ -216,44 +221,23 @@ const Home: React.FC = () => {
       );
     }
 
+    });
+
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ctx.revert();
     };
   }, []);
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Text remains white due to video background */}
-      <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        {/* Background: video on desktop, static poster on mobile.
-            Video is ~15 MB — never worth downloading over 4G just for a
-            decorative loop. Poster stays crisp and identical visually. */}
+      {/* Hero Section — rotating Cloudinary photos with Ken Burns motion.
+          Zero external CDN dependency; images come from the owner's own
+          uploads via /admin. */}
+      <section className="relative h-[100svh] min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-            {isDesktop ? (
-              <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  disablePictureInPicture
-                  className="w-full h-full object-cover"
-                  poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-              >
-                  {/* TODO: self-host the video under /public to cut this
-                      third-party dependency (Pexels CDN can rate-limit). */}
-                  <source src="https://videos.pexels.com/video-files/7578552/7578552-hd_1920_1080_30fps.mp4" type="video/mp4" />
-              </video>
-            ) : (
-              <div
-                className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop')" }}
-                role="img"
-                aria-label="Marble kitchen surface"
-              />
-            )}
-            {/* Dark Gradient Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
+            <HeroBackground isMobile={!isDesktop} />
+            {/* Dark scrim over media for readable text */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/75"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
