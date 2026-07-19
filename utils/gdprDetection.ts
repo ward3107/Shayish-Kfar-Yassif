@@ -86,58 +86,11 @@ const EU_TIMEZONES = new Set([
   'Europe/Isle_of_Man',
 ]);
 
-// EU languages for detection
-const EU_LANGUAGES = new Set([
-  'de', // German
-  'fr', // French
-  'it', // Italian
-  'es', // Spanish
-  'nl', // Dutch
-  'pl', // Polish
-  'ro', // Romanian
-  'el', // Greek
-  'cs', // Czech
-  'sv', // Swedish
-  'bg', // Bulgarian
-  'da', // Danish
-  'fi', // Finnish
-  'sk', // Slovak
-  'sl', // Slovenian
-  'et', // Estonian
-  'lv', // Latvian
-  'lt', // Lithuanian
-  'mt', // Maltese
-  'ga', // Irish
-  'hu', // Hungarian
-  'pt', // Portuguese
-  'hr', // Croatian
-  'nl-BE', // Belgian Dutch
-  'fr-BE', // Belgian French
-  'de-AT', // Austrian German
-  'de-CH', // Swiss German
-  'it-CH', // Swiss Italian
-  'fr-CH', // Swiss French
-  'de-LU', // Luxembourgish German
-  'fr-LU', // Luxembourgish French
-  'pt-PT', // Portuguese Portugal
-  'pt-BR', // Portuguese Brazil (not EU but language indicator)
-  'en-GB', // British English
-  'en-IE', // Irish English
-  'en-MT', // Maltese English
-  'cy', // Welsh (UK)
-  'gd', // Scottish Gaelic (UK)
-  'gv', // Manx (Isle of Man)
-  'nb', // Norwegian Bokmål
-  'nn', // Norwegian Nynorsk
-  'is', // Icelandic
-  'tr', // Turkish (Northern Cyprus)
-  'sq', // Albanian
-  'mk', // Macedonian
-  'sr', // Serbian
-  'bs', // Bosnian
-  'me', // Montenegrin
-  'bg', // Bulgarian
-]);
+// NOTE: We deliberately do NOT match on browser language alone. Language is
+// a very weak jurisdictional signal — a German-speaking Israeli, a French
+// tourist in Tokyo, or an English-native anywhere would all trip a positive.
+// EU classification now requires either a timezone match or an explicit
+// country-in-locale match (e.g. `de-AT`, `en-GB`).
 
 export interface GDPRDetectionResult {
   isEU: boolean;
@@ -163,23 +116,18 @@ const detectByTimezone = (): boolean => {
  * Detect if user is in EU/EEA based on browser locale
  */
 const detectByLocale = (): { isEU: boolean; country?: string } => {
-  // Check navigator.language
   // navigator.userLanguage is a legacy IE fallback — cast because it's not in lib.dom
   const lang = navigator.language || (navigator as unknown as { userLanguage?: string }).userLanguage || '';
 
-  // Extract country code from locale (e.g., 'en-GB' -> 'GB')
+  // Extract country code from locale (e.g., 'en-GB' -> 'GB'). We only match on
+  // an explicit country segment; a bare language ('de', 'fr') does not qualify
+  // — see the note above EU_EEA_COUNTRIES.
   const parts = lang.split('-');
+  if (parts.length < 2) return { isEU: false };
   const potentialCountry = parts[parts.length - 1].toUpperCase();
 
-  // Check if country is in EU
   if (potentialCountry.length === 2 && EU_EEA_COUNTRIES.has(potentialCountry)) {
     return { isEU: true, country: potentialCountry };
-  }
-
-  // Check if language is commonly EU
-  const langPrefix = lang.split('-')[0].toLowerCase();
-  if (EU_LANGUAGES.has(langPrefix) || EU_LANGUAGES.has(lang)) {
-    return { isEU: true };
   }
 
   return { isEU: false };

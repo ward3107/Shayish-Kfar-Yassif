@@ -5,7 +5,6 @@ import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
 import InstagramFeed from '../components/InstagramFeed';
 import HeroBackground from '../components/HeroBackground';
-import HomeGalleryPreview from '../components/HomeGalleryPreview';
 import { CONTACT, TESTIMONIALS, TESTIMONIALS_ENABLED } from '../constants';
 import { ArrowRight, Star, Instagram } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -14,6 +13,15 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Decorative section imagery — served from the client's own Cloudinary account
+// under `shayish/materials/`. No stock photos: every image on this page is
+// either a real project or a real material sample the workshop stocks.
+const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
+const materialImg = (id: string, w = 2000) =>
+  CLOUD
+    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w}/shayish/materials/${id}`
+    : '';
 
 const Home: React.FC = () => {
   const { t, dir, language } = useLanguage();
@@ -108,9 +116,36 @@ const Home: React.FC = () => {
         },
       });
 
-      // Lightning-flash animation removed: it strobed on scroll and was
-      // both distracting and unsafe for users with vestibular / photosensitive
-      // sensitivities. Kept the parallax break itself; only the flash is gone.
+      // Lightning splash animation - triggered on scroll
+      const lightningFlash = document.querySelector('.lightning-flash');
+      const lightningSplash = document.querySelector('.lightning-splash');
+
+      ScrollTrigger.create({
+        trigger: parallaxSection,
+        start: 'top 70%',
+        onEnter: () => {
+          // Activate lightning flash
+          if (lightningFlash) {
+            lightningFlash.classList.add('active');
+          }
+          // Activate splash glow
+          if (lightningSplash) {
+            setTimeout(() => {
+              lightningSplash.classList.add('active');
+            }, 200);
+          }
+        },
+        onLeaveBack: () => {
+          // Reset when scrolling back up (so it can play again)
+          if (lightningFlash) {
+            lightningFlash.classList.remove('active');
+          }
+          if (lightningSplash) {
+            lightningSplash.classList.remove('active');
+          }
+        },
+        once: false // Allow animation to replay when scrolling back
+      });
     }
 
     // Contact section image parallax
@@ -313,10 +348,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Owner-uploaded gallery preview — 8 latest project photos, all
-          click-through to /gallery for the full editorial mosaic. */}
-      <HomeGalleryPreview />
-
       {/* The Stone (Shayish) Highlight */}
       <section ref={artSectionRef as React.RefObject<HTMLElement>} className="py-32 bg-secondary relative transition-colors duration-300">
          <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
@@ -333,13 +364,19 @@ const Home: React.FC = () => {
              </div>
              <div className="order-1 md:order-2 relative h-[500px] w-full art-image">
                  <div className="absolute inset-0 border border-divider transform translate-x-4 translate-y-4 rtl:-translate-x-4"></div>
-                 <img
-                    src="https://res.cloudinary.com/dst5uru0/image/upload/f_auto,q_auto,c_fill,g_auto,w_1200,h_1500/shayish/materials/calacatta"
-                    alt="Calacatta marble surface — workshop craft"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover"
-                 />
+                 {CLOUD ? (
+                   <img
+                      src={materialImg('calacatta', 2000)}
+                      alt="Calacatta marble sample"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover grayscale contrast-125"
+                   />
+                 ) : (
+                   // Cloudinary not configured — dark stone-tone panel so we
+                   // never render an unrelated stock photo.
+                   <div className="w-full h-full bg-gradient-to-br from-secondary via-primary to-secondary" />
+                 )}
              </div>
          </div>
       </section>
@@ -347,12 +384,17 @@ const Home: React.FC = () => {
       {/* PARALLAX BREAK SECTION */}
       <section
         className="parallax-break relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center overflow-hidden"
-        style={{ backgroundImage: "url('https://res.cloudinary.com/dst5uru0/image/upload/f_auto,q_auto,c_fill,g_auto,w_2000,h_1200/shayish/materials/nero-marquina')" }}
+        style={{
+          // Fall back to a solid dark gradient when Cloudinary isn't configured
+          // so we never show a random stock photo.
+          backgroundImage: CLOUD
+            ? `url('${materialImg('nero-marquina', 2000)}')`
+            : 'linear-gradient(135deg, var(--tw-color-secondary, #111), var(--tw-color-primary, #050505))',
+        }}
       >
-         {/* Soft dark overlay for text legibility (was a flashing lightning
-             effect — removed; it distracted from the copy and hurt users
-             with vestibular sensitivities). */}
-         <div className="absolute inset-0 bg-black/50"></div>
+         {/* Soft Lightning Splash Overlay */}
+         <div className="absolute inset-0 bg-black/40 lightning-splash"></div>
+         <div className="lightning-flash"></div>
          <div className="relative z-10 text-center px-6">
             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-wide mb-6">
               {language === 'he' ? 'דיוק בכל פרט' : (language === 'ar' ? 'الدقة في كل التفاصيل' : 'Precision in Every Detail')}
@@ -390,7 +432,14 @@ const Home: React.FC = () => {
       <section ref={contactRef as React.RefObject<HTMLElement>} className="relative py-24 bg-surface transition-colors duration-300">
         <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row gap-0">
-                <div className="contact-image lg:w-1/2 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative">
+                <div
+                  className="contact-image lg:w-1/2 bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative"
+                  style={{
+                    backgroundImage: CLOUD
+                      ? `url('${materialImg('emperador', 2000)}')`
+                      : 'linear-gradient(135deg, #1a1a1a, #050505)',
+                  }}
+                >
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                         <div className="contact-info-box text-center p-8 border border-white/20 backdrop-blur-sm bg-black/30">
                             <h3 className="contact-title text-3xl font-serif text-white mb-2">{t('home.visit_title')}</h3>

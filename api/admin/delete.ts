@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { destroyMedia } from '../../lib/cloudinary.js';
+import { destroyMedia, GALLERY_FOLDER } from '../../lib/cloudinary.js';
 import { verifyRequest } from '../../lib/session.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -14,11 +14,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const resourceType = body.resourceType === 'video' ? 'video' : 'image';
   if (!publicId) return res.status(400).json({ error: 'publicId required' });
 
+  // Defense in depth: even an authenticated session may only destroy assets
+  // inside the gallery folder. A compromised session cannot wipe unrelated
+  // Cloudinary assets in the same account.
+  if (!publicId.startsWith(`${GALLERY_FOLDER}/`)) {
+    return res.status(403).json({ error: 'publicId outside gallery folder' });
+  }
+
   try {
     const result = await destroyMedia(publicId, resourceType);
     return res.status(200).json({ ok: true, result });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'unknown error';
-    return res.status(500).json({ error: message });
+    console.error('[admin/delete]', err);
+    return res.status(500).json({ error: 'internal error' });
   }
 }

@@ -15,8 +15,20 @@ handles uploads and deletes; the public Gallery page reads from `/api/media`.
    - Settings → Upload → Add upload preset
    - Signing Mode: **Unsigned**
    - Folder: `shayish/gallery`
-   - Optionally: enable "Auto-optimize" and image/video quality "Auto"
+   - Enable "Auto-optimize" and image/video quality "Auto"
+   - **Hardening (required — the preset name ships in browser JS):**
+     - Allowed formats: `jpg,jpeg,png,webp,heic,mp4,mov`
+     - Max file size: `50000000` (50 MB — bump for video if you shoot 4K)
+     - Max image width/height: `4096`
+     - Access mode: `authenticated` off (public read is intentional)
+     - **Do NOT** enable "return delete_token" — it lets anyone with the
+       token delete the asset within 10 minutes.
    - Save; copy the preset name.
+
+   > **Why hardening matters:** an unsigned preset lets anyone who reads your
+   > bundled JS `POST` to Cloudinary. Without limits, they can upload junk
+   > until your free tier fills up. For a stricter setup use signed uploads
+   > — see `api/admin/sign.ts` and the "Signed uploads" section below.
 
 ## 2. Set Vercel environment variables
 
@@ -57,3 +69,23 @@ Trigger a new Vercel deployment (any push to `main`, or "Redeploy" in the Vercel
 - Realistic capacity: ~2,500 optimized photos or ~250 videos.
 
 If usage exceeds the free tier, Cloudinary emails you before enforcing limits.
+
+## Signed uploads (recommended for stricter setups)
+
+An unsigned preset is convenient but its name is visible in the browser bundle.
+Anyone can then POST arbitrary files against it (subject to the preset's own
+limits) without ever visiting `/admin`. To close that surface entirely, the
+project ships a signed-upload endpoint at `api/admin/sign.ts` that only an
+authenticated owner session can call:
+
+1. Delete (or disable) the unsigned preset in Cloudinary Settings → Upload.
+2. In `pages/Admin.tsx`, replace the direct `POST /v1_1/{cloud}/*/upload` call
+   with a two-step flow:
+   - `POST /api/admin/sign` (session-gated) → returns `{ timestamp, signature, apiKey, cloudName, folder }`
+   - `POST https://api.cloudinary.com/v1_1/{cloudName}/{image|video}/upload`
+     with fields: `file`, `api_key`, `timestamp`, `signature`, `folder`.
+3. You can then drop `VITE_CLOUDINARY_UPLOAD_PRESET` from Vercel — signed
+   uploads don't use a preset.
+
+Trade-off: uploads now require the browser to be authenticated first, which is
+already the case for `/admin`, so there's no UX cost.
