@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { issueSessionCookie, passwordMatches } from '../../lib/session.js';
+import { clientIp, rateLimit } from '../../lib/ratelimit.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -10,6 +11,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const secret = process.env.ADMIN_SESSION_SECRET;
   if (!secret || !process.env.ADMIN_PASSWORD) {
     return res.status(500).json({ error: 'admin not configured' });
+  }
+
+  // 5 attempts per IP per 15 minutes. See lib/ratelimit.ts for the KV upgrade.
+  const gate = rateLimit(`login:${clientIp(req)}`, { max: 5, windowMs: 15 * 60 * 1000 });
+  if (!gate.allowed) {
+    res.setHeader('Retry-After', String(gate.retryAfterSeconds));
+    return res.status(429).json({ error: 'too many attempts, try later' });
   }
 
   const body = (req.body ?? {}) as { password?: string };

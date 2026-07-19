@@ -376,7 +376,15 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle accept all
+  // Close banner with animation. Declared before the handlers below so the
+  // useCallback dep lists can name it and the linter can enforce correctness.
+  const handleClose = useCallback(() => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 300);
+  }, []);
+
   const handleAcceptAll = useCallback(() => {
     setAnalytics(true);
     setMarketing(true);
@@ -384,9 +392,8 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
     saveConsent(true, true, language, doNotSell, isEU);
     updateGTMConsent(true, true);
     handleClose();
-  }, [language, doNotSell, isEU]);
+  }, [language, doNotSell, isEU, handleClose]);
 
-  // Handle reject all
   const handleRejectAll = useCallback(() => {
     setAnalytics(false);
     setMarketing(false);
@@ -394,22 +401,13 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
     saveConsent(false, false, language, true, isEU);
     updateGTMConsent(false, false);
     handleClose();
-  }, [language, isEU]);
+  }, [language, isEU, handleClose]);
 
-  // Handle save preferences
   const handleSavePreferences = useCallback(() => {
     saveConsent(analytics, marketing, language, doNotSell, isEU);
     updateGTMConsent(analytics, marketing);
     handleClose();
-  }, [analytics, marketing, language, doNotSell, isEU]);
-
-  // Close banner with animation
-  const handleClose = () => {
-    setIsAnimating(false);
-    setTimeout(() => {
-      setIsVisible(false);
-    }, 300);
-  };
+  }, [analytics, marketing, language, doNotSell, isEU, handleClose]);
 
   // Handle keyboard escape
   useEffect(() => {
@@ -426,7 +424,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [isVisible]);
+  }, [isVisible, handleClose]);
 
   if (!isVisible) return null;
 

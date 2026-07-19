@@ -25,11 +25,6 @@ const imageAt = (publicId: string, w: number, h: number) =>
     ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w},h_${h}/${encodeURIComponent(publicId)}`
     : '';
 
-const imageBlur = (publicId: string) =>
-  CLOUD
-    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_10,e_blur:1000,w_40/${encodeURIComponent(publicId)}`
-    : '';
-
 const videoUrl = (publicId: string) =>
   CLOUD
     ? `https://res.cloudinary.com/${CLOUD}/video/upload/f_auto,q_auto,w_1600/${encodeURIComponent(publicId)}.mp4`
@@ -83,10 +78,28 @@ const GalleryGrid: React.FC = () => {
 
   useEffect(() => {
     let alive = true;
+    // Show cached items instantly on repeat visits within the same tab,
+    // then revalidate against /api/media. Cache lifetime matches the 60s
+    // edge cache on the API so we don't paint truly stale content.
+    const CACHE_KEY = 'shayish.media.cache';
+    const CACHE_MAX_AGE = 60_000;
+    try {
+      const raw = sessionStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw) as { ts: number; items: MediaItem[] };
+        if (Date.now() - parsed.ts < CACHE_MAX_AGE) setItems(parsed.items);
+      }
+    } catch { /* ignore */ }
+
     fetch('/api/media')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((d: { items: MediaItem[] }) => {
-        if (alive) setItems(d.items ?? []);
+        if (!alive) return;
+        const items = d.items ?? [];
+        setItems(items);
+        try {
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), items }));
+        } catch { /* quota / private mode */ }
       })
       .catch((e: Error) => {
         if (alive) setError(e.message);
@@ -223,7 +236,6 @@ const GalleryGrid: React.FC = () => {
             item.resourceType === 'image'
               ? imageAt(item.publicId, size.w, size.h)
               : videoPoster(item.publicId, size.w, size.h);
-          const blur = imageBlur(item.publicId);
           return (
             <button
               key={item.publicId}
@@ -232,15 +244,9 @@ const GalleryGrid: React.FC = () => {
               className={`group relative overflow-hidden bg-secondary border border-divider rounded-sm aspect-square md:aspect-auto ${spanClasses} focus:outline-none focus:ring-2 focus:ring-accent`}
               aria-label={item.context.alt || item.publicId}
             >
-              {/* blur-up placeholder */}
-              {blur && (
-                <img
-                  src={blur}
-                  alt=""
-                  aria-hidden
-                  className="absolute inset-0 w-full h-full object-cover scale-110"
-                />
-              )}
+              {/* Solid tile bg is the "placeholder" — we dropped the per-tile
+                  Cloudinary blur image because at ~500 items it doubled the
+                  request count for a barely visible flash. */}
               <img
                 src={thumb}
                 alt={item.context.alt || ''}

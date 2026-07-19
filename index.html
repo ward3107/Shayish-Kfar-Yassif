@@ -41,6 +41,8 @@
     <meta name="twitter:image" content="https://shayish-yasif.co.il/og-cover.jpg" />
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23050505%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2252%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2240%22%20font-style%3D%22italic%22%20fill%3D%22%23b08d4b%22%3ES%3C%2Ftext%3E%3C%2Fsvg%3E" />
+    <!-- Raster fallback for Safari and older browsers that ignore SVG favicons. -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/icon-180.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -112,7 +114,15 @@
     <!-- REPLACE GTM-XXXXXXX with your actual GTM Container ID. Script only runs once a real ID is set. -->
     <script>
     (function(w,d,s,l,i){
-      if (!i || i === 'GTM-XXXXXXX') return;
+      if (!i || i === 'GTM-XXXXXXX') {
+        // Loud dev-only reminder so we don't ship the placeholder to prod
+        // without noticing. Silent in prod because the guard above already
+        // no-ops the load.
+        if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+          console.warn('[GTM] Placeholder container id — analytics disabled. Set a real GTM-XXXXXXX in index.html.');
+        }
+        return;
+      }
       w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
       var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),

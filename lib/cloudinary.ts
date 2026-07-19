@@ -21,6 +21,13 @@ cloudinary.config({
 
 export const GALLERY_FOLDER = process.env.CLOUDINARY_GALLERY_FOLDER || 'shayish/gallery';
 
+// Fail loud at cold-start if the folder name would corrupt the search
+// expression. Cloudinary paths use `[a-z0-9/_-]` in practice; a stray quote
+// or backslash would let a mis-configured env var break listMedia() below.
+if (!/^[a-zA-Z0-9/_\-.]+$/.test(GALLERY_FOLDER)) {
+  throw new Error(`CLOUDINARY_GALLERY_FOLDER contains unsafe characters: ${GALLERY_FOLDER}`);
+}
+
 export type MediaItem = {
   publicId: string;
   url: string;

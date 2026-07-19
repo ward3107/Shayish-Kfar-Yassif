@@ -9,7 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.setHeader('Cache-Control', 'no-store');
     return res.status(200).json({ items });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'unknown error';
-    return res.status(500).json({ error: message });
+    console.error('[admin/list]', err);
+    return res.status(500).json({ error: 'internal error' });
   }
 }
