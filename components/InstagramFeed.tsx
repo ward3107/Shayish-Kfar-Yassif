@@ -18,9 +18,13 @@ interface InstagramFeedProps {
  * f_auto,q_auto and c_fill so we get WebP/AVIF at correct crop for the
  * viewer's device.
  */
-const CLOUD = (import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined) || 'dst5uru0';
+// No hard-coded fallback cloud name: if VITE_CLOUDINARY_CLOUD_NAME is unset,
+// we'd otherwise silently hit an unrelated third-party Cloudinary account.
+const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
 const marbleUrl = (id: string, w = 800) =>
-  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w},h_${w}/shayish/materials/${id}`;
+  CLOUD
+    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w},h_${w}/shayish/materials/${id}`
+    : '';
 
 const MARBLE_TILES: Array<{ name: string; id: string; textColor: string }> = [
   { name: 'Calacatta',     id: 'calacatta',     textColor: 'text-black/70' },
@@ -71,7 +75,9 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ variant, ariaLabel }) => 
             const tile = MARBLE_TILES[i % MARBLE_TILES.length];
             return (
               <div key={i} className="aspect-square relative overflow-hidden bg-secondary" aria-hidden="true">
-                <img src={marbleUrl(tile.id, 200)} alt="" className="w-full h-full object-cover" loading="lazy" />
+                {CLOUD && (
+                  <img src={marbleUrl(tile.id, 200)} alt="" className="w-full h-full object-cover" loading="lazy" />
+                )}
               </div>
             );
           })}
@@ -95,13 +101,15 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ variant, ariaLabel }) => 
           aria-label={ariaLabel ? `${ariaLabel} — ${tile.name}` : `Instagram post ${index + 1}`}
           className="group relative overflow-hidden aspect-square border border-divider hover:border-accent transition-colors bg-secondary"
         >
-          {/* Real marble texture from Cloudinary */}
-          <img
-            src={marbleUrl(tile.id, 700)}
-            alt={`${tile.name} marble sample`}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          {/* Real marble texture from Cloudinary (only when CLOUD is configured) */}
+          {CLOUD && (
+            <img
+              src={marbleUrl(tile.id, 700)}
+              alt={`${tile.name} marble sample`}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
 
           {/* Subtle sheen that comes to life on hover, like polish catching light */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-transparent group-hover:via-white/20 transition-colors duration-500" />

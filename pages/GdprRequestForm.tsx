@@ -291,7 +291,10 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Create mailto link with request details
+      // NOTE: This uses `mailto:` — nothing is transmitted to any server.
+      // If the visitor has no mail client configured the request is silently
+      // dropped. TODO: replace with a POST to /api/gdpr-request that emails
+      // the owner and stores the request for the 30-day response SLA.
       const subject = encodeURIComponent(`GDPR ${REQUEST_TYPES[requestType].en} - ${email}`);
       const body = encodeURIComponent(
         `GDPR Data Subject Request\n\n` +
@@ -305,20 +308,19 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
         `Response required within 30 days (GDPR Article 12(3)).`
       );
 
-      // Open email client with pre-filled message
       window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
 
       setSubmitStatus('success');
 
-      // Reset form
       setTimeout(() => {
         setEmail('');
         setConfirmEmail('');
         setMessage('');
         setSubmitStatus('idle');
       }, 5000);
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -428,7 +430,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    <span className="text-2xl">{type.icon}</span>
+                    <span className="text-2xl" role="img" aria-label={type.article}>{type.icon}</span>
                     <div className="flex-1">
                       <div className="text-xs text-accent font-mono mb-1">{type.article}</div>
                       <div className="text-sm font-semibold text-light">{type[language as keyof typeof type] || type.en}</div>

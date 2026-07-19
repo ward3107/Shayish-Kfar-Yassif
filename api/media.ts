@@ -11,7 +11,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
     res.status(200).json({ items });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'unknown error';
-    res.status(500).json({ error: message });
+    console.error('[api/media]', err);
+    res.status(500).json({ error: 'internal error' });
   }
 }

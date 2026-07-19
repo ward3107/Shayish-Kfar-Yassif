@@ -53,6 +53,14 @@ const formatBytes = (b: number) => {
 const Admin: React.FC = () => {
   useEffect(() => {
     document.title = 'Admin | Shayish Kfar Yassif';
+    // Belt-and-suspenders: robots.txt and vercel.json X-Robots-Tag already
+    // block /admin, but a stray meta tag makes it explicit for any crawler
+    // that reads the SPA-rendered HTML.
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex, nofollow, noarchive';
+    document.head.appendChild(meta);
+    return () => { document.head.removeChild(meta); };
   }, []);
 
   const [checking, setChecking] = useState(true);
@@ -218,7 +226,13 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
       }));
       setJobs((prev) => [...prev, ...newJobs]);
 
-      newJobs.forEach((job) => {
+      // Cap concurrency so a batch of 4K videos on flaky mobile does not
+      // saturate the connection and time everything out at once.
+      const MAX_CONCURRENT = 3;
+      const queue = [...newJobs];
+      let inFlight = 0;
+
+      const runOne = (job: UploadJob) => {
         const isVideo = job.file.type.startsWith('video/');
         const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${isVideo ? 'video' : 'image'}/upload`;
         const form = new FormData();
@@ -233,6 +247,10 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
           const pct = Math.round((e.loaded / e.total) * 100);
           setJobs((prev) => prev.map((j) => (j.id === job.id ? { ...j, progress: pct, status: 'uploading' } : j)));
         };
+        const finish = () => {
+          inFlight -= 1;
+          pump();
+        };
         xhr.onload = () => {
           if (xhr.status >= 200 && xhr.status < 300) {
             setJobs((prev) => prev.map((j) => (j.id === job.id ? { ...j, progress: 100, status: 'done' } : j)));
@@ -242,17 +260,26 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
             try {
               const parsed = JSON.parse(xhr.responseText);
               msg = parsed?.error?.message ?? msg;
-            } catch {
-              /* ignore */
-            }
+            } catch { /* ignore */ }
             setJobs((prev) => prev.map((j) => (j.id === job.id ? { ...j, status: 'error', error: msg } : j)));
           }
+          finish();
         };
         xhr.onerror = () => {
           setJobs((prev) => prev.map((j) => (j.id === job.id ? { ...j, status: 'error', error: 'Network error' } : j)));
+          finish();
         };
         xhr.send(form);
-      });
+      };
+
+      const pump = () => {
+        while (inFlight < MAX_CONCURRENT && queue.length > 0) {
+          const next = queue.shift()!;
+          inFlight += 1;
+          runOne(next);
+        }
+      };
+      pump();
     },
     [configOk, refresh]
   );
@@ -274,6 +301,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ publicId: item.publicId, resourceType: item.resourceType }),
       });
+      if (res.status === 401) return onLogout();
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Delete failed');
