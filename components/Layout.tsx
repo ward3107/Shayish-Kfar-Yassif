@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Globe, Sun, Moon } from 'lucide-react';
+import { Menu, X, Instagram, Sun, Moon } from 'lucide-react';
+// (Instagram still used in the footer + mobile-menu handle preview.)
 import Button from './Button';
 import ContactFAB from './ContactFAB';
 import ScrollToTop from './ScrollToTop';
 import CookieBanner from './CookieBanner';
-import ShowroomStatus from './ShowroomStatus';
-import MusicPlayer from './MusicPlayer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { CONTACT } from '../constants';
 import { prefetchRoute } from '../utils/routePrefetch';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,18 +52,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navLinks = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.collections'), path: '/gallery' },
-    { name: t('nav.process'), path: '/process' },
     { name: t('nav.materials'), path: '/materials' },
-    { name: t('nav.studio'), path: '/about' },
     { name: t('nav.faq'), path: '/faq' },
   ];
 
-  const cycleLanguage = () => {
-      const langs = ['en', 'he', 'ar', 'ru'] as const;
-      const currentIndex = langs.indexOf(language);
-      const nextIndex = (currentIndex + 1) % langs.length;
-      setLanguage(langs[nextIndex]);
-  };
+  // Language switching is now handled by the <LanguageSwitcher /> dropdown.
 
   return (
     <div className={`min-h-screen flex flex-col font-sans text-light bg-primary transition-colors duration-300 ${language === 'ar' ? 'font-arabic' : ''}`} dir={dir}>
@@ -87,29 +80,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8" aria-label={t('nav.primary')}>
-             {/* Live showroom status pill — reads BUSINESS_HOURS + BUSINESS_TIMEZONE */}
-            <div className="border-e border-divider pe-6 me-2">
-              <ShowroomStatus />
-            </div>
-             {/* Instagram + Language + Theme Switcher */}
+             {/* Language + Theme Switcher */}
             <div className="flex items-center gap-6 border-e border-divider pe-6 me-4">
 
-              {/* Instagram — primary social presence */}
-              <a
-                href={CONTACT.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className={`hover:text-accent transition-colors ${headerText}`}
-              >
-                <Instagram size={18} />
-              </a>
-
-              {/* Language Toggle - Cycles on click */}
-              <button onClick={cycleLanguage} className={`flex items-center gap-2 hover:text-accent transition-colors ${headerText}`} aria-label="Switch Language">
-                <Globe size={18} />
-                <span className="text-xs font-bold uppercase">{language}</span>
-              </button>
+              {/* Language dropdown */}
+              <LanguageSwitcher anchorClass={headerText} size={18} />
 
               {/* Theme Toggle */}
               <button onClick={toggleTheme} className={`hover:text-accent transition-colors ${headerText}`} aria-label="Toggle Theme">
@@ -140,24 +115,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-5 md:hidden z-50">
-            <a
-              href={CONTACT.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className={headerText}
-            >
-              <Instagram size={20} />
-            </a>
-
             <button onClick={toggleTheme} className={headerText} aria-label="Toggle Theme">
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
-            <button onClick={cycleLanguage} className={`flex items-center gap-1 ${headerText}`} aria-label="Switch Language">
-               <Globe size={20} />
-               <span className="text-xs font-bold uppercase w-4">{language}</span>
-            </button>
+            <LanguageSwitcher anchorClass={headerText} size={20} compact />
 
             <button
               className={headerText}
@@ -181,9 +143,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {...(!isMobileMenuOpen && { inert: '' as unknown as boolean })}
         className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}
       >
-          <div className="mb-8">
-            <ShowroomStatus />
-          </div>
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -280,7 +239,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       <ContactFAB />
       <ScrollToTop />
-      <MusicPlayer />
       <CookieBanner />
     </div>
   );

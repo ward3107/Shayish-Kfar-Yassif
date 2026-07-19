@@ -87,7 +87,7 @@ const ContactFAB: React.FC = () => {
   return (
     <div
       ref={rootRef}
-      className="fixed bottom-24 end-4 md:bottom-28 md:end-6 z-50 flex flex-col items-center gap-2 md:gap-3"
+      className="fixed bottom-20 left-4 md:bottom-24 md:left-6 z-50 flex flex-col items-center gap-2 md:gap-3"
     >
       {/* Action buttons — revealed above the main FAB when open */}
       <div className={`flex flex-col items-center gap-3 transition-all duration-300 ${open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
@@ -100,7 +100,7 @@ const ContactFAB: React.FC = () => {
             aria-label={a.label}
             title={a.label}
             onClick={() => setOpen(false)}
-            className={`flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg hover:scale-110 transition-transform ${a.className}`}
+            className={`flex items-center justify-center w-11 h-11 rounded-full shadow-lg hover:scale-110 transition-transform ${a.className}`}
           >
             {a.icon}
           </a>
@@ -111,7 +111,7 @@ const ContactFAB: React.FC = () => {
           onClick={handleShare}
           aria-label={t('fab.share')}
           title={t('fab.share')}
-          className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg hover:scale-110 transition-transform bg-secondary text-light border border-divider"
+          className="flex items-center justify-center w-11 h-11 rounded-full shadow-lg hover:scale-110 transition-transform bg-secondary text-light border border-divider"
         >
           <Share2 size={20} />
         </button>
@@ -124,7 +124,8 @@ const ContactFAB: React.FC = () => {
         aria-expanded={open}
         aria-label={open ? t('fab.close') : t('fab.open')}
         title={open ? t('fab.close') : t('fab.open')}
-        className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent text-white shadow-xl hover:brightness-110 transition-all"
+        className="flex items-center justify-center w-13 h-13 rounded-full bg-accent text-white shadow-xl hover:brightness-110 transition-all"
+        style={{ width: '52px', height: '52px' }}
       >
         {open ? <X size={22} /> : <MessageCircle size={22} />}
       </button>
