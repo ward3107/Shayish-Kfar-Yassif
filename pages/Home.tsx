@@ -14,6 +14,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Decorative section imagery — served from the client's own Cloudinary account
+// under `shayish/materials/`. No stock photos: every image on this page is
+// either a real project or a real material sample the workshop stocks.
+const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
+const materialImg = (id: string, w = 2000) =>
+  CLOUD
+    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w}/shayish/materials/${id}`
+    : '';
+
 const Home: React.FC = () => {
   const { t, dir, language } = useLanguage();
   const location = useLocation();
@@ -355,13 +364,19 @@ const Home: React.FC = () => {
              </div>
              <div className="order-1 md:order-2 relative h-[500px] w-full art-image">
                  <div className="absolute inset-0 border border-divider transform translate-x-4 translate-y-4 rtl:-translate-x-4"></div>
-                 <img
-                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
-                    alt="Marble Texture"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover grayscale contrast-125"
-                 />
+                 {CLOUD ? (
+                   <img
+                      src={materialImg('calacatta', 2000)}
+                      alt="Calacatta marble sample"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover grayscale contrast-125"
+                   />
+                 ) : (
+                   // Cloudinary not configured — dark stone-tone panel so we
+                   // never render an unrelated stock photo.
+                   <div className="w-full h-full bg-gradient-to-br from-secondary via-primary to-secondary" />
+                 )}
              </div>
          </div>
       </section>
@@ -369,7 +384,13 @@ const Home: React.FC = () => {
       {/* PARALLAX BREAK SECTION */}
       <section
         className="parallax-break relative h-[60vh] min-h-[500px] bg-cover bg-center bg-no-repeat md:bg-fixed flex items-center justify-center overflow-hidden"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1616489953121-2e21b7e0964b?q=80&w=2070&auto=format&fit=crop')" }}
+        style={{
+          // Fall back to a solid dark gradient when Cloudinary isn't configured
+          // so we never show a random stock photo.
+          backgroundImage: CLOUD
+            ? `url('${materialImg('nero-marquina', 2000)}')`
+            : 'linear-gradient(135deg, var(--tw-color-secondary, #111), var(--tw-color-primary, #050505))',
+        }}
       >
          {/* Soft Lightning Splash Overlay */}
          <div className="absolute inset-0 bg-black/40 lightning-splash"></div>
@@ -411,7 +432,14 @@ const Home: React.FC = () => {
       <section ref={contactRef as React.RefObject<HTMLElement>} className="relative py-24 bg-surface transition-colors duration-300">
         <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row gap-0">
-                <div className="contact-image lg:w-1/2 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative">
+                <div
+                  className="contact-image lg:w-1/2 bg-cover bg-center bg-no-repeat md:bg-fixed min-h-[400px] lg:min-h-full relative"
+                  style={{
+                    backgroundImage: CLOUD
+                      ? `url('${materialImg('emperador', 2000)}')`
+                      : 'linear-gradient(135deg, #1a1a1a, #050505)',
+                  }}
+                >
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                         <div className="contact-info-box text-center p-8 border border-white/20 backdrop-blur-sm bg-black/30">
                             <h3 className="contact-title text-3xl font-serif text-white mb-2">{t('home.visit_title')}</h3>
