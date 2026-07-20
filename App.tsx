@@ -7,22 +7,46 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import { prefetchKeyRoutesOnIdle } from './utils/routePrefetch';
 
+/**
+ * Wrap lazy() so a stale-chunk failure (old tab open when a new deploy
+ * shipped, so the referenced hashed chunk 404s) transparently force-reloads
+ * the page ONCE instead of surfacing the cryptic
+ *   "Failed to fetch dynamically imported module"
+ * error. sessionStorage guards prevent an infinite reload loop when the
+ * failure is actually a persistent problem (offline, CDN outage).
+ */
+const lazyWithReload = <T extends React.ComponentType<any>>(
+  factory: () => Promise<{ default: T }>
+) =>
+  lazy(() =>
+    factory().catch((err) => {
+      const KEY = 'shayish.chunkReload';
+      if (typeof window !== 'undefined' && !sessionStorage.getItem(KEY)) {
+        sessionStorage.setItem(KEY, '1');
+        window.location.reload();
+        // Return a never-resolving promise so React doesn't error before reload.
+        return new Promise<{ default: T }>(() => {});
+      }
+      throw err;
+    })
+  );
+
 // Home is bundled with the main chunk (always the first view). Every other
 // route is code-split, so a visitor landing on / doesn't pay the JS cost
 // of legal pages, contact forms, or the accessibility statement they may
 // never open.
-const Gallery = lazy(() => import('./pages/Gallery'));
-const Process = lazy(() => import('./pages/Process'));
-const Materials = lazy(() => import('./pages/Materials'));
-const About = lazy(() => import('./pages/About'));
-const Contact = lazy(() => import('./pages/Contact'));
-const FAQ = lazy(() => import('./pages/FAQ'));
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
-const AccessibilityStatement = lazy(() => import('./pages/AccessibilityStatement'));
-const GdprRequestForm = lazy(() => import('./pages/GdprRequestForm'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-const Admin = lazy(() => import('./pages/Admin'));
+const Gallery = lazyWithReload(() => import('./pages/Gallery'));
+const Process = lazyWithReload(() => import('./pages/Process'));
+const Materials = lazyWithReload(() => import('./pages/Materials'));
+const About = lazyWithReload(() => import('./pages/About'));
+const Contact = lazyWithReload(() => import('./pages/Contact'));
+const FAQ = lazyWithReload(() => import('./pages/FAQ'));
+const PrivacyPolicy = lazyWithReload(() => import('./pages/PrivacyPolicy'));
+const TermsOfUse = lazyWithReload(() => import('./pages/TermsOfUse'));
+const AccessibilityStatement = lazyWithReload(() => import('./pages/AccessibilityStatement'));
+const GdprRequestForm = lazyWithReload(() => import('./pages/GdprRequestForm'));
+const NotFound = lazyWithReload(() => import('./pages/NotFound'));
+const Admin = lazyWithReload(() => import('./pages/Admin'));
 
 /**
  * Delayed loading spinner. Chunks that arrive in <250ms don't flash a
