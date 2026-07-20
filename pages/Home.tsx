@@ -116,36 +116,8 @@ const Home: React.FC = () => {
         },
       });
 
-      // Lightning splash animation - triggered on scroll
-      const lightningFlash = document.querySelector('.lightning-flash');
-      const lightningSplash = document.querySelector('.lightning-splash');
-
-      ScrollTrigger.create({
-        trigger: parallaxSection,
-        start: 'top 70%',
-        onEnter: () => {
-          // Activate lightning flash
-          if (lightningFlash) {
-            lightningFlash.classList.add('active');
-          }
-          // Activate splash glow
-          if (lightningSplash) {
-            setTimeout(() => {
-              lightningSplash.classList.add('active');
-            }, 200);
-          }
-        },
-        onLeaveBack: () => {
-          // Reset when scrolling back up (so it can play again)
-          if (lightningFlash) {
-            lightningFlash.classList.remove('active');
-          }
-          if (lightningSplash) {
-            lightningSplash.classList.remove('active');
-          }
-        },
-        once: false // Allow animation to replay when scrolling back
-      });
+      // Lightning-flash animation removed: it strobed on scroll and was
+      // distracting; also a photosensitivity concern.
     }
 
     // Contact section image parallax
@@ -392,9 +364,9 @@ const Home: React.FC = () => {
             : 'linear-gradient(135deg, var(--tw-color-secondary, #111), var(--tw-color-primary, #050505))',
         }}
       >
-         {/* Soft Lightning Splash Overlay */}
-         <div className="absolute inset-0 bg-black/40 lightning-splash"></div>
-         <div className="lightning-flash"></div>
+         {/* Static dark overlay for text legibility (replaces the earlier
+             lightning strobe — removed for accessibility). */}
+         <div className="absolute inset-0 bg-black/50"></div>
          <div className="relative z-10 text-center px-6">
             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-wide mb-6">
               {language === 'he' ? 'דיוק בכל פרט' : (language === 'ar' ? 'الدقة في كل التفاصيل' : 'Precision in Every Detail')}
