@@ -41,16 +41,22 @@ html body #a11y-panel .a11y-share-grid {
   /* Light theme — warm ivory instead of pure white. Pure #fff strains the
      eye during long browsing sessions; a subtle warm tint (matches the
      natural cream of Calacatta and cool marble papers) is easier to look
-     at without losing the "clean" premium feel. */
+     at without losing the "clean" premium feel.
+     Contrast targets (WCAG AA on --color-primary #f8f4ec):
+       text-main   #1e1a15   ~15.5:1  (AAA)
+       text-muted  #4a4238   ~8:1     (AAA)
+       accent      #7a531c   ~6.2:1   (AA large + AA normal)
+       — accent doubles as button background; white text on this accent
+         hits ~5.5:1 so the primary CTA also passes AA. */
   --color-primary: #f8f4ec;      /* warm ivory — main page background */
   --color-secondary: #f0eadd;    /* slightly deeper cream for sections */
   --color-surface: #e6dcc7;      /* card surfaces + hover states */
-  --color-accent: #a37a3a;       /* deeper warm gold — better contrast on cream */
-  --color-text-main: #2a2620;    /* warm near-black (never pure #000) */
-  --color-text-muted: #6b6255;   /* warm mid-brown for secondary copy */
-  --color-border: #d9cfba;       /* soft warm border */
+  --color-accent: #7a531c;       /* deeper warm gold — AA on both fg and bg */
+  --color-text-main: #1e1a15;    /* warm near-black (never pure #000) */
+  --color-text-muted: #4a4238;   /* darker warm mid-brown for AA on cream */
+  --color-border: #c4b89e;       /* deeper warm border for visible separators */
   --color-overlay: rgba(0, 0, 0, 0.6);
-  --color-header-text: #2a2620;
+  --color-header-text: #1e1a15;
 }
 
 [data-theme="dark"] {
