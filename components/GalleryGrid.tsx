@@ -144,6 +144,22 @@ const GalleryGrid: React.FC = () => {
     };
   }, [activeIndex, close, next, prev]);
 
+  // Preload the neighbours of the currently-open lightbox image so pressing
+  // Next / Prev paints instantly instead of waiting on a Cloudinary round-trip.
+  // The browser HTTP cache then keeps them cached for the rest of the session.
+  useEffect(() => {
+    if (activeIndex === null || items === null || items.length <= 1) return;
+    const neighbours = [
+      items[(activeIndex + 1) % items.length],
+      items[(activeIndex - 1 + items.length) % items.length],
+    ];
+    neighbours.forEach((n) => {
+      if (n.resourceType !== 'image') return;
+      const preload = new Image();
+      preload.src = imageAt(n.publicId, 1600, 1200);
+    });
+  }, [activeIndex, items]);
+
   if (error) {
     return (
       <div className="text-muted text-sm py-8 border border-dashed border-divider rounded-sm text-center">
@@ -304,8 +320,12 @@ const GalleryGrid: React.FC = () => {
           <div className="max-w-[95vw] max-h-[90vh] flex flex-col items-center justify-center gap-3" onClick={(e) => e.stopPropagation()}>
             {active.resourceType === 'image' ? (
               <img
+                key={active.publicId}
                 src={imageAt(active.publicId, 1600, 1200)}
                 alt={active.context.alt || ''}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="max-w-full max-h-[85vh] object-contain"
               />
             ) : (
