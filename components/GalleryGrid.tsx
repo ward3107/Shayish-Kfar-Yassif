@@ -20,6 +20,37 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
 
+// Categories the owner can tag photos with (from /admin). Must match
+// CATEGORIES in lib/cloudinary.ts and pages/Admin.tsx.
+const CATEGORIES = ['kitchen', 'bathroom', 'countertop', 'floor', 'island', 'other'] as const;
+type Category = typeof CATEGORIES[number] | 'all';
+
+const getCategory = (item: MediaItem): string => {
+  const tag = item.tags.find((t) => t.startsWith('cat:'));
+  return tag ? tag.slice(4) : '';
+};
+const getFeaturedOrder = (item: MediaItem): number | null => {
+  const tag = item.tags.find((t) => t.startsWith('featured:'));
+  if (!tag) return null;
+  const n = Number(tag.slice(9));
+  return Number.isFinite(n) ? n : null;
+};
+
+/**
+ * Sort: pinned items first (by featured order ascending, so featured:001
+ * appears before featured:002), then everything else by createdAt desc
+ * (newest first). Owner controls the top of the gallery via /admin.
+ */
+const sortForDisplay = (items: MediaItem[]): MediaItem[] =>
+  [...items].sort((a, b) => {
+    const fa = getFeaturedOrder(a);
+    const fb = getFeaturedOrder(b);
+    if (fa !== null && fb !== null) return fa - fb;
+    if (fa !== null) return -1;
+    if (fb !== null) return 1;
+    return b.createdAt.localeCompare(a.createdAt);
+  });
+
 const imageAt = (publicId: string, w: number, h: number) =>
   CLOUD
     ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w},h_${h}/${encodeURIComponent(publicId)}`
@@ -75,6 +106,7 @@ const GalleryGrid: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [heroMuted, setHeroMuted] = useState(true);
+  const [category, setCategory] = useState<Category>('all');
 
   useEffect(() => {
     let alive = true;
@@ -109,25 +141,43 @@ const GalleryGrid: React.FC = () => {
     };
   }, []);
 
-  // Split: first video (if any) → hero. Everything else → mosaic.
-  const { hero, mosaic } = useMemo(() => {
-    if (!items) return { hero: null, mosaic: [] as MediaItem[] };
-    const firstVideoIdx = items.findIndex((i) => i.resourceType === 'video');
-    if (firstVideoIdx === -1) return { hero: null, mosaic: items };
-    return {
-      hero: items[firstVideoIdx],
-      mosaic: [...items.slice(0, firstVideoIdx), ...items.slice(firstVideoIdx + 1)],
-    };
+  // Apply category filter first, then pinned-first sort. Category filter
+  // works on tags; 'all' passes everything through.
+  const displayItems = useMemo(() => {
+    if (!items) return null;
+    const filtered = category === 'all' ? items : items.filter((i) => getCategory(i) === category);
+    return sortForDisplay(filtered);
+  }, [items, category]);
+
+  // Which categories does the owner actually use? Only show tabs for
+  // categories that have at least one photo (no empty tabs).
+  const availableCategories = useMemo(() => {
+    if (!items) return [] as Category[];
+    const present = new Set(items.map(getCategory).filter(Boolean));
+    return (CATEGORIES as readonly string[]).filter((c) => present.has(c)) as Category[];
   }, [items]);
 
-  // Lightbox controls
+  // Split: first video (if any) → hero. Everything else → mosaic.
+  // Split runs AFTER filter/sort so pinning + categorization applies here too.
+  const { hero, mosaic } = useMemo(() => {
+    if (!displayItems) return { hero: null, mosaic: [] as MediaItem[] };
+    const firstVideoIdx = displayItems.findIndex((i) => i.resourceType === 'video');
+    if (firstVideoIdx === -1) return { hero: null, mosaic: displayItems };
+    return {
+      hero: displayItems[firstVideoIdx],
+      mosaic: [...displayItems.slice(0, firstVideoIdx), ...displayItems.slice(firstVideoIdx + 1)],
+    };
+  }, [displayItems]);
+
+  // Lightbox controls — operate over displayItems so arrow keys/nav stay
+  // within the current filter tab, not the underlying unfiltered set.
   const close = useCallback(() => setActiveIndex(null), []);
   const next = useCallback(() => {
-    setActiveIndex((i) => (i === null || items === null ? i : (i + 1) % items.length));
-  }, [items]);
+    setActiveIndex((i) => (i === null || displayItems === null ? i : (i + 1) % displayItems.length));
+  }, [displayItems]);
   const prev = useCallback(() => {
-    setActiveIndex((i) => (i === null || items === null ? i : (i - 1 + items.length) % items.length));
-  }, [items]);
+    setActiveIndex((i) => (i === null || displayItems === null ? i : (i - 1 + displayItems.length) % displayItems.length));
+  }, [displayItems]);
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -148,17 +198,17 @@ const GalleryGrid: React.FC = () => {
   // Next / Prev paints instantly instead of waiting on a Cloudinary round-trip.
   // The browser HTTP cache then keeps them cached for the rest of the session.
   useEffect(() => {
-    if (activeIndex === null || items === null || items.length <= 1) return;
+    if (activeIndex === null || displayItems === null || displayItems.length <= 1) return;
     const neighbours = [
-      items[(activeIndex + 1) % items.length],
-      items[(activeIndex - 1 + items.length) % items.length],
+      displayItems[(activeIndex + 1) % displayItems.length],
+      displayItems[(activeIndex - 1 + displayItems.length) % displayItems.length],
     ];
     neighbours.forEach((n) => {
       if (n.resourceType !== 'image') return;
       const preload = new Image();
       preload.src = imageAt(n.publicId, 1600, 1200);
     });
-  }, [activeIndex, items]);
+  }, [activeIndex, displayItems]);
 
   if (error) {
     return (
@@ -183,13 +233,15 @@ const GalleryGrid: React.FC = () => {
 
   if (items.length === 0) return null;
 
+  // Index the lightbox against the currently displayed (filtered+sorted)
+  // list — that's the sequence the user sees and expects Next/Prev to walk.
   const openItemByPublicId = (publicId: string) => {
-    if (!items) return;
-    const idx = items.findIndex((i) => i.publicId === publicId);
+    if (!displayItems) return;
+    const idx = displayItems.findIndex((i) => i.publicId === publicId);
     if (idx >= 0) setActiveIndex(idx);
   };
 
-  const active = activeIndex !== null && items ? items[activeIndex] : null;
+  const active = activeIndex !== null && displayItems ? displayItems[activeIndex] : null;
 
   return (
     <div className="space-y-6 md:space-y-8">
@@ -233,10 +285,35 @@ const GalleryGrid: React.FC = () => {
         </div>
       )}
 
+      {/* Category filter tabs — only rendered if the owner has actually
+          tagged at least one photo with a category, so we never show empty
+          tabs. Uses the same t() key namespace for localized labels. */}
+      {availableCategories.length > 0 && (
+        <div className="flex items-center gap-1 md:gap-2 border-b border-divider overflow-x-auto -mx-1 px-1 pb-1">
+          {(['all', ...availableCategories] as Category[]).map((c) => {
+            const active = category === c;
+            const label = t(`gallery.cat.${c}`);
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setCategory(c)}
+                aria-pressed={active}
+                className={`px-3 md:px-4 py-3 text-xs uppercase tracking-widest transition-colors border-b-2 -mb-px whitespace-nowrap ${
+                  active ? 'text-accent border-accent' : 'text-muted border-transparent hover:text-light'
+                }`}
+              >
+                {label === `gallery.cat.${c}` ? c : label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* Count + subtle header */}
       <div className="flex items-baseline justify-between border-b border-divider pb-3">
         <h3 className="text-xs uppercase tracking-widest text-muted">{t('gallery.projects')}</h3>
-        <span className="text-xs text-muted">{items.length} {t('gallery.pieces')}</span>
+        <span className="text-xs text-muted">{displayItems?.length ?? 0} {t('gallery.pieces')}</span>
       </div>
 
       {/* Mosaic */}
@@ -299,7 +376,7 @@ const GalleryGrid: React.FC = () => {
           >
             <X size={28} />
           </button>
-          {items.length > 1 && (
+          {(displayItems?.length ?? 0) > 1 && (
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -339,7 +416,12 @@ const GalleryGrid: React.FC = () => {
               />
             )}
             <div className="text-white/50 text-xs">
-              {(activeIndex ?? 0) + 1} / {items.length}
+              {(activeIndex ?? 0) + 1} / {displayItems?.length ?? 0}
+              {active.context.alt && (
+                <div className="text-white/80 text-sm mt-1 font-light max-w-xl mx-auto text-center">
+                  {active.context.alt}
+                </div>
+              )}
             </div>
           </div>
         </div>

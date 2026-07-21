@@ -99,4 +99,60 @@ export async function destroyMedia(publicId: string, resourceType: 'image' | 'vi
   });
 }
 
+/**
+ * Categories the owner can tag photos with. Stored on Cloudinary as a
+ * `cat:<slug>` tag. Keep this list narrow — filter tabs on the public
+ * Gallery scale badly beyond ~6 options.
+ */
+export const CATEGORIES = ['kitchen', 'bathroom', 'countertop', 'floor', 'island', 'other'] as const;
+export type Category = typeof CATEGORIES[number];
+
+/**
+ * Update an asset's caption (context.alt) + category (tag `cat:<slug>`)
+ * + featured order (tag `featured:<N>` where N is a 3-digit number; low N
+ * sorts first). The three fields are optional — undefined leaves them
+ * untouched.
+ */
+export async function updateMedia(
+  publicId: string,
+  resourceType: 'image' | 'video',
+  patch: { alt?: string; category?: Category | ''; featuredOrder?: number | null }
+) {
+  const { alt, category, featuredOrder } = patch;
+  const updates: Record<string, string> = {};
+
+  if (alt !== undefined) {
+    // Cloudinary context uses "key=value|key2=value2" — strip separators
+    // from user input so a stray "|" or "=" can't corrupt other fields.
+    updates.context = `alt=${alt.replace(/[|=]/g, ' ').trim()}`;
+  }
+
+  if (category !== undefined || featuredOrder !== undefined) {
+    // Merge with existing tags so we don't clobber unrelated ones (e.g.
+    // if Cloudinary auto-tagged the image with "kitchen" or similar).
+    const existing = ((await cloudinary.api.resource(publicId, {
+      resource_type: resourceType,
+      tags: true,
+    })).tags as string[] | undefined) ?? [];
+
+    const kept = existing.filter((t) => {
+      if (category !== undefined && t.startsWith('cat:')) return false;
+      if (featuredOrder !== undefined && t.startsWith('featured:')) return false;
+      return true;
+    });
+    if (category) kept.push(`cat:${category}`);
+    if (typeof featuredOrder === 'number') {
+      kept.push(`featured:${String(featuredOrder).padStart(3, '0')}`);
+    }
+    updates.tags = kept.join(',');
+  }
+
+  if (Object.keys(updates).length === 0) return;
+
+  return cloudinary.api.update(publicId, {
+    resource_type: resourceType,
+    ...updates,
+  });
+}
+
 export { cloudinary };

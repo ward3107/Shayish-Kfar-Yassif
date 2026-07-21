@@ -69,6 +69,22 @@ export const translations = {
       address_title: 'Factory & Showroom',
       address_lines: ['Industrial Zone', 'Kfar Yassif, Israel'],
       waze: 'Navigate with Waze',
+      form: {
+        eyebrow: 'Or send a message',
+        title: 'Email us directly',
+        subtitle: 'We answer every message within one business day.',
+        name: 'Your name',
+        email: 'Email address',
+        message: 'What is your project about?',
+        submit: 'Send message',
+        sending: 'Sending…',
+        thanksTitle: 'Message sent',
+        thanksBody: "We'll get back to you within one business day. Check the inbox for the email address you provided.",
+        sendAnother: 'Send another message',
+        rateLimited: 'Too many messages from this device. Try again in a few minutes.',
+        errorGeneric: "Couldn't send the message. Please try again or WhatsApp us.",
+        errorNetwork: 'Network error. Check your connection and try again.'
+      },
       form_title: 'Begin Your Journey',
       form_desc: 'Leave your details and our designers will reach out.',
       name: 'Name',
@@ -201,7 +217,16 @@ export const translations = {
       mute: 'Mute',
       unmute: 'Unmute',
       projects: 'Projects',
-      pieces: 'pieces'
+      pieces: 'pieces',
+      cat: {
+        all: 'All',
+        kitchen: 'Kitchen',
+        bathroom: 'Bathroom',
+        countertop: 'Countertop',
+        floor: 'Floor',
+        island: 'Island',
+        other: 'Other'
+      }
     },
     // FAQ Page
     faq: {
@@ -470,6 +495,22 @@ export const translations = {
       address_title: 'מפעל ואולם תצוגה',
       address_lines: ['אזור תעשייה', 'כפר יאסיף, ישראל'],
       waze: 'נווט עם Waze',
+      form: {
+        eyebrow: 'או שלחו הודעה',
+        title: 'שלחו לנו אימייל',
+        subtitle: 'אנחנו עונים לכל הודעה תוך יום עסקים.',
+        name: 'שם מלא',
+        email: 'כתובת אימייל',
+        message: 'על מה הפרויקט שלכם?',
+        submit: 'שלח הודעה',
+        sending: 'שולח…',
+        thanksTitle: 'ההודעה נשלחה',
+        thanksBody: 'נחזור אליכם תוך יום עסקים. בדקו את תיבת הדואר של הכתובת שהזנתם.',
+        sendAnother: 'שלח הודעה נוספת',
+        rateLimited: 'שלחתם יותר מדי הודעות מהמכשיר הזה. נסו שוב בעוד כמה דקות.',
+        errorGeneric: 'לא הצלחנו לשלוח את ההודעה. נסו שוב או שלחו בוואטסאפ.',
+        errorNetwork: 'תקלת רשת. בדקו את החיבור ונסו שוב.'
+      },
       form_title: 'התחל את המסע',
       form_desc: 'השאר פרטים והמעצבים שלנו יחזרו אליך.',
       name: 'שם מלא',
@@ -602,7 +643,16 @@ export const translations = {
       mute: 'השתקה',
       unmute: 'ביטול השתקה',
       projects: 'פרויקטים',
-      pieces: 'פריטים'
+      pieces: 'פריטים',
+      cat: {
+        all: 'הכל',
+        kitchen: 'מטבח',
+        bathroom: 'אמבטיה',
+        countertop: 'משטח',
+        floor: 'רצפה',
+        island: 'איי מטבח',
+        other: 'אחר'
+      }
     },
     // FAQ Page
     faq: {
@@ -871,6 +921,22 @@ export const translations = {
       address_title: 'المصنع وصالة العرض',
       address_lines: ['المنطقة الصناعية', 'كفر ياسيف، إسرائيل'],
       waze: 'توجيه عبر Waze',
+      form: {
+        eyebrow: 'أو أرسلوا رسالة',
+        title: 'راسلونا عبر البريد الإلكتروني',
+        subtitle: 'نجيب على كل رسالة خلال يوم عمل واحد.',
+        name: 'الاسم الكامل',
+        email: 'البريد الإلكتروني',
+        message: 'ما هو مشروعكم؟',
+        submit: 'إرسال الرسالة',
+        sending: 'جارٍ الإرسال…',
+        thanksTitle: 'تم إرسال الرسالة',
+        thanksBody: 'سنعود إليكم خلال يوم عمل واحد. تحققوا من صندوق الوارد للعنوان الذي أدخلتموه.',
+        sendAnother: 'أرسل رسالة أخرى',
+        rateLimited: 'أرسلتم رسائل كثيرة من هذا الجهاز. حاولوا مجدداً خلال دقائق.',
+        errorGeneric: 'لم نستطع إرسال الرسالة. حاولوا مجدداً أو راسلونا عبر واتساب.',
+        errorNetwork: 'خطأ في الشبكة. تحققوا من الاتصال وحاولوا مجدداً.'
+      },
       form_title: 'ابدأ رحلتك',
       form_desc: 'اترك تفاصيلك وسيتواصل معك مصممونا.',
       name: 'الاسم',
@@ -1003,7 +1069,16 @@ export const translations = {
       mute: 'كتم',
       unmute: 'إلغاء الكتم',
       projects: 'مشاريع',
-      pieces: 'قطعة'
+      pieces: 'قطعة',
+      cat: {
+        all: 'الكل',
+        kitchen: 'مطبخ',
+        bathroom: 'حمّام',
+        countertop: 'سطح',
+        floor: 'أرضية',
+        island: 'جزيرة مطبخ',
+        other: 'أخرى'
+      }
     },
     // FAQ Page
     faq: {
@@ -1272,6 +1347,22 @@ export const translations = {
       address_title: 'Фабрика и шоу-рум',
       address_lines: ['Промышленная зона', 'Кфар Ясиф, Израиль'],
       waze: 'Навигация через Waze',
+      form: {
+        eyebrow: 'Или отправьте сообщение',
+        title: 'Напишите нам на почту',
+        subtitle: 'Отвечаем на каждое сообщение в течение одного рабочего дня.',
+        name: 'Ваше имя',
+        email: 'Электронная почта',
+        message: 'О чём ваш проект?',
+        submit: 'Отправить сообщение',
+        sending: 'Отправка…',
+        thanksTitle: 'Сообщение отправлено',
+        thanksBody: 'Мы ответим вам в течение одного рабочего дня. Проверьте почту, которую вы указали.',
+        sendAnother: 'Отправить ещё сообщение',
+        rateLimited: 'Слишком много сообщений с этого устройства. Попробуйте через несколько минут.',
+        errorGeneric: 'Не удалось отправить сообщение. Попробуйте снова или напишите в WhatsApp.',
+        errorNetwork: 'Ошибка сети. Проверьте подключение и попробуйте снова.'
+      },
       form_title: 'Начните свой путь',
       form_desc: 'Оставьте свои данные, и наши дизайнеры свяжутся с вами.',
       name: 'Имя',
@@ -1404,7 +1495,16 @@ export const translations = {
       mute: 'Заглушить',
       unmute: 'Включить звук',
       projects: 'Проекты',
-      pieces: 'работ'
+      pieces: 'работ',
+      cat: {
+        all: 'Все',
+        kitchen: 'Кухня',
+        bathroom: 'Ванная',
+        countertop: 'Столешница',
+        floor: 'Пол',
+        island: 'Остров',
+        other: 'Другое'
+      }
     },
     // FAQ Page
     faq: {
