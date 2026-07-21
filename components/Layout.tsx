@@ -176,8 +176,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-secondary text-light border-t border-divider pt-20 pb-10 transition-colors duration-300">
+      {/* Footer — extra bottom padding reserves space for the four fixed
+          widgets (accessibility, WhatsApp FAB, scroll-to-top, music player)
+          that sit at bottom:24px. Without this the copyright + legal-links
+          row is covered when scrolled to the very end of the page. */}
+      <footer className="bg-secondary text-light border-t border-divider pt-20 pb-24 md:pb-28 transition-colors duration-300">
         <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="col-span-1 md:col-span-1">
              <div className="text-2xl font-serif tracking-tighter text-light mb-6">
