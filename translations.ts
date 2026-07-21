@@ -58,7 +58,8 @@ export const translations = {
       contact: 'Contact',
       privacyPolicy: 'Privacy Policy',
       accessibility: 'Accessibility Statement',
-      termsOfUse: 'Terms of Use'
+      termsOfUse: 'Terms of Use',
+      admin: 'Admin'
     },
     contact: {
       title: 'Contact',
@@ -458,7 +459,8 @@ export const translations = {
       contact: 'צור קשר',
       privacyPolicy: 'מדיניות פרטיות',
       accessibility: 'הצהרת נגישות',
-      termsOfUse: 'תנאי שימוש'
+      termsOfUse: 'תנאי שימוש',
+      admin: 'ניהול'
     },
     contact: {
       title: 'צור קשר',
@@ -858,7 +860,8 @@ export const translations = {
       contact: 'اتصل بنا',
       privacyPolicy: 'سياسة الخصوصية',
       accessibility: 'بيان إمكانية الوصول',
-      termsOfUse: 'شروط الاستخدام'
+      termsOfUse: 'شروط الاستخدام',
+      admin: 'الإدارة'
     },
     contact: {
       title: 'اتصل بنا',
@@ -1258,7 +1261,8 @@ export const translations = {
       contact: 'Контакты',
       privacyPolicy: 'Политика конфиденциальности',
       accessibility: 'Заявление о доступности',
-      termsOfUse: 'Условия использования'
+      termsOfUse: 'Условия использования',
+      admin: 'Админ'
     },
     contact: {
       title: 'Контакты',
