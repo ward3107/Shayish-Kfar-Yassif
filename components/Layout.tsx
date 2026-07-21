@@ -179,7 +179,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
-        {...(!isMobileMenuOpen && { inert: '' as unknown as boolean })}
+        inert={!isMobileMenuOpen}
         className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}
       >
           <nav className="flex flex-col items-center gap-8">
