@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Sun, Moon } from 'lucide-react';
+import { Menu, X, Instagram, Sun, Moon, Lock } from 'lucide-react';
 // (Instagram still used in the footer + mobile-menu handle preview.)
 import Button from './Button';
 import ContactFAB from './ContactFAB';
@@ -15,6 +15,8 @@ import LanguageSwitcher from './LanguageSwitcher';
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [atFooter, setAtFooter] = useState(false);
+  const footerRef = React.useRef<HTMLElement>(null);
 
   const location = useLocation();
   const { language, setLanguage, t, dir } = useLanguage();
@@ -32,6 +34,43 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Unmount the floating widgets (contact FAB, scroll-to-top, plus the
+  // vendored a11y widget via CSS) when the footer scrolls into view so they
+  // never cover the copyright + legal-links row. Conditional render beats
+  // CSS opacity here because ContactFAB runs its own opacity transitions
+  // that would fight ours.
+  useEffect(() => {
+    let ticking = false;
+    let last = false;
+    const check = () => {
+      ticking = false;
+      const el = footerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const next = rect.top < window.innerHeight * 0.7;
+      if (next !== last) {
+        last = next;
+        setAtFooter(next);
+        // Also toggle a body class so the vendored a11y widget (whose
+        // markup we don't own) can be hidden via CSS.
+        document.body.classList.toggle('at-footer', next);
+      }
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(check);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    check();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      document.body.classList.remove('at-footer');
+    };
   }, []);
 
   useEffect(() => {
@@ -176,11 +215,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer — extra bottom padding reserves space for the four fixed
-          widgets (accessibility, WhatsApp FAB, scroll-to-top, music player)
-          that sit at bottom:24px. Without this the copyright + legal-links
-          row is covered when scrolled to the very end of the page. */}
-      <footer className="bg-secondary text-light border-t border-divider pt-20 pb-24 md:pb-28 transition-colors duration-300">
+      {/* Footer — floating widgets (music player, contact FAB, scroll-to-top,
+          accessibility trigger) fade out via the IntersectionObserver above
+          the moment this footer enters the viewport, so the copyright +
+          legal-links row is never covered. Standard pb-16 is enough. */}
+      <footer
+        ref={footerRef}
+        className="bg-secondary text-light border-t border-divider pt-20 pb-16 transition-colors duration-300"
+      >
         <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="col-span-1 md:col-span-1">
              <div className="text-2xl font-serif tracking-tighter text-light mb-6">
@@ -232,16 +274,29 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
         <div className="border-t border-divider pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted px-8">
           <p>&copy; {new Date().getFullYear()} {t('footer.rights')}</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
+          <div className="flex gap-6 mt-4 md:mt-0 items-center">
              <Link to="/privacy-policy" className="hover:text-accent transition-colors">{t('footer.privacyPolicy')}</Link>
              <Link to="/accessibility-statement" className="hover:text-accent transition-colors">{t('footer.accessibility')}</Link>
              <Link to="/terms-of-use" className="hover:text-accent transition-colors">{t('footer.termsOfUse')}</Link>
+             {/* Discreet owner-only link. Public visibility is fine — the panel
+                 is password-gated + rate-limited + noindexed; the extra bot
+                 traffic on /api/admin/login is negligible against the 5/15-min
+                 IP limit. Lock icon disambiguates it from the legal links. */}
+             <Link
+               to="/admin"
+               rel="nofollow"
+               className="inline-flex items-center gap-1 opacity-60 hover:opacity-100 hover:text-accent transition-all"
+               aria-label={t('footer.admin')}
+             >
+               <Lock size={12} />
+               <span>{t('footer.admin')}</span>
+             </Link>
           </div>
         </div>
       </footer>
 
-      <ContactFAB />
-      <ScrollToTop />
+      {!atFooter && <ContactFAB />}
+      {!atFooter && <ScrollToTop />}
       <CookieBanner />
     </div>
   );

@@ -121,6 +121,18 @@ body #a11y-panel {
   }
 }
 
+/* When Layout.tsx sets body.at-footer (footer scrolled into view), hide
+   the vendored accessibility widget so it doesn't cover the copyright
+   row. The React widgets (ContactFAB, ScrollToTop) unmount in Layout
+   instead — CSS can't reliably hide them because they run their own
+   opacity transitions. */
+body.at-footer #a11y-trigger,
+body.at-footer #a11y-panel {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
