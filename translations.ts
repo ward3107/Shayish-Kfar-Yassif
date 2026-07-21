@@ -201,7 +201,16 @@ export const translations = {
       mute: 'Mute',
       unmute: 'Unmute',
       projects: 'Projects',
-      pieces: 'pieces'
+      pieces: 'pieces',
+      cat: {
+        all: 'All',
+        kitchen: 'Kitchen',
+        bathroom: 'Bathroom',
+        countertop: 'Countertop',
+        floor: 'Floor',
+        island: 'Island',
+        other: 'Other'
+      }
     },
     // FAQ Page
     faq: {
@@ -602,7 +611,16 @@ export const translations = {
       mute: 'השתקה',
       unmute: 'ביטול השתקה',
       projects: 'פרויקטים',
-      pieces: 'פריטים'
+      pieces: 'פריטים',
+      cat: {
+        all: 'הכל',
+        kitchen: 'מטבח',
+        bathroom: 'אמבטיה',
+        countertop: 'משטח',
+        floor: 'רצפה',
+        island: 'איי מטבח',
+        other: 'אחר'
+      }
     },
     // FAQ Page
     faq: {
@@ -1003,7 +1021,16 @@ export const translations = {
       mute: 'كتم',
       unmute: 'إلغاء الكتم',
       projects: 'مشاريع',
-      pieces: 'قطعة'
+      pieces: 'قطعة',
+      cat: {
+        all: 'الكل',
+        kitchen: 'مطبخ',
+        bathroom: 'حمّام',
+        countertop: 'سطح',
+        floor: 'أرضية',
+        island: 'جزيرة مطبخ',
+        other: 'أخرى'
+      }
     },
     // FAQ Page
     faq: {
@@ -1404,7 +1431,16 @@ export const translations = {
       mute: 'Заглушить',
       unmute: 'Включить звук',
       projects: 'Проекты',
-      pieces: 'работ'
+      pieces: 'работ',
+      cat: {
+        all: 'Все',
+        kitchen: 'Кухня',
+        bathroom: 'Ванная',
+        countertop: 'Столешница',
+        floor: 'Пол',
+        island: 'Остров',
+        other: 'Другое'
+      }
     },
     // FAQ Page
     faq: {

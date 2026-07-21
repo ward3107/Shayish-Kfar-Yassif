@@ -11,8 +11,28 @@ import {
   X,
   Camera,
   Download,
+  Edit3,
+  Star,
 } from 'lucide-react';
 import type { MediaItem } from '../types/media';
+
+// Must match CATEGORIES in lib/cloudinary.ts. Duplicated here because the
+// admin ships in the client bundle and can't import server-only code.
+const CATEGORIES = ['kitchen', 'bathroom', 'countertop', 'floor', 'island', 'other'] as const;
+type Category = typeof CATEGORIES[number];
+
+// Helpers to read the same metadata the server writes.
+const getCategory = (item: MediaItem): Category | '' => {
+  const tag = item.tags.find((t) => t.startsWith('cat:'));
+  const slug = tag?.slice(4) as Category | undefined;
+  return slug && (CATEGORIES as readonly string[]).includes(slug) ? (slug as Category) : '';
+};
+const getFeaturedOrder = (item: MediaItem): number | null => {
+  const tag = item.tags.find((t) => t.startsWith('featured:'));
+  if (!tag) return null;
+  const n = Number(tag.slice(9));
+  return Number.isFinite(n) ? n : null;
+};
 
 /**
  * Owner admin panel — mobile-first, PWA-installable.
@@ -162,6 +182,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
   const [error, setError] = useState<string | null>(null);
   const [jobs, setJobs] = useState<UploadJob[]>([]);
   const [confirmDelete, setConfirmDelete] = useState<MediaItem | null>(null);
+  const [editing, setEditing] = useState<MediaItem | null>(null);
   const [filter, setFilter] = useState<'all' | 'image' | 'video'>('all');
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [installed, setInstalled] = useState(false);
@@ -210,7 +231,11 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
 
   const logout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' });
-    onLogout();
+    // After sign-out, send the owner back to the public site instead of
+    // parking them on the empty login form. Full navigation (not router
+    // push) also clears any in-memory admin state and re-triggers the
+    // marketing Layout's normal mount lifecycle.
+    window.location.href = '/';
   };
 
   const upload = useCallback(
@@ -305,6 +330,53 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Delete failed');
+      void refresh();
+    }
+  };
+
+  // Optimistically update local state (grid re-renders with new caption /
+  // category / pin star immediately), then persist to Cloudinary. On error,
+  // roll back by refetching.
+  const doSaveEdit = async (
+    item: MediaItem,
+    patch: { alt: string; category: Category | ''; featuredOrder: number | null }
+  ) => {
+    setEditing(null);
+    setItems((prev) =>
+      prev
+        ? prev.map((i) =>
+            i.publicId === item.publicId
+              ? {
+                  ...i,
+                  context: { ...i.context, alt: patch.alt },
+                  tags: [
+                    ...i.tags.filter((t) => !t.startsWith('cat:') && !t.startsWith('featured:')),
+                    ...(patch.category ? [`cat:${patch.category}`] : []),
+                    ...(patch.featuredOrder !== null
+                      ? [`featured:${String(patch.featuredOrder).padStart(3, '0')}`]
+                      : []),
+                  ],
+                }
+              : i
+          )
+        : prev
+    );
+    try {
+      const res = await fetch('/api/admin/update', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          publicId: item.publicId,
+          resourceType: item.resourceType,
+          alt: patch.alt,
+          category: patch.category,
+          featuredOrder: patch.featuredOrder,
+        }),
+      });
+      if (res.status === 401) return onLogout();
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Save failed');
       void refresh();
     }
   };
@@ -509,6 +581,16 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
                     <Film className="absolute text-accent opacity-70" size={32} />
                   </div>
                 )}
+                {/* Persistent pin-star badge (visible without hover) so the owner
+                    can see at a glance which photos are featured. */}
+                {getFeaturedOrder(item) !== null && (
+                  <div
+                    className="absolute top-2 start-2 z-10 bg-accent text-primary rounded-full p-1.5 shadow-lg"
+                    title={`Pinned #${getFeaturedOrder(item)}`}
+                  >
+                    <Star size={12} fill="currentColor" strokeWidth={0} />
+                  </div>
+                )}
                 {/* On mobile, controls are always visible (no hover). On desktop, appear on hover. */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2 md:p-3">
                   <div className="flex items-center gap-1 text-[10px] uppercase tracking-widest text-white/80">
@@ -516,19 +598,37 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
                     <span>{item.format}</span>
                     <span className="ms-auto">{formatBytes(item.bytes)}</span>
                   </div>
-                  <button
-                    onClick={() => setConfirmDelete(item)}
-                    className="self-end bg-red-500/90 text-white p-3 md:p-2 rounded-full hover:bg-red-500 min-w-[44px] min-h-[44px] flex items-center justify-center"
-                    aria-label="Delete"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+                  <div className="self-end flex gap-2">
+                    <button
+                      onClick={() => setEditing(item)}
+                      className="bg-black/70 text-white p-3 md:p-2 rounded-full hover:bg-black min-w-[44px] min-h-[44px] flex items-center justify-center"
+                      aria-label="Edit caption, category, pin"
+                    >
+                      <Edit3 size={16} />
+                    </button>
+                    <button
+                      onClick={() => setConfirmDelete(item)}
+                      className="bg-red-500/90 text-white p-3 md:p-2 rounded-full hover:bg-red-500 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                      aria-label="Delete"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         )}
       </main>
+
+      {/* Edit metadata modal */}
+      {editing && (
+        <EditModal
+          item={editing}
+          onClose={() => setEditing(null)}
+          onSave={(patch) => doSaveEdit(editing, patch)}
+        />
+      )}
 
       {/* Delete confirm modal */}
       {confirmDelete && (
@@ -578,6 +678,158 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
           </button>
         </div>
       )}
+    </div>
+  );
+};
+
+/* ----------------------------- EditModal ------------------------------
+   One dialog that edits caption / category / pin order for a single asset.
+   Optimistic save: parent updates state immediately, then POSTs. */
+
+const EditModal: React.FC<{
+  item: MediaItem;
+  onClose: () => void;
+  onSave: (patch: { alt: string; category: Category | ''; featuredOrder: number | null }) => void;
+}> = ({ item, onClose, onSave }) => {
+  const [alt, setAlt] = useState(item.context.alt ?? '');
+  const [category, setCategory] = useState<Category | ''>(getCategory(item));
+  const [pinned, setPinned] = useState(getFeaturedOrder(item) !== null);
+  const [order, setOrder] = useState<number>(getFeaturedOrder(item) ?? 10);
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave({
+      alt: alt.trim(),
+      category,
+      featuredOrder: pinned ? Math.max(0, Math.min(999, Math.round(order))) : null,
+    });
+  };
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Edit media"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 md:p-6"
+      onClick={onClose}
+    >
+      <form
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={submit}
+        className="bg-secondary border border-divider rounded-sm p-5 md:p-6 max-w-md w-full space-y-5"
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-serif text-light">Edit details</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-muted hover:text-light p-1"
+            aria-label="Close"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Preview thumb */}
+        <div className="flex gap-3">
+          {item.resourceType === 'image' ? (
+            <img src={item.thumbUrl} alt="" className="w-20 h-20 object-cover rounded-sm border border-divider" />
+          ) : (
+            <div className="w-20 h-20 flex items-center justify-center bg-black rounded-sm border border-divider">
+              <Film className="text-accent" size={24} />
+            </div>
+          )}
+          <div className="text-xs text-muted min-w-0 pt-1">
+            <div className="uppercase tracking-widest mb-1">{item.resourceType} · {item.format}</div>
+            <div className="truncate">{item.publicId}</div>
+          </div>
+        </div>
+
+        {/* Caption / alt */}
+        <div>
+          <label htmlFor="edit-alt" className="block text-xs uppercase tracking-widest text-muted mb-2">
+            Caption <span className="normal-case tracking-normal text-muted/70">(shown on the public gallery, also used as image alt text)</span>
+          </label>
+          <input
+            id="edit-alt"
+            type="text"
+            value={alt}
+            onChange={(e) => setAlt(e.target.value)}
+            maxLength={200}
+            autoFocus
+            placeholder="Kitchen island in Calacatta — Kfar Yassif, 2025"
+            className="w-full bg-primary border border-divider rounded-sm px-3 py-3 text-sm text-light focus:outline-none focus:border-accent"
+          />
+          <div className="text-[10px] text-muted mt-1 text-end">{alt.length} / 200</div>
+        </div>
+
+        {/* Category */}
+        <div>
+          <label htmlFor="edit-cat" className="block text-xs uppercase tracking-widest text-muted mb-2">
+            Category
+          </label>
+          <select
+            id="edit-cat"
+            value={category}
+            onChange={(e) => setCategory(e.target.value as Category | '')}
+            className="w-full bg-primary border border-divider rounded-sm px-3 py-3 text-sm text-light focus:outline-none focus:border-accent"
+          >
+            <option value="">— none —</option>
+            {CATEGORIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Pin */}
+        <div className="border border-divider rounded-sm p-4 space-y-3">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={pinned}
+              onChange={(e) => setPinned(e.target.checked)}
+              className="w-5 h-5 accent-accent"
+            />
+            <span className="text-sm text-light font-semibold flex items-center gap-2">
+              <Star size={14} className={pinned ? 'text-accent' : 'text-muted'} fill={pinned ? 'currentColor' : 'none'} />
+              Pin to top of public gallery
+            </span>
+          </label>
+          {pinned && (
+            <div className="flex items-center gap-3 ps-8">
+              <label htmlFor="edit-order" className="text-xs uppercase tracking-widest text-muted whitespace-nowrap">
+                Order
+              </label>
+              <input
+                id="edit-order"
+                type="number"
+                min={0}
+                max={999}
+                value={order}
+                onChange={(e) => setOrder(Number(e.target.value))}
+                className="w-24 bg-primary border border-divider rounded-sm px-3 py-2 text-sm text-light focus:outline-none focus:border-accent"
+              />
+              <span className="text-xs text-muted">lower first (0-999)</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-end gap-3 pt-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-3 text-sm text-muted hover:text-light"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="px-6 py-3 text-sm font-bold bg-accent text-primary rounded-sm hover:bg-light transition-colors"
+          >
+            Save
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
