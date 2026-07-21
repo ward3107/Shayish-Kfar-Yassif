@@ -4,7 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   server: {
-    port: 3000,
+    // Honor PORT env var when set (so tools like Claude Code's preview
+    // launcher can assign a free port); fall back to 3000 for humans
+    // running `npm run dev` directly.
+    port: Number(process.env.PORT) || 3000,
     host: '0.0.0.0',
     // In local dev, proxy /api/* to the deployed Vercel functions so the
     // Gallery and Admin pages work without needing `vercel dev`.

@@ -25,12 +25,12 @@ const INSTAGRAM_HANDLE = 'shayish_kfar_yassif';
 export const INSTAGRAM_LIGHTWIDGET_ID = '';
 
 export const CONTACT = {
-  // PLACEHOLDER — replace with the real WhatsApp number (country code, digits only, no +).
-  whatsappNumber: '972500000000',
-  // PLACEHOLDER — display format shown to visitors.
-  phoneDisplay: '050-000-0000',
-  // PLACEHOLDER — tel: link format (E.164).
-  phoneTel: '+972500000000',
+  // Israeli mobile — country code 972, digits only, no leading zero, no '+'.
+  whatsappNumber: '972505636648',
+  // Display format shown to visitors.
+  phoneDisplay: '050-563-6648',
+  // tel: link format (E.164).
+  phoneTel: '+972505636648',
   instagramHandle: INSTAGRAM_HANDLE,
   instagramUrl: `https://www.instagram.com/${INSTAGRAM_HANDLE}/`,
 };

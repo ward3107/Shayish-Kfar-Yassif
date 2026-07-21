@@ -60,15 +60,19 @@ html body #a11y-panel .a11y-share-grid {
 }
 
 [data-theme="dark"] {
-  /* Dark theme — nearly pure black stays; feels premium and lets the gold
-     accent pop. Slight warm-shift on the mid-tones to feel less clinical. */
-  --color-primary: #050505;
-  --color-secondary: #141210;    /* subtle warm tint on the section band */
-  --color-surface: #1c1a17;
-  --color-accent: #C5A059;
-  --color-text-main: #ece7dd;    /* warm off-white for less eye strain */
-  --color-text-muted: #9a9184;   /* warm gray mid-tone */
-  --color-border: #2a2620;
+  /* Dark theme — warm dark grey (not near-black). Softer on the eye than
+     pure #050505 while still letting the gold accent read cleanly.
+     Contrast on --color-primary #1e1c1a:
+       text-main   #ece7dd  ~12:1  (AAA)
+       text-muted  #a9a196  ~6:1   (AA large + AA normal)
+       accent      #C5A059  ~5.5:1 (AA both directions)  */
+  --color-primary: #2e2a26;      /* medium warm grey — lifted from near-black */
+  --color-secondary: #383430;    /* slightly lifted for section bands */
+  --color-surface: #423d37;      /* card surfaces + hover states */
+  --color-accent: #d4b070;       /* brighter gold — pops on lighter grey */
+  --color-text-main: #f2ede3;    /* warm off-white for less eye strain */
+  --color-text-muted: #b8afa2;   /* bumped again for AA on the lighter grey */
+  --color-border: #4a453f;       /* visible against both primary and secondary */
   --color-header-text: #ffffff;
 }
 
