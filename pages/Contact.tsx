@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import WhatsAppCTA from '../components/WhatsAppCTA';
-import ContactForm from '../components/ContactForm';
 import { Phone, MapPin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT } from '../constants';
@@ -48,25 +47,9 @@ const Contact: React.FC = () => {
                     </div>
                 </div>
 
-                {/* WhatsApp CTA + email form. WhatsApp is the primary channel
-                    for fast, informal contact; the email form catches leads
-                    (corporate buyers, older customers) who prefer email. */}
-                <div className="lg:mt-12 space-y-10">
+                {/* WhatsApp CTA */}
+                <div className="lg:mt-12">
                     <WhatsAppCTA />
-                    <div className="border-t border-divider pt-10">
-                        <div className="mb-6">
-                            <div className="text-xs uppercase tracking-widest text-accent mb-2">
-                                {t('contact.form.eyebrow')}
-                            </div>
-                            <h2 className="text-2xl md:text-3xl font-serif text-light">
-                                {t('contact.form.title')}
-                            </h2>
-                            <p className="text-muted text-sm mt-2">
-                                {t('contact.form.subtitle')}
-                            </p>
-                        </div>
-                        <ContactForm />
-                    </div>
                 </div>
             </div>
         </div>

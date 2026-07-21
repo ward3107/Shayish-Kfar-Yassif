@@ -70,20 +70,6 @@ Trigger a new Vercel deployment (any push to `main`, or "Redeploy" in the Vercel
 
 If usage exceeds the free tier, Cloudinary emails you before enforcing limits.
 
-## Contact form email (optional)
-
-The public Contact page has an email form (`/api/contact`). To have submissions delivered to the owner's inbox, add three env vars in Vercel:
-
-| Name | Value | Notes |
-|---|---|---|
-| `RESEND_API_KEY` | key from https://resend.com/api-keys | Free tier: 100 emails/day. |
-| `CONTACT_TO_EMAIL` | owner's inbox address | e.g. `info@shayish-yasif.co.il` |
-| `CONTACT_FROM_EMAIL` | verified sender on Resend | `onboarding@resend.dev` works for testing; verify your own domain in Resend before going live |
-
-**Without these env vars,** the form still accepts submissions and shows "Message sent" to the visitor, but the message is only logged to Vercel function logs (`Deployments → your latest → Runtime Logs → filter for [contact]`). The visitor UX doesn't break while you set up email.
-
-Rate-limited server-side to 3 submissions per 10 minutes per IP. Honeypot field silently drops bot traffic.
-
 ## Signed uploads (recommended for stricter setups)
 
 An unsigned preset is convenient but its name is visible in the browser bundle.
