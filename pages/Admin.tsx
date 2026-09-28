@@ -18,8 +18,19 @@ import type { MediaItem } from '../types/media';
 
 // Must match CATEGORIES in lib/cloudinary.ts. Duplicated here because the
 // admin ships in the client bundle and can't import server-only code.
-const CATEGORIES = ['kitchen', 'bathroom', 'countertop', 'floor', 'island', 'other'] as const;
+const CATEGORIES = ['kitchens', 'bathrooms', 'walls', 'stairs', 'slabs', 'special'] as const;
 type Category = typeof CATEGORIES[number];
+
+// Hebrew labels for the owner-facing category dropdown (matches the public
+// gallery filter labels in translations.ts → gallery.cat.*).
+const CAT_LABELS: Record<Category, string> = {
+  kitchens: 'מטבחים ואיים',
+  bathrooms: 'חדרי רחצה וכיורים',
+  walls: 'קירות כוח וקמינים',
+  stairs: 'מדרגות ופרטי פנים',
+  slabs: 'לוחות אבן וחומרי גלם',
+  special: 'עבודות מיוחדות',
+};
 
 // Helpers to read the same metadata the server writes.
 const getCategory = (item: MediaItem): Category | '' => {
@@ -757,7 +768,7 @@ const EditModal: React.FC<{
             onChange={(e) => setAlt(e.target.value)}
             maxLength={200}
             autoFocus
-            placeholder="Kitchen island in Calacatta — Kfar Yassif, 2025"
+            placeholder="אי מטבח משיש — כפר יאסיף"
             className="w-full bg-primary border border-divider rounded-sm px-3 py-3 text-sm text-light focus:outline-none focus:border-accent"
           />
           <div className="text-[10px] text-muted mt-1 text-end">{alt.length} / 200</div>
@@ -776,7 +787,7 @@ const EditModal: React.FC<{
           >
             <option value="">— none —</option>
             {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c}>{CAT_LABELS[c]}</option>
             ))}
           </select>
         </div>

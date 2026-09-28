@@ -38,18 +38,6 @@ export const CONTACT = {
 // Flip to true once TESTIMONIALS below are replaced with real, attributed reviews.
 export const TESTIMONIALS_ENABLED = false;
 
-// Ambient background tracks for the floating music player. Placeholders point
-// at SoundHelix (free, CC-licensed demo tracks) — they play reliably but are
-// generic algorithmic tunes, not curated marble/showroom ambience. Replace
-// the URLs with self-hosted MP3s once the owner picks the real soundtrack.
-export const MUSIC_TRACKS: Array<{ title: string; src: string }> = [
-  { title: 'Ambient Track 1', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-  { title: 'Ambient Track 2', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' },
-  { title: 'Ambient Track 3', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3' },
-];
-// Default starting volume — 0.16 was the last value the previous player shipped with.
-export const MUSIC_DEFAULT_VOLUME = 0.16;
-
 // Showroom opening hours — used by the header status pill to show a live
 // open/closed indicator. Times are 24h in Asia/Jerusalem.
 // TODO: replace with the real showroom hours. Empty array = closed that day.

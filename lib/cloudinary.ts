@@ -101,10 +101,10 @@ export async function destroyMedia(publicId: string, resourceType: 'image' | 'vi
 
 /**
  * Categories the owner can tag photos with. Stored on Cloudinary as a
- * `cat:<slug>` tag. Keep this list narrow — filter tabs on the public
- * Gallery scale badly beyond ~6 options.
+ * `cat:<slug>` tag. Must stay in sync with CATEGORIES in lib/galleryData.ts
+ * and pages/Admin.tsx. Hebrew labels live in translations.ts (gallery.cat.*).
  */
-export const CATEGORIES = ['kitchen', 'bathroom', 'countertop', 'floor', 'island', 'other'] as const;
+export const CATEGORIES = ['kitchens', 'bathrooms', 'walls', 'stairs', 'slabs', 'special'] as const;
 export type Category = typeof CATEGORIES[number];
 
 /**

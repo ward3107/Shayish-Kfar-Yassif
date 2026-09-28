@@ -3,7 +3,7 @@ import { useMagneticCursor } from '../hooks/useMagneticCursor';
 import { useMarbleTap } from '../hooks/useMarbleTap';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline' | 'gold' | 'white';
+  variant?: 'primary' | 'outline' | 'gold' | 'white' | 'soft';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   /**
@@ -38,7 +38,10 @@ const Button: React.FC<ButtonProps> = ({
     primary: "bg-white text-black border-white hover:bg-transparent hover:text-white",
     outline: "bg-transparent text-white border-white hover:bg-white hover:text-black",
     gold: "bg-accent text-white border-accent hover:bg-transparent hover:text-accent",
-    white: "bg-transparent text-white border-white hover:bg-white hover:text-black"
+    white: "bg-transparent text-white border-white hover:bg-white hover:text-black",
+    // Theme-aware outline that reads on BOTH light and dark section backgrounds
+    // (uses design tokens instead of hardcoded white).
+    soft: "bg-transparent text-light border-divider hover:border-accent hover:text-accent"
   };
 
   const sizes = {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, Instagram, Share2, X, MessageCircle } from 'lucide-react';
+import { Instagram, Share2, X, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT, whatsappLink } from '../constants';
 
@@ -75,13 +75,7 @@ const ContactFAB: React.FC = () => {
         </svg>
       ),
     },
-    {
-      key: 'phone',
-      label: t('fab.call'),
-      href: CONTACT.phoneTel,
-      className: 'bg-accent text-white',
-      icon: <Phone size={20} />,
-    },
+    // No floating phone-call button — WhatsApp is the primary contact channel.
   ];
 
   return (
