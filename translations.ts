@@ -5,6 +5,7 @@ export const translations = {
     nav: {
       home: 'Home',
       collections: 'Collections',
+      catalog: 'Catalog',
       process: 'Process',
       materials: 'Materials',
       studio: 'Studio',
@@ -28,7 +29,9 @@ export const translations = {
       title_line2: 'Stone & Porcelain',
       subtitle: 'The premier destination for porcelain, marble, and custom stone surfaces in Northern Israel.',
       explore: 'Explore Collections',
-      book: 'Book Appointment'
+      book: 'Book Appointment',
+      view_works: 'View Our Work',
+      image_alt: 'Natural stone fireplace surround — Shayish Kfar Yassif'
     },
     intro: {
       quote: '"We believe that stone is not just a material, but the foundation of design. Shayish Kfar Yassif brings the durability of porcelain and the elegance of marble into your home."'
@@ -42,7 +45,9 @@ export const translations = {
       discover: 'Discover Materials',
       visit_title: 'Visit the Showroom',
       visit_loc: 'Kfar Yassif Industrial Zone',
-      view_all: 'View all projects'
+      view_all: 'View all projects',
+      view_catalog: 'View Catalog',
+      statement_img_alt: 'Custom kitchen island with a stone worktop'
     },
     footer: {
       desc: 'Expertise in Stone, Marble & Porcelain surfaces. Creating the heart of the home in Kfar Yassif since 2008.',
@@ -187,7 +192,11 @@ export const translations = {
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
       title: 'Our Work',
-      subtitle: 'Every kitchen, every countertop, every install — posted daily on our Instagram.',
+      subtitle: 'Our portfolio — kitchens, bathrooms, fireplaces, staircases and stone slabs.',
+      eyebrow: 'Portfolio',
+      open: 'Open image',
+      untitled: 'Stone work — Shayish Kfar Yassif',
+      filter_label: 'Filter by category',
       instagram_cta: 'View Full Portfolio on Instagram',
       handle_note: 'Follow @shayish_kfar_yassif for real-time updates.',
       load_error: "Couldn't load the gallery — please refresh.",
@@ -204,12 +213,12 @@ export const translations = {
       pieces: 'pieces',
       cat: {
         all: 'All',
-        kitchen: 'Kitchen',
-        bathroom: 'Bathroom',
-        countertop: 'Countertop',
-        floor: 'Floor',
-        island: 'Island',
-        other: 'Other'
+        kitchens: 'Kitchens & Islands',
+        bathrooms: 'Bathrooms & Vanities',
+        walls: 'Feature Walls & Fireplaces',
+        stairs: 'Stairs & Interiors',
+        slabs: 'Stone Slabs & Materials',
+        special: 'Special Projects'
       }
     },
     // FAQ Page
@@ -415,6 +424,7 @@ export const translations = {
     nav: {
       home: 'בית',
       collections: 'קולקציות',
+      catalog: 'קטלוג',
       process: 'תהליך',
       materials: 'חומרים',
       studio: 'סטודיו',
@@ -433,12 +443,14 @@ export const translations = {
       notfound_title: '404 — הדף לא נמצא'
     },
     hero: {
-      est: 'נוסד 2008 • כפר יאסיף',
+      est: 'שיש · פורצלן · משטחי מטבח · עבודות פנים',
       title_line1: 'מומחיות ב',
       title_line2: 'שיש ופורצלן',
-      subtitle: 'היעד המוביל למשטחי פורצלן, שיש ואבן בהתאמה אישית בצפון.',
+      subtitle: 'מטבחים, חדרי רחצה, קמינים, מדרגות ולוחות אבן — בעבודת יד מדויקת בכפר יאסיף.',
       explore: 'לכל הקולקציות',
-      book: 'תיאום פגישה'
+      book: 'תיאום פגישה',
+      view_works: 'צפו בעבודות',
+      image_alt: 'קמין בחיפוי אבן טבעית — עבודת שיש כפר יאסיף'
     },
     intro: {
       quote: '״אנחנו מאמינים שאבן היא לא רק חומר, אלא הבסיס לעיצוב. שיש כפר יאסיף מביא את העמידות של הפורצלן והאלגנטיות של השיש לביתכם.״'
@@ -448,11 +460,13 @@ export const translations = {
       instagram_subtitle: 'עבודות יומיומיות, התקנות אחרונות, ורגעים מאחורי הקלעים — כל פרויקט שאנחנו מסיימים, ישר לפיד.',
       instagram_cta: 'לצפייה באינסטגרם',
       art_title: 'אומנות האבן והפורצלן',
-      art_desc: 'השם שלנו, שיש, הוא המורשת שלנו. אנו מתמחים בחיתוך והתקנה מדויקים בכפר יאסיף. משיש איטלקי ועד משטחי פורצלן מתקדמים, אנו מהנדסים עמידות ויופי.',
+      art_desc: 'השם שלנו, שיש, הוא המורשת שלנו. אנו מתמחים בחיתוך והתקנה מדויקים בכפר יאסיף — משיש טבעי ועד משטחי פורצלן מתקדמים.',
       discover: 'גלה חומרים',
-      visit_title: 'בקר באולם התצוגה',
-      visit_loc: 'אזור תעשייה כפר יאסיף',
-      view_all: 'לכל הפרויקטים'
+      visit_title: 'דברו איתנו',
+      visit_loc: 'אזור תעשייה, כפר יאסיף',
+      view_all: 'לכל הפרויקטים',
+      view_catalog: 'צפו בקטלוג',
+      statement_img_alt: 'אי מטבח עם משטח אבן בהתאמה אישית'
     },
     footer: {
       desc: 'מומחיות במשטחי אבן, שיש ופורצלן. יוצרים את לב הבית בכפר יאסיף מאז 2008.',
@@ -597,11 +611,15 @@ export const translations = {
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
       title: 'העבודות שלנו',
-      subtitle: 'כל מטבח, כל משטח, כל התקנה — מתפרסמים מדי יום באינסטגרם שלנו.',
+      subtitle: 'תיק העבודות שלנו — מטבחים, חדרי רחצה, קמינים, מדרגות ולוחות אבן.',
+      eyebrow: 'תיק עבודות',
       instagram_cta: 'לצפייה בכל התיק באינסטגרם',
       handle_note: 'עקבו אחר @shayish_kfar_yassif לעדכונים בזמן אמת.',
       load_error: 'לא הצלחנו לטעון את הגלריה — נסו לרענן.',
       lightbox_label: 'צפייה במדיה',
+      filter_label: 'סינון לפי קטגוריה',
+      open: 'פתחו תמונה',
+      untitled: 'עבודת אבן — שיש כפר יאסיף',
       close: 'סגור',
       next: 'הבא',
       prev: 'הקודם',
@@ -614,12 +632,12 @@ export const translations = {
       pieces: 'פריטים',
       cat: {
         all: 'הכל',
-        kitchen: 'מטבח',
-        bathroom: 'אמבטיה',
-        countertop: 'משטח',
-        floor: 'רצפה',
-        island: 'איי מטבח',
-        other: 'אחר'
+        kitchens: 'מטבחים ואיים',
+        bathrooms: 'חדרי רחצה וכיורים',
+        walls: 'קירות כוח וקמינים',
+        stairs: 'מדרגות ופרטי פנים',
+        slabs: 'לוחות אבן וחומרי גלם',
+        special: 'עבודות מיוחדות'
       }
     },
     // FAQ Page
@@ -825,6 +843,7 @@ export const translations = {
     nav: {
       home: 'الرئيسية',
       collections: 'المجموعات',
+      catalog: 'الكتالوج',
       process: 'العملية',
       materials: 'المواد',
       studio: 'الاستوديو',
@@ -848,7 +867,9 @@ export const translations = {
       title_line2: 'الحجر والبورسلين',
       subtitle: 'الوجهة الرائدة للبورسلين، الرخام، وأسطح الحجر المخصصة في شمال إسرائيل.',
       explore: 'تصفح المجموعات',
-      book: 'حجز موعد'
+      book: 'حجز موعد',
+      view_works: 'شاهد أعمالنا',
+      image_alt: 'مدفأة بكسوة حجر طبيعي — شيش كفر ياسيف'
     },
     intro: {
       quote: '"نحن نؤمن أن الحجر ليس مجرد مادة، بل هو أساس التصميم. شايش كفر ياسيف يجمع بين متانة البورسلين وأناقة الرخام في منزلك."'
@@ -862,7 +883,9 @@ export const translations = {
       discover: 'اكتشف المواد',
       visit_title: 'زُر صالة العرض',
       visit_loc: 'المنطقة الصناعية كفر ياسيف',
-      view_all: 'كل المشاريع'
+      view_all: 'كل المشاريع',
+      view_catalog: 'عرض الكتالوج',
+      statement_img_alt: 'جزيرة مطبخ مع سطح حجري مخصص'
     },
     footer: {
       desc: 'خبرة في أسطح الحجر، الرخام والبورسلين. نصنع قلب المنزل في كفر ياسيف منذ 2008.',
@@ -1007,7 +1030,11 @@ export const translations = {
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
       title: 'أعمالنا',
-      subtitle: 'كل مطبخ، كل سطح، كل تركيب — يُنشر يوميًا على إنستغرام.',
+      subtitle: 'معرض أعمالنا — مطابخ، حمّامات، مواقد، أدراج وألواح حجر.',
+      eyebrow: 'معرض الأعمال',
+      open: 'افتح الصورة',
+      untitled: 'عمل حجري — شيش كفر ياسيف',
+      filter_label: 'تصفية حسب الفئة',
       instagram_cta: 'شاهدوا الأعمال الكاملة على إنستغرام',
       handle_note: 'تابعوا @shayish_kfar_yassif للتحديثات المباشرة.',
       load_error: 'تعذّر تحميل المعرض — الرجاء التحديث.',
@@ -1024,12 +1051,12 @@ export const translations = {
       pieces: 'قطعة',
       cat: {
         all: 'الكل',
-        kitchen: 'مطبخ',
-        bathroom: 'حمّام',
-        countertop: 'سطح',
-        floor: 'أرضية',
-        island: 'جزيرة مطبخ',
-        other: 'أخرى'
+        kitchens: 'مطابخ وجزر',
+        bathrooms: 'حمّامات ومغاسل',
+        walls: 'جدران ومواقد',
+        stairs: 'أدراج وتفاصيل داخلية',
+        slabs: 'ألواح حجر ومواد',
+        special: 'أعمال خاصة'
       }
     },
     // FAQ Page
@@ -1235,6 +1262,7 @@ export const translations = {
     nav: {
       home: 'Главная',
       collections: 'Коллекции',
+      catalog: 'Каталог',
       process: 'Процесс',
       materials: 'Материалы',
       studio: 'Студия',
@@ -1258,7 +1286,9 @@ export const translations = {
       title_line2: 'Камне и Фарфоре',
       subtitle: 'Ведущий центр фарфора, мрамора и bespoke каменных поверхностей на севере Израиля.',
       explore: 'Смотреть коллекции',
-      book: 'Записаться на приём'
+      book: 'Записаться на приём',
+      view_works: 'Смотреть работы',
+      image_alt: 'Камин в отделке натуральным камнем — Shayish Kfar Yassif'
     },
     intro: {
       quote: '"Мы верим, что камень — это не просто материал, а основа дизайна. Шаиш Кфар Ясиф сочетает прочность фарфора и элегантность мрамора в вашем доме."'
@@ -1272,7 +1302,9 @@ export const translations = {
       discover: 'Открыть материалы',
       visit_title: 'Посетить шоу-рум',
       visit_loc: 'Промышленная зона Кфар Ясиф',
-      view_all: 'Все проекты'
+      view_all: 'Все проекты',
+      view_catalog: 'Смотреть каталог',
+      statement_img_alt: 'Кухонный остров с каменной столешницей'
     },
     footer: {
       desc: 'Экспертиза в каменных, мраморных и фарфоровых поверхностях. Создаём сердце дома в Кфар Ясиф с 2008 года.',
@@ -1417,7 +1449,11 @@ export const translations = {
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
       title: 'Наши работы',
-      subtitle: 'Каждая кухня, каждая столешница, каждая установка — публикуются ежедневно в нашем Instagram.',
+      subtitle: 'Наше портфолио — кухни, ванные, камины, лестницы и каменные плиты.',
+      eyebrow: 'Портфолио',
+      open: 'Открыть изображение',
+      untitled: 'Работа по камню — Shayish Kfar Yassif',
+      filter_label: 'Фильтр по категории',
       instagram_cta: 'Смотреть полное портфолио в Instagram',
       handle_note: 'Подписывайтесь на @shayish_kfar_yassif для обновлений в реальном времени.',
       load_error: 'Не удалось загрузить галерею — обновите страницу.',
@@ -1434,12 +1470,12 @@ export const translations = {
       pieces: 'работ',
       cat: {
         all: 'Все',
-        kitchen: 'Кухня',
-        bathroom: 'Ванная',
-        countertop: 'Столешница',
-        floor: 'Пол',
-        island: 'Остров',
-        other: 'Другое'
+        kitchens: 'Кухни и острова',
+        bathrooms: 'Ванные и раковины',
+        walls: 'Стены и камины',
+        stairs: 'Лестницы и интерьер',
+        slabs: 'Плиты и материалы',
+        special: 'Особые работы'
       }
     },
     // FAQ Page

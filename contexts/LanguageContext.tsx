@@ -17,13 +17,15 @@ const SUPPORTED: Language[] = ['he', 'ar', 'en', 'ru'];
 const readInitialLanguage = (): Language => {
   if (typeof window === 'undefined') return 'he';
   try {
+    // Honor a manual choice the visitor made previously.
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored && (SUPPORTED as string[]).includes(stored)) return stored as Language;
   } catch {
     // ignore storage errors (private mode, etc.)
   }
-  const nav = window.navigator?.language?.slice(0, 2).toLowerCase();
-  if (nav && (SUPPORTED as string[]).includes(nav)) return nav as Language;
+  // Hebrew is the default for every new visitor. We deliberately do NOT read
+  // navigator.language — the site should not open in English just because the
+  // browser is set to English.
   return 'he';
 };
 

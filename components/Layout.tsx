@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Sun, Moon, Lock } from 'lucide-react';
+import { Menu, X, Instagram, Sun, Moon, Lock, FileText } from 'lucide-react';
 // (Instagram still used in the footer + mobile-menu handle preview.)
 import Button from './Button';
 import ContactFAB from './ContactFAB';
@@ -91,9 +91,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navLinks = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.collections'), path: '/gallery' },
-    { name: t('nav.materials'), path: '/materials' },
     { name: t('nav.faq'), path: '/faq' },
   ];
+
+  const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog.pdf';
 
   // Language switching is now handled by the <LanguageSwitcher /> dropdown.
 
@@ -145,6 +146,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 {link.name}
               </Link>
             ))}
+            <a
+              href={CATALOG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors duration-300 inline-flex items-center gap-2 ${headerMuted}`}
+            >
+              <FileText size={15} /> {t('nav.catalog')}
+            </a>
             <Link to="/contact">
               <Button size="sm" variant="gold">
                 {t('nav.consultation')}
@@ -194,6 +203,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 {link.name}
               </Link>
             ))}
+            <a
+              href={CATALOG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-3xl font-serif text-white hover:text-accent transition-colors inline-flex items-center gap-3"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <FileText size={26} /> {t('nav.catalog')}
+            </a>
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-8">
               <Button size="lg" variant="gold">{t('nav.consultation')}</Button>
             </Link>
@@ -258,7 +276,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <ul className="space-y-4 text-sm text-muted">
               <li><Link to="/about" className="hover:text-light transition-colors">{t('footer.story')}</Link></li>
               <li><Link to="/process" className="hover:text-light transition-colors">{t('footer.process')}</Link></li>
-              <li><Link to="/materials" className="hover:text-light transition-colors">{t('nav.materials')}</Link></li>
+              <li><a href={CATALOG_URL} target="_blank" rel="noopener noreferrer" className="hover:text-light transition-colors">{t('nav.catalog')}</a></li>
               <li><Link to="/contact" className="hover:text-light transition-colors">{t('footer.contact')}</Link></li>
             </ul>
           </div>
