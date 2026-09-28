@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import WhatsAppCTA from '../components/WhatsAppCTA';
-import GalleryGrid from '../components/GalleryGrid';
+import HomeGalleryPreview from '../components/HomeGalleryPreview';
 import { CONTACT, whatsappLink } from '../constants';
 import { HERO_PUBLIC_ID, heroUrl, imgUrl, imgSrcSet } from '../lib/galleryData';
 import { ArrowLeft, FileText, Instagram } from 'lucide-react';
@@ -79,15 +79,10 @@ const Home: React.FC = () => {
         </a>
       </section>
 
-      {/* ── The gallery — the star of the page, immediately after the hero ── */}
+      {/* ── Highlights — a curated preview that drives to the full collection ── */}
       <section id="gallery" className="py-16 md:py-24 bg-primary scroll-mt-24 transition-colors duration-300">
         <div className="container mx-auto px-6">
-          <header className="mb-8 md:mb-12 border-b border-divider pb-6">
-            <div className="text-xs uppercase tracking-widest text-accent mb-2">{t('gallery.eyebrow')}</div>
-            <h2 className="text-3xl md:text-5xl font-serif text-light leading-tight">{t('gallery.title')}</h2>
-            <p className="text-muted font-light mt-3 max-w-2xl">{t('gallery.subtitle')}</p>
-          </header>
-          <GalleryGrid />
+          <HomeGalleryPreview />
         </div>
       </section>
 

@@ -47,7 +47,10 @@ export const translations = {
       visit_loc: 'Kfar Yassif Industrial Zone',
       view_all: 'View all projects',
       view_catalog: 'View Catalog',
-      statement_img_alt: 'Custom kitchen island with a stone worktop'
+      statement_img_alt: 'Custom kitchen island with a stone worktop',
+      selected_title: 'Selected Work',
+      selected_subtitle: 'A glimpse of the collection — tap to see every project.',
+      view_all_works: 'View all works'
     },
     footer: {
       desc: 'Expertise in Stone, Marble & Porcelain surfaces. Creating the heart of the home in Kfar Yassif since 2008.',
@@ -466,7 +469,10 @@ export const translations = {
       visit_loc: 'אזור תעשייה, כפר יאסיף',
       view_all: 'לכל הפרויקטים',
       view_catalog: 'צפו בקטלוג',
-      statement_img_alt: 'אי מטבח עם משטח אבן בהתאמה אישית'
+      statement_img_alt: 'אי מטבח עם משטח אבן בהתאמה אישית',
+      selected_title: 'מבחר עבודות',
+      selected_subtitle: 'הצצה מתוך הקולקציה — לחצו לצפייה בכל העבודות.',
+      view_all_works: 'צפו בכל העבודות'
     },
     footer: {
       desc: 'מומחיות במשטחי אבן, שיש ופורצלן. יוצרים את לב הבית בכפר יאסיף מאז 2008.',
@@ -885,7 +891,10 @@ export const translations = {
       visit_loc: 'المنطقة الصناعية كفر ياسيف',
       view_all: 'كل المشاريع',
       view_catalog: 'عرض الكتالوج',
-      statement_img_alt: 'جزيرة مطبخ مع سطح حجري مخصص'
+      statement_img_alt: 'جزيرة مطبخ مع سطح حجري مخصص',
+      selected_title: 'مختارات من الأعمال',
+      selected_subtitle: 'لمحة من المجموعة — اضغط لمشاهدة كل الأعمال.',
+      view_all_works: 'عرض كل الأعمال'
     },
     footer: {
       desc: 'خبرة في أسطح الحجر، الرخام والبورسلين. نصنع قلب المنزل في كفر ياسيف منذ 2008.',
@@ -1304,7 +1313,10 @@ export const translations = {
       visit_loc: 'Промышленная зона Кфар Ясиф',
       view_all: 'Все проекты',
       view_catalog: 'Смотреть каталог',
-      statement_img_alt: 'Кухонный остров с каменной столешницей'
+      statement_img_alt: 'Кухонный остров с каменной столешницей',
+      selected_title: 'Избранные работы',
+      selected_subtitle: 'Небольшой обзор коллекции — нажмите, чтобы увидеть все работы.',
+      view_all_works: 'Смотреть все работы'
     },
     footer: {
       desc: 'Экспертиза в каменных, мраморных и фарфоровых поверхностях. Создаём сердце дома в Кфар Ясиф с 2008 года.',

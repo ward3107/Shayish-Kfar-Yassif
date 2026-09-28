@@ -49,8 +49,7 @@
     },
     "shayish/gallery/w4bnjfr4vzb005fqvz0l": {
       "category": "slabs",
-      "caption": "לוח אבן טבעית",
-      "featured": 7
+      "caption": "לוח אבן טבעית"
     },
     "shayish/gallery/a7dvlmlwmgvupysbjvsi": {
       "category": "slabs",
@@ -95,7 +94,7 @@
     "shayish/gallery/IMG-20260718-WA0106": {
       "category": "walls",
       "caption": "קיר חיפוי אבן",
-      "featured": 8
+      "featured": 7
     },
     "shayish/gallery/IMG-20260718-WA0103": {
       "category": "stairs",
@@ -144,7 +143,8 @@
     },
     "shayish/gallery/IMG-20260718-WA0090": {
       "category": "kitchens",
-      "caption": "אי מטבח עם משטח אבן בהתאמה אישית"
+      "caption": "אי מטבח עם משטח אבן בהתאמה אישית",
+      "featured": 9
     },
     "shayish/gallery/IMG-20260718-WA0094": {
       "category": "kitchens",
@@ -197,7 +197,7 @@
     "shayish/gallery/IMG-20260718-WA0074": {
       "category": "stairs",
       "caption": "מדרגות בחיפוי אבן",
-      "featured": 5
+      "featured": 4
     },
     "shayish/gallery/IMG-20260718-WA0076": {
       "category": "stairs",
@@ -286,7 +286,7 @@
     "shayish/gallery/IMG-20260718-WA0057": {
       "category": "walls",
       "caption": "קמין בחיפוי אבן טבעית",
-      "featured": 3
+      "featured": 2
     },
     "shayish/gallery/IMG-20260718-WA0056": {
       "category": "walls",
@@ -359,7 +359,7 @@
     "shayish/gallery/IMG-20260718-WA0037": {
       "category": "bathrooms",
       "caption": "כיור אמבט מאבן בהתאמה אישית",
-      "featured": 6
+      "featured": 5
     },
     "shayish/gallery/IMG-20260718-WA0033": {
       "category": "bathrooms",
@@ -403,7 +403,8 @@
     },
     "shayish/gallery/IMG-20260718-WA0028": {
       "category": "walls",
-      "caption": "קיר טלוויזיה וקמין בחיפוי אבן"
+      "caption": "קיר טלוויזיה וקמין בחיפוי אבן",
+      "featured": 8
     },
     "shayish/gallery/IMG-20260718-WA0027": {
       "category": "walls",
@@ -440,7 +441,7 @@
     "shayish/gallery/IMG-20260718-WA0017": {
       "category": "kitchens",
       "caption": "מטבח בהתאמה אישית — משטח אבן",
-      "featured": 4
+      "featured": 6
     },
     "shayish/gallery/IMG-20260718-WA0018": {
       "category": "kitchens",
@@ -477,7 +478,7 @@
     "shayish/gallery/IMG-20260718-WA0008": {
       "category": "kitchens",
       "caption": "מטבח בהתאמה אישית — משטח אבן",
-      "featured": 2
+      "featured": 3
     },
     "shayish/gallery/IMG-20260713-WA0030": {
       "category": "bathrooms",
@@ -497,7 +498,8 @@
     },
     "shayish/gallery/IMG-20260713-WA0023": {
       "category": "bathrooms",
-      "caption": "כיור ומראה — חדר רחצה"
+      "caption": "כיור ומראה — חדר רחצה",
+      "featured": 10
     },
     "shayish/gallery/IMG-20260713-WA0021": {
       "category": "bathrooms",
