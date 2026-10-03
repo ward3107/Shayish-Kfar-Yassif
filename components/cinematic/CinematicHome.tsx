@@ -7,6 +7,7 @@ import { useCinematicScroll } from './useCinematicScroll';
 import './CinematicHome.css';
 
 const slabNames = ['stone-01-x235', 'stone-02-x240', 'stone-03-x242', 'stone-04-x241', 'stone-05-x247', 'stone-06-x248', 'stone-07-x249', 'stone-08-x256', 'stone-09-x254', 'stone-10-x255', 'stone-11-x261', 'stone-12-x262', 'stone-13-x263'];
+const slabImage = (name: string) => `/stone-slabs/edited/${name}.jpeg?v=full-4x3`;
 const slabCopy = {
   he: { title: 'האבן במבט מלא.', intro: 'שלושה עשר לוחות, כל אחד עם תנועה וגוון משלו.', note: 'המחשות חזיתיות; אזורים שהוסתרו בצילום שוחזרו דיגיטלית.', slab: 'לוח', edited: 'הגדלת ההמחשה', jump: 'גלו את הלוחות', gesture: 'החליקו או גררו בין התמונות · לחצו להגדלה' },
   ar: { title: 'الحجر بكامل تفاصيله.', intro: 'ثلاثة عشر لوحًا، لكل منها عروقه ولونه الخاص.', note: 'تصورات أمامية؛ أُعيد بناء الأجزاء المحجوبة رقميًا.', slab: 'لوح', edited: 'تكبير الصورة', jump: 'اكتشفوا الألواح', gesture: 'اسحبوا للتنقل · اضغطوا للتكبير' },
@@ -68,13 +69,13 @@ export default function CinematicHome() {
             const offset=(i-activeSlab)*(dir==='rtl'?-1:1);
             const distance=Math.abs(offset);
             return <figure key={name} className="ch-slab" aria-hidden={distance!==0} style={{transform:`translate(calc(-50% + ${offset*15}% + ${dragX}px), -50%) scale(${distance===0?1:.94})`,zIndex:10-distance,opacity:distance>1?0:1,pointerEvents:distance>1?'none':'auto'}}>
-              <button type="button" tabIndex={distance===0?0:-1} onClick={()=>{if(Date.now()<suppressClickUntil.current)return;if(i===activeSlab)slabDialog.current?.showModal();else showSlab(i);}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={`/stone-slabs/edited/${name}.jpeg`} alt={`${s.slab} ${i+1}`} loading={distance<=1?'eager':'lazy'} decoding="async" width="1536" height="1024" /></button>
+              <button type="button" tabIndex={distance===0?0:-1} onClick={()=>{if(Date.now()<suppressClickUntil.current)return;if(i===activeSlab)slabDialog.current?.showModal();else showSlab(i);}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} alt={`${s.slab} ${i+1}`} loading={distance<=1?'eager':'lazy'} decoding="async" width="1448" height="1086" /></button>
             </figure>;
           })}
         </div>
         <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(activeSlab+1).padStart(2,'0')} / {slabNames.length}</span></div>
       </section>
-      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${activeSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={`/stone-slabs/edited/${slabNames[activeSlab]}.jpeg`} alt={`${s.slab} ${activeSlab+1}`} /></dialog>
+      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${activeSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(slabNames[activeSlab])} alt={`${s.slab} ${activeSlab+1}`} /></dialog>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
       {c.projects.map((p,i)=>(
         <section key={i} className={`ch-project ch-tone-${i}`} aria-labelledby={`ch-title-${i}`}>

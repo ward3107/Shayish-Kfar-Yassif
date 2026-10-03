@@ -44,12 +44,12 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .ch-slabs-stage[data-dragging=true] .ch-slab{transition:none}
 .cinematic-home[data-motion=off] .ch-slab{transition:none}
 .ch-slab>button{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;overflow:hidden;background:#202623}
-.ch-slab img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.2);pointer-events:none}
+.ch-slab img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ch-slabs-meta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:12px;color:#d5d5ca;font-size:12px}
 .ch-slabs-meta span:last-child{color:#e3c799;white-space:nowrap}
 .ch-slab-dialog{position:fixed;inset:0;margin:auto;padding:0;width:min(90vw,1000px);height:min(67.5vw,750px,90svh);max-width:96vw;max-height:94svh;overflow:hidden;border:1px solid #bca57688;background:#17201b;color:#fff;box-shadow:0 25px 90px #000a}
 .ch-slab-dialog::backdrop{background:#050b09e8;backdrop-filter:blur(8px)}
-.ch-slab-dialog img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.2)}
+.ch-slab-dialog img{display:block;width:100%;height:100%;object-fit:cover}
 .ch-slab-close{position:absolute;top:7px;right:10px;z-index:2;width:40px;height:40px;background:#17201be8;color:#fff;border:1px solid #c3a16f;border-radius:50%;font-size:28px;line-height:1}
 .ch-section-label span:last-child{font-size:11px;letter-spacing:.12em}
 .ch-project{height:175svh;--detail:0;--photo-scale:1;--photo-shift:0%;--progress:0%;background:#e7e7df;color:#242b24}
