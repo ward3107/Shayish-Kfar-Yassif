@@ -32,6 +32,19 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .ch-track{position:absolute;bottom:0;left:0;right:0;height:2px;background:#9b947a38}
 .ch-track i{display:block;height:100%;width:var(--progress,0%);background:currentColor}
 .ch-section-label{display:flex;justify-content:space-between;gap:15px;background:#17201b;color:#eee9df;padding:26px 6%;font-size:13px;scroll-margin-top:85px}
+.ch-slabs{background:#17201b;color:#eee9df;padding:86px 6% 96px;scroll-margin-top:76px}
+.ch-slabs-heading{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:36px}
+.ch-slabs-heading h2{margin-bottom:8px}
+.ch-slabs-heading p{margin-bottom:0}
+.ch-slabs-heading small{display:block;max-width:310px;line-height:1.7;color:#c7c8bc;font-size:12px}
+.ch-slabs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ch-slab{margin:0;min-width:0;background:#26312b;border:1px solid #bca57655}
+.ch-slab:first-child{grid-column:span 2}
+.ch-slab>a{display:block;overflow:hidden;aspect-ratio:3/2;background:#202623}
+.ch-slab>a img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .3s ease}
+.ch-slab>a:hover img{transform:scale(1.035)}
+.ch-slab figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 17px;font-size:13px}
+.ch-slab figcaption a{color:#e3c799;text-decoration:underline;text-underline-offset:4px}
 .ch-section-label span:last-child{font-size:11px;letter-spacing:.12em}
 .ch-project{height:175svh;--detail:0;--photo-scale:1;--photo-shift:0%;--progress:0%;background:#e7e7df;color:#242b24}
 .ch-tone-1{background:#181d1b;color:#eee9df}
@@ -106,6 +119,7 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .cinematic-home[data-motion=off] .ch-project-copy{opacity:1;transform:none}
 .cinematic-home[data-motion=off] .ch-photo img{transform:none}
 @media(max-width:750px){
+ .ch-slabs{padding:55px 5.5% 65px}.ch-slabs-heading{display:block}.ch-slabs-heading small{margin-top:14px}.ch-slabs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ch-slab:first-child{grid-column:span 2}.ch-slab figcaption{font-size:11px;padding:10px;flex-wrap:wrap}
  .cinematic-home h2{font-size:34px}.cinematic-home p{font-size:15px}.cinematic-home .ch-eyebrow{font-size:12px;margin-bottom:15px}
  .ch-hero{height:210svh}.ch-hero-stage{min-height:600px}
  .ch-intro,.ch-reveal{right:7%;left:7%;max-width:none;top:34%;text-shadow:0 2px 30px #0009}

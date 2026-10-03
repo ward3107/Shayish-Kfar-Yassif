@@ -5,7 +5,7 @@ import { CONTACT } from '../constants';
 import WhatsAppCTA from '../components/WhatsAppCTA';
 import GalleryGrid from '../components/GalleryGrid';
 
-const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog.pdf';
+const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog-v2.pdf';
 
 const Gallery: React.FC = () => {
   const { t } = useLanguage();

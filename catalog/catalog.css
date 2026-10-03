@@ -1,0 +1,84 @@
+@font-face {
+  font-family: Heebo;
+  src: url('../public/cinematic/heebo.woff') format('woff');
+  font-weight: normal;
+}
+@font-face {
+  font-family: Frank;
+  src: url('../public/cinematic/frank-ruhl-libre.woff') format('woff');
+  font-weight: normal;
+}
+@page { size: 210mm 280mm; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #202720; color: #f3f0e8; font-family: Heebo, sans-serif; }
+.page { position: relative; width: 210mm; height: 280mm; overflow: hidden; break-after: page; page-break-after: always; background: var(--shade, #202720); }
+.page:last-child { break-after: auto; page-break-after: auto; }
+.brand { position: absolute; z-index: 2; top: 15mm; right: 17mm; font-size: 9pt; font-weight: bold; }
+.edition { position: absolute; z-index: 2; top: 15mm; left: 17mm; font-size: 7pt; color: #b89a6c; letter-spacing: .16em; direction: ltr; }
+.top-rule { position: absolute; z-index: 2; top: 25mm; left: 17mm; right: 17mm; height: .25mm; background: #697067; }
+.foot { position: absolute; z-index: 2; bottom: 12mm; right: 17mm; left: 17mm; height: 5mm; font-size: 8pt; color: #b8b9ac; }
+.foot .number { position: absolute; left: 0; direction: ltr; }
+.foot .name { position: absolute; right: 0; }
+.eyebrow { color: #b99a6b; font-size: 8pt; letter-spacing: .05em; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: Frank, serif; font-weight: normal; line-height: 1.03; }
+p { line-height: 1.7; }
+.cover .cover-image { position: absolute; top: 121mm; right: 0; left: 0; height: 159mm; }
+.cover .cover-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cover .shade { position: absolute; top: 121mm; right: 0; left: 0; height: 159mm; background: linear-gradient(to bottom, #202720 0%, rgba(32,39,32,.08) 44%, rgba(32,39,32,.12) 100%); }
+.cover .copy { position: absolute; top: 52mm; right: 17mm; width: 165mm; }
+.cover h1 { font-size: 42pt; margin-top: 11mm; }
+.cover p { font-size: 11pt; margin-top: 9mm; max-width: 125mm; color: #d7d7ca; }
+.cover .actions { position: absolute; z-index: 4; right: 17mm; left: 17mm; bottom: 30mm; height: 17mm; }
+.cover .actions a { position: absolute; top: 0; width: 84mm; height: 17mm; line-height: 17mm; font-size: 10pt; font-weight: bold; text-align: center; text-decoration: none; }
+.cover .actions .whatsapp { right: 0; color: #1e261f; background: #c3a16f; }
+.cover .actions .website { left: 0; color: #f5f2e9; background: rgba(25, 32, 26, .9); border: .3mm solid #c3a16f; }
+.materials { position: absolute; z-index: 3; top: 5mm; left: 5mm; right: auto; direction: ltr; width: 49mm; height: 22mm; display: block; padding: 2mm; white-space: nowrap; background: rgba(19, 26, 22, .82); border: .25mm solid rgba(231, 213, 180, .7); }
+.materials i { display: inline-block; vertical-align: middle; margin-right: 1mm; width: 12mm; height: 12mm; border: .75mm solid; border-radius: 50%; background-color: #354039; background-repeat: no-repeat; background-size: 420% auto; box-shadow: 0 0 0 .3mm #e9dcc6; }
+.materials i:first-child { width: 18mm; height: 18mm; }
+.materials i:last-child { width: 10mm; height: 10mm; }
+.cover > .materials { top: 130mm; left: 17mm; }
+.hero .visual .materials { top: 6mm; left: 6mm; }
+.stone.hero .visual { top: 111mm; left: 17mm; right: 17mm; width: auto; height: 119mm; background: transparent; }
+.stone.hero .visual img { object-fit: contain; }
+.stone.hero .copy { top: 44mm; right: 17mm; width: 176mm; }
+.stone.hero .count { bottom: 28mm; width: 176mm; }
+.stone .shot img { object-fit: contain; }
+.stone .shot { background: transparent; border: 0; }
+.stone .gallery.single .shot { width: 137mm; right: 19.5mm; }
+.stone .gallery.pair-wide .shot { width: 136mm; right: 20mm; }
+.stone .gallery.wide .shot:first-child { width: 136mm; right: 20mm; }
+.cover .foot { color: white; }
+.hero .visual { position: absolute; top: 37mm; left: 0; width: 122mm; height: 225mm; background: #121913; }
+.hero .visual img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hero .copy { position: absolute; top: 49mm; right: 17mm; width: 65mm; }
+.hero h2 { margin-top: 12mm; font-size: 34pt; }
+.hero p { margin-top: 13mm; font-size: 10pt; color: #d3d1c5; }
+.hero .count { position: absolute; right: 17mm; bottom: 47mm; width: 65mm; border-top: .35mm solid #ac9069; padding-top: 6mm; color: #b4b5a7; font-size: 8pt; }
+.gallery-page .intro { position: absolute; top: 39mm; right: 17mm; left: 17mm; height: 23mm; }
+.gallery-page .intro h3 { font-size: 20pt; margin-top: 3mm; }
+.gallery-page .intro .range { position: absolute; top: 7mm; left: 0; direction: ltr; font-size: 8pt; color: #b4b5a7; }
+.gallery { position: absolute; top: 71mm; right: 17mm; left: 17mm; height: 183mm; }
+.shot { position: absolute; overflow: hidden; background: #111912; border: .25mm solid #455044; }
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.shot .index { position: absolute; bottom: 0; right: 0; min-width: 15mm; padding: 2.5mm 3mm; background: rgba(22,29,22,.86); color: #e2d6bf; font: 7pt Heebo, sans-serif; text-align: center; direction: ltr; }
+.gallery.mosaic .shot:nth-child(1) { top: 0; right: 0; width: 100mm; height: 183mm; }
+.gallery.mosaic .shot:nth-child(2) { top: 0; left: 0; width: 70mm; height: 87mm; }
+.gallery.mosaic .shot:nth-child(3) { bottom: 0; left: 0; width: 70mm; height: 87mm; }
+.gallery.wide .shot:nth-child(1) { top: 0; right: 0; width: 176mm; height: 91mm; }
+.gallery.wide .shot:nth-child(2) { bottom: 0; right: 0; width: 85mm; height: 84mm; }
+.gallery.wide .shot:nth-child(3) { bottom: 0; left: 0; width: 85mm; height: 84mm; }
+.gallery.pair .shot:nth-child(1) { top: 0; right: 0; width: 85mm; height: 183mm; }
+.gallery.pair .shot:nth-child(2) { top: 0; left: 0; width: 85mm; height: 183mm; }
+.gallery.single .shot { top: 0; right: 0; width: 176mm; height: 183mm; }
+.gallery.pair-wide .shot:nth-child(1) { top: 0; right: 0; width: 176mm; height: 87mm; }
+.gallery.pair-wide .shot:nth-child(2) { bottom: 0; right: 0; width: 176mm; height: 87mm; }
+.gallery.single-wide .shot { top: 37mm; right: 0; width: 176mm; height: 109mm; }
+.closing .copy { position: absolute; top: 60mm; right: 17mm; left: 17mm; }
+.closing h2 { margin-top: 12mm; font-size: 40pt; }
+.closing p { margin-top: 14mm; font-size: 11pt; max-width: 135mm; color: #d4d4c8; }
+.closing a { display: inline-block; margin-top: 22mm; direction: ltr; color: #e4c69a; border-bottom: .3mm solid #b99a6b; padding-bottom: 2mm; font-size: 11pt; text-decoration: none; }
+.closing .line { position: absolute; right: 17mm; left: 17mm; bottom: 53mm; height: .3mm; background: #a28661; }
+.closing > .materials { top: auto; bottom: 68mm; left: 17mm; }
+.closing .location { position: absolute; right: 17mm; bottom: 39mm; font-size: 9pt; color: #b8b9ac; }

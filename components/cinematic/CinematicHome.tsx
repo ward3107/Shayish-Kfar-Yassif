@@ -6,9 +6,18 @@ import { cinematicCopy, detailPositions, projectImages } from './content';
 import { useCinematicScroll } from './useCinematicScroll';
 import './CinematicHome.css';
 
+const slabNames = ['stone-01-x235', 'stone-02-x240', 'stone-03-x242', 'stone-04-x241', 'stone-05-x247', 'stone-06-x248', 'stone-07-x249', 'stone-08-x256', 'stone-09-x254', 'stone-10-x255', 'stone-11-x261', 'stone-12-x262', 'stone-13-x263'];
+const slabCopy = {
+  he: { title: 'האבן במבט מלא.', intro: 'שלושה עשר לוחות, כל אחד עם תנועה וגוון משלו.', note: 'המחשות חזיתיות המבוססות על צילומי מקור. אזורים מוסתרים שוחזרו דיגיטלית.', slab: 'לוח', source: 'צילום מקור', edited: 'הגדלת ההמחשה', jump: 'גלו את הלוחות' },
+  ar: { title: 'الحجر بكامل تفاصيله.', intro: 'ثلاثة عشر لوحًا، لكل منها عروقه ولونه الخاص.', note: 'تصورات أمامية مبنية على صور أصلية. أُعيد بناء الأجزاء المحجوبة رقميًا.', slab: 'لوح', source: 'الصورة الأصلية', edited: 'تكبير الصورة', jump: 'اكتشفوا الألواح' },
+  en: { title: 'The whole stone.', intro: 'Thirteen slabs, each with its own movement and colour.', note: 'Front view visualizations based on original photos. Obscured areas were reconstructed digitally.', slab: 'Slab', source: 'Original photo', edited: 'Enlarge view', jump: 'Explore the slabs' },
+  ru: { title: 'Камень целиком.', intro: 'Тринадцать слэбов, каждый со своим рисунком и оттенком.', note: 'Фронтальные визуализации на основе исходных фото. Скрытые участки восстановлены цифровым способом.', slab: 'Слэб', source: 'Исходное фото', edited: 'Увеличить', jump: 'Смотреть слэбы' },
+};
+
 export default function CinematicHome() {
   const { language, t, dir } = useLanguage();
   const c = cinematicCopy[language];
+  const s = slabCopy[language];
   const root = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const [look,setLook] = useState(0);
@@ -32,9 +41,18 @@ export default function CinematicHome() {
           <div className="ch-cut"><img src="/cinematic/cutting-still.webp" alt={c.sawAlt} width="1672" height="941" fetchPriority="high" /></div>
           <div className="ch-shade" aria-hidden="true" />
           <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p></div>
-          <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#gallery">{c.selected} <span aria-hidden="true">+</span></a></div>
+          <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a></div>
           <div className="ch-hero-bottom"><span dir="ltr">01 / STONE TO SPACE</span><span>{c.scroll}</span><a href="#gallery">{c.skip}</a></div>
           <div className="ch-track" aria-hidden="true"><i /></div>
+        </div>
+      </section>
+      <section id="slabs" className="ch-slabs" aria-labelledby="ch-slabs-title">
+        <div className="ch-slabs-heading"><div><p className="ch-eyebrow">STONE / 01—13</p><h2 id="ch-slabs-title">{s.title}</h2><p>{s.intro}</p></div><small>{s.note}</small></div>
+        <div className="ch-slabs-grid">
+          {slabNames.map((name, i) => <figure key={name} className="ch-slab">
+            <a href={`/stone-slabs/edited/${name}.jpeg`} target="_blank" rel="noopener noreferrer" aria-label={`${s.edited}: ${s.slab} ${i + 1}`}><img src={`/stone-slabs/edited/${name}.jpeg`} alt={`${s.slab} ${i + 1} — ${s.edited}`} loading="lazy" decoding="async" width="1536" height="1024" /></a>
+            <figcaption><span>{s.slab} {String(i + 1).padStart(2, '0')}</span><a href={`/stone-slabs/original/${name}.jpeg`} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></figcaption>
+          </figure>)}
         </div>
       </section>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
@@ -61,7 +79,7 @@ export default function CinematicHome() {
         <div className="ch-material-copy"><p className="ch-eyebrow">{c.material}</p><h2 id="ch-material-title">{c.materialTitle}</h2><p aria-live="polite">{c.lookDescriptions[look]}</p><div className="ch-looks" role="group" aria-label={c.material}>{c.looks.map((label,i)=><button key={i} aria-pressed={look===i} onClick={()=>setLook(i)}>{label}</button>)}</div><small>{c.real}</small></div>
       </section>
       <section className="ch-craft" aria-labelledby="ch-craft-title">
-        <div><p className="ch-eyebrow">{c.craft}</p><h2 id="ch-craft-title">{c.craftTitle}</h2><p>{c.craftBody}</p><a className="ch-text-button" href="/catalog/shayish-kfar-yassif-catalog.pdf" target="_blank" rel="noopener noreferrer">{c.catalog} ↗</a></div>
+        <div><p className="ch-eyebrow">{c.craft}</p><h2 id="ch-craft-title">{c.craftTitle}</h2><p>{c.craftBody}</p><a className="ch-text-button" href="/catalog/shayish-kfar-yassif-catalog-v2.pdf" target="_blank" rel="noopener noreferrer">{c.catalog} ↗</a></div>
         <div className="ch-steps">{c.steps.map(([title,body],i)=><details key={`${language}-${i}`} open={i===0}><summary><span dir="ltr">0{i+1}</span>{title}</summary><p>{body}</p></details>)}</div>
       </section>
       <section className="ch-contact" aria-labelledby="ch-contact-title"><img src={projectImages[2]} alt="" loading="lazy" /><div><p className="ch-eyebrow">{c.contactTag}</p><h2 id="ch-contact-title">{c.contactTitle}</h2><div className="ch-contact-row"><a className="ch-pill" href={chat} target="_blank" rel="noopener noreferrer">{c.chat} +</a><a href={`tel:${CONTACT.phoneTel}`} dir="ltr">{CONTACT.phoneDisplay}</a><p>{c.location}</p></div></div></section>

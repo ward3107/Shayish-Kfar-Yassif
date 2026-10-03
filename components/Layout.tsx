@@ -94,7 +94,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { name: t('nav.faq'), path: '/faq' },
   ];
 
-  const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog.pdf';
+  const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog-v2.pdf';
 
   // Language switching is now handled by the <LanguageSwitcher /> dropdown.
 
@@ -105,7 +105,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled 
             ? 'bg-primary backdrop-blur-md border-divider py-4 shadow-sm'
-            : 'bg-transparent border-transparent py-6'
+            : isOverDarkHero
+              ? 'bg-[#101916]/85 backdrop-blur-md border-[#c3a16f]/35 py-4 shadow-lg'
+              : 'bg-primary/95 backdrop-blur-md border-divider py-4'
         }`}
       >
         <div className="container mx-auto px-8 flex items-center justify-between">
@@ -119,7 +121,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8" aria-label={t('nav.primary')}>
+          <nav className="hidden md:flex items-center gap-6" aria-label={t('nav.primary')}>
              {/* Language + Theme Switcher */}
             <div className="flex items-center gap-6 border-e border-divider pe-6 me-4">
 
@@ -139,8 +141,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 onMouseEnter={() => prefetchRoute(link.path)}
                 onFocus={() => prefetchRoute(link.path)}
                 onTouchStart={() => prefetchRoute(link.path)}
-                className={`text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
-                    location.pathname === link.path ? 'text-accent after:w-full' : headerMuted
+                className={`text-sm font-semibold tracking-wide hover:text-accent transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full ${
+                    location.pathname === link.path ? 'text-accent after:w-full' : headerText
                 }`}
               >
                 {link.name}
@@ -150,7 +152,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               href={CATALOG_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors duration-300 inline-flex items-center gap-2 ${headerMuted}`}
+              className={`text-sm font-semibold tracking-wide hover:text-accent transition-colors duration-300 inline-flex items-center gap-2 ${headerText}`}
             >
               <FileText size={15} /> {t('nav.catalog')}
             </a>
