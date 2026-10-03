@@ -37,19 +37,19 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .ch-slabs-heading h2{margin-bottom:8px}
 .ch-slabs-heading p{margin-bottom:0}
 .ch-slabs-heading small{display:block;max-width:310px;line-height:1.7;color:#c7c8bc;font-size:12px}
-.ch-slabs-stage{position:relative;height:clamp(250px,54vw,600px);overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
+.ch-slabs-stage{position:relative;height:clamp(340px,65vw,760px);overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
 .ch-slabs-stage:active{cursor:grabbing}
 .ch-slabs-stage:focus-visible{outline:3px solid #c5964c;outline-offset:-3px}
-.ch-slab{position:absolute;top:50%;left:50%;width:min(70vw,850px);margin:0;aspect-ratio:3/2;background:#26312b;border:1px solid #bca57688;box-shadow:0 24px 55px #050d0a88;transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .32s ease;will-change:transform}
+.ch-slab{position:absolute;top:50%;left:50%;width:min(74vw,900px);margin:0;aspect-ratio:4/3;background:#26312b;border:1px solid #bca57688;box-shadow:0 24px 55px #050d0a88;transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .32s ease;will-change:transform}
 .ch-slabs-stage[data-dragging=true] .ch-slab{transition:none}
 .cinematic-home[data-motion=off] .ch-slab{transition:none}
-.ch-slab>button{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:#202623}
-.ch-slab img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.ch-slab>button{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;overflow:hidden;background:#202623}
+.ch-slab img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.2);pointer-events:none}
 .ch-slabs-meta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:12px;color:#d5d5ca;font-size:12px}
 .ch-slabs-meta span:last-child{color:#e3c799;white-space:nowrap}
-.ch-slab-dialog{position:fixed;inset:0;margin:auto;padding:32px;max-width:min(96vw,1500px);max-height:94svh;border:1px solid #bca57688;background:#17201b;color:#fff;box-shadow:0 25px 90px #000a}
+.ch-slab-dialog{position:fixed;inset:0;margin:auto;padding:0;width:min(90vw,1000px);height:min(67.5vw,750px,90svh);max-width:96vw;max-height:94svh;overflow:hidden;border:1px solid #bca57688;background:#17201b;color:#fff;box-shadow:0 25px 90px #000a}
 .ch-slab-dialog::backdrop{background:#050b09e8;backdrop-filter:blur(8px)}
-.ch-slab-dialog img{display:block;max-width:100%;max-height:calc(94svh - 64px);width:auto;height:auto;object-fit:contain}
+.ch-slab-dialog img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.2)}
 .ch-slab-close{position:absolute;top:7px;right:10px;z-index:2;width:40px;height:40px;background:#17201be8;color:#fff;border:1px solid #c3a16f;border-radius:50%;font-size:28px;line-height:1}
 .ch-section-label span:last-child{font-size:11px;letter-spacing:.12em}
 .ch-project{height:175svh;--detail:0;--photo-scale:1;--photo-shift:0%;--progress:0%;background:#e7e7df;color:#242b24}
@@ -125,7 +125,7 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .cinematic-home[data-motion=off] .ch-project-copy{opacity:1;transform:none}
 .cinematic-home[data-motion=off] .ch-photo img{transform:none}
 @media(max-width:750px){
- .ch-slabs{padding:55px 0 65px}.ch-slabs-heading{display:block;padding:0 5.5%}.ch-slabs-heading small{margin-top:14px}.ch-slab{width:86vw}.ch-slabs-meta{padding:0 5.5%;align-items:start}.ch-slabs-meta span:first-child{max-width:72%}.ch-slab-dialog{padding:22px 8px 8px}
+ .ch-slabs{padding:55px 0 65px}.ch-slabs-heading{display:block;padding:0 5.5%}.ch-slabs-heading small{margin-top:14px}.ch-slab{width:86vw}.ch-slabs-meta{padding:0 5.5%;align-items:start}.ch-slabs-meta span:first-child{max-width:72%}
  .cinematic-home h2{font-size:34px}.cinematic-home p{font-size:15px}.cinematic-home .ch-eyebrow{font-size:12px;margin-bottom:15px}
  .ch-hero{height:210svh}.ch-hero-stage{min-height:600px}
  .ch-intro,.ch-reveal{right:7%;left:7%;max-width:none;top:34%;text-shadow:0 2px 30px #0009}
