@@ -124,11 +124,8 @@ body #a11y-panel {
   }
 }
 
-/* When Layout.tsx sets body.at-footer (footer scrolled into view), hide
-   the vendored accessibility widget so it doesn't cover the copyright
-   row. The React widgets (ContactFAB, ScrollToTop) unmount in Layout
-   instead — CSS can't reliably hide them because they run their own
-   opacity transitions. */
+/* Keep the vendored accessibility panel clear of footer links. The contact
+   and back-to-top controls stay visible, with space reserved below them. */
 body.at-footer #a11y-trigger,
 body.at-footer #a11y-panel {
   opacity: 0 !important;
@@ -330,4 +327,3 @@ select:focus,
     scroll-behavior: auto !important;
   }
 }
-

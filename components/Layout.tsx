@@ -36,11 +36,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Unmount the floating widgets (contact FAB, scroll-to-top, plus the
-  // vendored a11y widget via CSS) when the footer scrolls into view so they
-  // never cover the copyright + legal-links row. Conditional render beats
-  // CSS opacity here because ContactFAB runs its own opacity transitions
-  // that would fight ours.
+  // The vendored accessibility panel has its own positioning and can cover
+  // footer links. Keep its footer class in sync while the contact and
+  // back-to-top controls remain visible throughout the page.
   useEffect(() => {
     let ticking = false;
     let last = false;
@@ -53,8 +51,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       if (next !== last) {
         last = next;
         setAtFooter(next);
-        // Also toggle a body class so the vendored a11y widget (whose
-        // markup we don't own) can be hidden via CSS.
+        // The vendored accessibility widget lives outside React.
         document.body.classList.toggle('at-footer', next);
       }
     };
@@ -235,13 +232,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer — floating widgets (music player, contact FAB, scroll-to-top,
-          accessibility trigger) fade out via the IntersectionObserver above
-          the moment this footer enters the viewport, so the copyright +
-          legal-links row is never covered. Standard pb-16 is enough. */}
+      {/* Extra bottom space keeps the persistent contact and back-to-top
+          controls clear of the legal links at the end of the page. */}
       <footer
         ref={footerRef}
-        className="bg-secondary text-light border-t border-divider pt-20 pb-16 transition-colors duration-300"
+        className="bg-secondary text-light border-t border-divider pt-20 pb-44 transition-colors duration-300"
       >
         <div className="container mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="col-span-1 md:col-span-1">
@@ -315,8 +310,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </footer>
 
-      {!atFooter && <ContactFAB />}
-      {!atFooter && <ScrollToTop />}
+      <ContactFAB />
+      <ScrollToTop forceVisible={atFooter} />
       <CookieBanner />
     </div>
   );

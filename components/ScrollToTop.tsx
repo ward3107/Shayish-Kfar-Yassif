@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
-const ScrollToTop: React.FC = () => {
+const ScrollToTop: React.FC<{ forceVisible?: boolean }> = ({ forceVisible = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -21,6 +21,7 @@ const ScrollToTop: React.FC = () => {
     mediaQuery.addEventListener('change', handleChange);
 
     window.addEventListener('scroll', toggleVisibility);
+    toggleVisibility();
 
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
@@ -40,7 +41,7 @@ const ScrollToTop: React.FC = () => {
       type="button"
       onClick={scrollToTop}
       className={`fixed bottom-4 left-4 md:bottom-6 md:left-6 z-40 flex items-center justify-center rounded-full bg-accent text-white shadow-lg transition-all duration-300 hover:bg-yellow-600 focus:outline-none focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent hover:-translate-y-1 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+        isVisible || forceVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
       }`}
       style={{ width: '52px', height: '52px' }}
       aria-label="Scroll to top"
