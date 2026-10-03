@@ -82,7 +82,9 @@ body {
   /* Kill horizontal scroll on mobile — a stray wide element (RTL negative
      offsets, full-bleed sections) must never make the whole page slide
      sideways. */
-  overflow-x: hidden;
+  /* Clip horizontal overflow without creating a scroll container: sticky
+     home chapters must pin to the viewport, not to body or #root. */
+  overflow-x: clip;
   max-width: 100%;
 }
 

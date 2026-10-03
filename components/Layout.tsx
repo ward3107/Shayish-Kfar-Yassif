@@ -104,7 +104,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled 
-            ? 'bg-primary/95 backdrop-blur-md border-divider py-4 shadow-sm' 
+            ? 'bg-primary backdrop-blur-md border-divider py-4 shadow-sm'
             : 'bg-transparent border-transparent py-6'
         }`}
       >
