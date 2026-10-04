@@ -12,14 +12,14 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .cinematic-home .ch-pill{display:inline-flex;align-items:center;justify-content:center;gap:36px;border:1px solid currentColor;border-radius:40px;padding:14px 25px;min-height:48px;font-size:14px;transition:background .2s,color .2s}
 .cinematic-home .ch-pill:hover{background:#ded1b3;color:#17231c;border-color:#ded1b3}
 .ch-text-button{display:inline-block;border-bottom:1px solid currentColor;padding:10px 0;font-size:14px;min-height:44px;background:none}
-.ch-hero{height:240svh;background:#17201b;--cut-opacity:1;--intro-opacity:1;--reveal-opacity:0;--room-scale:1.12;--progress:0%}
+ .ch-hero{height:170svh;background:#17201b;--cut-opacity:1;--intro-opacity:1;--reveal-opacity:0;--room-scale:1.06;--progress:0%}
 .ch-hero-stage{position:sticky;top:0;height:100svh;min-height:570px;overflow:hidden;isolation:isolate;color:#fff}
 .ch-cut,.ch-finish,.ch-shade{position:absolute;inset:0}
 .ch-cut{opacity:var(--cut-opacity);z-index:1}
-/* The machine and blade are a single still: no canvas, rotation, zoom, or animation. */
+/* Use the client's project photograph without time-driven motion. */
 .ch-cut,.ch-cut img{transform:none;animation:none;transition:none}
 .ch-cut img,.ch-finish img{width:100%;height:100%;object-fit:cover}
-.ch-cut img{object-position:42% center}
+.ch-cut img{object-position:50% center}
 .ch-finish img{object-position:50% 42%;transform:scale(var(--room-scale))}
 .ch-shade{z-index:2;background:linear-gradient(270deg,#0b1615b0,transparent 76%),linear-gradient(0deg,#0a161baa,transparent 40%)}
 .ch-intro,.ch-reveal{position:absolute;z-index:3;right:8%;top:30%;max-width:48%}
@@ -126,10 +126,10 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 @media(max-width:750px){
  .ch-slabs{padding:55px 0 65px}.ch-slabs-heading{display:block;padding:0 5.5%}.ch-slabs-heading small{margin-top:14px}.ch-slab{width:86vw;flex-basis:86vw}.ch-slabs-stage{padding-inline:7vw;gap:14px}.ch-slabs-meta{padding:0 5.5%;align-items:start}.ch-slabs-meta span:first-child{max-width:72%}
  .cinematic-home h2{font-size:34px}.cinematic-home p{font-size:15px}.cinematic-home .ch-eyebrow{font-size:12px;margin-bottom:15px}
- .ch-hero{height:210svh}.ch-hero-stage{min-height:600px}
+ .ch-hero{height:160svh}.ch-hero-stage{min-height:600px}
  .ch-intro,.ch-reveal{right:7%;left:7%;max-width:none;top:34%;text-shadow:0 2px 30px #0009}
  .cinematic-home .ch-intro h1{font-size:clamp(58px,14vw,92px)}.cinematic-home .ch-reveal h2{font-size:clamp(48px,12vw,76px)}
- .ch-cut img{object-position:34% center}.ch-finish img{object-position:45% center}.ch-shade{background:linear-gradient(270deg,#0b161599,transparent),linear-gradient(0deg,#0a161bcc,transparent 70%)}
+ .ch-cut img,.ch-finish img{object-position:50% center}.ch-shade{background:linear-gradient(270deg,#0b161599,transparent),linear-gradient(0deg,#0a161bcc,transparent 70%)}
  .ch-hero-bottom{bottom:27px;gap:14px;flex-wrap:wrap;font-size:11px}.ch-hero-bottom>span:nth-child(2){order:3;width:100%;text-align:center}
  .ch-section-label{padding:22px 5.5%}.ch-section-label span:last-child{font-size:9px;letter-spacing:0}
  .ch-project{height:155svh}.ch-project-stage{padding:102px 5.5% 30px;min-height:620px}.ch-project-meta{font-size:10px;gap:10px;padding-bottom:12px}.ch-project-meta b{margin-inline-end:4px}

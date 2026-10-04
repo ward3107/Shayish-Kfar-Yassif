@@ -13,7 +13,7 @@ type Copy = {
 
 export const cinematicCopy: Record<Language, Copy> = {
   he: {
-    eyebrow: 'שיש כפר יאסיף · מלאכת האבן', start: 'כאן הכול\nמתחיל.', tagline: 'חומר. דיוק. יצירה.',
+    eyebrow: 'שיש כפר יאסיף · מלאכת האבן', start: 'האבן שעושה\nאת הבית.', tagline: 'משטחים בהתאמה אישית, מהבחירה עד ההתקנה.',
     reveal: 'מהאבן\nאל החלל שלך.', revealBody: 'מחשבה שהופכת לחומר.\nחומר שהופך לבית.',
     scroll: 'גללו וגלו מה נוצר', skip: 'דלגו לעבודות', selected: 'עבודות נבחרות', room: 'מבט על הבית', detail: 'מבט על הפרטים', full: 'הצילום המלא', close: 'סגירה', all: 'לכל העבודות',
     material: '03 — השפה של החומר', materialTitle: 'איזה אופי\nיש לבית שלכם?', looks: ['תנועה', 'ניגוד', 'חום'],
@@ -28,7 +28,7 @@ export const cinematicCopy: Record<Language, Copy> = {
     ],
   },
   ar: {
-    eyebrow: 'شايش كفر ياسيف · حرفة الحجر', start: 'من هنا\nتبدأ الحكاية.', tagline: 'مادة. دقّة. إبداع.', reveal: 'من الحجر\nإلى مساحتك.', revealBody: 'فكرة تتحوّل إلى مادة.\nومادة تصبح بيتًا.', scroll: 'مرّر لتكتشف النتيجة', skip: 'انتقل إلى الأعمال', selected: 'أعمال مختارة', room: 'المشهد الكامل', detail: 'نظرة إلى التفاصيل', full: 'الصورة الكاملة', close: 'إغلاق', all: 'كل الأعمال',
+    eyebrow: 'شايش كفر ياسيف · حرفة الحجر', start: 'الحجر الذي\nيصنع البيت.', tagline: 'أسطح مصممة خصيصًا، من الاختيار إلى التركيب.', reveal: 'من الحجر\nإلى مساحتك.', revealBody: 'فكرة تتحوّل إلى مادة.\nومادة تصبح بيتًا.', scroll: 'مرّر لتكتشف النتيجة', skip: 'انتقل إلى الأعمال', selected: 'أعمال مختارة', room: 'المشهد الكامل', detail: 'نظرة إلى التفاصيل', full: 'الصورة الكاملة', close: 'إغلاق', all: 'كل الأعمال',
     material: '03 — لغة المادة', materialTitle: 'ما الطابع الذي\nتريده لبيتك؟', looks: ['حركة', 'تباين', 'دفء'], lookDescriptions: ['عروق واضحة وخطوط معمارية.', 'حجر فاتح وإطار داكن. حوار بين الأضداد.', 'حجر بألوان دافئة يلتقي بخشب المطبخ.'], real: 'أعمال حقيقية من مشاريعنا', craft: '04 — الحرفة', craftTitle: 'فكرة في الحجر.\nدقّة في كل التقاء.', craftBody: 'قصّ وتركيب أسطح الحجر والرخام والبورسلان في كفر ياسيف، للمطابخ والحمّامات والمدافئ والأدراج.',
     steps: [['نبدأ بالمساحة', 'نتحدّث عن الاستخدام والمقاسات والطابع الذي تريده لبيتك.'], ['نختار المادة', 'نختار معًا اللون والملمس والتشطيب المناسب للمشروع.'], ['ندقّق في التفاصيل', 'نخطّط للقصّ والحواف والتقاء الأسطح قبل التنفيذ.']],
     contactTag: 'مشروعك القادم يبدأ بمحادثة', contactTitle: 'أي مساحة\nتتخيّل؟', chat: 'لنتحدّث عبر واتساب', location: 'المنطقة الصناعية · كفر ياسيف', catalog: 'الكتالوج', reduce: 'تقليل الحركة', enable: 'تفعيل الحركة', sawAlt: 'تصوّر فني لآلة قصّ الحجر', detailNote: 'تفاصيل من الصورة نفسها',
@@ -39,7 +39,7 @@ export const cinematicCopy: Record<Language, Copy> = {
     ],
   },
   en: {
-    eyebrow: 'Shayish Kfar Yassif · The craft of stone', start: 'It all\nbegins here.', tagline: 'Material. Precision. Creation.', reveal: 'From stone\nto your space.', revealBody: 'An idea becomes a material.\nA material becomes a home.', scroll: 'Scroll to discover', skip: 'Skip to projects', selected: 'Selected projects', room: 'The whole space', detail: 'A closer look', full: 'View full photograph', close: 'Close', all: 'Explore all projects',
+    eyebrow: 'Shayish Kfar Yassif · The craft of stone', start: 'Stone makes\nthe space.', tagline: 'Custom surfaces, from selection to installation.', reveal: 'From stone\nto your space.', revealBody: 'An idea becomes a material.\nA material becomes a home.', scroll: 'Scroll to discover', skip: 'Skip to projects', selected: 'Selected projects', room: 'The whole space', detail: 'A closer look', full: 'View full photograph', close: 'Close', all: 'Explore all projects',
     material: '03 — The language of material', materialTitle: 'What character\ndoes your home have?', looks: ['Movement', 'Contrast', 'Warmth'], lookDescriptions: ['Expressive veins and architectural lines.', 'Light stone and a dark frame. A dialogue of contrasts.', 'Warm stone meets the grain of wood.'], real: 'Real work from our project portfolio', craft: '04 — The craft', craftTitle: 'Thought in material.\nPrecision at every joint.', craftBody: 'Stone, marble and porcelain fabrication and installation in Kfar Yassif. For kitchens, bathrooms, fireplaces and stairs.',
     steps: [['Start with the space', 'We discuss how you use the room, its dimensions and the character you want.'], ['Choose the material', 'Together we consider colour, texture, finish and suitability for your project.'], ['Refine the details', 'We plan the cuts, edges and junctions before fabrication.']],
     contactTag: 'Your next project starts with a conversation', contactTitle: 'What space\ndo you imagine?', chat: 'Talk to us on WhatsApp', location: 'Industrial area · Kfar Yassif', catalog: 'Our catalog', reduce: 'Reduce motion', enable: 'Enable motion', sawAlt: 'Artistic illustration of a stone-cutting machine', detailNote: 'Details from the same photograph',
@@ -50,7 +50,7 @@ export const cinematicCopy: Record<Language, Copy> = {
     ],
   },
   ru: {
-    eyebrow: 'Shayish Kfar Yassif · Мастерство камня', start: 'Здесь всё\nначинается.', tagline: 'Материал. Точность. Создание.', reveal: 'От камня\nк вашему интерьеру.', revealBody: 'Идея становится материалом.\nМатериал становится домом.', scroll: 'Листайте, чтобы увидеть результат', skip: 'К проектам', selected: 'Избранные проекты', room: 'Общий вид', detail: 'Внимание к деталям', full: 'Открыть фотографию', close: 'Закрыть', all: 'Все проекты',
+    eyebrow: 'Shayish Kfar Yassif · Мастерство камня', start: 'Камень создаёт\nпространство.', tagline: 'Поверхности на заказ: от выбора до монтажа.', reveal: 'От камня\nк вашему интерьеру.', revealBody: 'Идея становится материалом.\nМатериал становится домом.', scroll: 'Листайте, чтобы увидеть результат', skip: 'К проектам', selected: 'Избранные проекты', room: 'Общий вид', detail: 'Внимание к деталям', full: 'Открыть фотографию', close: 'Закрыть', all: 'Все проекты',
     material: '03 — Язык материала', materialTitle: 'Какой характер\nу вашего дома?', looks: ['Движение', 'Контраст', 'Тепло'], lookDescriptions: ['Выразительные прожилки и архитектурные линии.', 'Светлый камень и тёмная рама. Диалог контрастов.', 'Тёплые оттенки камня встречаются с деревом.'], real: 'Реальные работы из нашего портфолио', craft: '04 — Мастерство', craftTitle: 'Мысль в материале.\nТочность каждого стыка.', craftBody: 'Изготовление и монтаж поверхностей из камня, мрамора и керамогранита в Кфар-Ясифе. Для кухонь, ванных, каминов и лестниц.',
     steps: [['Начинаем с пространства', 'Обсуждаем назначение, размеры и желаемый характер интерьера.'], ['Выбираем материал', 'Вместе подбираем цвет, фактуру и обработку для вашего проекта.'], ['Уточняем детали', 'Планируем раскрой, края и стыки поверхностей до изготовления.']],
     contactTag: 'Ваш следующий проект начинается с разговора', contactTitle: 'Какой интерьер\nвы представляете?', chat: 'Напишите нам в WhatsApp', location: 'Промышленная зона · Кфар-Ясиф', catalog: 'Наш каталог', reduce: 'Уменьшить движение', enable: 'Включить движение', sawAlt: 'Художественная визуализация станка для резки камня', detailNote: 'Детали той же фотографии',
