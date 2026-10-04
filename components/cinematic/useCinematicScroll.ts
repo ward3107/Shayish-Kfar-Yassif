@@ -7,10 +7,23 @@ export function useCinematicScroll(root: RefObject<HTMLDivElement | null>, reduc
     const node = root.current;
     if (!node) return;
     const hero = node.querySelector<HTMLElement>('.ch-hero');
+    const slabs = node.querySelector<HTMLElement>('.ch-slabs');
+    const arrival = slabs?.querySelector<HTMLElement>('.ch-slabs-arrival');
     const chapters = [...node.querySelectorAll<HTMLElement>('.ch-project')];
     let frame = 0;
     const paint = () => {
       frame = 0;
+      const viewport = window.innerHeight;
+      if (slabs && arrival) {
+        const top = slabs.getBoundingClientRect().top;
+        const focused = slabs.contains(document.activeElement);
+        const p = clamp((viewport - top) / (viewport * .6));
+        const cardProgress = clamp((viewport - top - arrival.offsetTop) / (viewport * .42));
+        slabs.style.setProperty('--slabs-heading', String(reduced || focused ? 1 : smooth(.04,.4,p)));
+        slabs.style.setProperty('--slabs-line', String(reduced || focused ? 1 : smooth(.18,.65,p)));
+        slabs.style.setProperty('--slabs-arrival', String(reduced || focused ? 1 : smooth(0,1,cardProgress)));
+        hero?.style.setProperty('--hero-exit', String(reduced ? 0 : smooth(0,1,p)));
+      }
       if (hero) {
         const stage = hero.querySelector<HTMLElement>('.ch-hero-stage')!;
         const p = reduced ? 0 : clamp(-hero.getBoundingClientRect().top / Math.max(1, hero.offsetHeight-stage.offsetHeight));
@@ -39,7 +52,8 @@ export function useCinematicScroll(root: RefObject<HTMLDivElement | null>, reduc
     const schedule = () => { if (!frame) frame=requestAnimationFrame(paint); };
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',schedule);
+    node.addEventListener('focusin',schedule);
     paint();
-    return () => { cancelAnimationFrame(frame); window.removeEventListener('scroll',schedule); window.removeEventListener('resize',schedule); };
+    return () => { cancelAnimationFrame(frame); window.removeEventListener('scroll',schedule); window.removeEventListener('resize',schedule); node.removeEventListener('focusin',schedule); };
   },[root,reduced]);
 }
