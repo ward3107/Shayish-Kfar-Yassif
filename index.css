@@ -16,18 +16,45 @@
   .hero-kenburns { animation: none; transform: none; }
 }
 
-/* Pin the third-party accessibility widget to the bottom-right corner
-   even when the page is RTL. The widget's own script writes a
-   `body #a11y-trigger { left: 24px; right: auto }` rule under RTL, which
-   collides with our right-side FAB stack. This override wins on specificity
-   (html body) + !important. */
+/* Compact accessibility tab stays attached to the right screen edge in RTL/LTR. */
 html body #a11y-trigger {
-  right: 24px !important;
+  right: 0 !important;
   left: auto !important;
+  top: auto !important;
+  bottom: 80px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  border-radius: 6px 0 0 6px !important;
+  border: 1px solid #bca57688 !important;
+  background: #26312b !important;
+  transform: none !important;
+  animation: none !important;
+  transition: background .2s ease !important;
+  box-shadow: 0 2px 8px #0002 !important;
+}
+html body #a11y-trigger svg {
+  width: 22px !important;
+  height: 22px !important;
+  transform: none !important;
+  fill: #eee9df !important;
+}
+html body #a11y-trigger:hover {
+  background: #36443b !important;
+}
+html body #a11y-trigger:focus-visible {
+  outline: 3px solid #c5964c !important;
+  outline-offset: 2px !important;
 }
 html body #a11y-panel {
-  right: 24px !important;
+  right: 52px !important;
   left: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  max-height: calc(100dvh - 32px) !important;
+  max-width: calc(100vw - 68px) !important;
 }
 /* Hide the third-party widget's share section (WhatsApp/Facebook/email/etc).
    The accessibility panel should only carry accessibility controls. */
@@ -98,39 +125,6 @@ body {
 /* Apply Arabic font when lang is ar */
 body[dir="rtl"] {
   font-family: 'Heebo', 'Tajawal', sans-serif;
-}
-
-/* Move the accessibility widget (vendored, hardcoded bottom-right) to the
-   bottom-LEFT so the floating controls read as a clean left/right split:
-   left = accessibility + contact FAB, right = music + scroll-to-top.
-   `body #...` raises specificity above the widget's own `#...` !important
-   rules so this wins regardless of stylesheet load order. */
-body #a11y-trigger {
-  right: auto !important;
-  left: 24px !important;
-}
-body #a11y-panel {
-  right: auto !important;
-  left: 24px !important;
-}
-@media (max-width: 400px) {
-  body #a11y-trigger {
-    right: auto !important;
-    left: 16px !important;
-  }
-  body #a11y-panel {
-    right: auto !important;
-    left: 16px !important;
-  }
-}
-
-/* Keep the vendored accessibility panel clear of footer links. The contact
-   and back-to-top controls stay visible, with space reserved below them. */
-body.at-footer #a11y-trigger,
-body.at-footer #a11y-panel {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transition: opacity 0.3s ease !important;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -325,59 +319,5 @@ select:focus,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* A quiet edge tab keeps the accessibility tools reachable without covering
-   the gallery or the floating contact controls. Overrides the widget's RTL rule. */
-html body #a11y-trigger,
-html body.at-footer #a11y-trigger {
-  position: fixed !important;
-  top: 50% !important;
-  bottom: auto !important;
-  right: 0 !important;
-  left: auto !important;
-  width: 44px !important;
-  min-width: 44px !important;
-  height: 52px !important;
-  min-height: 52px !important;
-  border-radius: 10px 0 0 10px !important;
-  border: 1px solid #d3b477 !important;
-  border-right: 0 !important;
-  background: #26312b !important;
-  box-shadow: -3px 3px 16px #0005 !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  animation: none !important;
-  transform: translateY(-50%) !important;
-}
-html body #a11y-trigger:hover,
-html body #a11y-trigger:focus-visible {
-  background: #395044 !important;
-  transform: translateY(-50%) !important;
-}
-html body #a11y-trigger svg {
-  width: 24px !important;
-  height: 24px !important;
-}
-html body #a11y-panel,
-html body.at-footer #a11y-panel {
-  top: 50% !important;
-  bottom: auto !important;
-  right: 52px !important;
-  left: auto !important;
-  max-width: calc(100vw - 62px) !important;
-  max-height: calc(100dvh - 24px) !important;
-  transform: translateY(-50%) !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-@media (max-width: 480px) {
-  html body #a11y-trigger,
-  html body.at-footer #a11y-trigger { width: 44px !important; right: 0 !important; }
-  html body #a11y-panel,
-  html body.at-footer #a11y-panel {
-    right: 8px !important;
-    max-width: calc(100vw - 16px) !important;
   }
 }

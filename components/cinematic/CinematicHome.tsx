@@ -4,6 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { CONTACT, whatsappLink } from '../../constants';
 import { cinematicCopy, detailPositions, projectImages } from './content';
 import { useCinematicScroll } from './useCinematicScroll';
+import { useSlabScroll } from './useSlabScroll';
 import './CinematicHome.css';
 
 const slabNames = ['stone-01-x235', 'stone-02-x240', 'stone-03-x242', 'stone-04-x241', 'stone-05-x247', 'stone-06-x248', 'stone-07-x249', 'stone-08-x256', 'stone-09-x254', 'stone-10-x255', 'stone-11-x261', 'stone-12-x262', 'stone-13-x263'];
@@ -22,14 +23,11 @@ export default function CinematicHome() {
   const root = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const slabDialog = useRef<HTMLDialogElement>(null);
-  const slabTrack = useRef<HTMLDivElement>(null);
-  const mouseDrag = useRef<{x:number;scrollLeft:number;pointerId:number;moved:boolean}|null>(null);
-  const suppressClickUntil = useRef(0);
-  const scrollFrame = useRef<number|null>(null);
-  const [activeSlab,setActiveSlab] = useState(0);
+  const [selectedSlab,setSelectedSlab] = useState(0);
   const [look,setLook] = useState(0);
   const [project,setProject] = useState(0);
   const [reduced,setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const slabs = useSlabScroll(reduced);
   const chat = whatsappLink(t('whatsapp.default_message'));
   useCinematicScroll(root,reduced);
   useEffect(() => { document.title=t('meta.home_title'); },[t]);
@@ -40,63 +38,35 @@ export default function CinematicHome() {
     return ()=>query.removeEventListener('change',change);
   },[]);
   const openProject=(index:number)=>{setProject(index);dialog.current?.showModal();};
-  const showSlab=(index:number)=>{
-    const next=Math.max(0,Math.min(slabNames.length-1,index));
-    const track=slabTrack.current;
-    const card=track?.children[next] as HTMLElement|undefined;
-    if(track&&card){
-      const trackRect=track.getBoundingClientRect();
-      const cardRect=card.getBoundingClientRect();
-      track.scrollBy({left:(cardRect.left+cardRect.width/2)-(trackRect.left+trackRect.width/2),behavior:reduced?'auto':'smooth'});
-    }
-    setActiveSlab(next);
-  };
-  const updateVisibleSlab=()=>{
-    if(scrollFrame.current!==null)return;
-    scrollFrame.current=requestAnimationFrame(()=>{
-      scrollFrame.current=null;
-      const track=slabTrack.current;
-      if(!track)return;
-      const center=track.getBoundingClientRect().left+track.clientWidth/2;
-      let closest=0, distance=Infinity;
-      Array.from(track.children).forEach((card,index)=>{
-        const rect=card.getBoundingClientRect();
-        const delta=Math.abs(rect.left+rect.width/2-center);
-        if(delta<distance){distance=delta;closest=index;}
-      });
-      setActiveSlab(previous=>previous===closest?previous:closest);
-    });
-  };
-  useEffect(()=>()=>{if(scrollFrame.current!==null)cancelAnimationFrame(scrollFrame.current);},[]);
   return (
-    <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="project-led-stone" dir={dir}>
+    <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="stone-texture-hero" dir={dir}>
       <section className="ch-hero" aria-label={c.eyebrow}>
         <div className="ch-hero-stage">
-          <div className="ch-finish" aria-hidden="true"><img src={projectImages[2]} alt="" width="1200" height="1600" /></div>
-          <div className="ch-cut"><img src={projectImages[2]} alt={c.projects[2].title} width="1200" height="1600" fetchPriority="high" /></div>
+          <div className="ch-stone-next" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet="/cinematic/hero-copper-sculpture-mobile.webp" /><img src="/cinematic/hero-copper-sculpture.webp" alt="" width="1672" height="941" /></picture></div>
+          <div className="ch-stone" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet="/cinematic/hero-green-vase-mobile.webp" /><img src="/cinematic/hero-green-vase.webp" alt="" width="1672" height="941" fetchPriority="high" /></picture></div>
           <div className="ch-shade" aria-hidden="true" />
-          <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p></div>
+          <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p><div className="ch-hero-actions"><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a><a className="ch-text-button" href={chat} target="_blank" rel="noopener noreferrer">{c.chat}</a></div></div>
           <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a></div>
           <div className="ch-hero-bottom"><span dir="ltr">01 / STONE TO SPACE</span><span>{c.scroll}</span><a href="#gallery">{c.skip}</a></div>
           <div className="ch-track" aria-hidden="true"><i /></div>
+          <div className="ch-hero-exit" aria-hidden="true" />
         </div>
       </section>
       <section id="slabs" className="ch-slabs" aria-labelledby="ch-slabs-title">
         <div className="ch-slabs-heading"><div><p className="ch-eyebrow">STONE / 01—13</p><h2 id="ch-slabs-title">{s.title}</h2><p>{s.intro}</p></div><small>{s.note}</small></div>
-        <div ref={slabTrack} className="ch-slabs-stage" tabIndex={0} onScroll={updateVisibleSlab}
-          onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();showSlab(activeSlab+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}}
-          onPointerDown={event=>{if(event.pointerType!=='mouse'||event.button!==0)return;mouseDrag.current={x:event.clientX,scrollLeft:event.currentTarget.scrollLeft,pointerId:event.pointerId,moved:false};}}
-          onPointerMove={event=>{const drag=mouseDrag.current;if(!drag||drag.pointerId!==event.pointerId)return;const delta=event.clientX-drag.x;if(Math.abs(delta)>5){drag.moved=true;if(!event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.setPointerCapture(event.pointerId);event.currentTarget.scrollLeft=drag.scrollLeft-delta;}}}
-          onPointerUp={()=>{if(mouseDrag.current?.moved)suppressClickUntil.current=Date.now()+350;mouseDrag.current=null;}}
-          onPointerCancel={()=>{mouseDrag.current=null;}}
-          aria-label={s.title} aria-roledescription="carousel">
-          {slabNames.map((name,i)=><figure key={name} className="ch-slab">
-            <button type="button" onClick={()=>{if(Date.now()<suppressClickUntil.current)return;setActiveSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} alt={`${s.slab} ${i+1}`} loading={i<2?'eager':'lazy'} decoding="async" width="1448" height="1086" /></button>
-          </figure>)}
+        <div className="ch-slabs-line" aria-hidden="true" />
+        <div className="ch-slabs-arrival">
+        <div ref={slabs.stage} className="ch-slabs-stage" data-dragging={slabs.dragging} tabIndex={0} onScroll={slabs.onScroll} onWheel={slabs.onWheel} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();slabs.goTo(slabs.active+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}} onPointerDown={slabs.onPointerDown} onPointerMove={slabs.onPointerMove} onPointerUp={slabs.onPointerUp} onPointerCancel={slabs.onPointerCancel} aria-label={s.title} role="region">
+          {slabNames.map((name, i) => (
+            <figure key={name} className="ch-slab">
+              <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} alt={`${s.slab} ${i+1}`} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
+            </figure>
+          ))}
         </div>
-        <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(activeSlab+1).padStart(2,'0')} / {slabNames.length}</span></div>
+        <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(slabs.active+1).padStart(2,'0')} / {slabNames.length}</span></div>
+        </div>
       </section>
-      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${activeSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(slabNames[activeSlab])} alt={`${s.slab} ${activeSlab+1}`} /></dialog>
+      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${selectedSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(slabNames[selectedSlab])} alt={`${s.slab} ${selectedSlab+1}`} /></dialog>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
       {c.projects.map((p,i)=>(
         <section key={i} className={`ch-project ch-tone-${i}`} aria-labelledby={`ch-title-${i}`}>
