@@ -9,10 +9,10 @@ import './CinematicHome.css';
 const slabNames = ['stone-01-x235', 'stone-02-x240', 'stone-03-x242', 'stone-04-x241', 'stone-05-x247', 'stone-06-x248', 'stone-07-x249', 'stone-08-x256', 'stone-09-x254', 'stone-10-x255', 'stone-11-x261', 'stone-12-x262', 'stone-13-x263'];
 const slabImage = (name: string) => `/stone-slabs/edited/${name}.jpeg?v=full-4x3`;
 const slabCopy = {
-  he: { title: 'האבן במבט מלא.', intro: 'שלושה עשר לוחות, כל אחד עם תנועה וגוון משלו.', note: 'המחשות חזיתיות; אזורים שהוסתרו בצילום שוחזרו דיגיטלית.', slab: 'לוח', edited: 'הגדלת ההמחשה', jump: 'גלו את הלוחות', gesture: 'החליקו או גררו בין התמונות · לחצו להגדלה' },
-  ar: { title: 'الحجر بكامل تفاصيله.', intro: 'ثلاثة عشر لوحًا، لكل منها عروقه ولونه الخاص.', note: 'تصورات أمامية؛ أُعيد بناء الأجزاء المحجوبة رقميًا.', slab: 'لوح', edited: 'تكبير الصورة', jump: 'اكتشفوا الألواح', gesture: 'اسحبوا للتنقل · اضغطوا للتكبير' },
-  en: { title: 'The whole stone.', intro: 'Thirteen slabs, each with its own movement and colour.', note: 'Front view visualizations; obscured areas were reconstructed digitally.', slab: 'Slab', edited: 'Enlarge view', jump: 'Explore the slabs', gesture: 'Swipe or drag to browse · Click to enlarge' },
-  ru: { title: 'Камень целиком.', intro: 'Тринадцать слэбов, каждый со своим рисунком и оттенком.', note: 'Фронтальные визуализации; скрытые участки восстановлены цифровым способом.', slab: 'Слэб', edited: 'Увеличить', jump: 'Смотреть слэбы', gesture: 'Листайте или перетаскивайте · Нажмите для увеличения' },
+  he: { title: 'האבן במבט מלא.', intro: 'שלושה עשר לוחות, כל אחד עם תנועה וגוון משלו.', note: 'המחשות חזיתיות; אזורים שהוסתרו בצילום שוחזרו דיגיטלית.', slab: 'לוח', edited: 'הגדלת ההמחשה', jump: 'גלו את הלוחות', gesture: 'החליקו בחופשיות בין הלוחות · לחצו להגדלה' },
+  ar: { title: 'الحجر بكامل تفاصيله.', intro: 'ثلاثة عشر لوحًا، لكل منها عروقه ولونه الخاص.', note: 'تصورات أمامية؛ أُعيد بناء الأجزاء المحجوبة رقميًا.', slab: 'لوح', edited: 'تكبير الصورة', jump: 'اكتشفوا الألواح', gesture: 'تصفحوا الألواح بالسحب بحرية · اضغطوا للتكبير' },
+  en: { title: 'The whole stone.', intro: 'Thirteen slabs, each with its own movement and colour.', note: 'Front view visualizations; obscured areas were reconstructed digitally.', slab: 'Slab', edited: 'Enlarge view', jump: 'Explore the slabs', gesture: 'Scroll freely through the slabs · Click to enlarge' },
+  ru: { title: 'Камень целиком.', intro: 'Тринадцать слэбов, каждый со своим рисунком и оттенком.', note: 'Фронтальные визуализации; скрытые участки восстановлены цифровым способом.', slab: 'Слэб', edited: 'Увеличить', jump: 'Смотреть слэбы', gesture: 'Листайте плиты свободно · Нажмите для увеличения' },
 };
 
 export default function CinematicHome() {
@@ -22,10 +22,11 @@ export default function CinematicHome() {
   const root = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const slabDialog = useRef<HTMLDialogElement>(null);
-  const dragStart = useRef<{x:number;pointerId:number}|null>(null);
+  const slabTrack = useRef<HTMLDivElement>(null);
+  const mouseDrag = useRef<{x:number;scrollLeft:number;pointerId:number;moved:boolean}|null>(null);
   const suppressClickUntil = useRef(0);
+  const scrollFrame = useRef<number|null>(null);
   const [activeSlab,setActiveSlab] = useState(0);
-  const [dragX,setDragX] = useState(0);
   const [look,setLook] = useState(0);
   const [project,setProject] = useState(0);
   const [reduced,setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -39,16 +40,34 @@ export default function CinematicHome() {
     return ()=>query.removeEventListener('change',change);
   },[]);
   const openProject=(index:number)=>{setProject(index);dialog.current?.showModal();};
-  const showSlab=(index:number)=>setActiveSlab(Math.max(0,Math.min(slabNames.length-1,index)));
-  const finishDrag=(clientX:number)=>{
-    const start=dragStart.current;
-    if(!start)return;
-    const distance=clientX-start.x;
-    if(Math.abs(distance)>8)suppressClickUntil.current=Date.now()+350;
-    if(Math.abs(distance)>45)showSlab(activeSlab+(distance<0?(dir==='rtl'?-1:1):(dir==='rtl'?1:-1)));
-    dragStart.current=null;
-    setDragX(0);
+  const showSlab=(index:number)=>{
+    const next=Math.max(0,Math.min(slabNames.length-1,index));
+    const track=slabTrack.current;
+    const card=track?.children[next] as HTMLElement|undefined;
+    if(track&&card){
+      const trackRect=track.getBoundingClientRect();
+      const cardRect=card.getBoundingClientRect();
+      track.scrollBy({left:(cardRect.left+cardRect.width/2)-(trackRect.left+trackRect.width/2),behavior:reduced?'auto':'smooth'});
+    }
+    setActiveSlab(next);
   };
+  const updateVisibleSlab=()=>{
+    if(scrollFrame.current!==null)return;
+    scrollFrame.current=requestAnimationFrame(()=>{
+      scrollFrame.current=null;
+      const track=slabTrack.current;
+      if(!track)return;
+      const center=track.getBoundingClientRect().left+track.clientWidth/2;
+      let closest=0, distance=Infinity;
+      Array.from(track.children).forEach((card,index)=>{
+        const rect=card.getBoundingClientRect();
+        const delta=Math.abs(rect.left+rect.width/2-center);
+        if(delta<distance){distance=delta;closest=index;}
+      });
+      setActiveSlab(previous=>previous===closest?previous:closest);
+    });
+  };
+  useEffect(()=>()=>{if(scrollFrame.current!==null)cancelAnimationFrame(scrollFrame.current);},[]);
   return (
     <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="stone-to-space-static-saw" dir={dir}>
       <section className="ch-hero" aria-label={c.eyebrow}>
@@ -64,14 +83,16 @@ export default function CinematicHome() {
       </section>
       <section id="slabs" className="ch-slabs" aria-labelledby="ch-slabs-title">
         <div className="ch-slabs-heading"><div><p className="ch-eyebrow">STONE / 01—13</p><h2 id="ch-slabs-title">{s.title}</h2><p>{s.intro}</p></div><small>{s.note}</small></div>
-        <div className="ch-slabs-stage" data-dragging={dragX!==0} tabIndex={0} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();showSlab(activeSlab+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}} onPointerDown={event=>{if(event.pointerType==='mouse'&&event.button!==0)return;dragStart.current={x:event.clientX,pointerId:event.pointerId};}} onPointerMove={event=>{if(!dragStart.current||dragStart.current.pointerId!==event.pointerId)return;const distance=event.clientX-dragStart.current.x;if(Math.abs(distance)>8&&!event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.setPointerCapture(event.pointerId);setDragX(Math.abs(distance)>8?distance:0);}} onPointerUp={event=>finishDrag(event.clientX)} onPointerCancel={()=>{dragStart.current=null;setDragX(0);}} aria-label={s.title} aria-roledescription="carousel">
-          {slabNames.map((name, i) => {
-            const offset=(i-activeSlab)*(dir==='rtl'?-1:1);
-            const distance=Math.abs(offset);
-            return <figure key={name} className="ch-slab" aria-hidden={distance!==0} style={{transform:`translate(calc(-50% + ${offset*15}% + ${dragX}px), -50%) scale(${distance===0?1:.94})`,zIndex:10-distance,opacity:distance>1?0:1,pointerEvents:distance>1?'none':'auto'}}>
-              <button type="button" tabIndex={distance===0?0:-1} onClick={()=>{if(Date.now()<suppressClickUntil.current)return;if(i===activeSlab)slabDialog.current?.showModal();else showSlab(i);}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} alt={`${s.slab} ${i+1}`} loading={distance<=1?'eager':'lazy'} decoding="async" width="1448" height="1086" /></button>
-            </figure>;
-          })}
+        <div ref={slabTrack} className="ch-slabs-stage" tabIndex={0} onScroll={updateVisibleSlab}
+          onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();showSlab(activeSlab+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}}
+          onPointerDown={event=>{if(event.pointerType!=='mouse'||event.button!==0)return;mouseDrag.current={x:event.clientX,scrollLeft:event.currentTarget.scrollLeft,pointerId:event.pointerId,moved:false};}}
+          onPointerMove={event=>{const drag=mouseDrag.current;if(!drag||drag.pointerId!==event.pointerId)return;const delta=event.clientX-drag.x;if(Math.abs(delta)>5){drag.moved=true;if(!event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.setPointerCapture(event.pointerId);event.currentTarget.scrollLeft=drag.scrollLeft-delta;}}}
+          onPointerUp={()=>{if(mouseDrag.current?.moved)suppressClickUntil.current=Date.now()+350;mouseDrag.current=null;}}
+          onPointerCancel={()=>{mouseDrag.current=null;}}
+          aria-label={s.title} aria-roledescription="carousel">
+          {slabNames.map((name,i)=><figure key={name} className="ch-slab">
+            <button type="button" onClick={()=>{if(Date.now()<suppressClickUntil.current)return;setActiveSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} alt={`${s.slab} ${i+1}`} loading={i<2?'eager':'lazy'} decoding="async" width="1448" height="1086" /></button>
+          </figure>)}
         </div>
         <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(activeSlab+1).padStart(2,'0')} / {slabNames.length}</span></div>
       </section>

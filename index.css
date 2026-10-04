@@ -327,3 +327,57 @@ select:focus,
     scroll-behavior: auto !important;
   }
 }
+
+/* A quiet edge tab keeps the accessibility tools reachable without covering
+   the gallery or the floating contact controls. Overrides the widget's RTL rule. */
+html body #a11y-trigger,
+html body.at-footer #a11y-trigger {
+  position: fixed !important;
+  top: 50% !important;
+  bottom: auto !important;
+  right: 0 !important;
+  left: auto !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  border-radius: 10px 0 0 10px !important;
+  border: 1px solid #d3b477 !important;
+  border-right: 0 !important;
+  background: #26312b !important;
+  box-shadow: -3px 3px 16px #0005 !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  animation: none !important;
+  transform: translateY(-50%) !important;
+}
+html body #a11y-trigger:hover,
+html body #a11y-trigger:focus-visible {
+  background: #395044 !important;
+  transform: translateY(-50%) !important;
+}
+html body #a11y-trigger svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+html body #a11y-panel,
+html body.at-footer #a11y-panel {
+  top: 50% !important;
+  bottom: auto !important;
+  right: 52px !important;
+  left: auto !important;
+  max-width: calc(100vw - 62px) !important;
+  max-height: calc(100dvh - 24px) !important;
+  transform: translateY(-50%) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+@media (max-width: 480px) {
+  html body #a11y-trigger,
+  html body.at-footer #a11y-trigger { width: 44px !important; right: 0 !important; }
+  html body #a11y-panel,
+  html body.at-footer #a11y-panel {
+    right: 8px !important;
+    max-width: calc(100vw - 16px) !important;
+  }
+}
