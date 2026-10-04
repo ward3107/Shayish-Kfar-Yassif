@@ -36,9 +36,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // The vendored accessibility panel has its own positioning and can cover
-  // footer links. Keep its footer class in sync while the contact and
-  // back-to-top controls remain visible throughout the page.
+  // Keep back-to-top visible when the footer enters the viewport.
   useEffect(() => {
     let ticking = false;
     let last = false;
@@ -51,8 +49,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       if (next !== last) {
         last = next;
         setAtFooter(next);
-        // The vendored accessibility widget lives outside React.
-        document.body.classList.toggle('at-footer', next);
       }
     };
     const onScroll = () => {
@@ -66,7 +62,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
-      document.body.classList.remove('at-footer');
     };
   }, []);
 
