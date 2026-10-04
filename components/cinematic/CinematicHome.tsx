@@ -42,8 +42,8 @@ export default function CinematicHome() {
     <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="stone-texture-hero" dir={dir}>
       <section className="ch-hero" aria-label={c.eyebrow}>
         <div className="ch-hero-stage">
-          <div className="ch-stone-next" aria-hidden="true"><img src={slabImage(slabNames[3])} alt="" width="1448" height="1086" /></div>
-          <div className="ch-stone" aria-hidden="true"><img src={slabImage(slabNames[0])} alt="" width="1448" height="1086" fetchPriority="high" /></div>
+          <div className="ch-stone-next" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet="/cinematic/hero-copper-sculpture-mobile.webp" /><img src="/cinematic/hero-copper-sculpture.webp" alt="" width="1672" height="941" /></picture></div>
+          <div className="ch-stone" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet="/cinematic/hero-green-vase-mobile.webp" /><img src="/cinematic/hero-green-vase.webp" alt="" width="1672" height="941" fetchPriority="high" /></picture></div>
           <div className="ch-shade" aria-hidden="true" />
           <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p><div className="ch-hero-actions"><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a><a className="ch-text-button" href={chat} target="_blank" rel="noopener noreferrer">{c.chat}</a></div></div>
           <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a></div>
