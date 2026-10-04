@@ -20,8 +20,8 @@
 html body #a11y-trigger {
   right: 0 !important;
   left: auto !important;
-  top: 50% !important;
-  bottom: auto !important;
+  top: auto !important;
+  bottom: 80px !important;
   width: 44px !important;
   height: 44px !important;
   min-width: 44px !important;
@@ -29,7 +29,7 @@ html body #a11y-trigger {
   border-radius: 6px 0 0 6px !important;
   border: 1px solid #bca57688 !important;
   background: #26312b !important;
-  transform: translateY(-50%) !important;
+  transform: none !important;
   animation: none !important;
   transition: background .2s ease !important;
   box-shadow: 0 2px 8px #0002 !important;

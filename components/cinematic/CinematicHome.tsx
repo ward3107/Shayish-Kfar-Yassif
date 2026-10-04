@@ -39,13 +39,13 @@ export default function CinematicHome() {
   },[]);
   const openProject=(index:number)=>{setProject(index);dialog.current?.showModal();};
   return (
-    <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="stone-to-space-static-saw" dir={dir}>
+    <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="stone-texture-hero" dir={dir}>
       <section className="ch-hero" aria-label={c.eyebrow}>
         <div className="ch-hero-stage">
-          <div className="ch-finish"><img src={projectImages[0]} alt={c.projects[0].title} width="1200" height="1600" /></div>
-          <div className="ch-cut"><img src="/cinematic/cutting-still.webp" alt={c.sawAlt} width="1672" height="941" fetchPriority="high" /></div>
+          <div className="ch-stone-next" aria-hidden="true"><img src={slabImage(slabNames[3])} alt="" width="1448" height="1086" /></div>
+          <div className="ch-stone" aria-hidden="true"><img src={slabImage(slabNames[0])} alt="" width="1448" height="1086" fetchPriority="high" /></div>
           <div className="ch-shade" aria-hidden="true" />
-          <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p></div>
+          <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p><div className="ch-hero-actions"><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a><a className="ch-text-button" href={chat} target="_blank" rel="noopener noreferrer">{c.chat}</a></div></div>
           <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a></div>
           <div className="ch-hero-bottom"><span dir="ltr">01 / STONE TO SPACE</span><span>{c.scroll}</span><a href="#gallery">{c.skip}</a></div>
           <div className="ch-track" aria-hidden="true"><i /></div>
