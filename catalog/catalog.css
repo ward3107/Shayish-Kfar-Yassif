@@ -34,12 +34,6 @@ p { line-height: 1.7; }
 .cover .actions a { position: absolute; top: 0; width: 84mm; height: 17mm; line-height: 17mm; font-size: 10pt; font-weight: bold; text-align: center; text-decoration: none; }
 .cover .actions .whatsapp { right: 0; color: #1e261f; background: #c3a16f; }
 .cover .actions .website { left: 0; color: #f5f2e9; background: rgba(25, 32, 26, .9); border: .3mm solid #c3a16f; }
-.materials { position: absolute; z-index: 3; top: 5mm; left: 5mm; right: auto; direction: ltr; width: 49mm; height: 22mm; display: block; padding: 2mm; white-space: nowrap; background: rgba(19, 26, 22, .82); border: .25mm solid rgba(231, 213, 180, .7); }
-.materials i { display: inline-block; vertical-align: middle; margin-right: 1mm; width: 12mm; height: 12mm; border: .75mm solid; border-radius: 50%; background-color: #354039; background-repeat: no-repeat; background-size: 420% auto; box-shadow: 0 0 0 .3mm #e9dcc6; }
-.materials i:first-child { width: 18mm; height: 18mm; }
-.materials i:last-child { width: 10mm; height: 10mm; }
-.cover > .materials { top: 130mm; left: 17mm; }
-.hero .visual .materials { top: 6mm; left: 6mm; }
 .stone.hero .visual { top: 111mm; left: 17mm; right: 17mm; width: auto; height: 119mm; background: transparent; }
 .stone.hero .visual img { object-fit: contain; }
 .stone.hero .copy { top: 44mm; right: 17mm; width: 176mm; }
@@ -80,5 +74,20 @@ p { line-height: 1.7; }
 .closing p { margin-top: 14mm; font-size: 11pt; max-width: 135mm; color: #d4d4c8; }
 .closing a { display: inline-block; margin-top: 22mm; direction: ltr; color: #e4c69a; border-bottom: .3mm solid #b99a6b; padding-bottom: 2mm; font-size: 11pt; text-decoration: none; }
 .closing .line { position: absolute; right: 17mm; left: 17mm; bottom: 53mm; height: .3mm; background: #a28661; }
-.closing > .materials { top: auto; bottom: 68mm; left: 17mm; }
 .closing .location { position: absolute; right: 17mm; bottom: 39mm; font-size: 9pt; color: #b8b9ac; }
+
+/* Unique palette-inspired sculpture on every page; no swatch panels. */
+.page-object { position:absolute; z-index:3; left:139mm; top:224mm; width:58mm; height:37mm; object-fit:contain; }
+.gallery { height:170mm; }
+.gallery.mosaic .shot:nth-child(1), .gallery.pair .shot { height:170mm; }
+.gallery.mosaic .shot:nth-child(2), .gallery.mosaic .shot:nth-child(3) { height:81mm; }
+.gallery.wide .shot:nth-child(1) { height:84mm; }
+.gallery.wide .shot:nth-child(2), .gallery.wide .shot:nth-child(3) { height:79mm; }
+.gallery.single .shot { height:170mm; }
+.gallery.pair-wide .shot { height:81mm; }
+.cover > .page-object { left:9mm; top:192mm; width:63mm; height:39mm; }
+.hero > .page-object { left:75mm; top:216mm; width:49mm; height:39mm; }
+.stone.hero > .page-object { left:17mm; top:219mm; width:58mm; height:41mm; }
+.stone.hero .count { width:110mm; }
+.gallery-page .shot .index { bottom:auto; top:0; }
+.closing > .page-object { left:20mm; top:179mm; width:77mm; height:46mm; }

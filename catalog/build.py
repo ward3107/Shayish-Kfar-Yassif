@@ -6,12 +6,16 @@ Requires WeasyPrint 70 and its standard dependencies.
 
 from __future__ import annotations
 
+import json
+import os
+import re
+
 from html import escape
 from pathlib import Path
 from shutil import copyfile
 from urllib.parse import quote
 
-from PIL import Image, ImageStat
+from PIL import Image
 from weasyprint import HTML
 
 
@@ -88,39 +92,10 @@ def is_wide(path: Path) -> bool:
         return image.width / image.height > 1.28
 
 
-def material_samples(path: Path) -> str:
-    """Show three contrasting details sampled from the actual photograph."""
-    with Image.open(path) as source:
-        image = source.convert("RGB").resize((96, 96))
-    candidates = []
-    for y in (0.18, 0.5, 0.82):
-        for x in (0.18, 0.5, 0.82):
-            cx, cy = round(x * 96), round(y * 96)
-            stats = ImageStat.Stat(image.crop((cx - 8, cy - 8, cx + 8, cy + 8)))
-            candidates.append((x, y, stats.mean, sum(stats.stddev)))
-    chosen = [max(candidates, key=lambda item: item[3])]
-    while len(chosen) < 3:
-        def score(item):
-            if item in chosen:
-                return -1
-            colour_distance = min(sum((a - b) ** 2 for a, b in zip(item[2], pick[2])) for pick in chosen)
-            spatial_distance = min((item[0] - pick[0]) ** 2 + (item[1] - pick[1]) ** 2 for pick in chosen)
-            return colour_distance + 3500 * spatial_distance + item[3] * 5
-        chosen.append(max(candidates, key=score))
-    swatches = []
-    for x, y, colour, _ in chosen:
-        ring = "#" + "".join(f"{round(channel):02x}" for channel in colour)
-        swatches.append(
-            '<i style="background-image:url(\'images/' + escape(path.name, quote=True)
-            + f"\');background-position:{x * 100:.0f}% {y * 100:.0f}%;border-color:{ring}\"></i>"
-        )
-    return '<div class="materials" aria-hidden="true">' + "".join(swatches) + '</div>'
-
-
 def photo(path: Path, alt: str) -> str:
     return (
         '<div class="shot"><img src="images/' + escape(path.name) + '" alt="'
-        + escape(alt, quote=True) + '">' + material_samples(path) + '<span class="index">'
+        + escape(alt, quote=True) + '"><span class="index">'
         + f"{photo_number(path):02d}" + "</span></div>"
     )
 
@@ -148,7 +123,6 @@ pages.append((
       <p>מבחר עבודות במטבחים, חדרי רחצה, קמינים, מדרגות ולוחות אבן.</p></div>
       <div class="cover-image"><img src="images/{escape(cover.name)}" alt="מטבח עם אי אבן"></div>
       <div class="shade"></div>
-      {material_samples(cover)}
       <div class="actions">
         <a class="whatsapp" href="{escape(WHATSAPP_URL, quote=True)}">דברו איתנו ב־WhatsApp</a>
         <a class="website" href="{escape(WEBSITE_URL, quote=True)}">לאתר שלנו</a>
@@ -169,7 +143,7 @@ for section in SECTIONS:
         + section["title"] + '</span><h2>' + section["headline"] + '</h2><p>'
         + section["body"] + '</p></div><div class="visual"><img src="images/'
         + escape(hero.name) + '" alt="' + section["title"]
-        + '">' + material_samples(hero) + '</div><div class="count">' + str(section["count"])
+        + '"></div><div class="count">' + str(section["count"])
         + (' המחשות חזיתיות · על בסיס צילומי מקור</div>' if section["slug"] == "stone" else ' צילומים בפרק · מתוך תיק העבודות</div>'),
         section["title"],
     ))
@@ -207,7 +181,6 @@ pages.append((
       <h2>איזה חלל אתם<br>מדמיינים?</h2>
       <p>ספרו לנו על הבית, על החומר ועל הפרטים החשובים לכם. נתחיל משם.</p>
       <a href="{escape(WEBSITE_URL, quote=True)}">shayish-kfar-yassif.vercel.app</a></div>
-      {material_samples(cover)}
       <div class="line"></div><div class="location">אזור התעשייה · כפר יאסיף</div>
     """,
     "שיש כפר יאסיף",
@@ -215,13 +188,24 @@ pages.append((
 
 total = len(pages)
 html_pages = []
+manifest = []
+plan_only = os.environ.get("CATALOG_PLAN_ONLY") == "1"
 for index, (kind, body, footer) in enumerate(pages, 1):
     shade = PALETTE[(index - 1) % len(PALETTE)]
+    artwork = ROOT / "objects" / f"page-{index:02d}.png"
+    references = re.findall(r'src="images/([^"]+)"', body)
+    if not references:
+        references = [cover.name]
+    manifest.append({"page": index, "kind": kind, "section": footer, "references": references,
+                     "artwork": str(artwork.relative_to(ROOT))})
+    if not plan_only:
+        assert artwork.exists(), f"Missing page object: {artwork}"
+    object_markup = f'<img class="page-object" src="objects/page-{index:02d}.png" alt="" aria-hidden="true">'
     html_pages.append(
         '<section class="page ' + kind + (' stone' if footer == 'לוחות אבן' else '') + '" style="--shade:' + shade + '">'
         '<div class="brand">שיש כפר יאסיף</div>'
         '<div class="edition">STONE / SPACE / CRAFT</div><div class="top-rule"></div>'
-        + body + '<div class="foot"><span class="number">'
+        + body + object_markup + '<div class="foot"><span class="number">'
         + f"{index:02d} / {total:02d}" + '</span><span class="name">'
         + footer + '</span></div></section>'
     )
@@ -233,7 +217,12 @@ document = (
     '<link rel="stylesheet" href="catalog.css"></head><body>'
     + "\n".join(html_pages) + '</body></html>'
 )
+(ROOT / "objects").mkdir(exist_ok=True)
+(ROOT / "objects" / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+if plan_only:
+    print(f"Planned {total} page objects")
+    raise SystemExit(0)
 HTML_FILE.write_text(document, encoding="utf-8")
-HTML(filename=str(HTML_FILE)).write_pdf(str(PDF))
+HTML(filename=str(HTML_FILE)).write_pdf(str(PDF), optimize_images=True, jpeg_quality=85, dpi=180)
 copyfile(PDF, LEGACY_PDF)
 print(f"Built {PDF}: {total} pages, {len(used)} images and visualizations")
