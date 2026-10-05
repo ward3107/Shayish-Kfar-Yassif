@@ -201,11 +201,15 @@ for index, (kind, body, footer) in enumerate(pages, 1):
     if not plan_only:
         assert artwork.exists(), f"Missing page object: {artwork}"
     object_markup = f'<img class="page-object" src="objects/page-{index:02d}.png" alt="" aria-hidden="true">'
+    botanical_markup = "" if kind == "closing" else (
+        f'<img class="botanical-accent accent-{((index - 1) % 3) + 1}" '
+        'src="assets/botanical-accent.svg" alt="" aria-hidden="true">'
+    )
     html_pages.append(
         '<section class="page ' + kind + (' stone' if footer == 'לוחות אבן' else '') + '" style="--shade:' + shade + '">'
         '<div class="brand">שיש כפר יאסיף</div>'
         '<div class="edition">STONE / SPACE / CRAFT</div><div class="top-rule"></div>'
-        + body + object_markup + '<div class="foot"><span class="number">'
+        + body + botanical_markup + object_markup + '<div class="foot"><span class="number">'
         + f"{index:02d} / {total:02d}" + '</span><span class="name">'
         + footer + '</span></div></section>'
     )
