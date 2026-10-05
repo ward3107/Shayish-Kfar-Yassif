@@ -33,7 +33,7 @@ jobs:
       - name: System dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y poppler-utils libpango-1.0-0 libpangoft2-1.0-0
+          sudo apt-get install -y poppler-utils qpdf libpango-1.0-0 libpangoft2-1.0-0
 
       - name: Python dependencies
         run: |
@@ -43,6 +43,10 @@ jobs:
       - name: Build PDF and preview
         run: |
           python catalog/build.py
+          qpdf --linearize --object-streams=generate             public/catalog/shayish-kfar-yassif-catalog-v2.pdf             public/catalog/shayish-kfar-yassif-catalog-v2.linearized.pdf
+          mv public/catalog/shayish-kfar-yassif-catalog-v2.linearized.pdf             public/catalog/shayish-kfar-yassif-catalog-v2.pdf
+          cp public/catalog/shayish-kfar-yassif-catalog-v2.pdf             public/catalog/shayish-kfar-yassif-catalog.pdf
+          qpdf --check-linearization public/catalog/shayish-kfar-yassif-catalog-v2.pdf
           python catalog/build-preview.py
 
       - name: Commit generated catalog
@@ -54,5 +58,5 @@ jobs:
             echo "No generated changes."
             exit 0
           fi
-          git commit -m "Rebuild catalog PDF with botanical accents [skip ci]"
+          git commit -m "Rebuild fast-web optimized catalog PDF [skip ci]"
           git push
