@@ -93,39 +93,40 @@ p { line-height: 1.7; }
 .closing > .page-object { left:20mm; top:179mm; width:77mm; height:46mm; }
 
 
-/* Soft botanical accent: a restrained sage/olive detail that adds life without competing with the stone. */
+/* Minimal sage accent: abstract translucent forms, deliberately non-botanical. */
 .botanical-accent {
   position: absolute;
   z-index: 4;
-  width: 39mm;
+  width: 31mm;
   height: auto;
-  opacity: .86;
+  opacity: .72;
   pointer-events: none;
   transform-origin: center;
+  filter: saturate(.82);
 }
-.gallery-page > .botanical-accent { right: 3mm; top: 218mm; }
-.gallery-page > .botanical-accent.accent-1 { transform: rotate(-9deg); }
-.gallery-page > .botanical-accent.accent-2 { transform: rotate(7deg) scaleX(-1); opacity: .78; }
-.gallery-page > .botanical-accent.accent-3 { transform: rotate(-3deg) scale(.92); opacity: .9; }
+.gallery-page > .botanical-accent { right: 6mm; top: 220mm; }
+.gallery-page > .botanical-accent.accent-1 { transform: rotate(-7deg); }
+.gallery-page > .botanical-accent.accent-2 { transform: rotate(8deg) scale(.9); opacity: .62; }
+.gallery-page > .botanical-accent.accent-3 { transform: rotate(-2deg) scale(.84); opacity: .68; }
 
 .cover > .botanical-accent {
-  right: 4mm;
-  top: 109mm;
-  width: 47mm;
-  transform: rotate(-7deg);
+  right: 9mm;
+  top: 112mm;
+  width: 36mm;
+  opacity: .6;
+  transform: rotate(-5deg);
 }
 .hero > .botanical-accent {
-  right: 2mm;
-  top: 203mm;
-  width: 37mm;
+  right: 5mm;
+  top: 210mm;
+  width: 29mm;
+  opacity: .66;
 }
-.hero > .botanical-accent.accent-2 { transform: rotate(8deg) scaleX(-1); }
-.hero > .botanical-accent.accent-3 { transform: rotate(-5deg) scale(.94); }
+.hero > .botanical-accent.accent-2 { transform: rotate(7deg) scale(.9); }
+.hero > .botanical-accent.accent-3 { transform: rotate(-4deg) scale(.86); }
 .stone.hero > .botanical-accent {
-  right: 4mm;
-  top: 205mm;
-  width: 40mm;
+  right: 8mm;
+  top: 211mm;
+  width: 30mm;
 }
-
-/* Keep the green detail visually subordinate in dense layouts. */
 .gallery-page .botanical-accent + .page-object { z-index: 5; }
