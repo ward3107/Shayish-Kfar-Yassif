@@ -11,6 +11,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { CONTACT } from '../constants';
 import { prefetchRoute } from '../utils/routePrefetch';
 import LanguageSwitcher from './LanguageSwitcher';
+import CreatorSignature from './CreatorSignature';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -303,6 +304,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
              </Link>
           </div>
         </div>
+        <CreatorSignature />
       </footer>
 
       <ContactFAB />
