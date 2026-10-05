@@ -223,6 +223,6 @@ if plan_only:
     print(f"Planned {total} page objects")
     raise SystemExit(0)
 HTML_FILE.write_text(document, encoding="utf-8")
-HTML(filename=str(HTML_FILE)).write_pdf(str(PDF), optimize_images=True, jpeg_quality=85, dpi=180)
+HTML(filename=str(HTML_FILE)).write_pdf(str(PDF), optimize_images=True, jpeg_quality=72, dpi=120)
 copyfile(PDF, LEGACY_PDF)
 print(f"Built {PDF}: {total} pages, {len(used)} images and visualizations")
