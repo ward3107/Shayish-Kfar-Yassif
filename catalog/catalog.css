@@ -91,3 +91,41 @@ p { line-height: 1.7; }
 .stone.hero .count { width:110mm; }
 .gallery-page .shot .index { bottom:auto; top:0; }
 .closing > .page-object { left:20mm; top:179mm; width:77mm; height:46mm; }
+
+
+/* Soft botanical accent: a restrained sage/olive detail that adds life without competing with the stone. */
+.botanical-accent {
+  position: absolute;
+  z-index: 4;
+  width: 39mm;
+  height: auto;
+  opacity: .86;
+  pointer-events: none;
+  transform-origin: center;
+}
+.gallery-page > .botanical-accent { right: 3mm; top: 218mm; }
+.gallery-page > .botanical-accent.accent-1 { transform: rotate(-9deg); }
+.gallery-page > .botanical-accent.accent-2 { transform: rotate(7deg) scaleX(-1); opacity: .78; }
+.gallery-page > .botanical-accent.accent-3 { transform: rotate(-3deg) scale(.92); opacity: .9; }
+
+.cover > .botanical-accent {
+  right: 4mm;
+  top: 109mm;
+  width: 47mm;
+  transform: rotate(-7deg);
+}
+.hero > .botanical-accent {
+  right: 2mm;
+  top: 203mm;
+  width: 37mm;
+}
+.hero > .botanical-accent.accent-2 { transform: rotate(8deg) scaleX(-1); }
+.hero > .botanical-accent.accent-3 { transform: rotate(-5deg) scale(.94); }
+.stone.hero > .botanical-accent {
+  right: 4mm;
+  top: 205mm;
+  width: 40mm;
+}
+
+/* Keep the green detail visually subordinate in dense layouts. */
+.gallery-page .botanical-accent + .page-object { z-index: 5; }
