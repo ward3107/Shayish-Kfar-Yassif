@@ -1,0 +1,58 @@
+name: Build catalog PDF
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-catalog.yml'
+      - 'catalog/build.py'
+      - 'catalog/build-preview.py'
+      - 'catalog/catalog.css'
+      - 'catalog/assets/**'
+      - 'catalog/images/**'
+      - 'catalog/objects/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalog-pdf-main
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: System dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils libpango-1.0-0 libpangoft2-1.0-0
+
+      - name: Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install weasyprint==70.0 Pillow
+
+      - name: Build PDF and preview
+        run: |
+          python catalog/build.py
+          python catalog/build-preview.py
+
+      - name: Commit generated catalog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalog/catalog.html catalog/objects/manifest.json public/catalog/shayish-kfar-yassif-catalog.pdf public/catalog/shayish-kfar-yassif-catalog-v2.pdf public/catalog/preview
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "Rebuild catalog PDF with botanical accents [skip ci]"
+          git push
