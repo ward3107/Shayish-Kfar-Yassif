@@ -25,7 +25,8 @@
 :global(.dark) .signature[data-tone="auto"] .artwork,
 :global(.dark-mode) .signature[data-tone="auto"] .artwork,
 :global([data-theme="dark"]) .signature[data-tone="auto"] .artwork {
-  filter: none;
+  /* Lift the gray tagline and icons against the site's charcoal footer. */
+  filter: brightness(1.5);
 }
 .signature .link {
   position: absolute;
