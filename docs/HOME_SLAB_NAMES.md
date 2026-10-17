@@ -15,7 +15,9 @@ identification evidence. The earliest repository PDF (17a292f) also has generic
 slab captions. The inventory sticker in source 04 is too blurred to read reliably.
 
 These are **tentative visual identifications**, not verified inventory records.
-Each card and dialog says so, alongside a localized note under the collection.
+The localized note under the collection explains this once. Cards and enlarged
+views show only the trade names and slab number; the repeated identification
+sentence was removed from every image caption at the owner's request.
 References establish the trade names and comparison images; they do not establish
 who supplied these particular slabs or their SKU, quarry, origin, composition,
 performance or availability. Do not infer those properties from the headings.
