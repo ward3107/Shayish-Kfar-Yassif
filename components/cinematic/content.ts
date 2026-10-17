@@ -1,4 +1,5 @@
 import type { Language } from '../../translations';
+import { imgUrl } from '../../lib/galleryData';
 
 type Project = { title: string; headline: string; description: string; category: string; detail: string; captions: [string, string] };
 type Copy = {
@@ -62,6 +63,7 @@ export const cinematicCopy: Record<Language, Copy> = {
   },
 };
 
-// Keep business photographs on the existing public portfolio CDN.
-export const projectImages = ['IMG-20260718-WA0101', 'IMG-20260718-WA0057', 'IMG-20260718-WA0090'].map(id => `https://res.cloudinary.com/dst5uru0/image/upload/c_limit,w_1800,q_auto,f_auto/shayish/gallery/${id}`);
+// Share project IDs with the gallery so reviewed retouches appear in both views.
+export const projectPublicIds = ['IMG-20260718-WA0101', 'IMG-20260718-WA0057', 'IMG-20260718-WA0090'].map(id => `shayish/gallery/${id}`);
+export const projectImages = projectPublicIds.map(id => imgUrl(id, 1800));
 export const detailPositions = [['25% 45%', '78% 32%'], ['30% 45%', '72% 55%'], ['28% 60%', '76% 48%']];

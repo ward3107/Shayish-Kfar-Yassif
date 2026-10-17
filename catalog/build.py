@@ -24,6 +24,7 @@ PDF = ROOT.parent / "public/catalog/shayish-kfar-yassif-catalog-v2.pdf"
 LEGACY_PDF = ROOT.parent / "public/catalog/shayish-kfar-yassif-catalog.pdf"
 HTML_FILE = ROOT / "catalog.html"
 IMAGES = ROOT / "images"
+ENHANCED = ROOT / "enhanced"
 WEBSITE_URL = "https://shayish-kfar-yassif.vercel.app/"
 WHATSAPP_URL = "https://wa.me/972505636648?text=" + quote(
     "שלום, ראיתי את הקטלוג ואשמח לקבל פרטים."
@@ -88,16 +89,23 @@ def photo_xref(path: Path) -> int:
 
 
 def is_wide(path: Path) -> bool:
-    with Image.open(path) as image:
+    corrected = ENHANCED / path.name
+    with Image.open(corrected if corrected.is_file() else path) as image:
         return image.width / image.height > 1.28
 
 
 def photo(path: Path, alt: str) -> str:
     return (
-        '<div class="shot"><img src="images/' + escape(path.name) + '" alt="'
+        '<div class="shot"><img src="' + photo_src(path) + '" alt="'
         + escape(alt, quote=True) + '"><span class="index">'
         + f"{photo_number(path):02d}" + "</span></div>"
     )
+
+
+def photo_src(path: Path) -> str:
+    """Use the non-destructive correction when available; retain the source."""
+    corrected = ENHANCED / path.name
+    return ("enhanced/" if corrected.is_file() else "images/") + escape(path.name)
 
 
 def batches(paths: list[Path]) -> list[list[Path]]:
@@ -121,7 +129,7 @@ pages.append((
       <div class="copy"><span class="eyebrow">מלאכת האבן · כפר יאסיף</span>
       <h1>אבן שמרגישה<br>כמו בית.</h1>
       <p>מבחר עבודות במטבחים, חדרי רחצה, קמינים, מדרגות ולוחות אבן.</p></div>
-      <div class="cover-image"><img src="images/{escape(cover.name)}" alt="מטבח עם אי אבן"></div>
+      <div class="cover-image"><img src="{photo_src(cover)}" alt="מטבח עם אי אבן"></div>
       <div class="shade"></div>
       <div class="actions">
         <a class="whatsapp" href="{escape(WHATSAPP_URL, quote=True)}">דברו איתנו ב־WhatsApp</a>
@@ -141,8 +149,8 @@ for section in SECTIONS:
         "hero",
         '<div class="copy"><span class="eyebrow">' + section["number"] + " / "
         + section["title"] + '</span><h2>' + section["headline"] + '</h2><p>'
-        + section["body"] + '</p></div><div class="visual"><img src="images/'
-        + escape(hero.name) + '" alt="' + section["title"]
+        + section["body"] + '</p></div><div class="visual"><img src="'
+        + photo_src(hero) + '" alt="' + section["title"]
         + '"></div><div class="count">' + str(section["count"])
         + (' המחשות חזיתיות · על בסיס צילומי מקור</div>' if section["slug"] == "stone" else ' צילומים בפרק · מתוך תיק העבודות</div>'),
         section["title"],
@@ -193,7 +201,7 @@ plan_only = os.environ.get("CATALOG_PLAN_ONLY") == "1"
 for index, (kind, body, footer) in enumerate(pages, 1):
     shade = PALETTE[(index - 1) % len(PALETTE)]
     artwork = ROOT / "objects" / f"page-{index:02d}.png"
-    references = re.findall(r'src="images/([^"]+)"', body)
+    references = re.findall(r'src="(?:images|enhanced)/([^"]+)"', body)
     if not references:
         references = [cover.name]
     manifest.append({"page": index, "kind": kind, "section": footer, "references": references,
@@ -207,7 +215,7 @@ for index, (kind, body, footer) in enumerate(pages, 1):
         '<div class="edition">STONE / SPACE / CRAFT</div><div class="top-rule"></div>'
         + body + object_markup + '<div class="foot"><span class="number">'
         + f"{index:02d} / {total:02d}" + '</span><span class="name">'
-        + footer + '</span></div></section>'
+        + footer + '</span><span class="retouch-note">המחשות בעריכת AI · פרטים עשויים להשתנות</span></div></section>'
     )
 
 document = (
@@ -223,6 +231,6 @@ if plan_only:
     print(f"Planned {total} page objects")
     raise SystemExit(0)
 HTML_FILE.write_text(document, encoding="utf-8")
-HTML(filename=str(HTML_FILE)).write_pdf(str(PDF), optimize_images=True, jpeg_quality=72, dpi=120)
+HTML(filename=str(HTML_FILE)).write_pdf(str(PDF), optimize_images=True, jpeg_quality=90, dpi=180)
 copyfile(PDF, LEGACY_PDF)
 print(f"Built {PDF}: {total} pages, {len(used)} images and visualizations")

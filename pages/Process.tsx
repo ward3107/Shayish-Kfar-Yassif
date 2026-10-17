@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { PROCESS_STEPS } from '../constants';
 import Button from '../components/Button';
 import { useLanguage } from '../contexts/LanguageContext';
+import { heroUrl, croppedImgSrcSet } from '../lib/galleryData';
 
 /**
  * Process page — vertical timeline.
@@ -22,9 +23,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 // gradient panel instead of silently pulling from an unrelated tenant.
 const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
 const bg = (id: string, w: number, h: number) =>
-  CLOUD
-    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto:good,c_fill,g_auto,w_${w},h_${h}/shayish/materials/${id}`
-    : '';
+  CLOUD ? heroUrl(`shayish/materials/${id}`, w, h) : '';
 
 type StepImage = { key: string; id: string };
 const STEP_IMAGES: StepImage[] = [
@@ -46,6 +45,11 @@ const StepImage: React.FC<{ imgId: string; alt: string; eager: boolean }> = ({ i
       {showImg ? (
         <img
           src={bg(imgId, 1200, 800)}
+          srcSet={croppedImgSrcSet(`shayish/materials/${imgId}`, [480, 800, 1200, 1600], 3 / 2)}
+          sizes="(min-width: 768px) 48vw, 100vw"
+          width={1200}
+          height={800}
+          decoding="async"
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
           onError={() => setFailed(true)}
