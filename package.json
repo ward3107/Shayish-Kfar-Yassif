@@ -12,7 +12,7 @@
     "photos:prepare": "node scripts/prepare-photo-assets.mjs"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
+    "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
     "cloudinary": "^2.10.0",
     "gsap": "^3.15.0",
