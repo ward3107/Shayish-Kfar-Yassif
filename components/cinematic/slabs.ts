@@ -3,29 +3,29 @@ import type { Language } from '../../translations';
 type Slab = {
   id: string;
   name: Record<Language, string>;
-  // A visual comparison only. Never treat this as verified supplier inventory.
-  possibleMatch?: string;
+  // Catalog trade name matched against the original photo, not verified inventory.
+  tradeName: string;
 };
 
 export const homeSlabs: Slab[] = [
-  { id: 'stone-01-x235', name: { he: 'גלים בירוק וכסף', ar: 'تموّجات خضراء وفضية', en: 'Green & Silver Waves', ru: 'Зелёные и серебристые волны' } },
-  { id: 'stone-02-x240', name: { he: 'כחול ונחושת', ar: 'أزرق ونحاسي', en: 'Blue & Copper', ru: 'Голубой и медный' }, possibleMatch: 'Blue Roma' },
-  { id: 'stone-03-x242', name: { he: 'כחול ולבן', ar: 'أزرق وأبيض', en: 'Blue & White', ru: 'Синий и белый' }, possibleMatch: 'Azul Bahia' },
-  { id: 'stone-04-x241', name: { he: 'שחור וזהב', ar: 'أسود وذهبي', en: 'Black & Gold', ru: 'Чёрный и золотой' }, possibleMatch: 'Black Cosmic' },
-  { id: 'stone-05-x247', name: { he: 'חום מעושן', ar: 'بني دخاني', en: 'Smoky Brown', ru: 'Дымчато-коричневый' } },
-  { id: 'stone-06-x248', name: { he: 'לבן וענבר', ar: 'أبيض وعنبري', en: 'White & Amber', ru: 'Белый и янтарный' } },
-  { id: 'stone-07-x249', name: { he: 'שנהב ושחור', ar: 'عاجي وأسود', en: 'Ivory & Black', ru: 'Слоновая кость и чёрный' }, possibleMatch: 'Patagonia' },
-  { id: 'stone-08-x256', name: { he: 'חום ועורקי זהב', ar: 'بني بعروق ذهبية', en: 'Brown & Golden Veins', ru: 'Коричневый с золотистыми прожилками' }, possibleMatch: 'Marrón Emperador' },
-  { id: 'stone-09-x254', name: { he: 'פסים בכחול', ar: 'خطوط زرقاء', en: 'Blue Stripes', ru: 'Синие полосы' }, possibleMatch: 'Azul Macaubas' },
-  { id: 'stone-10-x255', name: { he: 'גלים באפור וכחול', ar: 'تموّجات رمادية وزرقاء', en: 'Grey & Blue Waves', ru: 'Серые и синие волны' } },
-  { id: 'stone-11-x261', name: { he: 'שנהב ונחושת', ar: 'عاجي ونحاسي', en: 'Ivory & Copper', ru: 'Слоновая кость и медный' } },
-  { id: 'stone-12-x262', name: { he: 'לבן ורשת זהב', ar: 'أبيض بشبكة ذهبية', en: 'White & Golden Web', ru: 'Белый с золотистой сеткой' } },
-  { id: 'stone-13-x263', name: { he: 'פנינה וזהב', ar: 'لؤلؤي وذهبي', en: 'Pearl & Gold', ru: 'Жемчужный и золотой' } },
+  { id: 'stone-01-x235', tradeName: 'Patagonia Green', name: { he: 'פטגוניה גרין', ar: 'باتاغونيا غرين', en: 'Patagonia Green', ru: 'Патагония Грин' } },
+  { id: 'stone-02-x240', tradeName: 'Ijen Blue', name: { he: 'איג׳ן בלו', ar: 'إيجين بلو', en: 'Ijen Blue', ru: 'Иджен Блю' } },
+  { id: 'stone-03-x242', tradeName: 'Azul Bahia', name: { he: 'אזול באהיה', ar: 'أزول باهيا', en: 'Azul Bahia', ru: 'Азул Баия' } },
+  { id: 'stone-04-x241', tradeName: 'Black Cosmic', name: { he: 'בלאק קוסמיק', ar: 'بلاك كوزميك', en: 'Black Cosmic', ru: 'Блэк Космик' } },
+  { id: 'stone-05-x247', tradeName: 'Splendido', name: { he: 'ספלנדידו', ar: 'سبلينديدو', en: 'Splendido', ru: 'Сплендидо' } },
+  { id: 'stone-06-x248', tradeName: 'Cristallo Lumix', name: { he: 'קריסטלו לומיקס', ar: 'كريستالو لوميكس', en: 'Cristallo Lumix', ru: 'Кристалло Люмикс' } },
+  { id: 'stone-07-x249', tradeName: 'Patagonia', name: { he: 'פטגוניה', ar: 'باتاغونيا', en: 'Patagonia', ru: 'Патагония' } },
+  { id: 'stone-08-x256', tradeName: 'Emperador Dark', name: { he: 'אמפרדור דארק', ar: 'إمبرادور دارك', en: 'Emperador Dark', ru: 'Имперадор Дарк' } },
+  { id: 'stone-09-x254', tradeName: 'Azul Macaubas', name: { he: 'אזול מקאובס', ar: 'أزول ماكاوباس', en: 'Azul Macaubas', ru: 'Азул Макаубас' } },
+  { id: 'stone-10-x255', tradeName: 'Azul Bahia', name: { he: 'אזול באהיה', ar: 'أزول باهيا', en: 'Azul Bahia', ru: 'Азул Баия' } },
+  { id: 'stone-11-x261', tradeName: 'Calacatta Oyster', name: { he: 'קלקטה אויסטר', ar: 'كالاكاتا أويستر', en: 'Calacatta Oyster', ru: 'Калакатта Ойстер' } },
+  { id: 'stone-12-x262', tradeName: 'Cristallo Lumix', name: { he: 'קריסטלו לומיקס', ar: 'كريستالو لوميكس', en: 'Cristallo Lumix', ru: 'Кристалло Люмикс' } },
+  { id: 'stone-13-x263', tradeName: 'Cristallo Lumix', name: { he: 'קריסטלו לומיקס', ar: 'كريستالو لوميكس', en: 'Cristallo Lumix', ru: 'Кристалло Люмикс' } },
 ];
 
 export const slabNamingCopy: Record<Language, { match: string; note: string }> = {
-  he: { match: 'זיהוי משוער', note: 'שמות הלוחות מתארים את המראה. הזיהויים המסחריים משוערים לפי תמונות; את שם הדגם המדויק יש לאמת מול הספק.' },
-  ar: { match: 'تعرّف تقديري', note: 'أسماء الألواح تصف مظهرها. الأسماء التجارية تقديرية بحسب الصور؛ يجب تأكيد اسم الموديل الدقيق مع المورّد.' },
-  en: { match: 'Possible match', note: 'Slab names describe their appearance. Trade names are tentative visual matches; confirm the exact model with the supplier.' },
-  ru: { match: 'Предположительное название', note: 'Названия описывают внешний вид плит. Торговые названия предположены по фотографиям; точную модель нужно уточнить у поставщика.' },
+  he: { match: 'זיהוי משוער לפי תמונה', note: 'אלה שמות מסחריים מקטלוגי אבן, ששויכו ללוחות בהשוואת תמונות המקור. השיוך משוער; את הדגם המדויק של הלוח הנבחר יש לאמת מול הספק לפני הזמנה.' },
+  ar: { match: 'تعرّف تقديري من الصورة', note: 'هذه أسماء تجارية من كتالوجات الحجر، طُوبقت مع الألواح بمقارنة الصور الأصلية. المطابقة تقديرية؛ يجب تأكيد الموديل الدقيق للوح المختار مع المورّد قبل الطلب.' },
+  en: { match: 'Tentative photo identification', note: 'These are catalog trade names matched by comparing the original slab photos. The matches are tentative; confirm the selected slab’s exact model with the supplier before ordering.' },
+  ru: { match: 'Предварительное определение по фото', note: 'Это торговые названия из каталогов камня, подобранные по исходным фотографиям плит. Совпадения предположительные; перед заказом уточните точную модель выбранной плиты у поставщика.' },
 };
