@@ -1,6 +1,7 @@
 name: Build catalog PDF
 
 on:
+  pull_request:
   workflow_dispatch:
   push:
     branches: [main]
@@ -14,21 +15,22 @@ on:
       - 'catalog/objects/**'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: catalog-pdf-main
-  cancel-in-progress: true
+  group: catalog-pdf-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
-    if: github.actor != 'github-actions[bot]'
+    name: Catalog PDF
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          persist-credentials: false
 
       - name: System dependencies
         run: |
@@ -49,14 +51,62 @@ jobs:
           qpdf --check-linearization public/catalog/shayish-kfar-yassif-catalog-v2.pdf
           python catalog/build-preview.py
 
-      - name: Commit generated catalog
+      - name: Preserve generated catalog
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-catalog
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            catalog/catalog.html
+            catalog/objects/manifest.json
+            public/catalog/shayish-kfar-yassif-catalog.pdf
+            public/catalog/shayish-kfar-yassif-catalog-v2.pdf
+            public/catalog/preview
+
+  propose:
+    name: Prepare catalog update
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Refuse an outdated catalog
+        env:
+          SOURCE_SHA: ${{ github.sha }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog/catalog.html catalog/objects/manifest.json public/catalog/shayish-kfar-yassif-catalog.pdf public/catalog/shayish-kfar-yassif-catalog-v2.pdf public/catalog/preview
-          if git diff --cached --quiet; then
-            echo "No generated changes."
-            exit 0
-          fi
-          git commit -m "Rebuild fast-web optimized catalog PDF [skip ci]"
-          git push
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA" || {
+            echo "Main advanced during generation. Re-run the catalog workflow on the latest main."
+            exit 1
+          }
+      - uses: actions/download-artifact@v4
+        with:
+          name: generated-catalog
+      - name: Propose generated files for review
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          branch: automation/catalog-update
+          base: main
+          draft: always-true
+          title: "Update generated catalog"
+          commit-message: "Rebuild catalog PDF and previews"
+          add-paths: |
+            catalog/catalog.html
+            catalog/objects/manifest.json
+            public/catalog/shayish-kfar-yassif-catalog.pdf
+            public/catalog/shayish-kfar-yassif-catalog-v2.pdf
+            public/catalog/preview
+          body: |
+            Generated from main commit ${{ github.sha }}.
+            Review the PDF and preview images before publication.
+            This PR does not publish directly to main.
+            PRs created with GITHUB_TOKEN do not automatically trigger normal PR checks.
+            A maintainer must trigger those checks with their own PR action or use a
+            scoped GitHub App token for this automation. Do not bypass required checks.
