@@ -10,6 +10,7 @@ import { localPhoto, localPhotoSrcSet } from '../../lib/localPhotos';
 import { homeSlabs, slabNamingCopy } from './slabs';
 import { materialCopy } from './materialBreakdown';
 import MaterialExplorer from './MaterialExplorer';
+import InteractiveVase from './InteractiveVase';
 import './CinematicHome.css';
 
 const slabSource = (name: string) => `/stone-slabs/edited/${name}.jpeg`;
@@ -51,7 +52,7 @@ export default function CinematicHome() {
       <section className="ch-hero" aria-label={c.eyebrow}>
         <div className="ch-hero-stage">
           <div className="ch-stone-next" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet={localPhotoSrcSet("/cinematic/hero-copper-sculpture-mobile.webp") || localPhoto("/cinematic/hero-copper-sculpture-mobile.webp")} sizes="100vw" /><img src={localPhoto("/cinematic/hero-copper-sculpture.webp")} srcSet={localPhotoSrcSet("/cinematic/hero-copper-sculpture.webp")} sizes="100vw" alt="" width="1672" height="941" /></picture></div>
-          <div className="ch-stone" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet={localPhotoSrcSet("/cinematic/hero-green-vase-mobile.webp") || localPhoto("/cinematic/hero-green-vase-mobile.webp")} sizes="100vw" /><img src={localPhoto("/cinematic/hero-green-vase.webp")} srcSet={localPhotoSrcSet("/cinematic/hero-green-vase.webp")} sizes="100vw" alt="" width="1672" height="941" fetchPriority="high" /></picture></div>
+          <InteractiveVase language={language} reduced={reduced} />
           <div className="ch-shade" aria-hidden="true" />
           <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p><div className="ch-hero-actions"><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a><a className="ch-text-button" href={chat} target="_blank" rel="noopener noreferrer">{c.chat}</a></div></div>
           <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a></div>

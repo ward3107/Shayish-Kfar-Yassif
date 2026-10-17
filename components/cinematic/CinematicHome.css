@@ -170,3 +170,5 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 
 /* Keep captions on the photograph, clear of the floating site controls. */
 .ch-photo>span{white-space:nowrap}
+
+.ch-shade{pointer-events:none}

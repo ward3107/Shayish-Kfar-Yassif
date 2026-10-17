@@ -1,0 +1,26 @@
+.ch-vase-scene{pointer-events:none}
+.ch-stone .ch-vase-plate{object-position:center bottom}
+.ch-vase-object{position:absolute;left:0;top:var(--vase-top);width:var(--vase-width);height:var(--vase-height);transform:translate3d(var(--vase-x),0,0);transition:transform .32s cubic-bezier(.22,.8,.3,1);visibility:hidden;direction:ltr}
+.ch-vase-scene[data-ready=true] .ch-vase-object,.ch-vase-scene[data-ready=true] .ch-vase-controls{visibility:visible}
+.ch-vase-scene[data-dragging=true] .ch-vase-object,.ch-vase-scene[data-reduced=true] .ch-vase-object{transition:none}
+.ch-vase-grab{position:absolute;inset:0;pointer-events:auto;cursor:grab;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none;border-radius:12px;outline-offset:8px}
+.ch-vase-grab:focus{outline:none}
+.ch-vase-grab:focus-visible:not([data-pointer=true]){outline:2px solid #e5c98e}
+.ch-vase-scene[data-dragging=true] .ch-vase-grab{cursor:grabbing}
+.ch-stone .ch-vase-cutout{width:100%;height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none}
+.ch-vase-contact{position:absolute;left:31%;bottom:-.4%;width:24%;height:1.5%;border-radius:50%;background:#111a11;filter:blur(2px);opacity:.7}
+.ch-vase-cast-shadow{position:absolute;left:37%;top:99%;width:57%;height:4.5%;border-radius:50%;background:linear-gradient(90deg,#10170edb,#17201500);transform:skewX(55deg);transform-origin:left top;filter:blur(4px);opacity:.7}
+.ch-vase-reflection{position:absolute;top:100%;left:0;width:100%;height:var(--vase-reflection);overflow:hidden;opacity:.3;mask-image:linear-gradient(#0009,transparent);filter:blur(1px)}
+.ch-stone .ch-vase-reflection img{position:absolute;left:0;bottom:100%;width:100%;height:var(--vase-height);object-fit:contain;transform:scaleY(-.5);transform-origin:center bottom}
+.ch-vase-controls{position:absolute;left:5%;top:var(--vase-controls-top);visibility:hidden;pointer-events:auto;display:flex;align-items:center;gap:12px;color:#fff;text-shadow:0 1px 8px #0008;font-family:'Stone Text',sans-serif;font-size:12px;opacity:var(--intro-opacity)}
+.ch-vase-controls>span{display:flex;align-items:center;gap:7px}
+.ch-vase-controls>div{display:flex;border:1px solid #ffffff50;border-radius:30px;background:#12261b70;backdrop-filter:blur(8px)}
+.ch-vase-controls button{display:grid;place-items:center;width:44px;height:40px;background:transparent;color:inherit;border:0;border-radius:50%;cursor:pointer}
+.ch-vase-controls button:hover{background:#ffffff24}
+.ch-vase-controls button:disabled{opacity:.35;cursor:default}
+.ch-vase-controls button:focus-visible{outline:2px solid #e5c98e;outline-offset:2px}
+.ch-vase-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:750px){.ch-vase-controls{left:5%;gap:8px;font-size:11px}.ch-vase-controls button{height:40px;width:40px}}
+@media(max-width:420px){.ch-vase-controls>span{display:none}}
+@media(max-width:750px){.ch-stone .ch-vase-plate{object-position:left bottom}}
+@media(prefers-reduced-motion:reduce){.ch-vase-object{transition:none}}
