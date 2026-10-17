@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>שיש כפר יאסיף — גלריית העריכה</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f0e9;color:#253027;font:17px/1.65 system-ui,sans-serif}header,main{max-width:1120px;margin:auto;padding:24px}header{padding-top:42px}h1{font-size:clamp(27px,5vw,43px);line-height:1.15;margin:8px 0 20px}p{max-width:760px;margin:8px 0}small,.meta{color:#60685f}button,select{font:inherit;max-width:100%;min-height:46px;border:1px solid #c6cbbf;border-radius:7px;padding:8px 14px;background:#fff;color:#253027}button{cursor:pointer}button[aria-pressed=true]{background:#253027;color:#fff;border-color:#253027}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #7f926d;outline-offset:3px}.controls,.modes{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.controls label{display:flex;flex-direction:column;gap:5px;flex:1;min-width:180px}.controls select{width:100%}.modes{justify-content:center}.viewer{text-align:center;background:#e4e1d9;border-radius:10px;overflow:hidden}.viewer img{max-width:100%;max-height:72vh;width:auto;height:auto;display:block;margin:auto}.caption{margin:15px 0 24px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:12px;margin-top:22px}.tile{padding:0;border:1px solid #ccd0c7;overflow:hidden;background:transparent;min-width:0}.tile img{display:block;width:100%;height:125px;object-fit:cover}.tile span{display:block;padding:5px;font-size:13px}.tile[aria-pressed=true]{border-color:#253027}.tile[hidden]{display:none}footer{max-width:1120px;margin:0 auto;padding:24px;color:#60685f}a{color:inherit}@media(max-width:500px){header,main{padding:18px}.controls label{min-width:130px}.modes{gap:7px}.modes button{padding:8px 12px}.viewer img{max-height:65vh}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+  <small>שיש כפר יאסיף · תצוגה לפני פרסום</small>
+  <h1>העבודה נשארת במרכז.</h1>
+  <p>עריכה אישית לתמונות: ניקוי אנשים וחפצים מפריעים, תאורה, מסגור ותיקון פרספקטיבה. אפשר לעבור בין המקור לגרסה החדשה בכל תמונה.</p>
+  <p class="meta">הגרסאות החדשות נערכו בעזרת AI. באזורים שהוסתרו ובתיקוני פרספקטיבה הושלמו פרטים דיגיטלית; דוגמת האבן ופרטים משוחזרים עשויים להשתנות. תמונות המקור זמינות להשוואה; הגלריה הזו טרם פורסמה באתר.</p>
+</header>
+<main>
+  <div class="controls">
+    <label for="category">קטגוריה<select id="category"><option value="all">כל התמונות</option><option value="kitchens">מטבחים</option><option value="bathrooms">חדרי רחצה</option><option value="walls">קמינים וחיפויים</option><option value="stairs">מדרגות</option><option value="slabs">לוחות אבן</option><option value="special">עבודות מיוחדות</option><option value="catalog">צילומי קטלוג נוספים</option></select></label>
+    <label for="photo">תמונה<select id="photo"></select></label>
+  </div>
+  <div class="modes">
+    <button id="previous" type="button">הקודמת</button>
+    <button id="original" type="button" aria-pressed="false">לפני — המקור</button>
+    <button id="retouched" type="button" aria-pressed="true">אחרי — עריכה</button>
+    <button id="next" type="button">הבאה</button>
+  </div>
+  <div class="viewer"><img id="main-photo" src="__INITIAL_PHOTO__" alt="__INITIAL_CAPTION__" width="600" height="800"></div>
+  <div class="caption" aria-live="polite"><div id="caption">__INITIAL_CAPTION__</div><small id="status"></small></div>
+  <div class="grid" id="thumbnails" aria-label="כל התמונות"></div>
+</main>
+<footer>הקבצים המקוריים נשמרו. בחבילת התמונות זמינות גם הגרסאות המלאות.</footer>
+<script id="photo-data" type="application/json">__PHOTO_DATA__</script>
+<script>
+(() => {
+  const data = JSON.parse(document.getElementById('photo-data').textContent);
+  const category = document.getElementById('category');
+  const select = document.getElementById('photo');
+  const image = document.getElementById('main-photo');
+  const caption = document.getElementById('caption');
+  const status = document.getElementById('status');
+  const original = document.getElementById('original');
+  const retouched = document.getElementById('retouched');
+  const thumbnails = document.getElementById('thumbnails');
+  let filtered = data;
+  let selected = data.find(item => item.index === 33) || data[0];
+  let showOriginal = false;
+  const tiles = new Map();
+  function render() {
+    if (!selected) return;
+    image.src = showOriginal ? selected.beforePreview : selected.afterPreview;
+    image.alt = selected.caption + (showOriginal ? ' — המקור' : ' — הגרסה החדשה');
+    caption.textContent = selected.caption;
+    status.textContent = String(selected.index).padStart(3,'0') + ' / ' + data.length + (selected.editedWithAI ? ' · עריכה בעזרת AI' : ' · הדמיה קיימת, נשמרה');
+    select.value = String(selected.index);
+    original.setAttribute('aria-pressed', String(showOriginal));
+    retouched.setAttribute('aria-pressed', String(!showOriginal));
+    tiles.forEach((tile,index) => tile.setAttribute('aria-pressed',String(index === selected.index)));
+  }
+  function changeCategory() {
+    filtered = category.value === 'all' ? data : data.filter(item => item.category === category.value);
+    select.replaceChildren();
+    filtered.forEach(item => {
+      const option = document.createElement('option');
+      option.value = String(item.index);
+      option.textContent = String(item.index).padStart(3,'0') + ' · ' + item.caption;
+      select.appendChild(option);
+    });
+    const allowed = new Set(filtered.map(item => item.index));
+    tiles.forEach((tile,index) => {tile.hidden = !allowed.has(index);});
+    if (!allowed.has(selected.index)) selected = filtered[0];
+    render();
+  }
+  data.forEach(item => {
+    const tile = document.createElement('button');tile.type = 'button';tile.className = 'tile';
+    tile.setAttribute('aria-label', String(item.index) + ' · ' + item.caption);
+    tile.setAttribute('aria-pressed','false');
+    const thumbnail = document.createElement('img');thumbnail.src = item.afterPreview;thumbnail.alt = '';thumbnail.loading = 'lazy';thumbnail.width = 150;thumbnail.height = 200;
+    const label = document.createElement('span');label.textContent = String(item.index).padStart(3,'0');
+    tile.append(thumbnail,label);
+    tile.addEventListener('click',() => {selected = item;showOriginal = false;render();image.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});});
+    tiles.set(item.index,tile);thumbnails.appendChild(tile);
+  });
+  select.addEventListener('change',() => {selected = data.find(item => item.index === Number(select.value));render();});
+  category.addEventListener('change',changeCategory);
+  original.addEventListener('click',() => {showOriginal = true;render();});
+  retouched.addEventListener('click',() => {showOriginal = false;render();});
+  function move(direction) {const index = filtered.findIndex(item => item.index === selected.index);selected = filtered[(index + direction + filtered.length) % filtered.length];showOriginal = false;render();}
+  document.getElementById('previous').addEventListener('click',() => move(-1));
+  document.getElementById('next').addEventListener('click',() => move(1));
+  changeCategory();
+})();
+</script>
+</body>
+</html>
