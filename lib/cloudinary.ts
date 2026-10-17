@@ -89,7 +89,9 @@ export async function listMedia(): Promise<MediaItem[]> {
     .max_results(500)
     .execute();
   const resources = (result.resources ?? []) as SearchResource[];
-  return resources.map(toItem);
+  // Internal preparation copies can inherit the gallery folder from the
+  // upload preset; keep them out of both the public gallery and admin list.
+  return resources.filter((r) => !r.tags?.includes('site-derivative-source')).map(toItem);
 }
 
 export async function destroyMedia(publicId: string, resourceType: 'image' | 'video') {
