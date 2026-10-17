@@ -13,6 +13,23 @@ The homepage opens on a green marble still-life with a sage vase and olive branc
 
 The alternate viewpoints are stairs `WA0102` / `WA0103`, fireplace `WA0052` / `WA0054`, and kitchen island `WA0092` / `WA0095`. They reuse existing retouched assets, so no new uploads or image generation are needed. Localized captions describe each viewpoint.
 
+## Material breakdown on the small photographs
+
+Only the six small project photographs open the interactive material explorer.
+The large photographs retain their existing full-photo dialog. Each small view
+has its own traced masks in `materialBreakdown.ts`; `MaterialExplorer.tsx` moves
+the visible photo regions apart, labels their material families and roles, and
+lets visitors highlight a material or reassemble the photo. Both angles of the
+same project can be selected inside the dialog. All labels support the site's
+four languages.
+
+The masks reuse the existing photos. They do not generate hidden surfaces or
+assert a construction sequence, exact stone model, or wood species. Wood-finish
+panels are labelled as a finish rather than solid timber. Native modal focus,
+Escape dismissal, focus restoration and body-scroll locking are retained.
+Reduced-motion mode keeps the six thumbnails available and changes states
+without animation. Hidden thumbnails are inert during the normal scroll reveal.
+
 The existing React routes, shared navigation, language/theme controls, catalog, cookie controls, contact constants and gallery admin remain in use. The homepage's 13 slabs use a native horizontal scroll track without slide snapping, with mouse drag and keyboard navigation. The complete collection remains accessible at `/gallery` and continues to use the existing Cloudinary/admin workflow. The three featured homepage images reference curated Cloudinary public IDs; the selection is independent of the dynamic gallery feed.
 
 `overflow-x: clip` on the document prevents sideways scrolling without introducing a scroll container that breaks sticky chapters. The scrolled header uses the theme's opaque primary colour to remain legible over light project backgrounds.
@@ -27,6 +44,7 @@ The existing React routes, shared navigation, language/theme controls, catalog, 
 - Swipe the 13 slabs without snapping, drag with a mouse, navigate with arrow keys and open a slab.
 - Project stage remains pinned to the viewport during the detail reveal.
 - Full-photo dialog opens and Escape closes it; material selector changes image and selected state.
+- Small photographs open the matching material breakdown; check both angles for all three projects, material highlighting, reassembly, keyboard dismissal and restored focus. Large photographs must still open the regular photo dialog.
 - Four language choices retain direction and no horizontal overflow.
 - Reduced-motion preference disables sticky/scroll effects.
 - Contact page and admin login render; no uncaught browser errors.

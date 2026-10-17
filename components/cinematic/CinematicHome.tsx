@@ -8,6 +8,8 @@ import { useSlabScroll } from './useSlabScroll';
 import { imgSrcSet } from '../../lib/galleryData';
 import { localPhoto, localPhotoSrcSet } from '../../lib/localPhotos';
 import { homeSlabs, slabNamingCopy } from './slabs';
+import { materialCopy } from './materialBreakdown';
+import MaterialExplorer from './MaterialExplorer';
 import './CinematicHome.css';
 
 const slabSource = (name: string) => `/stone-slabs/edited/${name}.jpeg`;
@@ -31,6 +33,7 @@ export default function CinematicHome() {
   const selected = homeSlabs[selectedSlab];
   const [look,setLook] = useState(0);
   const [project,setProject] = useState(0);
+  const [materialSelection,setMaterialSelection] = useState<{ project: number; view: number } | null>(null);
   const [reduced,setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const slabs = useSlabScroll(reduced);
   const chat = whatsappLink(t('whatsapp.default_message'));
@@ -84,7 +87,7 @@ export default function CinematicHome() {
               <button className="ch-photo" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span>{p.title} <b aria-hidden="true">↗</b></span></button>
               <div className="ch-details" aria-label={c.detailNote}>
                 <div><p className="ch-eyebrow">{c.detail}</p><h3>{p.detail}</h3></div>
-                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectDetailImages[i][j]} srcSet={imgSrcSet(projectDetailPublicIds[i][j], [480, 800])} sizes="(min-width: 751px) 18vw, 24vw" alt={`${p.title} — ${caption}`} loading="lazy" decoding="async" /></div><figcaption>{caption}</figcaption></figure>)}</div>
+                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><button type="button" onClick={()=>setMaterialSelection({project:i,view:j})} aria-haspopup="dialog" aria-label={`${materialCopy[language].open}: ${p.title} — ${caption}`}><img src={projectDetailImages[i][j]} srcSet={imgSrcSet(projectDetailPublicIds[i][j], [480, 800])} sizes="(min-width: 751px) 18vw, 24vw" alt={`${p.title} — ${caption}`} loading="lazy" decoding="async" /><span className="ch-detail-open" aria-hidden="true">+</span></button><figcaption>{caption}</figcaption></figure>)}</div>
                 <small>{c.detailNote}</small>
               </div>
             </div>
@@ -103,6 +106,7 @@ export default function CinematicHome() {
       </section>
       <section className="ch-contact" aria-labelledby="ch-contact-title"><img src={projectImages[2]} srcSet={imgSrcSet(projectPublicIds[2], [480, 800, 1200])} sizes="100vw" alt="" loading="lazy" /><div><p className="ch-eyebrow">{c.contactTag}</p><h2 id="ch-contact-title">{c.contactTitle}</h2><div className="ch-contact-row"><a className="ch-pill" href={chat} target="_blank" rel="noopener noreferrer">{c.chat} +</a><a href={`tel:${CONTACT.phoneTel}`} dir="ltr">{CONTACT.phoneDisplay}</a><p>{c.location}</p></div></div></section>
       <div className="ch-motion-control"><button type="button" aria-pressed={reduced} onClick={()=>setReduced(v=>!v)}>{reduced?c.enable:c.reduce}</button></div>
+      {materialSelection && <MaterialExplorer project={materialSelection.project} initialView={materialSelection.view} language={language} reduced={reduced} onClose={()=>setMaterialSelection(null)} />}
       <dialog ref={dialog} className="ch-dialog" aria-labelledby="ch-dialog-title" onClick={e=>{if(e.target===e.currentTarget)dialog.current?.close();}}>
         <button className="ch-close" onClick={()=>dialog.current?.close()}>{c.close} ×</button>
         <div className="ch-dialog-content"><img src={projectImages[project]} srcSet={imgSrcSet(projectPublicIds[project], [640, 960, 1200])} sizes="(min-width: 751px) 64vw, 100vw" alt={c.projects[project].title} /><div><p className="ch-eyebrow">{c.projects[project].category}</p><h2 id="ch-dialog-title">{c.projects[project].title}</h2><p>{c.projects[project].description}</p><a href={chat} className="ch-pill" target="_blank" rel="noopener noreferrer">{c.chat} +</a></div></div>
