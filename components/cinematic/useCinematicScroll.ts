@@ -47,6 +47,8 @@ export function useCinematicScroll(root: RefObject<HTMLDivElement | null>, reduc
         chapter.style.setProperty('--progress',`${p*100}%`);
         const copy = chapter.querySelector<HTMLElement>('.ch-project-copy');
         if (copy) copy.inert = detail > .6;
+        const details = chapter.querySelector<HTMLElement>('.ch-details');
+        if (details) details.inert = !reduced && detail < .6;
       });
     };
     const schedule = () => { if (!frame) frame=requestAnimationFrame(paint); };
