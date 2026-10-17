@@ -194,6 +194,9 @@ export const translations = {
     },
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
+      show_original: 'Show original',
+      show_corrected: 'Show corrected photo',
+      retouch_note: 'AI-edited illustration: stone patterns and reconstructed details may differ. Use “Show original” to compare.',
       title: 'Our Work',
       subtitle: 'Our portfolio — kitchens, bathrooms, fireplaces, staircases and stone slabs.',
       eyebrow: 'Portfolio',
@@ -616,6 +619,9 @@ export const translations = {
     },
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
+      show_original: 'הצגת המקור',
+      show_corrected: 'הצגת התמונה המשופרת',
+      retouch_note: 'המחשה בעריכת AI: דוגמת האבן ופרטים משוחזרים עשויים להשתנות. צילום המקור זמין להשוואה.',
       title: 'העבודות שלנו',
       subtitle: 'תיק העבודות שלנו — מטבחים, חדרי רחצה, קמינים, מדרגות ולוחות אבן.',
       eyebrow: 'תיק עבודות',
@@ -1038,6 +1044,9 @@ export const translations = {
     },
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
+      show_original: 'عرض الصورة الأصلية',
+      show_corrected: 'عرض الصورة المحسّنة',
+      retouch_note: 'صورة توضيحية معدّلة بالذكاء الاصطناعي: قد تختلف نقوش الحجر والتفاصيل المعاد بناؤها. الأصل متاح للمقارنة.',
       title: 'أعمالنا',
       subtitle: 'معرض أعمالنا — مطابخ، حمّامات، مواقد، أدراج وألواح حجر.',
       eyebrow: 'معرض الأعمال',
@@ -1460,6 +1469,9 @@ export const translations = {
     },
     // Gallery Page — Instagram-first: the owner posts once to Instagram, it shows here.
     gallery: {
+      show_original: 'Показать оригинал',
+      show_corrected: 'Показать улучшенное фото',
+      retouch_note: 'Иллюстрация с обработкой ИИ: рисунок камня и восстановленные детали могут отличаться. Оригинал доступен для сравнения.',
       title: 'Наши работы',
       subtitle: 'Наше портфолио — кухни, ванные, камины, лестницы и каменные плиты.',
       eyebrow: 'Портфолио',

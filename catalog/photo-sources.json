@@ -1,0 +1,1077 @@
+{
+  "version": 1,
+  "correction": {
+    "brightness": 18,
+    "color": 10,
+    "contrast": 15,
+    "sharpen": 30
+  },
+  "sources": {
+    "catalog/images/kitchen-01-x003.jpeg": {
+      "sourceSha256": "c3bdefd65d4b8336009854b9bb25dbf0c772a31469934927558fb6363407d69d",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/kitchen-01-x003-c3bdefd65d4b",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-01-x003.jpeg"
+    },
+    "catalog/images/bathroom-02-x091.jpeg": {
+      "sourceSha256": "1393bb63f5b19aa4ecb0e8847567f3687ef524dadeba5336ef6fce60ed60e772",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-02-x091-1393bb63f5b1",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-02-x091.jpeg"
+    },
+    "catalog/images/bathroom-04-x093.jpeg": {
+      "sourceSha256": "119cf2dd11ef43db7a883b0e727a0c0f349d7cb3134da82fe1e51e77cd9d9d33",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-04-x093-119cf2dd11ef",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-04-x093.jpeg"
+    },
+    "catalog/images/bathroom-01-x086.jpeg": {
+      "sourceSha256": "224b9ca2576fd830efe79fc577257fe5fcd6b91535147725b2ef1536090af1d9",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-01-x086-224b9ca2576f",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-01-x086.jpeg"
+    },
+    "catalog/images/bathroom-03-x092.jpeg": {
+      "sourceSha256": "1e6042cf761cfa027dbb77f4c8c3fd940b0b5417385e54e3e6233d5c8021950f",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-03-x092-1e6042cf761c",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-03-x092.jpeg"
+    },
+    "catalog/images/bathroom-05-x099.jpeg": {
+      "sourceSha256": "118fe922a8a2b5ca92e00fd9c6ddacd42ef1313bb28b4ab336280252e3120532",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-05-x099-118fe922a8a2",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-05-x099.jpeg"
+    },
+    "catalog/images/bathroom-06-x100.jpeg": {
+      "sourceSha256": "2b774a7ae677508960c115e8ac9c3e755cb2c036fb10791c539f8f92f3e18d3c",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-06-x100-2b774a7ae677",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-06-x100.jpeg"
+    },
+    "catalog/images/bathroom-09-x106.jpeg": {
+      "sourceSha256": "dff42d0f9d36745b828839d0f05032e8f04042647c7edfdfaa0ef7654469e1ff",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-09-x106-dff42d0f9d36",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-09-x106.jpeg"
+    },
+    "catalog/images/bathroom-07-x098.jpeg": {
+      "sourceSha256": "2dcb366851b15003e29052e5e8d645bac50d00deef397a2e4a8cdf4c9be77407",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-07-x098-2dcb366851b1",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-07-x098.jpeg"
+    },
+    "catalog/images/bathroom-10-x107.jpeg": {
+      "sourceSha256": "5c90e12896cab43c576d58f6ddfda4e7dcafa3074119416f40142cb8bec7a741",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-10-x107-5c90e12896ca",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-10-x107.jpeg"
+    },
+    "catalog/images/bathroom-08-x105.jpeg": {
+      "sourceSha256": "3df144e2d05fbf4c40ef3ff7798f1867b2a351c3b9c8e784b7bb25df5781117a",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-08-x105-3df144e2d05f",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-08-x105.jpeg"
+    },
+    "catalog/images/bathroom-14-x119.jpeg": {
+      "sourceSha256": "a3ff9400db743efe00a0536738016b4e0211410959289a0a944e2df5abce20b8",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-14-x119-a3ff9400db74",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-14-x119.jpeg"
+    },
+    "catalog/images/bathroom-11-x113.jpeg": {
+      "sourceSha256": "b1a9bfb0920a79732f493e110b856c29e634b23a998d0b3ec91cdde8999fe660",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-11-x113-b1a9bfb0920a",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-11-x113.jpeg"
+    },
+    "catalog/images/bathroom-12-x112.jpeg": {
+      "sourceSha256": "8cd80c2127ee91762abab146a703f03bbbf09ec254c3fc31e03b588b1f8db11b",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-12-x112-8cd80c2127ee",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-12-x112.jpeg"
+    },
+    "catalog/images/bathroom-13-x114.jpeg": {
+      "sourceSha256": "2118dccd0c5f7838215f8c854105609e4ed014fd1c5ca9a5987262db963c8679",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-bathroom-13-x114-2118dccd0c5f",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/bathroom-13-x114.jpeg"
+    },
+    "catalog/images/fireplace-01-x145.jpeg": {
+      "sourceSha256": "e25b802bdd4d51857e0e7eb9ae8869a1e1c77ba2546ba884aed5f6f373d4c4e2",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-01-x145-e25b802bdd4d",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-01-x145.jpeg"
+    },
+    "catalog/images/fireplace-05-x158.jpeg": {
+      "sourceSha256": "ed9c5bf3ea11b23fb776987e8d046d48a53dac45cd50618bda848293dea32f22",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-05-x158-ed9c5bf3ea11",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-05-x158.jpeg"
+    },
+    "catalog/images/fireplace-02-x152.jpeg": {
+      "sourceSha256": "16f3ff3c7b249e19aae5fcce6e821bd2079b5f2d462f2fd72108133f712799ec",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-02-x152-16f3ff3c7b24",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-02-x152.jpeg"
+    },
+    "catalog/images/fireplace-06-x159.jpeg": {
+      "sourceSha256": "e45a01a53592d8f4dd87560dab7e9e23f7a039f88a65b11614155b657443b5dc",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-06-x159-e45a01a53592",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-06-x159.jpeg"
+    },
+    "catalog/images/fireplace-04-x150.jpeg": {
+      "sourceSha256": "033642a6744633973cec0a4db961da4c59d99852e8e59b9caf568a123f22df98",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-04-x150-033642a67446",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-04-x150.jpeg"
+    },
+    "catalog/images/fireplace-03-x151.jpeg": {
+      "sourceSha256": "898a44fb0fbf73574cdc21c9b1a93d872c0ded9fe1b580f1e91ed9a7bd74b665",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-03-x151-898a44fb0fbf",
+      "width": 1600,
+      "height": 1200,
+      "output": "catalog/enhanced/fireplace-03-x151.jpeg"
+    },
+    "catalog/images/fireplace-10-x166.jpeg": {
+      "sourceSha256": "41de546aba52867f35ac8e921eba3187adfbf74610129e19e91e7ad6af479e33",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-10-x166-41de546aba52",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-10-x166.jpeg"
+    },
+    "catalog/images/fireplace-09-x165.jpeg": {
+      "sourceSha256": "2e75788432c2484eec7269af5ab76844b4b41a04549dff4e439531792c5cb08a",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-09-x165-2e75788432c2",
+      "width": 1600,
+      "height": 1200,
+      "output": "catalog/enhanced/fireplace-09-x165.jpeg"
+    },
+    "catalog/images/fireplace-11-x173.jpeg": {
+      "sourceSha256": "c353e3d2bd4c68b7ff6ae0a96da040cd224e3861bcabe7e522553e8010d2ac7c",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-11-x173-c353e3d2bd4c",
+      "width": 900,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-11-x173.jpeg"
+    },
+    "catalog/images/fireplace-08-x164.jpeg": {
+      "sourceSha256": "cb2739405df88ca4151d102e6b33b6076d6c61d2c15690a7c06f42644abcce95",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-08-x164-cb2739405df8",
+      "width": 1600,
+      "height": 1200,
+      "output": "catalog/enhanced/fireplace-08-x164.jpeg"
+    },
+    "catalog/images/fireplace-07-x157.jpeg": {
+      "sourceSha256": "898359e0c58d2b3ee3b56f4844d5f7f24f6cc9d926d81f6a1f45909226042555",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-07-x157-898359e0c58d",
+      "width": 1600,
+      "height": 1200,
+      "output": "catalog/enhanced/fireplace-07-x157.jpeg"
+    },
+    "catalog/images/fireplace-12-x172.jpeg": {
+      "sourceSha256": "f0a09d744d92557408cc5d450a0b272e30e9e28677b5ead10ffa158dd426831c",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-12-x172-f0a09d744d92",
+      "width": 1600,
+      "height": 900,
+      "output": "catalog/enhanced/fireplace-12-x172.jpeg"
+    },
+    "catalog/images/fireplace-13-x171.jpeg": {
+      "sourceSha256": "d4b90107bddbc96d2229bbc0f8c26e281af635ae97c9fbd0aca9d6a50a1bd41c",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-fireplace-13-x171-d4b90107bddb",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/fireplace-13-x171.jpeg"
+    },
+    "catalog/images/kitchen-02-x014.jpeg": {
+      "sourceSha256": "8890506fe6b6f087cf3a376ce604dd6e9273f20f8a74f600102bba31196c1efb",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-02-x014-8890506fe6b6",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-02-x014.jpeg"
+    },
+    "catalog/images/kitchen-03-x020.jpeg": {
+      "sourceSha256": "34d58816007afe0fd404759c0c582e5ddd4a799fb51898b64d41c016521a278e",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-03-x020-34d58816007a",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-03-x020.jpeg"
+    },
+    "catalog/images/kitchen-04-x019.jpeg": {
+      "sourceSha256": "bb15f06c98f1ff42c92d0f40ae8aafea60d31292905282bd1b052360a7a09727",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-04-x019-bb15f06c98f1",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-04-x019.jpeg"
+    },
+    "catalog/images/kitchen-08-x027.jpeg": {
+      "sourceSha256": "0d98278d9c940c3cbab790557468b546cd83da10e223a2a8d71b7e4fba2c0e13",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-08-x027-0d98278d9c94",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-08-x027.jpeg"
+    },
+    "catalog/images/kitchen-07-x028.jpeg": {
+      "sourceSha256": "8b7525303cf9afa28c6a7159ff0154ed9b741661348dd085c29c958c76e5a43e",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-07-x028-8b7525303cf9",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-07-x028.jpeg"
+    },
+    "catalog/images/kitchen-05-x021.jpeg": {
+      "sourceSha256": "ae7f0aa91af6b8102b627c68cd338316aa22930820ee3d18f1ae3265c5ede2a0",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-05-x021-ae7f0aa91af6",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-05-x021.jpeg"
+    },
+    "catalog/images/kitchen-09-x034.jpeg": {
+      "sourceSha256": "35b36839d46e04630bb9fdaae7868b5e0c7efebbfad409f14c3230e9a6f5dddc",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-09-x034-35b36839d46e",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-09-x034.jpeg"
+    },
+    "catalog/images/kitchen-06-x026.jpeg": {
+      "sourceSha256": "c18eb8b712e2b59e718320a2f691f6e6bbe0d95bdc36fdbd68ab84a35650c2d3",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-06-x026-c18eb8b712e2",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-06-x026.jpeg"
+    },
+    "catalog/images/kitchen-10-x033.jpeg": {
+      "sourceSha256": "b2defd614883b7e0053afc946c52a4df2b9b8e81598b56b3bbed953e290c9172",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-10-x033-b2defd614883",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-10-x033.jpeg"
+    },
+    "catalog/images/kitchen-12-x040.jpeg": {
+      "sourceSha256": "404eba9e871b422df1b22e1775f9cfd0df9c77c2f2cc3b4a517a05021cfdebbf",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-12-x040-404eba9e871b",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-12-x040.jpeg"
+    },
+    "catalog/images/kitchen-14-x041.jpeg": {
+      "sourceSha256": "06d6dd11904f3f5bd0ad75a7dd18059ba218fc8a9e4db65cecad74ed78313673",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-14-x041-06d6dd11904f",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-14-x041.jpeg"
+    },
+    "catalog/images/kitchen-11-x035.jpeg": {
+      "sourceSha256": "36b93803f4c11e0ffc5f95f8d507c10f6d2d3ac698ac76651850124939cfa500",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-11-x035-36b93803f4c1",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-11-x035.jpeg"
+    },
+    "catalog/images/kitchen-13-x042.jpeg": {
+      "sourceSha256": "5effee73a7633522ff48e62156d2d1c21386b0d778ed69b0dee83e878e890504",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-13-x042-5effee73a763",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-13-x042.jpeg"
+    },
+    "catalog/images/kitchen-19-x054.jpeg": {
+      "sourceSha256": "dc394747ad27f0193e3b2a4b52ca970730e17f3ff0b8d85e2546d7647fd78c44",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-19-x054-dc394747ad27",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-19-x054.jpeg"
+    },
+    "catalog/images/kitchen-15-x048.jpeg": {
+      "sourceSha256": "9e850c55a5c2b43814c4b529fa2501f69b6a91960801dc53ae0ed705097a4114",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-15-x048-9e850c55a5c2",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-15-x048.jpeg"
+    },
+    "catalog/images/kitchen-17-x047.jpeg": {
+      "sourceSha256": "e59de827a5cce7f5c7b94224cf3f81238f8a7e9c4d4e2d37d7e887f68fe22fd3",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-17-x047-e59de827a5cc",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-17-x047.jpeg"
+    },
+    "catalog/images/kitchen-18-x055.jpeg": {
+      "sourceSha256": "eaabbed8309ab38fd2791c124e5c498cfd57226f9d69ca9516efea34ce3e4fce",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-18-x055-eaabbed8309a",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-18-x055.jpeg"
+    },
+    "catalog/images/kitchen-16-x049.jpeg": {
+      "sourceSha256": "34f711c2133c9d30515be4d24f4b820a0e33d9cb094aa4398be7c148769471e4",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-16-x049-34f711c2133c",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-16-x049.jpeg"
+    },
+    "catalog/images/kitchen-24-x067.jpeg": {
+      "sourceSha256": "f1341fc3be6b74ce4ea69d15c974197a0d55fedad3481a3b772c84204585916e",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-24-x067-f1341fc3be6b",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-24-x067.jpeg"
+    },
+    "catalog/images/kitchen-23-x068.jpeg": {
+      "sourceSha256": "051654fb37f570673ece47cfaa63362daec8871903384d7ca3ebcbe38198af7b",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-23-x068-051654fb37f5",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-23-x068.jpeg"
+    },
+    "catalog/images/kitchen-22-x062.jpeg": {
+      "sourceSha256": "4d6d974903da9d047250628300b05465e135e930d3516dac2e07ab509750cffd",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-22-x062-4d6d974903da",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-22-x062.jpeg"
+    },
+    "catalog/images/kitchen-20-x056.jpeg": {
+      "sourceSha256": "294a212599f34032b15267faaddc0119fef8fd2b17e31fe609c2b1a0e9d54109",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-20-x056-294a212599f3",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-20-x056.jpeg"
+    },
+    "catalog/images/kitchen-21-x061.jpeg": {
+      "sourceSha256": "4917f8fe79b4576753ee6c32c31e7be7bf66b7a42bcb0c1060196500ba4ca5e6",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-21-x061-4917f8fe79b4",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-21-x061.jpeg"
+    },
+    "catalog/images/kitchen-29-x081.jpeg": {
+      "sourceSha256": "97762361bba7f16d1d245f1d7188ecc27dc071cf8fcc390d78c89ef2b8ce594e",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-29-x081-97762361bba7",
+      "width": 900,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-29-x081.jpeg"
+    },
+    "catalog/images/kitchen-28-x075.jpeg": {
+      "sourceSha256": "485751edcef21322755c9b868c50725975e833e48bb2ec517efece27b0f576e2",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-28-x075-485751edcef2",
+      "width": 924,
+      "height": 2000,
+      "output": "catalog/enhanced/kitchen-28-x075.jpeg"
+    },
+    "catalog/images/kitchen-27-x074.jpeg": {
+      "sourceSha256": "2a47585b8987f9ab7d68e0614aca729a581ccf24eda3ac0a4dc7b8ed16a200a4",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-27-x074-2a47585b8987",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-27-x074.jpeg"
+    },
+    "catalog/images/kitchen-25-x069.jpeg": {
+      "sourceSha256": "43c57a77988ef5f4f16cedb552e1eb81d4bbe2f7e0474eaa312fc6040bcdfb93",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-25-x069-43c57a77988e",
+      "width": 2000,
+      "height": 924,
+      "output": "catalog/enhanced/kitchen-25-x069.jpeg"
+    },
+    "catalog/images/kitchen-26-x076.jpeg": {
+      "sourceSha256": "4b9d2fa6b27a4ec243d309f4b05e5c7cdb911b9265fd030e2638d6fab38e2ca8",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-kitchen-26-x076-4b9d2fa6b27a",
+      "width": 900,
+      "height": 1600,
+      "output": "catalog/enhanced/kitchen-26-x076.jpeg"
+    },
+    "catalog/images/special-05-x230.jpeg": {
+      "sourceSha256": "ad90eced465ad57c02d5b478d13ba85908652d31e7cd0458addb36596e6bfa2f",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-05-x230-ad90eced465a",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-05-x230.jpeg"
+    },
+    "catalog/images/special-03-x221.jpeg": {
+      "sourceSha256": "7ee6c339e1c71685d23d52303a4059554d89fa640cd0af9a889be46930ead7ec",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-03-x221-7ee6c339e1c7",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-03-x221.jpeg"
+    },
+    "catalog/images/special-01-x216.jpeg": {
+      "sourceSha256": "f7dd8a1e2675cef3e50e5197bb4aab28c6bb4c83bffe5cdff82122251b501da2",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-01-x216-f7dd8a1e2675",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-01-x216.jpeg"
+    },
+    "catalog/images/special-02-x222.jpeg": {
+      "sourceSha256": "03f8deeda85cb2d74b11f138c3c5e110a17b148119c2c368f66633af70023095",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-02-x222-03f8deeda85c",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-02-x222.jpeg"
+    },
+    "catalog/images/special-04-x223.jpeg": {
+      "sourceSha256": "3fe06ee9331fe8d8ba7044aa55bd885eb8a48f0b9d690782b0458ee8e6dbead0",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-04-x223-3fe06ee9331f",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-04-x223.jpeg"
+    },
+    "catalog/images/special-06-x229.jpeg": {
+      "sourceSha256": "2b0322d1527322030d0199e0d496e3952260a6ea7ce9aec9aec7130115cfa7b4",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-06-x229-2b0322d15273",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-06-x229.jpeg"
+    },
+    "catalog/images/stairs-01-x178.jpeg": {
+      "sourceSha256": "3d0a7a38a624de6848d9cf15e04f1ad904d636ef38b829512defcb73519e4ab2",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-01-x178-3d0a7a38a624",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-01-x178.jpeg"
+    },
+    "catalog/images/special-07-x228.jpeg": {
+      "sourceSha256": "ef74c2ebf7e2c79ae9ffcc945e74fcfadd1b37ed8df08330baf9614158d3c998",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-special-07-x228-ef74c2ebf7e2",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/special-07-x228.jpeg"
+    },
+    "catalog/images/stairs-03-x183.jpeg": {
+      "sourceSha256": "4501347fd3bf80694be64bdf0f7979496fc712f5380980b4e062fd151ecb8b4b",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-03-x183-4501347fd3bf",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-03-x183.jpeg"
+    },
+    "catalog/images/stairs-02-x184.jpeg": {
+      "sourceSha256": "b7881aa5ce39dafc9e6cbc5b586a9cc52137eb8fa0df37165f2ad12ae09e5e50",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-02-x184-b7881aa5ce39",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-02-x184.jpeg"
+    },
+    "catalog/images/stairs-06-x192.jpeg": {
+      "sourceSha256": "ee34fb79288d58de99baaa018dc8cbc5025e1717c204decc45832c76085749ed",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-06-x192-ee34fb79288d",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-06-x192.jpeg"
+    },
+    "catalog/images/stairs-07-x191.jpeg": {
+      "sourceSha256": "5d1487352fc3932f7f911da7a352083c536155eba3aa2f211e25116eadc0b2db",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-07-x191-5d1487352fc3",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-07-x191.jpeg"
+    },
+    "catalog/images/stairs-08-x199.jpeg": {
+      "sourceSha256": "6f3a5e04b01b7b4666014766b1d1a46f9b621a600437834d1c0c7e87dd29711a",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-08-x199-6f3a5e04b01b",
+      "width": 1600,
+      "height": 1200,
+      "output": "catalog/enhanced/stairs-08-x199.jpeg"
+    },
+    "catalog/images/stairs-04-x185.jpeg": {
+      "sourceSha256": "c63dee26d4d0acf9f8a2d39d855fa810456b553b31dc7aad066d67cc0e3dc15f",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-04-x185-c63dee26d4d0",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-04-x185.jpeg"
+    },
+    "catalog/images/stairs-05-x190.jpeg": {
+      "sourceSha256": "74ee5ce34cf59a61fe38e5965e3f4280dbcc5bcea637421c0bb45884f1458a68",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-05-x190-74ee5ce34cf5",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-05-x190.jpeg"
+    },
+    "catalog/images/stairs-10-x197.jpeg": {
+      "sourceSha256": "df451a7b55986bcc01e9e3baba6bb2e01ddb463299cd843335bba7f1246465ce",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-10-x197-df451a7b5598",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-10-x197.jpeg"
+    },
+    "catalog/images/stairs-13-x206.jpeg": {
+      "sourceSha256": "d22e8887829e89c811d24edfbaae2e68e76e7adbb6de718e230e7192d77d5b74",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-13-x206-d22e8887829e",
+      "width": 900,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-13-x206.jpeg"
+    },
+    "catalog/images/stairs-09-x198.jpeg": {
+      "sourceSha256": "82284978ea0479f091b32cda2ddb55b40e8a2474f4fb01997c4b8bc5ac108e29",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-09-x198-82284978ea04",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-09-x198.jpeg"
+    },
+    "catalog/images/stairs-12-x205.jpeg": {
+      "sourceSha256": "b756bfe4a4adc36a5ce1cef6f37091ba62d538cdd9dadaa8556825ef25af0ffe",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-12-x205-b756bfe4a4ad",
+      "width": 900,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-12-x205.jpeg"
+    },
+    "catalog/images/stairs-11-x204.jpeg": {
+      "sourceSha256": "95a412365528a3066ef2f768dc6ea9fba2d90833931d892f949b73d418fa6457",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-11-x204-95a412365528",
+      "width": 1200,
+      "height": 1600,
+      "output": "catalog/enhanced/stairs-11-x204.jpeg"
+    },
+    "catalog/images/stone-04-x241.jpeg": {
+      "sourceSha256": "e65fcf7b5ce6533edbc5741ecb693aa8259483d9f94b8965777d450facffa050",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-04-x241-e65fcf7b5ce6",
+      "width": 1536,
+      "height": 1024,
+      "output": "catalog/enhanced/stone-04-x241.jpeg"
+    },
+    "catalog/images/stone-03-x242.jpeg": {
+      "sourceSha256": "c8acbf600bd98443e0db1492daa5fa0ea27aa2e591aa3e45093056d25046f7e8",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-03-x242-c8acbf600bd9",
+      "width": 1536,
+      "height": 1024,
+      "output": "catalog/enhanced/stone-03-x242.jpeg"
+    },
+    "catalog/images/stone-01-x235.jpeg": {
+      "sourceSha256": "e34d44eeae438b4b4ff82045fd7c261c01b030d5b8ea432081cd0e60d43ef2f3",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-01-x235-e34d44eeae43",
+      "width": 1606,
+      "height": 979,
+      "output": "catalog/enhanced/stone-01-x235.jpeg"
+    },
+    "catalog/images/stone-02-x240.jpeg": {
+      "sourceSha256": "fbbcd4dbf3c5151c71e21633d5a188c160a00df4ccef4fcd317783fb1917ab86",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-02-x240-fbbcd4dbf3c5",
+      "width": 1536,
+      "height": 1024,
+      "output": "catalog/enhanced/stone-02-x240.jpeg"
+    },
+    "catalog/images/stairs-14-x211.jpeg": {
+      "sourceSha256": "16ae1bc43347594b10e1f0e3b007d6f1e59e30a46237c8340a38a2c4e3c7c246",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stairs-14-x211-16ae1bc43347",
+      "width": 1600,
+      "height": 900,
+      "output": "catalog/enhanced/stairs-14-x211.jpeg"
+    },
+    "catalog/images/stone-07-x249.jpeg": {
+      "sourceSha256": "6856992e3e1c91493f4aa6fdaa82cabf9546182a93aa3a1efa4bfdcde13f1e0c",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-07-x249-6856992e3e1c",
+      "width": 1448,
+      "height": 1086,
+      "output": "catalog/enhanced/stone-07-x249.jpeg"
+    },
+    "catalog/images/stone-06-x248.jpeg": {
+      "sourceSha256": "397d0c75711bf30c3a6175ad030000764135b6f70f38b5f71cc9890972e8076b",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-06-x248-397d0c75711b",
+      "width": 1086,
+      "height": 1448,
+      "output": "catalog/enhanced/stone-06-x248.jpeg"
+    },
+    "catalog/images/stone-08-x256.jpeg": {
+      "sourceSha256": "5e0a71ce91848468486ff3e93013e8a4207ad52d26a23adac4496aa6cc535692",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-08-x256-5e0a71ce9184",
+      "width": 1448,
+      "height": 1086,
+      "output": "catalog/enhanced/stone-08-x256.jpeg"
+    },
+    "catalog/images/stone-05-x247.jpeg": {
+      "sourceSha256": "6e0fe3ae271fc1c13b19028ec91e9e0539030d30740f1681d3ebc5cd897b4e68",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-05-x247-6e0fe3ae271f",
+      "width": 1672,
+      "height": 941,
+      "output": "catalog/enhanced/stone-05-x247.jpeg"
+    },
+    "catalog/images/stone-09-x254.jpeg": {
+      "sourceSha256": "4758d344cb79936ecf73a8907d44c02c7d3eaab5b1fcdb72765866fbcc16f85f",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-09-x254-4758d344cb79",
+      "width": 1536,
+      "height": 1024,
+      "output": "catalog/enhanced/stone-09-x254.jpeg"
+    },
+    "catalog/images/stone-12-x262.jpeg": {
+      "sourceSha256": "928891b69f20f184c17f29c39bf37065129abde4106efccd95587eb64129b7eb",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-12-x262-928891b69f20",
+      "width": 1448,
+      "height": 1086,
+      "output": "catalog/enhanced/stone-12-x262.jpeg"
+    },
+    "catalog/images/stone-13-x263.jpeg": {
+      "sourceSha256": "0f0c98fef4a80edfaa40e3a8c7c4dc185dbe9f0db635171685c370794ef0358f",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-13-x263-0f0c98fef4a8",
+      "width": 1448,
+      "height": 1086,
+      "output": "catalog/enhanced/stone-13-x263.jpeg"
+    },
+    "catalog/images/stone-10-x255.jpeg": {
+      "sourceSha256": "abee1c22a52e78470ed3acca8ad21722039592c914646004d050b816305fdcee",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-10-x255-abee1c22a52e",
+      "width": 1536,
+      "height": 1024,
+      "output": "catalog/enhanced/stone-10-x255.jpeg"
+    },
+    "public/cinematic/cutting-still.webp": {
+      "sourceSha256": "4fb31fcacffb992a88b56fba515c67ea2de4a697f3db3f4167af480ae43f3de9",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-cutting-still-4fb31fcacffb",
+      "width": 1672,
+      "height": 941,
+      "variants": [
+        {
+          "src": "/photo-quality/cinematic/cutting-still-480-717bb3faaa.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/cinematic/cutting-still-800-717bb3faaa.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/cinematic/cutting-still-1200-717bb3faaa.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/cinematic/cutting-still-1600-717bb3faaa.webp",
+          "width": 1600
+        },
+        {
+          "src": "/photo-quality/cinematic/cutting-still-1672-717bb3faaa.webp",
+          "width": 1672
+        }
+      ]
+    },
+    "catalog/images/stone-11-x261.jpeg": {
+      "sourceSha256": "319a7376cc68b30460ce6124fa55f2836a5c843ef607683adf88d70f295d500b",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/catalog-stone-11-x261-319a7376cc68",
+      "width": 1448,
+      "height": 1086,
+      "output": "catalog/enhanced/stone-11-x261.jpeg"
+    },
+    "public/cinematic/hero-green-vase-mobile.webp": {
+      "sourceSha256": "b0b604f819a03d43340d2f57388a367d5b408a39650b3a17d2f0d3c61ce763ec",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-hero-green-vase-mobile-b0b604f819a0",
+      "width": 941,
+      "height": 1672,
+      "variants": [
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-mobile-480-9244a47c0c.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-mobile-800-9244a47c0c.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-mobile-941-9244a47c0c.webp",
+          "width": 941
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-01-x235.jpeg": {
+      "sourceSha256": "4b061375152b252b39d11f29fa801f8b8e71ab16121e359032bfe049031c3fd4",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-01-x235-4b061375152b",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-01-x235-480-2c6bbf6c52.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-01-x235-800-2c6bbf6c52.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-01-x235-1200-2c6bbf6c52.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-01-x235-1448-2c6bbf6c52.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/cinematic/hero-copper-sculpture-mobile.webp": {
+      "sourceSha256": "524f15a0e3cb44cea9611ebbb9d560d1faac1e3433a24d617a5055e84d0ddf2a",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-hero-copper-sculpture-mobile-524f15a0e3cb",
+      "width": 941,
+      "height": 1672,
+      "variants": [
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-mobile-480-e89a1de759.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-mobile-800-e89a1de759.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-mobile-941-e89a1de759.webp",
+          "width": 941
+        }
+      ]
+    },
+    "public/cinematic/hero-copper-sculpture.webp": {
+      "sourceSha256": "0057957b732547e5680decd0e3f8a29e1da5e8e88e4af398f66d4da2aeb1e5cb",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-hero-copper-sculpture-0057957b7325",
+      "width": 1672,
+      "height": 941,
+      "variants": [
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-480-46978bcf01.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-800-46978bcf01.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-1200-46978bcf01.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-1600-46978bcf01.webp",
+          "width": 1600
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-copper-sculpture-1672-46978bcf01.webp",
+          "width": 1672
+        }
+      ]
+    },
+    "public/cinematic/hero-green-vase.webp": {
+      "sourceSha256": "584d4eff794cbfd6fe924164f353b1d09121283f87a491706bf5d7759e5367bc",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-hero-green-vase-584d4eff794c",
+      "width": 1672,
+      "height": 941,
+      "variants": [
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-480-3d7d2127c3.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-800-3d7d2127c3.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-1200-3d7d2127c3.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-1600-3d7d2127c3.webp",
+          "width": 1600
+        },
+        {
+          "src": "/photo-quality/cinematic/hero-green-vase-1672-3d7d2127c3.webp",
+          "width": 1672
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-02-x240.jpeg": {
+      "sourceSha256": "872f144c6796e16e72929a2ea04af4c882e4c4aed3d7559a4bab08d8f4c28d42",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-02-x240-872f144c6796",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-02-x240-480-85875731d1.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-02-x240-800-85875731d1.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-02-x240-1200-85875731d1.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-02-x240-1448-85875731d1.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-03-x242.jpeg": {
+      "sourceSha256": "7040d1b8400f9b64ea72104886f45dea2af92ed301d24b3caabf2c7ede0addbc",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-03-x242-7040d1b8400f",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-03-x242-480-cc84b5f464.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-03-x242-800-cc84b5f464.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-03-x242-1200-cc84b5f464.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-03-x242-1448-cc84b5f464.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-04-x241.jpeg": {
+      "sourceSha256": "418590366d843d902443437d7986910e409cc6c85a0dd06de5f01825d611350f",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-04-x241-418590366d84",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-04-x241-480-3a8c6cdd86.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-04-x241-800-3a8c6cdd86.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-04-x241-1200-3a8c6cdd86.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-04-x241-1448-3a8c6cdd86.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-06-x248.jpeg": {
+      "sourceSha256": "4cd6903f44d6afc16b354292e7b65470480bb6eb083aed6563d12a01ed6ce1ed",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-06-x248-4cd6903f44d6",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-06-x248-480-6325f9f3d4.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-06-x248-800-6325f9f3d4.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-06-x248-1200-6325f9f3d4.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-06-x248-1448-6325f9f3d4.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-09-x254.jpeg": {
+      "sourceSha256": "849cba7cfd1a9161637bde7b0ef25123ed36fe7ed8eef19fef2a5ac20a01f63d",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-09-x254-849cba7cfd1a",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-09-x254-480-8e9fb2dfdd.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-09-x254-800-8e9fb2dfdd.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-09-x254-1200-8e9fb2dfdd.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-09-x254-1448-8e9fb2dfdd.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-05-x247.jpeg": {
+      "sourceSha256": "8f8e52df5c4646c8b58ad2144ffb6262c52a03e50c17804ddef42ac14776115e",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-05-x247-8f8e52df5c46",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-05-x247-480-e04dfbac8c.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-05-x247-800-e04dfbac8c.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-05-x247-1200-e04dfbac8c.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-05-x247-1448-e04dfbac8c.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-07-x249.jpeg": {
+      "sourceSha256": "3f630aed73e0c036b8c1438d8756865c5ef8d9079f381cf70de560135b3e8596",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-07-x249-3f630aed73e0",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-07-x249-480-dbfb8c4c11.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-07-x249-800-dbfb8c4c11.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-07-x249-1200-dbfb8c4c11.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-07-x249-1448-dbfb8c4c11.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-08-x256.jpeg": {
+      "sourceSha256": "9711faabdce662294097446d5e4560d18f0bc896eb780e40e7d5a96f870bc2ac",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-08-x256-9711faabdce6",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-08-x256-480-d3a7e4221f.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-08-x256-800-d3a7e4221f.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-08-x256-1200-d3a7e4221f.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-08-x256-1448-d3a7e4221f.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-10-x255.jpeg": {
+      "sourceSha256": "1eae15dfc7363071e3ce0921742b3c5e885efe716a45615af5849e77992813f0",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-10-x255-1eae15dfc736",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-10-x255-480-371c9b1ad6.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-10-x255-800-371c9b1ad6.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-10-x255-1200-371c9b1ad6.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-10-x255-1448-371c9b1ad6.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-11-x261.jpeg": {
+      "sourceSha256": "e9222ea56eb12df22b37a4d7f5e35b693b970ec871c851fa98cde911d6569c78",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-11-x261-e9222ea56eb1",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-11-x261-480-8cf8f856b4.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-11-x261-800-8cf8f856b4.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-11-x261-1200-8cf8f856b4.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-11-x261-1448-8cf8f856b4.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-12-x262.jpeg": {
+      "sourceSha256": "51a7abc320602a72c07e6a84344cbbbf18a7a8b3beb37a70a9900402a90ee8a3",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-12-x262-51a7abc32060",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-12-x262-480-fd7d9113b3.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-12-x262-800-fd7d9113b3.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-12-x262-1200-fd7d9113b3.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-12-x262-1448-fd7d9113b3.webp",
+          "width": 1448
+        }
+      ]
+    },
+    "public/stone-slabs/edited/stone-13-x263.jpeg": {
+      "sourceSha256": "f03fd574fe5bf27964bce4334cd761e9d38222cfab6371493165ddf105b0357b",
+      "publicId": "shayish/quality-sources/photo-quality-20261017/site-stone-13-x263-f03fd574fe5b",
+      "width": 1448,
+      "height": 1086,
+      "variants": [
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-13-x263-480-126e5ca034.webp",
+          "width": 480
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-13-x263-800-126e5ca034.webp",
+          "width": 800
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-13-x263-1200-126e5ca034.webp",
+          "width": 1200
+        },
+        {
+          "src": "/photo-quality/stone-slabs/edited/stone-13-x263-1448-126e5ca034.webp",
+          "width": 1448
+        }
+      ]
+    }
+  }
+}
