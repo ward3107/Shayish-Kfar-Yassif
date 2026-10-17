@@ -9,7 +9,9 @@ The homepage opens on a green marble still-life with a sage vase and olive branc
 - `components/cinematic/useSlabScroll.ts`: native touch scrolling, mouse-drag inertia, keyboard navigation and click suppression after dragging.
 - `components/cinematic/content.ts`: Hebrew, Arabic, English and Russian copy.
 - `components/cinematic/CinematicHome.css`: scoped responsive styles and reduced-motion layouts.
-- `public/cinematic/`: local WebP hero still-lifes, with separate landscape and portrait compositions, and self-hosted display/body fonts with their OFL licenses. The hero compositions are digital visualizations based on the slab images. The three projects use original business photographs from the existing public Cloudinary portfolio; detail thumbnails are crops of those photographs.
+- `public/cinematic/`: local WebP hero still-lifes, with separate landscape and portrait compositions, and self-hosted display/body fonts with their OFL licenses. The hero compositions are digital visualizations based on the slab images. The three projects share the gallery's reviewed photo versions. Each pair of thumbnails uses two separate photographs of the same project from other viewpoints, rather than crops of the main photograph.
+
+The alternate viewpoints are stairs `WA0102` / `WA0103`, fireplace `WA0052` / `WA0054`, and kitchen island `WA0092` / `WA0095`. They reuse existing retouched assets, so no new uploads or image generation are needed. Localized captions describe each viewpoint.
 
 The existing React routes, shared navigation, language/theme controls, catalog, cookie controls, contact constants and gallery admin remain in use. The homepage's 13 slabs use a native horizontal scroll track without slide snapping, with mouse drag and keyboard navigation. The complete collection remains accessible at `/gallery` and continues to use the existing Cloudinary/admin workflow. The three featured homepage images reference curated Cloudinary public IDs; the selection is independent of the dynamic gallery feed.
 

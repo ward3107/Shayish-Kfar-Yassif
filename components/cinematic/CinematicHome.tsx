@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { CONTACT, whatsappLink } from '../../constants';
-import { cinematicCopy, detailPositions, projectImages, projectPublicIds } from './content';
+import { cinematicCopy, projectDetailImages, projectDetailPublicIds, projectImages, projectPublicIds } from './content';
 import { useCinematicScroll } from './useCinematicScroll';
 import { useSlabScroll } from './useSlabScroll';
 import { imgSrcSet } from '../../lib/galleryData';
@@ -84,7 +84,7 @@ export default function CinematicHome() {
               <button className="ch-photo" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span>{p.title} <b aria-hidden="true">↗</b></span></button>
               <div className="ch-details" aria-label={c.detailNote}>
                 <div><p className="ch-eyebrow">{c.detail}</p><h3>{p.detail}</h3></div>
-                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={caption} loading="lazy" style={{objectPosition:detailPositions[i][j],transformOrigin:detailPositions[i][j]}} /></div><figcaption>{caption}</figcaption></figure>)}</div>
+                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectDetailImages[i][j]} srcSet={imgSrcSet(projectDetailPublicIds[i][j], [480, 800])} sizes="(min-width: 751px) 18vw, 24vw" alt={`${p.title} — ${caption}`} loading="lazy" decoding="async" /></div><figcaption>{caption}</figcaption></figure>)}</div>
                 <small>{c.detailNote}</small>
               </div>
             </div>
