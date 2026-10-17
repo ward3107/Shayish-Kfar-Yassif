@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test:photos": "node --test tests/photo-delivery.test.mjs tests/photo-retouches.test.mjs",
+    "test:vase": "node --experimental-strip-types --test tests/interactive-vase.test.mjs",
     "photos:prepare": "node scripts/prepare-photo-assets.mjs"
   },
   "dependencies": {

@@ -36,6 +36,8 @@ export function useCinematicScroll(root: RefObject<HTMLDivElement | null>, reduc
         if (reveal) reveal.inert = reduced || p < .65;
         const intro = hero.querySelector<HTMLElement>('.ch-intro');
         if (intro) intro.inert = !reduced && p > .38;
+        const vase = hero.querySelector<HTMLElement>('.ch-vase-scene');
+        if (vase) vase.inert = !reduced && p > .38;
       }
       chapters.forEach(chapter => {
         const stage = chapter.querySelector<HTMLElement>('.ch-project-stage')!;
