@@ -2,15 +2,15 @@ import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { Box, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { heroUrl, croppedImgSrcSet } from '../lib/galleryData';
 
 // Three.js is heavy (~800 kB with fiber + drei). The explorer chunk only
 // downloads when the user actually clicks "Launch 3D Viewer" below —
 // visitors who don't engage pay nothing.
 const MarbleExplorer = lazy(() => import('../components/MarbleExplorer'));
 
-const CLOUD = (import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined) || 'dst5uru0';
 const img = (id: string, w = 800, h = 1000) =>
-  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w},h_${h}/shayish/materials/${id}`;
+  heroUrl(`shayish/materials/${id}`, w, h);
 
 const Materials: React.FC = () => {
   const { t } = useLanguage();
@@ -98,6 +98,10 @@ const Materials: React.FC = () => {
                 <div className="overflow-hidden aspect-[4/5] mb-5 border border-divider/50">
                   <img
                     src={img(t2.id, 700, 900)}
+                    srcSet={croppedImgSrcSet(`shayish/materials/${t2.id}`, [360, 560, 800, 1120], 7 / 9)}
+                    sizes="(min-width: 1024px) 24vw, (min-width: 768px) 48vw, 100vw"
+                    width={700}
+                    height={900}
                     alt={t(`materials.type_${t2.key}`)}
                     loading="lazy"
                     decoding="async"
@@ -127,6 +131,10 @@ const Materials: React.FC = () => {
                 <div className="overflow-hidden aspect-square mb-4 border border-divider/50">
                   <img
                     src={img(f.id, 600, 600)}
+                    srcSet={croppedImgSrcSet(`shayish/materials/${f.id}`, [320, 480, 640, 960, 1280], 1)}
+                    sizes="(min-width: 768px) 32vw, 48vw"
+                    width={600}
+                    height={600}
                     alt={t(`materials.finish_${f.key}`)}
                     loading="lazy"
                     decoding="async"
@@ -156,6 +164,10 @@ const Materials: React.FC = () => {
               <div key={t3.key} className="group relative overflow-hidden aspect-[4/3] border border-divider/50">
                 <img
                   src={img(t3.id, 1200, 900)}
+                  srcSet={croppedImgSrcSet(`shayish/materials/${t3.id}`, [480, 800, 1200, 1600], 4 / 3)}
+                  sizes="(min-width: 768px) 48vw, 100vw"
+                  width={1200}
+                  height={900}
                   alt={t(`materials.trend_${t3.key}`)}
                   loading="lazy"
                   decoding="async"

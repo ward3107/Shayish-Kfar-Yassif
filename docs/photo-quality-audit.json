@@ -1,0 +1,1267 @@
+{
+  "checkedAt": "2026-10-17T09:31:03.552597+00:00",
+  "count": 126,
+  "passed": 126,
+  "items": [
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0020",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 145891
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0021",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 209605
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0022",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 218717
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0023",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 176693
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0024",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 165584
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0025",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 73634
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0026",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 135733
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0027",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 170088
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0028",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 113672
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0029",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 148005
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260713-WA0030",
+      "nativeWidth": 942,
+      "requestedWidth": 942,
+      "deliveredWidth": 942,
+      "deliveredHeight": 2040,
+      "role": "project",
+      "passed": true,
+      "bytes": 189299
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0008",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 219720
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0009",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 186595
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0010",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 239570
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0011",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 160222
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0012",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 254759
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0013",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 228518
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0014",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 224594
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0015",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 198509
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0016",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 217762
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0017",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 205845
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0018",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 197952
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0019",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 178482
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0020",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 162709
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0021",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 178818
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0022",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 209654
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0023",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 221163
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0024",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 232190
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0025",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 250425
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0026",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 213788
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0027",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 183299
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0028",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 185933
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0029",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 248987
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0030",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "project",
+      "passed": true,
+      "bytes": 131296
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0031",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "project",
+      "passed": true,
+      "bytes": 145946
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0032",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 174277
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0033",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 222450
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0034",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 182747
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0035",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 174054
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0036",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 184841
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0037",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 244412
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0038",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 185333
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0039",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 152090
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0040",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 191988
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0041",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 205676
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0042",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 160609
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0043",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 216590
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0044",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 172274
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0045",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 170203
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0046",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 236498
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0047",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 220322
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0048",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 284386
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0049",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 275478
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0050",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 214191
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0051",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 214257
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0052",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 244394
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0053",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 148224
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0054",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "project",
+      "passed": true,
+      "bytes": 157428
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0055",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 217219
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0056",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 173260
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0057",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 209988
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0058",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 540,
+      "role": "project",
+      "passed": true,
+      "bytes": 108207
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0059",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "project",
+      "passed": true,
+      "bytes": 149625
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0060",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 188447
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0061",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 212905
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0062",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 286491
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0063",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 240815
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0064",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 171784
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0065",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 183540
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0066",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 246680
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0067",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 232403
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0068",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 214487
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0069",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 236027
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0070",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 210340
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0071",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 211125
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0072",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 243033
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0073",
+      "nativeWidth": 900,
+      "requestedWidth": 900,
+      "deliveredWidth": 900,
+      "deliveredHeight": 1600,
+      "role": "project",
+      "passed": true,
+      "bytes": 151456
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0074",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 234944
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0075",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 270924
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0076",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "project",
+      "passed": true,
+      "bytes": 149403
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0077",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 239953
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0078",
+      "nativeWidth": 900,
+      "requestedWidth": 900,
+      "deliveredWidth": 900,
+      "deliveredHeight": 1600,
+      "role": "project",
+      "passed": true,
+      "bytes": 231693
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0079",
+      "nativeWidth": 900,
+      "requestedWidth": 900,
+      "deliveredWidth": 900,
+      "deliveredHeight": 1600,
+      "role": "project",
+      "passed": true,
+      "bytes": 195758
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0080",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 212522
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0081",
+      "nativeWidth": 900,
+      "requestedWidth": 900,
+      "deliveredWidth": 900,
+      "deliveredHeight": 1600,
+      "role": "project",
+      "passed": true,
+      "bytes": 128261
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0082",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 540,
+      "role": "project",
+      "passed": true,
+      "bytes": 132671
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0083",
+      "nativeWidth": 900,
+      "requestedWidth": 900,
+      "deliveredWidth": 900,
+      "deliveredHeight": 1600,
+      "role": "project",
+      "passed": true,
+      "bytes": 211560
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0086",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 167547
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0087",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 180341
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0088",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 184942
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0089",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 194973
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0090",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 247623
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0091",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 233517
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0092",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 236924
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0093",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 185298
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0094",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 182126
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0095",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 182462
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0096",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 223452
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0097",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 679,
+      "role": "project",
+      "passed": true,
+      "bytes": 132937
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0098",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 679,
+      "role": "project",
+      "passed": true,
+      "bytes": 121565
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0099",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 178117
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0100",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 232279
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0101",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 222113
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0102",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 204076
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0103",
+      "nativeWidth": 1600,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "project",
+      "passed": true,
+      "bytes": 150015
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0104",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 297354
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0105",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 281120
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0106",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 259141
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0107",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 275672
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0108",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 308616
+    },
+    {
+      "publicId": "shayish/gallery/IMG-20260718-WA0109",
+      "nativeWidth": 1200,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "project",
+      "passed": true,
+      "bytes": 169082
+    },
+    {
+      "publicId": "shayish/gallery/a7dvlmlwmgvupysbjvsi",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 200698
+    },
+    {
+      "publicId": "shayish/gallery/e0dqzsw7pqhoodbe8set",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 108542
+    },
+    {
+      "publicId": "shayish/gallery/falj3g2mxto7o9mzrpl7",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 101674
+    },
+    {
+      "publicId": "shayish/gallery/hntyzjgb5puxjtlggwqx",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 158872
+    },
+    {
+      "publicId": "shayish/gallery/hvuwfersavgcslcy5u1n",
+      "nativeWidth": 3024,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "material",
+      "passed": true,
+      "bytes": 530347
+    },
+    {
+      "publicId": "shayish/gallery/ip7pl3dilvqwvczch51e",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 150599
+    },
+    {
+      "publicId": "shayish/gallery/ktiir3opf1tdzzzkfg0y",
+      "nativeWidth": 3024,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "material",
+      "passed": true,
+      "bytes": 395801
+    },
+    {
+      "publicId": "shayish/gallery/p98ryx4xqfarlw84fhe3",
+      "nativeWidth": 3024,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "material",
+      "passed": true,
+      "bytes": 300081
+    },
+    {
+      "publicId": "shayish/gallery/qm7dpf6gpav9stypvfre",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 228979
+    },
+    {
+      "publicId": "shayish/gallery/v4scxwjc6qqioy3x6zw2",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 149326
+    },
+    {
+      "publicId": "shayish/gallery/vcouyxhpg6kjwklaggtc",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 308256
+    },
+    {
+      "publicId": "shayish/gallery/w4bnjfr4vzb005fqvz0l",
+      "nativeWidth": 3024,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "material",
+      "passed": true,
+      "bytes": 386171
+    },
+    {
+      "publicId": "shayish/gallery/wp3bnu0m4awvdto5lomj",
+      "nativeWidth": 3024,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "material",
+      "passed": true,
+      "bytes": 394385
+    },
+    {
+      "publicId": "shayish/gallery/xrpbarvyqeubuynhqy3o",
+      "nativeWidth": 4032,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 720,
+      "role": "material",
+      "passed": true,
+      "bytes": 190792
+    },
+    {
+      "publicId": "shayish/gallery/zuslqkd8eeefxsgvyict",
+      "nativeWidth": 3024,
+      "requestedWidth": 960,
+      "deliveredWidth": 960,
+      "deliveredHeight": 1280,
+      "role": "material",
+      "passed": true,
+      "bytes": 157284
+    }
+  ]
+}

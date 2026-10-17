@@ -20,6 +20,7 @@ body { background: #202720; color: #f3f0e8; font-family: Heebo, sans-serif; }
 .foot { position: absolute; z-index: 2; bottom: 12mm; right: 17mm; left: 17mm; height: 5mm; font-size: 8pt; color: #b8b9ac; }
 .foot .number { position: absolute; left: 0; direction: ltr; }
 .foot .name { position: absolute; right: 0; }
+.foot .retouch-note { position: absolute; right: 44mm; left: 25mm; text-align: center; font-size: 7pt; }
 .eyebrow { color: #b99a6b; font-size: 8pt; letter-spacing: .05em; }
 h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { font-family: Frank, serif; font-weight: normal; line-height: 1.03; }

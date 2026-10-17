@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, X, Play } from 'lucide-react';
 import type { MediaItem } from '../types/media';
 import { useLanguage } from '../contexts/LanguageContext';
+import { originalOnError } from '../lib/imageFallback';
+import { retouchedPhoto } from '../lib/retouchedPhotos';
 import {
   CATEGORIES,
   type Category,
@@ -30,7 +32,7 @@ import {
  */
 
 type FilterCategory = Category | 'all';
-const RESPONSIVE_WIDTHS = [280, 380, 500, 700, 900];
+const RESPONSIVE_WIDTHS = [320, 480, 640, 960, 1280, 1600];
 const TILE_SIZES = '(min-width:1024px) 23vw, (min-width:640px) 31vw, 48vw';
 const EAGER_TILES = 4; // first tiles load eagerly for a fast first paint
 
@@ -43,8 +45,10 @@ const GalleryGrid: React.FC = () => {
   const [error, setError] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [category, setCategory] = useState<FilterCategory>('all');
+  const [showOriginal, setShowOriginal] = useState(false);
   const triggerRef = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let alive = true;
@@ -109,6 +113,14 @@ const GalleryGrid: React.FC = () => {
       if (e.key === 'Escape') close();
       else if (e.key === 'ArrowRight') next();
       else if (e.key === 'ArrowLeft') prev();
+      else if (e.key === 'Tab') {
+        const controls = lightboxRef.current?.querySelectorAll<HTMLElement>('button, a[href], video[controls]');
+        if (!controls?.length) return;
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     };
     window.addEventListener('keydown', handler);
     document.body.style.overflow = 'hidden';
@@ -158,6 +170,7 @@ const GalleryGrid: React.FC = () => {
 
   const openItem = (index: number, el: HTMLElement) => {
     triggerRef.current = el;
+    setShowOriginal(false);
     setActiveIndex(index);
   };
 
@@ -215,14 +228,15 @@ const GalleryGrid: React.FC = () => {
               aria-label={item.caption ? `${item.caption} — ${t('gallery.open')}` : t('gallery.open')}
             >
               <img
-                src={isVideo ? videoPoster(item.publicId, 500) : imgUrl(item.publicId, 500)}
-                srcSet={isVideo ? undefined : imgSrcSet(item.publicId, RESPONSIVE_WIDTHS)}
+                src={isVideo ? videoPoster(item.publicId, 640) : imgUrl(item.publicId, 640, item.width)}
+                srcSet={isVideo ? undefined : imgSrcSet(item.publicId, RESPONSIVE_WIDTHS, item.width)}
                 sizes={isVideo ? undefined : TILE_SIZES}
                 width={item.width || undefined}
                 height={item.height || undefined}
                 alt={item.caption || t('gallery.untitled')}
                 loading={i < EAGER_TILES ? 'eager' : 'lazy'}
                 decoding="async"
+                onError={isVideo ? undefined : (event) => originalOnError(event, item.secureUrl)}
                 style={{ aspectRatio: item.aspect || undefined }}
                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
@@ -246,6 +260,7 @@ const GalleryGrid: React.FC = () => {
       {/* Lightbox */}
       {active && (
         <div
+          ref={lightboxRef}
           role="dialog"
           aria-modal="true"
           aria-label={active.caption || t('gallery.lightbox_label')}
@@ -294,13 +309,14 @@ const GalleryGrid: React.FC = () => {
             {active.resourceType === 'image' ? (
               <img
                 key={active.publicId}
-                src={imgUrl(active.publicId, 1400)}
-                srcSet={imgSrcSet(active.publicId, [700, 1000, 1400, 1800])}
-                sizes="95vw"
+                src={showOriginal ? active.secureUrl : imgUrl(active.publicId, 1800, active.width)}
+                srcSet={showOriginal ? undefined : imgSrcSet(active.publicId, [640, 960, 1280, 1600, 2048, 2560, 3200], active.width)}
+                sizes="(min-width: 900px) 80vw, 95vw"
                 alt={active.caption || t('gallery.untitled')}
                 decoding="async"
                 fetchPriority="high"
-                className="max-w-full max-h-[82vh] w-auto h-auto object-contain"
+                onError={(event) => originalOnError(event, active.secureUrl)}
+                className="max-w-full max-h-[74vh] w-auto h-auto object-contain"
               />
             ) : (
               <video
@@ -314,7 +330,20 @@ const GalleryGrid: React.FC = () => {
               />
             )}
             <div className="text-center">
+              {active.resourceType === 'image' && (
+                <button
+                  type="button"
+                  aria-pressed={showOriginal}
+                  onClick={() => setShowOriginal((value) => !value)}
+                  className="min-h-[44px] px-5 py-2 mb-2 rounded-full border border-white/30 text-sm text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  {t(showOriginal ? 'gallery.show_corrected' : 'gallery.show_original')}
+                </button>
+              )}
               {active.caption && <div className="text-white/90 text-sm font-light mb-1 max-w-2xl">{active.caption}</div>}
+              {!showOriginal && active.resourceType === 'image' && retouchedPhoto(active.publicId)?.editedWithAI && (
+                <div className="text-white/65 text-xs mb-2 max-w-2xl">{t('gallery.retouch_note')}</div>
+              )}
               <div className="text-white/50 text-xs" dir="ltr">
                 {(activeIndex ?? 0) + 1} / {displayItems?.length ?? 0}
               </div>
