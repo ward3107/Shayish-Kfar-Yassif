@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { CONTACT, whatsappLink } from '../../constants';
-import { cinematicCopy, detailPositions, projectImages, projectPublicIds } from './content';
+import { cinematicCopy, projectDetailImages, projectDetailPublicIds, projectImages, projectPublicIds } from './content';
 import { useCinematicScroll } from './useCinematicScroll';
 import { useSlabScroll } from './useSlabScroll';
 import { imgSrcSet } from '../../lib/galleryData';
@@ -65,7 +65,7 @@ export default function CinematicHome() {
           {homeSlabs.map((slab, i) => (
             <figure key={slab.id} className="ch-slab">
               <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${slab.name[language]} — ${s.slab} ${i+1}`}><img src={slabImage(slab.id)} srcSet={localPhotoSrcSet(slabSource(slab.id))} sizes="(min-width: 751px) 65vw, 88vw" alt={slab.name[language]} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
-              <figcaption className="ch-slab-caption"><div><strong>{slab.name[language]}</strong><small>{language !== 'en' && <><bdi dir="ltr">{slab.tradeName}</bdi> · </>}{naming.match}</small></div><span dir="ltr">{String(i+1).padStart(2,'0')}</span></figcaption>
+              <figcaption className="ch-slab-caption"><div><strong>{slab.name[language]}</strong>{language !== 'en' && <small><bdi dir="ltr">{slab.tradeName}</bdi></small>}</div><span dir="ltr">{String(i+1).padStart(2,'0')}</span></figcaption>
             </figure>
           ))}
         </div>
@@ -73,7 +73,7 @@ export default function CinematicHome() {
         <p className="ch-slab-naming-note">{naming.note}</p>
         </div>
       </section>
-      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-labelledby="ch-slab-name"><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(selected.id)} srcSet={localPhotoSrcSet(slabSource(selected.id))} sizes="95vw" alt={selected.name[language]} /><div className="ch-slab-caption"><div><strong id="ch-slab-name">{selected.name[language]}</strong><small>{language !== 'en' && <><bdi dir="ltr">{selected.tradeName}</bdi> · </>}{naming.match}</small></div><span dir="ltr">{String(selectedSlab+1).padStart(2,'0')}</span></div></dialog>
+      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-labelledby="ch-slab-name"><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(selected.id)} srcSet={localPhotoSrcSet(slabSource(selected.id))} sizes="95vw" alt={selected.name[language]} /><div className="ch-slab-caption"><div><strong id="ch-slab-name">{selected.name[language]}</strong>{language !== 'en' && <small><bdi dir="ltr">{selected.tradeName}</bdi></small>}</div><span dir="ltr">{String(selectedSlab+1).padStart(2,'0')}</span></div></dialog>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
       {c.projects.map((p,i)=>(
         <section key={i} className={`ch-project ch-tone-${i}`} aria-labelledby={`ch-title-${i}`}>
@@ -84,7 +84,7 @@ export default function CinematicHome() {
               <button className="ch-photo" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span>{p.title} <b aria-hidden="true">↗</b></span></button>
               <div className="ch-details" aria-label={c.detailNote}>
                 <div><p className="ch-eyebrow">{c.detail}</p><h3>{p.detail}</h3></div>
-                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={caption} loading="lazy" style={{objectPosition:detailPositions[i][j],transformOrigin:detailPositions[i][j]}} /></div><figcaption>{caption}</figcaption></figure>)}</div>
+                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectDetailImages[i][j]} srcSet={imgSrcSet(projectDetailPublicIds[i][j], [480, 800])} sizes="(min-width: 751px) 18vw, 24vw" alt={`${p.title} — ${caption}`} loading="lazy" decoding="async" /></div><figcaption>{caption}</figcaption></figure>)}</div>
                 <small>{c.detailNote}</small>
               </div>
             </div>
