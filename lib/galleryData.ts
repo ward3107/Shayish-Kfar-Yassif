@@ -1,5 +1,8 @@
 import type { MediaItem } from '../types/media';
 import curationData from '../gallery-curation.json';
+import photoMetadata from '../photo-metadata.json';
+import { retouchedPhoto, retouchedPhotoUrl, retouchedPhotoSrcSet } from './retouchedPhotos';
+import { buildPhotoUrl, buildPhotoSrcSet, buildCroppedPhotoSrcSet, type PhotoOptions } from './photoDelivery';
 
 /**
  * Client-side gallery data layer.
@@ -69,7 +72,8 @@ export const enrich = (item: MediaItem): EnrichedItem => {
   const category = tagCategory(item.tags) || (isCategory(cur.category) ? cur.category : '');
   const caption = item.context?.alt?.trim() || cur.caption || '';
   const featured = tagFeatured(item.tags) ?? (typeof cur.featured === 'number' ? cur.featured : null);
-  const aspect = item.width && item.height ? item.width / item.height : 1;
+  const retouched = item.resourceType === 'image' ? retouchedPhoto(item.publicId) : undefined;
+  const aspect = retouched ? retouched.width / retouched.height : item.width && item.height ? item.width / item.height : 1;
   return { ...item, category, caption, featured, aspect };
 };
 
@@ -89,22 +93,29 @@ export const sortForDisplay = (items: EnrichedItem[]): EnrichedItem[] =>
 
 // Encode each path segment but keep the folder slashes Cloudinary needs.
 const enc = (publicId: string) => publicId.split('/').map(encodeURIComponent).join('/');
+const metadata = photoMetadata as Record<string, { width: number; height: number }>;
+const photoOptions = (publicId: string, nativeWidth?: number): Omit<PhotoOptions, 'width'> => ({
+  nativeWidth: nativeWidth || metadata[publicId]?.width,
+  nativeHeight: metadata[publicId]?.height,
+  role: publicId.startsWith('shayish/materials/') || curation.items[publicId]?.category === 'slabs' ? 'material' : 'project',
+});
 
 /**
  * Responsive still image, aspect ratio PRESERVED (c_limit never crops or
  * upscales) — so portrait project shots are never square-cropped.
  */
-export const imgUrl = (publicId: string, w: number): string =>
-  CLOUD ? `https://res.cloudinary.com/${CLOUD}/image/upload/c_limit,w_${w},q_auto,f_auto/${enc(publicId)}` : '';
+export const imgUrl = (publicId: string, w: number, nativeWidth?: number): string =>
+  retouchedPhotoUrl(publicId, w) ?? buildPhotoUrl(CLOUD, publicId, { ...photoOptions(publicId, nativeWidth), width: w });
 
-export const imgSrcSet = (publicId: string, widths: number[]): string =>
-  widths.map((w) => `${imgUrl(publicId, w)} ${w}w`).join(', ');
+export const imgSrcSet = (publicId: string, widths: number[], nativeWidth?: number): string =>
+  retouchedPhotoSrcSet(publicId, widths) ?? buildPhotoSrcSet(CLOUD, publicId, widths, photoOptions(publicId, nativeWidth));
+
+export const croppedImgSrcSet = (publicId: string, widths: number[], aspect: number): string =>
+  retouchedPhotoSrcSet(publicId, widths) ?? buildCroppedPhotoSrcSet(CLOUD, publicId, widths, aspect, photoOptions(publicId));
 
 /** Hero / full-bleed crop (c_fill with smart gravity) for banner use only. */
 export const heroUrl = (publicId: string, w: number, h: number): string =>
-  CLOUD
-    ? `https://res.cloudinary.com/${CLOUD}/image/upload/c_fill,g_auto,w_${w},h_${h},q_auto:good,f_auto/${enc(publicId)}`
-    : '';
+  retouchedPhotoUrl(publicId, w) ?? buildPhotoUrl(CLOUD, publicId, { ...photoOptions(publicId), width: w, height: h, crop: 'fill' });
 
 export const videoUrl = (publicId: string): string =>
   CLOUD ? `https://res.cloudinary.com/${CLOUD}/video/upload/f_auto,q_auto,w_1280/${enc(publicId)}.mp4` : '';

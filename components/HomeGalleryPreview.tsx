@@ -98,8 +98,8 @@ const HomeGalleryPreview: React.FC = () => {
               aria-label={item.caption ? `${item.caption} — ${t('home.view_all')}` : t('home.view_all')}
             >
               <img
-                src={imgUrl(item.publicId, 500)}
-                srcSet={imgSrcSet(item.publicId, WIDTHS)}
+                src={imgUrl(item.publicId, 640, item.width)}
+                srcSet={imgSrcSet(item.publicId, WIDTHS, item.width)}
                 sizes={TILE_SIZES}
                 width={item.width || undefined}
                 height={item.height || undefined}

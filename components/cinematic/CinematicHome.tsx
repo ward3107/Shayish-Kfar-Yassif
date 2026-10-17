@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { CONTACT, whatsappLink } from '../../constants';
-import { cinematicCopy, detailPositions, projectImages } from './content';
+import { cinematicCopy, detailPositions, projectImages, projectPublicIds } from './content';
 import { useCinematicScroll } from './useCinematicScroll';
 import { useSlabScroll } from './useSlabScroll';
+import { imgSrcSet } from '../../lib/galleryData';
+import { localPhoto, localPhotoSrcSet } from '../../lib/localPhotos';
 import './CinematicHome.css';
 
 const slabNames = ['stone-01-x235', 'stone-02-x240', 'stone-03-x242', 'stone-04-x241', 'stone-05-x247', 'stone-06-x248', 'stone-07-x249', 'stone-08-x256', 'stone-09-x254', 'stone-10-x255', 'stone-11-x261', 'stone-12-x262', 'stone-13-x263'];
-const slabImage = (name: string) => `/stone-slabs/edited/${name}.jpeg?v=full-4x3`;
+const slabSource = (name: string) => `/stone-slabs/edited/${name}.jpeg`;
+const slabImage = (name: string) => localPhoto(slabSource(name));
 const slabCopy = {
   he: { title: 'האבן במבט מלא.', intro: 'שלושה עשר לוחות, כל אחד עם תנועה וגוון משלו.', note: 'המחשות חזיתיות; אזורים שהוסתרו בצילום שוחזרו דיגיטלית.', slab: 'לוח', edited: 'הגדלת ההמחשה', jump: 'גלו את הלוחות', gesture: 'החליקו בחופשיות בין הלוחות · לחצו להגדלה' },
   ar: { title: 'الحجر بكامل تفاصيله.', intro: 'ثلاثة عشر لوحًا، لكل منها عروقه ولونه الخاص.', note: 'تصورات أمامية؛ أُعيد بناء الأجزاء المحجوبة رقميًا.', slab: 'لوح', edited: 'تكبير الصورة', jump: 'اكتشفوا الألواح', gesture: 'تصفحوا الألواح بالسحب بحرية · اضغطوا للتكبير' },
@@ -42,8 +45,8 @@ export default function CinematicHome() {
     <div ref={root} className="cinematic-home" data-motion={reduced?'off':'on'} data-design="stone-texture-hero" dir={dir}>
       <section className="ch-hero" aria-label={c.eyebrow}>
         <div className="ch-hero-stage">
-          <div className="ch-stone-next" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet="/cinematic/hero-copper-sculpture-mobile.webp" /><img src="/cinematic/hero-copper-sculpture.webp" alt="" width="1672" height="941" /></picture></div>
-          <div className="ch-stone" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet="/cinematic/hero-green-vase-mobile.webp" /><img src="/cinematic/hero-green-vase.webp" alt="" width="1672" height="941" fetchPriority="high" /></picture></div>
+          <div className="ch-stone-next" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet={localPhotoSrcSet("/cinematic/hero-copper-sculpture-mobile.webp") || localPhoto("/cinematic/hero-copper-sculpture-mobile.webp")} sizes="100vw" /><img src={localPhoto("/cinematic/hero-copper-sculpture.webp")} srcSet={localPhotoSrcSet("/cinematic/hero-copper-sculpture.webp")} sizes="100vw" alt="" width="1672" height="941" /></picture></div>
+          <div className="ch-stone" aria-hidden="true"><picture><source media="(max-width:750px)" srcSet={localPhotoSrcSet("/cinematic/hero-green-vase-mobile.webp") || localPhoto("/cinematic/hero-green-vase-mobile.webp")} sizes="100vw" /><img src={localPhoto("/cinematic/hero-green-vase.webp")} srcSet={localPhotoSrcSet("/cinematic/hero-green-vase.webp")} sizes="100vw" alt="" width="1672" height="941" fetchPriority="high" /></picture></div>
           <div className="ch-shade" aria-hidden="true" />
           <div className="ch-intro"><p className="ch-eyebrow">{c.eyebrow}</p><h1>{c.start}</h1><p>{c.tagline}</p><div className="ch-hero-actions"><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a><a className="ch-text-button" href={chat} target="_blank" rel="noopener noreferrer">{c.chat}</a></div></div>
           <div className="ch-reveal"><p className="ch-eyebrow">{c.eyebrow}</p><h2>{c.reveal}</h2><p>{c.revealBody}</p><a className="ch-pill" href="#slabs">{s.jump} <span aria-hidden="true">+</span></a></div>
@@ -59,14 +62,14 @@ export default function CinematicHome() {
         <div ref={slabs.stage} className="ch-slabs-stage" data-dragging={slabs.dragging} tabIndex={0} onScroll={slabs.onScroll} onWheel={slabs.onWheel} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();slabs.goTo(slabs.active+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}} onPointerDown={slabs.onPointerDown} onPointerMove={slabs.onPointerMove} onPointerUp={slabs.onPointerUp} onPointerCancel={slabs.onPointerCancel} aria-label={s.title} role="region">
           {slabNames.map((name, i) => (
             <figure key={name} className="ch-slab">
-              <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} alt={`${s.slab} ${i+1}`} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
+              <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} srcSet={localPhotoSrcSet(slabSource(name))} sizes="(min-width: 751px) 65vw, 88vw" alt={`${s.slab} ${i+1}`} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
             </figure>
           ))}
         </div>
         <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(slabs.active+1).padStart(2,'0')} / {slabNames.length}</span></div>
         </div>
       </section>
-      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${selectedSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(slabNames[selectedSlab])} alt={`${s.slab} ${selectedSlab+1}`} /></dialog>
+      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${selectedSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(slabNames[selectedSlab])} srcSet={localPhotoSrcSet(slabSource(slabNames[selectedSlab]))} sizes="95vw" alt={`${s.slab} ${selectedSlab+1}`} /></dialog>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
       {c.projects.map((p,i)=>(
         <section key={i} className={`ch-project ch-tone-${i}`} aria-labelledby={`ch-title-${i}`}>
@@ -74,10 +77,10 @@ export default function CinematicHome() {
             <div className="ch-project-meta"><span><b dir="ltr">0{i+1}</b> / {p.category}</span><span className="ch-phase"><span>{c.room}</span><span>{c.detail}</span></span></div>
             <div className="ch-composition">
               <div className="ch-project-copy"><p className="ch-eyebrow">{p.title}</p><h2 id={`ch-title-${i}`}>{p.headline}</h2><p>{p.description}</p><button className="ch-text-button" onClick={()=>openProject(i)}>{c.full} +</button></div>
-              <button className="ch-photo" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span>{p.title} <b aria-hidden="true">↗</b></span></button>
+              <button className="ch-photo" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span>{p.title} <b aria-hidden="true">↗</b></span></button>
               <div className="ch-details" aria-label={c.detailNote}>
                 <div><p className="ch-eyebrow">{c.detail}</p><h3>{p.detail}</h3></div>
-                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectImages[i]} alt={caption} loading="lazy" style={{objectPosition:detailPositions[i][j],transformOrigin:detailPositions[i][j]}} /></div><figcaption>{caption}</figcaption></figure>)}</div>
+                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><div><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={caption} loading="lazy" style={{objectPosition:detailPositions[i][j],transformOrigin:detailPositions[i][j]}} /></div><figcaption>{caption}</figcaption></figure>)}</div>
                 <small>{c.detailNote}</small>
               </div>
             </div>
@@ -87,18 +90,18 @@ export default function CinematicHome() {
       ))}
       <div className="ch-collection-link"><Link to="/gallery" className="ch-pill">{c.all} <span aria-hidden="true">↗</span></Link></div>
       <section className="ch-material" aria-labelledby="ch-material-title">
-        <div className="ch-material-image"><img src={projectImages[look]} alt={c.projects[look].title} loading="lazy" width="1200" height="1600" /><span dir="ltr">0{look+1} / 03</span></div>
+        <div className="ch-material-image"><img src={projectImages[look]} srcSet={imgSrcSet(projectPublicIds[look], [480, 800, 1200])} sizes="(min-width: 751px) 50vw, 100vw" alt={c.projects[look].title} loading="lazy" width="1200" height="1600" /><span dir="ltr">0{look+1} / 03</span></div>
         <div className="ch-material-copy"><p className="ch-eyebrow">{c.material}</p><h2 id="ch-material-title">{c.materialTitle}</h2><p aria-live="polite">{c.lookDescriptions[look]}</p><div className="ch-looks" role="group" aria-label={c.material}>{c.looks.map((label,i)=><button key={i} aria-pressed={look===i} onClick={()=>setLook(i)}>{label}</button>)}</div><small>{c.real}</small></div>
       </section>
-      <section className="ch-craft" aria-labelledby="ch-craft-title">
+      <section className="ch-craft" style={{ '--craft-photo': `url("${localPhoto('/cinematic/cutting-still.webp')}")` } as React.CSSProperties} aria-labelledby="ch-craft-title">
         <div><p className="ch-eyebrow">{c.craft}</p><h2 id="ch-craft-title">{c.craftTitle}</h2><p>{c.craftBody}</p><a className="ch-text-button" href="/catalog/shayish-kfar-yassif-catalog-v2.pdf" target="_blank" rel="noopener noreferrer">{c.catalog} ↗</a></div>
         <div className="ch-steps">{c.steps.map(([title,body],i)=><details key={`${language}-${i}`} open={i===0}><summary><span dir="ltr">0{i+1}</span>{title}</summary><p>{body}</p></details>)}</div>
       </section>
-      <section className="ch-contact" aria-labelledby="ch-contact-title"><img src={projectImages[2]} alt="" loading="lazy" /><div><p className="ch-eyebrow">{c.contactTag}</p><h2 id="ch-contact-title">{c.contactTitle}</h2><div className="ch-contact-row"><a className="ch-pill" href={chat} target="_blank" rel="noopener noreferrer">{c.chat} +</a><a href={`tel:${CONTACT.phoneTel}`} dir="ltr">{CONTACT.phoneDisplay}</a><p>{c.location}</p></div></div></section>
+      <section className="ch-contact" aria-labelledby="ch-contact-title"><img src={projectImages[2]} srcSet={imgSrcSet(projectPublicIds[2], [480, 800, 1200])} sizes="100vw" alt="" loading="lazy" /><div><p className="ch-eyebrow">{c.contactTag}</p><h2 id="ch-contact-title">{c.contactTitle}</h2><div className="ch-contact-row"><a className="ch-pill" href={chat} target="_blank" rel="noopener noreferrer">{c.chat} +</a><a href={`tel:${CONTACT.phoneTel}`} dir="ltr">{CONTACT.phoneDisplay}</a><p>{c.location}</p></div></div></section>
       <div className="ch-motion-control"><button type="button" aria-pressed={reduced} onClick={()=>setReduced(v=>!v)}>{reduced?c.enable:c.reduce}</button></div>
       <dialog ref={dialog} className="ch-dialog" aria-labelledby="ch-dialog-title" onClick={e=>{if(e.target===e.currentTarget)dialog.current?.close();}}>
         <button className="ch-close" onClick={()=>dialog.current?.close()}>{c.close} ×</button>
-        <div className="ch-dialog-content"><img src={projectImages[project]} alt={c.projects[project].title} /><div><p className="ch-eyebrow">{c.projects[project].category}</p><h2 id="ch-dialog-title">{c.projects[project].title}</h2><p>{c.projects[project].description}</p><a href={chat} className="ch-pill" target="_blank" rel="noopener noreferrer">{c.chat} +</a></div></div>
+        <div className="ch-dialog-content"><img src={projectImages[project]} srcSet={imgSrcSet(projectPublicIds[project], [640, 960, 1200])} sizes="(min-width: 751px) 64vw, 100vw" alt={c.projects[project].title} /><div><p className="ch-eyebrow">{c.projects[project].category}</p><h2 id="ch-dialog-title">{c.projects[project].title}</h2><p>{c.projects[project].description}</p><a href={chat} className="ch-pill" target="_blank" rel="noopener noreferrer">{c.chat} +</a></div></div>
       </dialog>
     </div>
   );

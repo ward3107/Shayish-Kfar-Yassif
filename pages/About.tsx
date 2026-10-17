@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { imgUrl, imgSrcSet } from '../lib/galleryData';
 
 // Decorative section imagery — served from the client's own Cloudinary account.
 // No stock photos: every image on this page is a real material sample.
 const CLOUD = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
 const materialImg = (id: string, w = 2000) =>
-  CLOUD
-    ? `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,c_fill,g_auto,w_${w}/shayish/materials/${id}`
-    : '';
+  CLOUD ? imgUrl(`shayish/materials/${id}`, w) : '';
 
 const About: React.FC = () => {
   const { t, dir } = useLanguage();
@@ -33,10 +32,12 @@ const About: React.FC = () => {
               {CLOUD ? (
                 <img
                   src={materialImg('verde-alpi', 2070)}
+                  srcSet={imgSrcSet('shayish/materials/verde-alpi', [480, 800, 1200, 1600, 2048])}
+                  sizes="(min-width: 768px) 65vw, 100vw"
                   alt="Verde Alpi marble sample"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-[500px] object-cover grayscale opacity-80"
+                  className="w-full h-[500px] object-cover"
                 />
               ) : (
                 <div className="w-full h-[500px] bg-gradient-to-br from-secondary via-primary to-secondary opacity-80" />
@@ -75,10 +76,12 @@ const About: React.FC = () => {
                {CLOUD ? (
                  <img
                    src={materialImg('emperador', 1974)}
+                   srcSet={imgSrcSet('shayish/materials/emperador', [480, 800, 1200, 1600, 2048])}
+                   sizes="(min-width: 768px) 48vw, 100vw"
                    alt="Emperador marble sample"
                    loading="lazy"
                    decoding="async"
-                   className="w-full grayscale contrast-125"
+                   className="w-full h-auto"
                  />
                ) : (
                  <div className="w-full aspect-[4/3] bg-gradient-to-br from-secondary via-primary to-secondary" />
