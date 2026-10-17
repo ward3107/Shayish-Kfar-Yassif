@@ -45,7 +45,6 @@ const GalleryGrid: React.FC = () => {
   const [error, setError] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [category, setCategory] = useState<FilterCategory>('all');
-  const [showOriginal, setShowOriginal] = useState(false);
   const triggerRef = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const lightboxRef = useRef<HTMLDivElement>(null);
@@ -170,7 +169,6 @@ const GalleryGrid: React.FC = () => {
 
   const openItem = (index: number, el: HTMLElement) => {
     triggerRef.current = el;
-    setShowOriginal(false);
     setActiveIndex(index);
   };
 
@@ -309,8 +307,8 @@ const GalleryGrid: React.FC = () => {
             {active.resourceType === 'image' ? (
               <img
                 key={active.publicId}
-                src={showOriginal ? active.secureUrl : imgUrl(active.publicId, 1800, active.width)}
-                srcSet={showOriginal ? undefined : imgSrcSet(active.publicId, [640, 960, 1280, 1600, 2048, 2560, 3200], active.width)}
+                src={imgUrl(active.publicId, 1800, active.width)}
+                srcSet={imgSrcSet(active.publicId, [640, 960, 1280, 1600, 2048, 2560, 3200], active.width)}
                 sizes="(min-width: 900px) 80vw, 95vw"
                 alt={active.caption || t('gallery.untitled')}
                 decoding="async"
@@ -330,18 +328,8 @@ const GalleryGrid: React.FC = () => {
               />
             )}
             <div className="text-center">
-              {active.resourceType === 'image' && (
-                <button
-                  type="button"
-                  aria-pressed={showOriginal}
-                  onClick={() => setShowOriginal((value) => !value)}
-                  className="min-h-[44px] px-5 py-2 mb-2 rounded-full border border-white/30 text-sm text-white hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-accent"
-                >
-                  {t(showOriginal ? 'gallery.show_corrected' : 'gallery.show_original')}
-                </button>
-              )}
               {active.caption && <div className="text-white/90 text-sm font-light mb-1 max-w-2xl">{active.caption}</div>}
-              {!showOriginal && active.resourceType === 'image' && retouchedPhoto(active.publicId)?.editedWithAI && (
+              {active.resourceType === 'image' && retouchedPhoto(active.publicId)?.editedWithAI && (
                 <div className="text-white/65 text-xs mb-2 max-w-2xl">{t('gallery.retouch_note')}</div>
               )}
               <div className="text-white/50 text-xs" dir="ltr">
