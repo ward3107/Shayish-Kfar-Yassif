@@ -7,9 +7,9 @@ import { useCinematicScroll } from './useCinematicScroll';
 import { useSlabScroll } from './useSlabScroll';
 import { imgSrcSet } from '../../lib/galleryData';
 import { localPhoto, localPhotoSrcSet } from '../../lib/localPhotos';
+import { homeSlabs, slabNamingCopy } from './slabs';
 import './CinematicHome.css';
 
-const slabNames = ['stone-01-x235', 'stone-02-x240', 'stone-03-x242', 'stone-04-x241', 'stone-05-x247', 'stone-06-x248', 'stone-07-x249', 'stone-08-x256', 'stone-09-x254', 'stone-10-x255', 'stone-11-x261', 'stone-12-x262', 'stone-13-x263'];
 const slabSource = (name: string) => `/stone-slabs/edited/${name}.jpeg`;
 const slabImage = (name: string) => localPhoto(slabSource(name));
 const slabCopy = {
@@ -23,10 +23,12 @@ export default function CinematicHome() {
   const { language, t, dir } = useLanguage();
   const c = cinematicCopy[language];
   const s = slabCopy[language];
+  const naming = slabNamingCopy[language];
   const root = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const slabDialog = useRef<HTMLDialogElement>(null);
   const [selectedSlab,setSelectedSlab] = useState(0);
+  const selected = homeSlabs[selectedSlab];
   const [look,setLook] = useState(0);
   const [project,setProject] = useState(0);
   const [reduced,setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -60,16 +62,18 @@ export default function CinematicHome() {
         <div className="ch-slabs-line" aria-hidden="true" />
         <div className="ch-slabs-arrival">
         <div ref={slabs.stage} className="ch-slabs-stage" data-dragging={slabs.dragging} tabIndex={0} onScroll={slabs.onScroll} onWheel={slabs.onWheel} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();slabs.goTo(slabs.active+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}} onPointerDown={slabs.onPointerDown} onPointerMove={slabs.onPointerMove} onPointerUp={slabs.onPointerUp} onPointerCancel={slabs.onPointerCancel} aria-label={s.title} role="region">
-          {slabNames.map((name, i) => (
-            <figure key={name} className="ch-slab">
-              <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${s.slab} ${i+1}`}><img src={slabImage(name)} srcSet={localPhotoSrcSet(slabSource(name))} sizes="(min-width: 751px) 65vw, 88vw" alt={`${s.slab} ${i+1}`} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
+          {homeSlabs.map((slab, i) => (
+            <figure key={slab.id} className="ch-slab">
+              <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${slab.name[language]} — ${s.slab} ${i+1}`}><img src={slabImage(slab.id)} srcSet={localPhotoSrcSet(slabSource(slab.id))} sizes="(min-width: 751px) 65vw, 88vw" alt={slab.name[language]} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
+              <figcaption className="ch-slab-caption"><div><strong>{slab.name[language]}</strong>{slab.possibleMatch && <small>{naming.match}: <bdi dir="ltr">{slab.possibleMatch}</bdi></small>}</div><span dir="ltr">{String(i+1).padStart(2,'0')}</span></figcaption>
             </figure>
           ))}
         </div>
-        <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(slabs.active+1).padStart(2,'0')} / {slabNames.length}</span></div>
+        <div className="ch-slabs-meta"><span>{s.gesture}</span><span dir="ltr" aria-live="polite">{String(slabs.active+1).padStart(2,'0')} / {homeSlabs.length}</span></div>
+        <p className="ch-slab-naming-note">{naming.note}</p>
         </div>
       </section>
-      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-label={`${s.slab} ${selectedSlab+1}`}><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(slabNames[selectedSlab])} srcSet={localPhotoSrcSet(slabSource(slabNames[selectedSlab]))} sizes="95vw" alt={`${s.slab} ${selectedSlab+1}`} /></dialog>
+      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-labelledby="ch-slab-name"><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(selected.id)} srcSet={localPhotoSrcSet(slabSource(selected.id))} sizes="95vw" alt={selected.name[language]} /><div className="ch-slab-caption"><div><strong id="ch-slab-name">{selected.name[language]}</strong>{selected.possibleMatch && <small>{naming.match}: <bdi dir="ltr">{selected.possibleMatch}</bdi></small>}</div><span dir="ltr">{String(selectedSlab+1).padStart(2,'0')}</span></div></dialog>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
       {c.projects.map((p,i)=>(
         <section key={i} className={`ch-project ch-tone-${i}`} aria-labelledby={`ch-title-${i}`}>
