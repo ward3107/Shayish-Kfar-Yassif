@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+import { buildPhotoUrl } from './photoDelivery.js';
 
 /**
  * Shared Cloudinary client used by every /api function. Reads config from
@@ -61,14 +62,14 @@ const toItem = (r: SearchResource): MediaItem => ({
   publicId: r.public_id,
   url: r.url,
   secureUrl: r.secure_url,
-  thumbUrl: cloudinary.url(r.public_id, {
-    resource_type: r.resource_type,
-    secure: true,
-    transformation: [
-      { width: 600, height: 600, crop: 'fill', gravity: 'auto' },
-      { quality: 'auto', fetch_format: 'auto' },
-    ],
-  }),
+  thumbUrl: r.resource_type === 'image'
+    ? buildPhotoUrl(process.env.CLOUDINARY_CLOUD_NAME || '', r.public_id, {
+        width: 600, nativeWidth: r.width, nativeHeight: r.height,
+      })
+    : cloudinary.url(r.public_id, {
+        resource_type: 'video', secure: true,
+        transformation: [{ width: 600, height: 600, crop: 'fill', gravity: 'auto' }, { quality: 'auto', fetch_format: 'auto' }],
+      }),
   resourceType: r.resource_type,
   format: r.format,
   width: r.width,
@@ -89,8 +90,8 @@ export async function listMedia(): Promise<MediaItem[]> {
     .max_results(500)
     .execute();
   const resources = (result.resources ?? []) as SearchResource[];
-  // Internal preparation copies can inherit the gallery folder from the
-  // upload preset; keep them out of both the public gallery and admin list.
+  // Working copies used to render the catalog/static images are not new
+  // gallery uploads, even on accounts whose preset fixes the asset folder.
   return resources.filter((r) => !r.tags?.includes('site-derivative-source')).map(toItem);
 }
 

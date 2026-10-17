@@ -15,6 +15,8 @@ import {
   Star,
 } from 'lucide-react';
 import type { MediaItem } from '../types/media';
+import { enrich, imgUrl } from '../lib/galleryData';
+import { originalOnError } from '../lib/imageFallback';
 
 // Must match CATEGORIES in lib/cloudinary.ts. Duplicated here because the
 // admin ships in the client bundle and can't import server-only code.
@@ -34,15 +36,10 @@ const CAT_LABELS: Record<Category, string> = {
 
 // Helpers to read the same metadata the server writes.
 const getCategory = (item: MediaItem): Category | '' => {
-  const tag = item.tags.find((t) => t.startsWith('cat:'));
-  const slug = tag?.slice(4) as Category | undefined;
-  return slug && (CATEGORIES as readonly string[]).includes(slug) ? (slug as Category) : '';
+  return enrich(item).category;
 };
 const getFeaturedOrder = (item: MediaItem): number | null => {
-  const tag = item.tags.find((t) => t.startsWith('featured:'));
-  if (!tag) return null;
-  const n = Number(tag.slice(9));
-  return Number.isFinite(n) ? n : null;
+  return enrich(item).featured;
 };
 
 /**
@@ -585,7 +582,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
                 className="group relative aspect-square bg-secondary border border-divider rounded-sm overflow-hidden"
               >
                 {item.resourceType === 'image' ? (
-                  <img src={item.thumbUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
+                  <img src={imgUrl(item.publicId, 640, item.width)} onError={(event) => originalOnError(event, item.secureUrl)} alt={enrich(item).caption} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-black relative">
                     <video src={item.secureUrl} className="w-full h-full object-cover" muted playsInline />
@@ -702,7 +699,7 @@ const EditModal: React.FC<{
   onClose: () => void;
   onSave: (patch: { alt: string; category: Category | ''; featuredOrder: number | null }) => void;
 }> = ({ item, onClose, onSave }) => {
-  const [alt, setAlt] = useState(item.context.alt ?? '');
+  const [alt, setAlt] = useState(enrich(item).caption);
   const [category, setCategory] = useState<Category | ''>(getCategory(item));
   const [pinned, setPinned] = useState(getFeaturedOrder(item) !== null);
   const [order, setOrder] = useState<number>(getFeaturedOrder(item) ?? 10);
@@ -744,7 +741,7 @@ const EditModal: React.FC<{
         {/* Preview thumb */}
         <div className="flex gap-3">
           {item.resourceType === 'image' ? (
-            <img src={item.thumbUrl} alt="" className="w-20 h-20 object-cover rounded-sm border border-divider" />
+            <img src={imgUrl(item.publicId, 320, item.width)} onError={(event) => originalOnError(event, item.secureUrl)} alt="" className="w-20 h-20 object-cover rounded-sm border border-divider" />
           ) : (
             <div className="w-20 h-20 flex items-center justify-center bg-black rounded-sm border border-divider">
               <Film className="text-accent" size={24} />
