@@ -24,3 +24,6 @@
 @media(max-width:420px){.ch-vase-controls>span{display:none}}
 @media(max-width:750px){.ch-stone .ch-vase-plate{object-position:left bottom}}
 @media(prefers-reduced-motion:reduce){.ch-vase-object{transition:none}}
+
+/* Keep keyboard focus and the visitor's explicit accessibility highlight. */
+body:not(.a11y-highlight) .ch-vase-grab[data-pointer=true]:focus{outline:none!important}
