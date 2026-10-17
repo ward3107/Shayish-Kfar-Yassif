@@ -61,7 +61,7 @@ html[lang=ar] .cinematic-home h1,html[lang=ar] .cinematic-home h2,html[lang=ar] 
 .cinematic-home .ch-slab-naming-note{margin:18px 0 0;font-size:12px;line-height:1.8;color:#c7c8bc;max-width:780px}
 .ch-slabs-meta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:12px;color:#d5d5ca;font-size:12px}
 .ch-slabs-meta span:last-child{color:#e3c799;white-space:nowrap}
-.ch-slab-dialog{position:fixed;inset:0;margin:auto;padding:0;width:min(90vw,1000px);height:auto;max-width:96vw;max-height:94svh;overflow:auto;border:1px solid #bca57688;background:#17201b;color:#fff;box-shadow:0 25px 90px #000a}
+.ch-slab-dialog{position:fixed;inset:0;margin:auto;padding:0;width:min(90vw,1000px);height:fit-content;max-width:96vw;max-height:94svh;overflow:auto;border:1px solid #bca57688;background:#17201b;color:#fff;box-shadow:0 25px 90px #000a}
 .ch-slab-dialog::backdrop{background:#050b09e8;backdrop-filter:blur(8px)}
 .ch-slab-dialog img{display:block;width:100%;height:auto;max-height:calc(90svh - 110px);object-fit:contain}
 .ch-slab-close{position:absolute;top:7px;right:10px;z-index:2;width:40px;height:40px;background:#17201be8;color:#fff;border:1px solid #c3a16f;border-radius:50%;font-size:28px;line-height:1}
