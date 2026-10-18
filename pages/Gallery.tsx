@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Instagram, ArrowUpRight, FileText, Heart } from 'lucide-react';
+import { ArrowUpRight, FileText, Heart } from 'lucide-react';
+import { Instagram } from '../components/InstagramIcon';
 import { selectionCopy } from '../lib/selectionCopy';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT } from '../constants';

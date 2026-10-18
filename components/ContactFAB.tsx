@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Instagram, Share2, X, MessageCircle } from 'lucide-react';
+import { Share2, X, MessageCircle } from 'lucide-react';
+import { Instagram } from './InstagramIcon';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT, whatsappLink } from '../constants';
 
