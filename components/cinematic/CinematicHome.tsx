@@ -13,6 +13,8 @@ import MaterialExplorer from './MaterialExplorer';
 import InteractiveVase from './InteractiveVase';
 import { SelectionHeart } from '../SelectionControls';
 import { selectionCopy } from '../../lib/selectionCopy';
+import { useVisualizerEnabled } from '../../contexts/VisualizerContext';
+import { visualizerCopy } from '../../lib/visualizerCopy';
 import './CinematicHome.css';
 
 const slabSource = (name: string) => `/stone-slabs/edited/${name}.jpeg`;
@@ -26,6 +28,7 @@ const slabCopy = {
 
 export default function CinematicHome() {
   const { language, t, dir } = useLanguage();
+  const visualizerEnabled = useVisualizerEnabled();
   const c = cinematicCopy[language];
   const s = slabCopy[language];
   const naming = slabNamingCopy[language];
@@ -66,6 +69,7 @@ export default function CinematicHome() {
       <section id="slabs" className="ch-slabs" aria-labelledby="ch-slabs-title">
         <div className="ch-slabs-heading"><div><p className="ch-eyebrow">STONE / 01—13</p><h2 id="ch-slabs-title">{s.title}</h2><p>{s.intro}</p></div><small>{s.note}</small></div>
         <p className="ch-selection-hint">♡ {selectionCopy[language].hint}</p>
+        {visualizerEnabled && <Link className="ch-text-button" to={`/visualizer?slab=${homeSlabs[slabs.active]?.id || homeSlabs[0].id}`}>{visualizerCopy[language].nav} ↗</Link>}
         <div className="ch-slabs-line" aria-hidden="true" />
         <div className="ch-slabs-arrival">
         <div ref={slabs.stage} className="ch-slabs-stage" data-dragging={slabs.dragging} tabIndex={0} onScroll={slabs.onScroll} onWheel={slabs.onWheel} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();slabs.goTo(slabs.active+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}} onPointerDown={slabs.onPointerDown} onPointerMove={slabs.onPointerMove} onPointerUp={slabs.onPointerUp} onPointerCancel={slabs.onPointerCancel} aria-label={s.title} role="region">

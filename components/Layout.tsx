@@ -15,6 +15,8 @@ import CreatorSignature from './CreatorSignature';
 import { SelectionBar } from './SelectionControls';
 import { useSelections } from '../contexts/SelectionContext';
 import { selectionCopy } from '../lib/selectionCopy';
+import { useVisualizerEnabled } from '../contexts/VisualizerContext';
+import { visualizerCopy } from '../lib/visualizerCopy';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,6 +28,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { language, setLanguage, t, dir } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const { refs: selections } = useSelections();
+  const visualizerEnabled = useVisualizerEnabled();
 
   useEffect(() => {
     let ticking = false;
@@ -88,6 +91,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navLinks = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.collections'), path: '/gallery' },
+    ...(visualizerEnabled ? [{ name: visualizerCopy[language].nav, path: '/visualizer' }] : []),
     { name: t('nav.faq'), path: '/faq' },
     { name: `${selectionCopy[language].title}${selections.length ? ` (${selections.length})` : ''}`, path: '/favorites' },
   ];
