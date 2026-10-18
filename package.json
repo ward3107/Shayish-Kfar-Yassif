@@ -27,7 +27,7 @@
     "three": "^0.186.1"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
+    "@types/node": "^26.6.5",
     "@types/three": "^0.185.1",
     "@vercel/node": "^5.8.26",
     "@vitejs/plugin-react": "^6.1.2",
