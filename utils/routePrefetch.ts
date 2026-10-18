@@ -11,6 +11,7 @@
  */
 
 const importers: Record<string, () => Promise<unknown>> = {
+  '/visualizer': () => import('../pages/Visualizer'),
   '/gallery': () => import('../pages/Gallery'),
   '/process': () => import('../pages/Process'),
   '/materials': () => import('../pages/Materials'),

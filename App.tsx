@@ -4,6 +4,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { SoundProvider } from './contexts/SoundContext';
 import { SelectionProvider } from './contexts/SelectionContext';
+import { VisualizerProvider } from './contexts/VisualizerContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import { prefetchKeyRoutesOnIdle } from './utils/routePrefetch';
@@ -38,6 +39,7 @@ const lazyWithReload = <T extends React.ComponentType<any>>(
 // never open.
 const Gallery = lazyWithReload(() => import('./pages/Gallery'));
 const Favorites = lazyWithReload(() => import('./pages/Favorites'));
+const Visualizer = lazyWithReload(() => import('./pages/Visualizer'));
 const Process = lazyWithReload(() => import('./pages/Process'));
 const Materials = lazyWithReload(() => import('./pages/Materials'));
 const About = lazyWithReload(() => import('./pages/About'));
@@ -78,6 +80,7 @@ const App: React.FC = () => {
       <ThemeProvider>
        <SoundProvider>
         <SelectionProvider>
+        <VisualizerProvider>
         <Router>
           <Suspense fallback={<RouteFallback />}>
             <Routes>
@@ -92,6 +95,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/favorites" element={<Favorites />} />
+                <Route path="/visualizer" element={<Visualizer />} />
                 <Route path="/process" element={<Process />} />
                 <Route path="/materials" element={<Materials />} />
                 <Route path="/about" element={<About />} />
@@ -110,6 +114,7 @@ const App: React.FC = () => {
             </Routes>
           </Suspense>
         </Router>
+        </VisualizerProvider>
         </SelectionProvider>
        </SoundProvider>
       </ThemeProvider>

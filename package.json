@@ -11,6 +11,7 @@
     "test:photos": "node --test tests/photo-delivery.test.mjs tests/photo-retouches.test.mjs",
     "test:selections": "node --experimental-strip-types --test tests/selections.test.mjs",
     "test:vase": "node --experimental-strip-types --test tests/interactive-vase.test.mjs",
+    "test:visualizer": "node --experimental-strip-types --test tests/visualizer.test.mjs",
     "photos:prepare": "node scripts/prepare-photo-assets.mjs"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.12.0",
+    "sharp": "^0.35.5",
     "three": "^0.186.1"
   },
   "devDependencies": {

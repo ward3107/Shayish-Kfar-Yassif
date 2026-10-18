@@ -26,4 +26,5 @@ jobs:
       - run: npm run test:photos
       - run: npm run test:selections
       - run: npm run test:vase
+      - run: npm run test:visualizer
       - run: npm run build

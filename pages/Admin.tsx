@@ -17,6 +17,7 @@ import {
 import type { MediaItem } from '../types/media';
 import { enrich, imgUrl } from '../lib/galleryData';
 import { originalOnError } from '../lib/imageFallback';
+import VisualizerAdmin from '../components/VisualizerAdmin';
 
 // Must match CATEGORIES in lib/cloudinary.ts. Duplicated here because the
 // admin ships in the client bundle and can't import server-only code.
@@ -425,6 +426,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
       </header>
 
       <main className="mx-auto max-w-5xl px-4 md:px-6 py-6 md:py-8 space-y-6 md:space-y-8">
+        <VisualizerAdmin />
         {/* PWA install prompt (Android/desktop Chrome) */}
         {installEvent && !installed && (
           <div className="flex items-center gap-3 border border-accent/40 bg-accent/10 rounded-sm p-4">
