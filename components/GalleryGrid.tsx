@@ -4,6 +4,7 @@ import type { MediaItem } from '../types/media';
 import { useLanguage } from '../contexts/LanguageContext';
 import { originalOnError } from '../lib/imageFallback';
 import { retouchedPhoto } from '../lib/retouchedPhotos';
+import { SelectionHeart } from './SelectionControls';
 import {
   CATEGORIES,
   type Category,
@@ -218,11 +219,11 @@ const GalleryGrid: React.FC = () => {
         {displayItems?.map((item, i) => {
           const isVideo = item.resourceType === 'video';
           return (
+            <div key={item.publicId} className="relative mb-3 md:mb-4 break-inside-avoid">
             <button
-              key={item.publicId}
               type="button"
               onClick={(e) => openItem(i, e.currentTarget)}
-              className="group relative block w-full mb-3 md:mb-4 overflow-hidden bg-secondary border border-divider rounded-sm break-inside-avoid focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="group relative block w-full overflow-hidden bg-secondary border border-divider rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={item.caption ? `${item.caption} — ${t('gallery.open')}` : t('gallery.open')}
             >
               <img
@@ -251,6 +252,8 @@ const GalleryGrid: React.FC = () => {
                 </span>
               )}
             </button>
+            <SelectionHeart item={isVideo ? `v:${item.publicId.slice(16)}` : item.publicId} label={item.caption || t('gallery.untitled')} />
+            </div>
           );
         })}
       </div>
@@ -265,6 +268,7 @@ const GalleryGrid: React.FC = () => {
           className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
           onClick={close}
         >
+          <SelectionHeart item={active.resourceType === 'video' ? `v:${active.publicId.slice(16)}` : active.publicId} label={active.caption || t('gallery.untitled')} />
           <button
             ref={closeBtnRef}
             onClick={(e) => {

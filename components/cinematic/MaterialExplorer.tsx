@@ -6,6 +6,7 @@ import { retouchedPhoto } from '../../lib/retouchedPhotos';
 import { cinematicCopy } from './content';
 import { materialCopy, materialLabels, materialViews } from './materialBreakdown';
 import './MaterialExplorer.css';
+import { SelectionHeart } from '../SelectionControls';
 
 type Props = { project: number; initialView: number; language: Language; reduced: boolean; onClose: () => void };
 
@@ -90,6 +91,7 @@ export default function MaterialExplorer({ project, initialView, language, reduc
             </button>
           </div>
           <aside className="ch-explorer-info">
+            <SelectionHeart item={publicId} label={projectCopy.title} inline />
             <p className="ch-explorer-hint">{copy.hint}</p>
             <div className="ch-material-list">
               {current.layers.map((layer, index) => {

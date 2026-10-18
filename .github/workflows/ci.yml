@@ -24,5 +24,6 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run test:photos
+      - run: npm run test:selections
       - run: npm run test:vase
       - run: npm run build
