@@ -61,7 +61,7 @@ const ContactFAB: React.FC = () => {
       key: 'instagram',
       label: t('fab.instagram'),
       href: CONTACT.instagramUrl,
-      className: 'bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white',
+      className: 'bg-linear-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white',
       icon: <Instagram size={22} />,
     },
     {

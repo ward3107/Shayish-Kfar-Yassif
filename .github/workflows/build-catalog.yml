@@ -2,6 +2,15 @@ name: Build catalog PDF
 
 on:
   pull_request:
+    paths:
+      - '.github/workflows/build-catalog.yml'
+      - 'catalog/build.py'
+      - 'catalog/build-preview.py'
+      - 'catalog/catalog.css'
+      - 'catalog/assets/**'
+      - 'catalog/images/**'
+      - 'catalog/enhanced/**'
+      - 'catalog/objects/*.png'
   workflow_dispatch:
   push:
     branches: [main]
@@ -12,8 +21,10 @@ on:
       - 'catalog/catalog.css'
       - 'catalog/assets/**'
       - 'catalog/images/**'
-      - 'catalog/objects/**'
+      - 'catalog/enhanced/**'
+      - 'catalog/objects/*.png'
 
+# Catalog builds only upload review artifacts. They never push a branch or PR.
 permissions:
   contents: read
 
@@ -26,6 +37,8 @@ jobs:
     name: Catalog PDF
     timeout-minutes: 20
     runs-on: ubuntu-latest
+    env:
+      PYTHONHASHSEED: '0'
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -45,7 +58,7 @@ jobs:
       - name: Build PDF and preview
         run: |
           python catalog/build.py
-          qpdf --linearize --object-streams=generate             public/catalog/shayish-kfar-yassif-catalog-v2.pdf             public/catalog/shayish-kfar-yassif-catalog-v2.linearized.pdf
+          qpdf --linearize --deterministic-id --object-streams=generate             public/catalog/shayish-kfar-yassif-catalog-v2.pdf             public/catalog/shayish-kfar-yassif-catalog-v2.linearized.pdf
           mv public/catalog/shayish-kfar-yassif-catalog-v2.linearized.pdf             public/catalog/shayish-kfar-yassif-catalog-v2.pdf
           cp public/catalog/shayish-kfar-yassif-catalog-v2.pdf             public/catalog/shayish-kfar-yassif-catalog.pdf
           qpdf --check-linearization public/catalog/shayish-kfar-yassif-catalog-v2.pdf
@@ -63,50 +76,3 @@ jobs:
             public/catalog/shayish-kfar-yassif-catalog.pdf
             public/catalog/shayish-kfar-yassif-catalog-v2.pdf
             public/catalog/preview
-
-  propose:
-    name: Prepare catalog update
-    needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with:
-          ref: main
-          persist-credentials: false
-      - name: Refuse an outdated catalog
-        env:
-          SOURCE_SHA: ${{ github.sha }}
-        run: |
-          test "$(git rev-parse HEAD)" = "$SOURCE_SHA" || {
-            echo "Main advanced during generation. Re-run the catalog workflow on the latest main."
-            exit 1
-          }
-      - uses: actions/download-artifact@v4
-        with:
-          name: generated-catalog
-      - name: Propose generated files for review
-        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
-        with:
-          branch: automation/catalog-update
-          base: main
-          draft: always-true
-          title: "Update generated catalog"
-          commit-message: "Rebuild catalog PDF and previews"
-          add-paths: |
-            catalog/catalog.html
-            catalog/objects/manifest.json
-            public/catalog/shayish-kfar-yassif-catalog.pdf
-            public/catalog/shayish-kfar-yassif-catalog-v2.pdf
-            public/catalog/preview
-          body: |
-            Generated from main commit ${{ github.sha }}.
-            Review the PDF and preview images before publication.
-            This PR does not publish directly to main.
-            PRs created with GITHUB_TOKEN do not automatically trigger normal PR checks.
-            A maintainer must trigger those checks with their own PR action or use a
-            scoped GitHub App token for this automation. Do not bypass required checks.

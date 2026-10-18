@@ -77,7 +77,7 @@ const LanguageSwitcher: React.FC<Props> = ({ anchorClass = '', size = 18, compac
         <div
           role="listbox"
           aria-label="Language"
-          className="absolute end-0 top-full mt-3 min-w-[180px] bg-secondary border border-divider rounded-sm shadow-2xl overflow-hidden z-[60]"
+          className="absolute inset-e-0 top-full mt-3 min-w-[180px] bg-secondary border border-divider rounded-xs shadow-2xl overflow-hidden z-60"
         >
           {LANGUAGES.map((l) => {
             const active = l.code === language;
@@ -97,7 +97,7 @@ const LanguageSwitcher: React.FC<Props> = ({ anchorClass = '', size = 18, compac
                   {l.flag}
                 </span>
                 <span className="flex-1 text-base">{l.label}</span>
-                {active && <Check size={16} className="text-accent flex-shrink-0" />}
+                {active && <Check size={16} className="text-accent shrink-0" />}
               </button>
             );
           })}

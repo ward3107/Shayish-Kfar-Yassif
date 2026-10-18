@@ -41,7 +41,7 @@ const StepImage: React.FC<{ imgId: string; alt: string; eager: boolean }> = ({ i
   const [failed, setFailed] = useState(!CLOUD);
   const showImg = !failed && CLOUD;
   return (
-    <div className="relative w-full aspect-[4/3] md:aspect-[3/2] overflow-hidden rounded-sm border border-divider bg-secondary">
+    <div className="relative w-full aspect-4/3 md:aspect-3/2 overflow-hidden rounded-xs border border-divider bg-secondary">
       {showImg ? (
         <img
           src={bg(imgId, 1200, 800)}
@@ -56,10 +56,10 @@ const StepImage: React.FC<{ imgId: string; alt: string; eager: boolean }> = ({ i
           className="w-full h-full object-cover"
         />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-primary to-secondary" />
+        <div className="absolute inset-0 bg-linear-to-br from-secondary via-primary to-secondary" />
       )}
       {/* Subtle vignette so text sitting near the image still reads clearly */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-black/10" />
     </div>
   );
 };
@@ -93,7 +93,7 @@ const Process: React.FC = () => {
             {/* Vertical rail */}
             <div
               aria-hidden="true"
-              className="absolute top-0 bottom-0 start-6 md:start-1/2 md:-translate-x-px w-px bg-divider"
+              className="absolute top-0 bottom-0 inset-s-6 md:inset-s-1/2 md:-translate-x-px w-px bg-divider"
             />
 
             {PROCESS_STEPS.map((step, i) => {
@@ -106,7 +106,7 @@ const Process: React.FC = () => {
                 >
                   {/* Numbered badge on the rail */}
                   <div
-                    className="absolute top-0 start-6 md:start-1/2 -translate-x-1/2 rtl:translate-x-1/2 md:-translate-x-1/2 md:rtl:translate-x-1/2 z-10"
+                    className="absolute top-0 inset-s-6 md:inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 md:-translate-x-1/2 md:rtl:translate-x-1/2 z-10"
                     aria-hidden="true"
                   >
                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary border-2 border-accent text-accent font-serif text-lg">
@@ -121,7 +121,7 @@ const Process: React.FC = () => {
                     }`}
                   >
                     {/* Image column */}
-                    <div className={`md:pt-2 ${isEven ? 'md:pe-8 lg:pe-16' : 'md:ps-8 lg:ps-16 md:[direction:ltr] rtl:md:[direction:rtl]'}`}>
+                    <div className={`md:pt-2 ${isEven ? 'md:pe-8 lg:pe-16' : 'md:ps-8 lg:ps-16 md:[direction:ltr] md:rtl:[direction:rtl]'}`}>
                       <StepImage
                         imgId={imageForStep(step.key)}
                         alt={t(`process.steps.${step.key}.title`)}
@@ -130,7 +130,7 @@ const Process: React.FC = () => {
                     </div>
 
                     {/* Text column */}
-                    <div className={`${isEven ? 'md:ps-8 lg:ps-16' : 'md:pe-8 lg:pe-16 md:[direction:ltr] rtl:md:[direction:rtl]'}`}>
+                    <div className={`${isEven ? 'md:ps-8 lg:ps-16' : 'md:pe-8 lg:pe-16 md:[direction:ltr] md:rtl:[direction:rtl]'}`}>
                       <div className="text-accent mb-4">
                         <step.Icon size={36} strokeWidth={1.25} />
                       </div>

@@ -7,7 +7,9 @@ updates:
       day: sunday
       time: "06:00"
       timezone: Asia/Jerusalem
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
+    cooldown:
+      default-days: 7
     groups:
       react-rendering:
         patterns:
@@ -15,9 +17,13 @@ updates:
           - react-dom
           - "@react-three/fiber"
           - "@react-three/drei"
-      development-patches:
-        dependency-type: development
-        update-types: [patch]
+      styling:
+        patterns:
+          - tailwindcss
+          - "@tailwindcss/*"
+      routine-updates:
+        patterns: ["*"]
+        update-types: [minor, patch]
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -25,4 +31,7 @@ updates:
       day: sunday
       time: "06:30"
       timezone: Asia/Jerusalem
-    open-pull-requests-limit: 2
+    open-pull-requests-limit: 1
+    groups:
+      workflow-actions:
+        patterns: ["*"]

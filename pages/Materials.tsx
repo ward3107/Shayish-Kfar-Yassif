@@ -96,7 +96,7 @@ const Materials: React.FC = () => {
           <div ref={typesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {types.map((t2) => (
               <div key={t2.key} className="group">
-                <div className="relative overflow-hidden aspect-[4/5] mb-5 border border-divider/50">
+                <div className="relative overflow-hidden aspect-4/5 mb-5 border border-divider/50">
                   <SelectionHeart item={`m:${t2.id}`} label={t(`materials.type_${t2.key}`)} />
                   <img
                     src={img(t2.id, 700, 900)}
@@ -164,7 +164,7 @@ const Materials: React.FC = () => {
           <p className="text-muted font-light max-w-2xl mb-12">{t('materials.trends_intro')}</p>
           <div ref={trendsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {trends.map((t3) => (
-              <div key={t3.key} className="group relative overflow-hidden aspect-[4/3] border border-divider/50">
+              <div key={t3.key} className="group relative overflow-hidden aspect-4/3 border border-divider/50">
                 <SelectionHeart item={`m:${t3.id}`} label={t(`materials.trend_${t3.key}`)} />
                 <img
                   src={img(t3.id, 1200, 900)}
@@ -177,8 +177,8 @@ const Materials: React.FC = () => {
                   decoding="async"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                <div className="absolute bottom-6 start-6 end-6">
+                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute bottom-6 inset-s-6 inset-e-6">
                   <h3 className="font-serif text-2xl text-white mb-2">{t(`materials.trend_${t3.key}`)}</h3>
                   <p className="text-gray-200 text-sm leading-relaxed max-w-md">
                     {t(`materials.trend_${t3.key}_desc`)}
@@ -200,7 +200,7 @@ const Materials: React.FC = () => {
           {explorerLaunched ? (
             <Suspense
               fallback={
-                <div className="w-full h-[500px] md:h-[600px] flex items-center justify-center bg-neutral-900 border border-divider rounded-sm">
+                <div className="w-full h-[500px] md:h-[600px] flex items-center justify-center bg-neutral-900 border border-divider rounded-xs">
                   <Loader2 size={32} className="text-accent animate-spin" aria-label={t('explorer.loading')} />
                 </div>
               }
@@ -211,7 +211,7 @@ const Materials: React.FC = () => {
             <button
               type="button"
               onClick={() => setExplorerLaunched(true)}
-              className="w-full h-[280px] md:h-[360px] flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-secondary via-neutral-900 to-secondary border border-divider hover:border-accent transition-colors group"
+              className="w-full h-[280px] md:h-[360px] flex flex-col items-center justify-center gap-4 bg-linear-to-br from-secondary via-neutral-900 to-secondary border border-divider hover:border-accent transition-colors group"
               aria-label={t('explorer.launch')}
             >
               <Box size={64} className="text-muted group-hover:text-accent transition-colors" />

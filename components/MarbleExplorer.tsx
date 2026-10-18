@@ -187,7 +187,7 @@ const MarbleExplorer: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full h-[500px] md:h-[600px] bg-gradient-to-b from-neutral-900 to-black rounded-sm overflow-hidden border border-divider">
+    <div className="relative w-full h-[500px] md:h-[600px] bg-linear-to-b from-neutral-900 to-black rounded-xs overflow-hidden border border-divider">
       <Canvas
         camera={{ position: [3, 2.5, 4], fov: 45 }}
         dpr={[1, 2]}
@@ -228,7 +228,7 @@ const MarbleExplorer: React.FC = () => {
       </div>
 
       {/* FINISH switcher — bottom */}
-      <div className="absolute bottom-4 start-4 end-4 md:end-auto md:start-4">
+      <div className="absolute bottom-4 inset-s-4 inset-e-4 md:inset-e-auto md:inset-s-4">
         <div className="inline-flex items-center gap-1 bg-black/60 backdrop-blur-md border border-divider p-1 rounded-full">
           {finishes.map((f) => (
             <button
@@ -250,13 +250,13 @@ const MarbleExplorer: React.FC = () => {
       <button
         type="button"
         onClick={() => setRotating((v) => !v)}
-        className="absolute bottom-4 end-4 hidden md:block px-3 py-1.5 text-[10px] uppercase tracking-widest bg-black/60 backdrop-blur-md border border-divider text-muted hover:text-light rounded-full transition-colors"
+        className="absolute bottom-4 inset-e-4 hidden md:block px-3 py-1.5 text-[10px] uppercase tracking-widest bg-black/60 backdrop-blur-md border border-divider text-muted hover:text-light rounded-full transition-colors"
       >
         {rotating ? t('explorer.pause') : t('explorer.rotate')}
       </button>
 
       {/* Interaction hint — top start */}
-      <div className="absolute top-4 start-4 text-[10px] uppercase tracking-widest text-muted/60 pointer-events-none max-w-[40%]">
+      <div className="absolute top-4 inset-s-4 text-[10px] uppercase tracking-widest text-muted/60 pointer-events-none max-w-[40%]">
         {t('explorer.hint')}
       </div>
     </div>

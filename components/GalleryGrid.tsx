@@ -146,7 +146,7 @@ const GalleryGrid: React.FC = () => {
 
   if (error) {
     return (
-      <div className="text-muted text-sm py-10 border border-dashed border-divider rounded-sm text-center">
+      <div className="text-muted text-sm py-10 border border-dashed border-divider rounded-xs text-center">
         {t('gallery.load_error')}
       </div>
     );
@@ -158,7 +158,7 @@ const GalleryGrid: React.FC = () => {
         {Array.from({ length: 9 }).map((_, i) => (
           <div
             key={i}
-            className="mb-3 md:mb-4 bg-secondary border border-divider rounded-sm animate-pulse"
+            className="mb-3 md:mb-4 bg-secondary border border-divider rounded-xs animate-pulse"
             style={{ height: `${180 + (i % 3) * 70}px` }}
           />
         ))}
@@ -223,7 +223,7 @@ const GalleryGrid: React.FC = () => {
             <button
               type="button"
               onClick={(e) => openItem(i, e.currentTarget)}
-              className="group relative block w-full overflow-hidden bg-secondary border border-divider rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="group relative block w-full overflow-hidden bg-secondary border border-divider rounded-xs focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={item.caption ? `${item.caption} — ${t('gallery.open')}` : t('gallery.open')}
             >
               <img
@@ -247,7 +247,7 @@ const GalleryGrid: React.FC = () => {
                 </span>
               )}
               {item.caption && (
-                <span className="pointer-events-none absolute inset-x-0 bottom-0 p-3 pt-8 bg-gradient-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 p-3 pt-8 bg-linear-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                   <span className="text-white text-xs md:text-sm font-light leading-snug block text-start">{item.caption}</span>
                 </span>
               )}
@@ -265,7 +265,7 @@ const GalleryGrid: React.FC = () => {
           role="dialog"
           aria-modal="true"
           aria-label={active.caption || t('gallery.lightbox_label')}
-          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+          className="fixed inset-0 z-100 bg-black/95 flex items-center justify-center p-4"
           onClick={close}
         >
           <SelectionHeart item={active.resourceType === 'video' ? `v:${active.publicId.slice(16)}` : active.publicId} label={active.caption || t('gallery.untitled')} />
@@ -276,7 +276,7 @@ const GalleryGrid: React.FC = () => {
               close();
             }}
             aria-label={t('gallery.close')}
-            className="absolute top-3 end-3 md:top-5 md:end-5 text-white/80 hover:text-white p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="absolute top-3 inset-e-3 md:top-5 md:inset-e-5 text-white/80 hover:text-white p-3 rounded-full focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent"
           >
             <X size={28} />
           </button>
@@ -288,7 +288,7 @@ const GalleryGrid: React.FC = () => {
                   prev();
                 }}
                 aria-label={t('gallery.prev')}
-                className="absolute start-1 md:start-6 text-white/80 hover:text-white p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="absolute inset-s-1 md:inset-s-6 text-white/80 hover:text-white p-3 rounded-full focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <ChevronLeft size={40} />
               </button>
@@ -298,7 +298,7 @@ const GalleryGrid: React.FC = () => {
                   next();
                 }}
                 aria-label={t('gallery.next')}
-                className="absolute end-1 md:end-6 text-white/80 hover:text-white p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="absolute inset-e-1 md:inset-e-6 text-white/80 hover:text-white p-3 rounded-full focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <ChevronRight size={40} />
               </button>
