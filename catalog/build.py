@@ -168,6 +168,16 @@ for section in SECTIONS:
         group = wides[:2]
         grouped.append((group, "pair-wide" if len(group) == 2 else "single-wide"))
         wides = wides[2:]
+    if section["slug"] == "stone":
+        # Keep each slab beside its approved page sculpture when a replacement
+        # changes aspect ratio. Only the frame layout follows the new images.
+        by_number = {photo_number(path): path for path in remaining}
+        page_groups = ((6,), (1, 2), (3, 5), (7, 8), (9, 10), (11, 12, 13))
+        grouped = [
+            ([by_number[number] for number in group],
+             "wide" if len(group) == 3 else "pair-wide" if len(group) == 2 else "single-wide")
+            for group in page_groups
+        ]
     for group, layout in grouped:
         used.extend(group)
         numbers = [photo_number(p) for p in group]
