@@ -1,4 +1,6 @@
 import photoAssets from '../retouched-photo-assets.json' with { type: 'json' };
+import homePhotoAssets from '../public-photo-assets.json' with { type: 'json' };
+import slabSources from '../gallery-slab-sources.json' with { type: 'json' };
 
 export type RetouchedPhoto = {
   src: string;
@@ -9,8 +11,29 @@ export type RetouchedPhoto = {
 };
 
 const assets = photoAssets as Record<string, RetouchedPhoto>;
+const homePhotos = homePhotoAssets as Record<string, {
+  src: string; srcSet: string; width: number; height: number;
+}>;
 
-export const retouchedPhoto = (publicId: string): RetouchedPhoto | undefined => assets[publicId];
+// Share the homepage exports so future slab replacements reach every gallery size.
+const slabAssets: Record<string, RetouchedPhoto> = {};
+for (const [publicId, slabId] of Object.entries(slabSources)) {
+  const photo = homePhotos[`/stone-slabs/edited/${slabId}.jpeg`];
+  if (!photo) continue;
+  slabAssets[publicId] = {
+    src: photo.src,
+    width: photo.width,
+    height: photo.height,
+    editedWithAI: true,
+    variants: photo.srcSet.split(', ').map(entry => {
+      const [src, descriptor] = entry.split(' ');
+      const width = Number.parseInt(descriptor, 10);
+      return { src, width, height: Math.round(photo.height * width / photo.width) };
+    }),
+  };
+}
+
+export const retouchedPhoto = (publicId: string): RetouchedPhoto | undefined => slabAssets[publicId] || assets[publicId];
 
 /** Select real exported pixels; never advertise the original's larger size. */
 export function retouchedPhotoUrl(publicId: string, width: number): string | undefined {

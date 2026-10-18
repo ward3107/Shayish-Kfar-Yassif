@@ -5,7 +5,8 @@ remove unrelated people, tools, packaging and installation debris, and improve
 framing, perspective and illumination. Two existing clean visualizations are
 retained. These are edited illustrations: reconstructed areas, stone patterns
 and other details can differ from the original photograph. The lightbox labels
-AI versions and always offers the original for direct comparison.
+AI versions. Original files are retained privately in the asset history; the
+public gallery has no original-photo comparison control.
 
 Retouches are exported to `public/photo-retouch-v2` with content fingerprints
 and actual width/height metadata in `retouched-photo-assets.json`. The gallery,
@@ -71,6 +72,29 @@ available detail; they do not recover information absent from a source.
 Existing PDF URLs are retained. The catalog identifies digital reconstructions.
 
 ## Validation
+
+### Gallery consistency update — 18 October 2026
+
+`gallery-slab-sources.json` maps all 15 existing slab gallery records to the
+13 approved homepage slabs. `retouchedPhotos.ts` resolves their thumbnail,
+responsive and lightbox variants directly from `public-photo-assets.json`.
+No duplicate slab uploads or new gallery records are created. The three
+existing views of the final white-and-gold slab share its approved image.
+
+Seven views of the fluted basin were edited with Imagegen to remove the blue
+metal workshop supports and surrounding worktables. Each preserves its own
+viewpoint and uses a neutral display surface with a contact shadow. These are
+AI-edited product illustrations, not additional photographs of an installation.
+The exact source/output associations and SHA-256 hashes are recorded in
+`gallery-sink-cleanup-20261018.json`. Existing originals remain unchanged.
+
+Imagegen prompt:
+
+> Edit this exact product photograph. Preserve the marble basin itself EXACTLY: identical rectangular geometry, precise camera angle and perspective, crop and size in frame, vertical rounded fluting count and shapes, thin rim, basin interior, raised inner ledge, drain opening if visible, and especially every existing white/ivory, black-gray and warm gold stone vein and its placement. Do not redesign, recolor, smooth out or regenerate the sink pattern. Remove ALL blue metal workstands, supporting legs, crossbars and wooden rails, including background worktables. Replace only the surrounding workshop/yard with a clean warm light-gray studio backdrop and a plain matte neutral display surface directly beneath the basin. The basin must rest physically on this continuous surface with a small soft contact shadow, not float. No visible stand, legs, frames, cabinets, faucets, accessories or signage. Keep the entire sink visible with all its bottom fluted edges. Photorealistic premium product photography, softly lit to match the source, natural stone texture, crisp detail. Preserve original portrait aspect ratio. No text.
+
+The seven basin JPEGs in `catalog/enhanced` use the same new edits, and its
+13 slab JPEGs are exact copies of `public/stone-slabs/edited`. Rebuild and review
+both catalog PDF URLs and the preview pages when publishing these sources.
 
 ```sh
 npm run typecheck

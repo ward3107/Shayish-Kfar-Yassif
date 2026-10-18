@@ -1,0 +1,72 @@
+[
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0051",
+    "input": "/photo-retouch-v2/064-IMG-20260718-WA0051-f684fb12f1-1086.webp",
+    "generatedSource": "exec-ff5bf519-4f6b-4bbc-ae6f-75c721290d0b.png",
+    "generatedSha256": "0b47575e5e6936968c73fa76e82bf669db6f2f013807e4307749dade5189f0ec",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0051-0b47575e5e-1086.webp",
+    "catalog": [
+      "special-06-x229.jpeg"
+    ]
+  },
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0055",
+    "input": "/photo-retouch-v2/065-IMG-20260718-WA0055-ad7a918135-1086.webp",
+    "generatedSource": "exec-6c18d86e-94fe-4557-bb6a-c45dffd7448d.png",
+    "generatedSha256": "cfeeee11f8407a271b14d634b92dff3543099bf67d6fab7d895858968678d4c7",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0055-cfeeee11f8-1086.webp",
+    "catalog": [
+      "special-04-x223.jpeg"
+    ]
+  },
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0050",
+    "input": "/photo-retouch-v2/073-IMG-20260718-WA0050-94930d5e43-1086.webp",
+    "generatedSource": "exec-5d434da5-6537-4b64-83fc-40a6f32ba777.png",
+    "generatedSha256": "6814375cd6a93832020acee9348e7f773b72d8f76b6ee49b39126fa01d63f6da",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0050-6814375cd6-1086.webp",
+    "catalog": [
+      "special-05-x230.jpeg"
+    ]
+  },
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0048",
+    "input": "/photo-retouch-v2/074-IMG-20260718-WA0048-a53f0ff3b4-1086.webp",
+    "generatedSource": "exec-8d76bf2a-2d6d-4c05-9544-8e3d04529df9.png",
+    "generatedSha256": "c8afbcc82bfaf1edcf5ab6091dec122a5595ce7a70d4f18897d70ef047e97276",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0048-c8afbcc82b-1086.webp",
+    "catalog": [
+      "special-07-x228.jpeg"
+    ]
+  },
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0047",
+    "input": "/photo-retouch-v2/075-IMG-20260718-WA0047-3144f8f3b1-1086.webp",
+    "generatedSource": "exec-a7bcef7f-cd4b-4774-a349-d96c025e06f4.png",
+    "generatedSha256": "e3bb093c91edf346bac341362df564021a37d55860d7fb323b2f501330c40ec6",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0047-e3bb093c91-1086.webp",
+    "catalog": [
+      "special-02-x222.jpeg"
+    ]
+  },
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0046",
+    "input": "/photo-retouch-v2/076-IMG-20260718-WA0046-dd8982a8cc-1086.webp",
+    "generatedSource": "exec-e3a33d17-c9ca-4b60-bdc2-9ca0a9ed8b3e.png",
+    "generatedSha256": "1575fb2b44f8821e7b0ee01b53c6fbf86378b013444a2073f9aaefa0103fa557",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0046-1575fb2b44-1086.webp",
+    "catalog": [
+      "special-03-x221.jpeg"
+    ]
+  },
+  {
+    "publicId": "shayish/gallery/IMG-20260718-WA0049",
+    "input": "/photo-retouch-v2/077-IMG-20260718-WA0049-48e6faf0bf-1086.webp",
+    "generatedSource": "exec-505c4643-4eca-4003-91c6-78eeff9c4c7a.png",
+    "generatedSha256": "155d0bd23d02d10bca80e88fb7cda5a7883419a8bbe301e24fa7e240644a9ae1",
+    "published": "/photo-retouch-v2/sink-clean-IMG-20260718-WA0049-155d0bd23d-1086.webp",
+    "catalog": [
+      "special-01-x216.jpeg"
+    ]
+  }
+]
