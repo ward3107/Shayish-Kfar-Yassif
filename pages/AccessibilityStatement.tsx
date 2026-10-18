@@ -534,7 +534,7 @@ const AccessibilityStatement: React.FC = () => {
         <div className="space-y-8">
 
           {/* Section 1: Our Commitment */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="commitment-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="commitment-title">
             <h2 id="commitment-title" className="text-2xl font-serif text-accent mb-4">
               {t.commitment.title}
             </h2>
@@ -544,7 +544,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 2: Compliance Level */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="compliance-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="compliance-title">
             <h2 id="compliance-title" className="text-2xl font-serif text-accent mb-4">
               {t.compliance.title}
             </h2>
@@ -553,17 +553,17 @@ const AccessibilityStatement: React.FC = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-neutral-800/50 p-4 rounded-sm">
+              <div className="bg-neutral-800/50 p-4 rounded-xs">
                 <div className="text-accent font-bold mb-1">{t.compliance.lastReview}:</div>
                 <div className="text-light">{formatDate(t.compliance.lastReviewDate)}</div>
               </div>
-              <div className="bg-neutral-800/50 p-4 rounded-sm">
+              <div className="bg-neutral-800/50 p-4 rounded-xs">
                 <div className="text-accent font-bold mb-1">{t.compliance.nextReview}:</div>
                 <div className="text-light">{formatDate(t.compliance.nextReviewDate)}</div>
               </div>
             </div>
 
-            <div className="mt-4 p-4 bg-accent/10 border border-accent/30 rounded-sm">
+            <div className="mt-4 p-4 bg-accent/10 border border-accent/30 rounded-xs">
               <a
                 href={t.compliance.url}
                 target="_blank"
@@ -576,7 +576,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 3: Accessibility Features */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="features-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="features-title">
             <h2 id="features-title" className="text-2xl font-serif text-accent mb-4">
               {t.features.title}
             </h2>
@@ -585,7 +585,7 @@ const AccessibilityStatement: React.FC = () => {
             <ul className="space-y-3" role="list">
               {Object.entries(t.features.items).map(([key, value]) => (
                 <li key={key} className="flex items-start gap-3 text-muted">
-                  <CheckCircle className="text-accent flex-shrink-0 mt-0.5" size={18} aria-hidden="true" />
+                  <CheckCircle className="text-accent shrink-0 mt-0.5" size={18} aria-hidden="true" />
                   <span>{value as string}</span>
                 </li>
               ))}
@@ -593,7 +593,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 4: Known Limitations */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="limitations-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="limitations-title">
             <h2 id="limitations-title" className="text-2xl font-serif text-accent mb-4 flex items-center gap-3">
               <AlertCircle size={24} aria-hidden="true" />
               {t.limitations.title}
@@ -605,17 +605,17 @@ const AccessibilityStatement: React.FC = () => {
 
           {/* Section 5: Coordinator Contact (Highlighted Box) */}
           <section
-            className="bg-accent/20 border-2 border-accent rounded-sm p-8"
+            className="bg-accent/20 border-2 border-accent rounded-xs p-8"
             aria-labelledby="coordinator-title"
           >
             <h2 id="coordinator-title" className="text-2xl font-serif text-accent mb-6">
               {t.coordinator.title}
             </h2>
 
-            <div className="bg-black/30 rounded-sm p-6">
+            <div className="bg-black/30 rounded-xs p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-start gap-4">
-                  <User className="text-accent flex-shrink-0 mt-1" size={20} aria-hidden="true" />
+                  <User className="text-accent shrink-0 mt-1" size={20} aria-hidden="true" />
                   <div>
                     <div className="text-xs text-muted uppercase tracking-wider mb-1">{t.coordinator.name}</div>
                     <div className="text-light font-semibold">{COORDINATOR.name}</div>
@@ -624,7 +624,7 @@ const AccessibilityStatement: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Mail className="text-accent flex-shrink-0 mt-1" size={20} aria-hidden="true" />
+                  <Mail className="text-accent shrink-0 mt-1" size={20} aria-hidden="true" />
                   <div>
                     <div className="text-xs text-muted uppercase tracking-wider mb-1">{t.coordinator.email}</div>
                     <a
@@ -638,7 +638,7 @@ const AccessibilityStatement: React.FC = () => {
 
                 {COORDINATOR.phone && (
                   <div className="flex items-start gap-4">
-                    <Phone className="text-accent flex-shrink-0 mt-1" size={20} aria-hidden="true" />
+                    <Phone className="text-accent shrink-0 mt-1" size={20} aria-hidden="true" />
                     <div>
                       <div className="text-xs text-muted uppercase tracking-wider mb-1">{t.coordinator.phone}</div>
                       <a
@@ -653,7 +653,7 @@ const AccessibilityStatement: React.FC = () => {
                 )}
 
                 <div className="flex items-center gap-4">
-                  <div className="text-accent flex-shrink-0 mt-1 text-xl leading-none" aria-hidden="true">
+                  <div className="text-accent shrink-0 mt-1 text-xl leading-none" aria-hidden="true">
                     ⏱
                   </div>
                   <div>
@@ -666,7 +666,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 6: How to Report */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="report-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="report-title">
             <h2 id="report-title" className="text-2xl font-serif text-accent mb-4">
               {t.report.title}
             </h2>
@@ -675,7 +675,7 @@ const AccessibilityStatement: React.FC = () => {
               {t.report.intro}
             </p>
 
-            <div className="bg-neutral-800/50 border border-neutral-600 rounded-sm p-6 mb-4">
+            <div className="bg-neutral-800/50 border border-neutral-600 rounded-xs p-6 mb-4">
               <div className="text-accent font-bold mb-3">{t.report.instructions}</div>
               <ul className="space-y-2 text-sm text-muted">
                 <li className="flex items-start gap-2">
@@ -699,7 +699,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Section 7: Continuous Improvement */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="improvement-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="improvement-title">
             <h2 id="improvement-title" className="text-2xl font-serif text-accent mb-4">
               {t.improvement.title}
             </h2>
@@ -709,7 +709,7 @@ const AccessibilityStatement: React.FC = () => {
           </section>
 
           {/* Widget Info Section */}
-          <section className="bg-secondary border border-divider rounded-sm p-8" aria-labelledby="widget-title">
+          <section className="bg-secondary border border-divider rounded-xs p-8" aria-labelledby="widget-title">
             <h2 id="widget-title" className="text-2xl font-serif text-accent mb-4">
               {t.widget.title}
             </h2>
@@ -721,7 +721,7 @@ const AccessibilityStatement: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {t.widget.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-2 text-sm text-muted">
-                  <span className="text-accent flex-shrink-0" aria-hidden="true">✓</span>
+                  <span className="text-accent shrink-0" aria-hidden="true">✓</span>
                   <span>{feature}</span>
                 </div>
               ))}
@@ -731,19 +731,19 @@ const AccessibilityStatement: React.FC = () => {
               <h3 className="text-lg font-semibold text-light mb-3">{t.widget.keyboardTitle}</h3>
               <dl className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                 <div className="flex items-center gap-2">
-                  <kbd className="bg-neutral-800 px-2 py-1 rounded text-xs text-muted">Tab</kbd>
+                  <kbd className="bg-neutral-800 px-2 py-1 rounded-sm text-xs text-muted">Tab</kbd>
                   <span className="text-muted">{t.widget.shortcuts.tab}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="bg-neutral-800 px-2 py-1 rounded text-xs text-muted">Shift + Tab</kbd>
+                  <kbd className="bg-neutral-800 px-2 py-1 rounded-sm text-xs text-muted">Shift + Tab</kbd>
                   <span className="text-muted">{t.widget.shortcuts.shiftTab}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="bg-neutral-800 px-2 py-1 rounded text-xs text-muted">Enter / Space</kbd>
+                  <kbd className="bg-neutral-800 px-2 py-1 rounded-sm text-xs text-muted">Enter / Space</kbd>
                   <span className="text-muted">{t.widget.shortcuts.enter}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="bg-neutral-800 px-2 py-1 rounded text-xs text-muted">Esc</kbd>
+                  <kbd className="bg-neutral-800 px-2 py-1 rounded-sm text-xs text-muted">Esc</kbd>
                   <span className="text-muted">{t.widget.shortcuts.esc}</span>
                 </div>
               </dl>

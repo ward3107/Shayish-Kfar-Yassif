@@ -148,7 +148,7 @@ const Login: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
     <div className="min-h-screen bg-primary flex items-center justify-center px-6 py-10">
       <form
         onSubmit={submit}
-        className="w-full max-w-sm bg-secondary border border-divider rounded-sm p-8 space-y-6"
+        className="w-full max-w-sm bg-secondary border border-divider rounded-xs p-8 space-y-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <Lock className="text-accent" size={22} />
@@ -163,7 +163,7 @@ const Login: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="w-full bg-primary border border-divider rounded-sm px-4 py-4 text-lg text-light focus:outline-none focus:border-accent"
+          className="w-full bg-primary border border-divider rounded-xs px-4 py-4 text-lg text-light focus:outline-hidden focus:border-accent"
           autoComplete="current-password"
         />
         {error && (
@@ -175,7 +175,7 @@ const Login: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
         <button
           type="submit"
           disabled={pending || !password}
-          className="w-full bg-accent text-primary font-bold uppercase tracking-widest text-sm py-4 rounded-sm hover:bg-light transition-colors disabled:opacity-50"
+          className="w-full bg-accent text-primary font-bold uppercase tracking-widest text-sm py-4 rounded-xs hover:bg-light transition-colors disabled:opacity-50"
         >
           {pending ? 'Signing in…' : 'Sign in'}
         </button>
@@ -429,15 +429,15 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         <VisualizerAdmin />
         {/* PWA install prompt (Android/desktop Chrome) */}
         {installEvent && !installed && (
-          <div className="flex items-center gap-3 border border-accent/40 bg-accent/10 rounded-sm p-4">
-            <Download className="text-accent flex-shrink-0" size={22} />
+          <div className="flex items-center gap-3 border border-accent/40 bg-accent/10 rounded-xs p-4">
+            <Download className="text-accent shrink-0" size={22} />
             <div className="flex-1 text-sm">
               <div className="font-semibold text-light">Install as app</div>
               <div className="text-muted text-xs">One-tap access from your home screen. Stays signed in 30 days.</div>
             </div>
             <button
               onClick={promptInstall}
-              className="bg-accent text-primary font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-sm hover:bg-light transition-colors"
+              className="bg-accent text-primary font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-xs hover:bg-light transition-colors"
             >
               Install
             </button>
@@ -446,8 +446,8 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
 
         {/* iOS instructions (Safari has no beforeinstallprompt) */}
         {!installed && !installEvent && /iPhone|iPad/i.test(navigator.userAgent) && (
-          <div className="flex items-start gap-3 border border-divider bg-secondary/60 rounded-sm p-4 text-sm">
-            <Download className="text-accent flex-shrink-0 mt-0.5" size={20} />
+          <div className="flex items-start gap-3 border border-divider bg-secondary/60 rounded-xs p-4 text-sm">
+            <Download className="text-accent shrink-0 mt-0.5" size={20} />
             <div className="text-muted">
               <span className="text-light font-semibold">Install on iPhone:</span> tap the Share button in Safari, then
               choose <span className="text-light">Add to Home Screen</span>. The app icon appears with your other apps.
@@ -456,7 +456,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         )}
 
         {!configOk && (
-          <div className="border border-red-500/50 bg-red-500/10 rounded-sm p-4 text-sm">
+          <div className="border border-red-500/50 bg-red-500/10 rounded-xs p-4 text-sm">
             <div className="font-bold text-red-300 mb-1">Cloudinary not configured</div>
             <p className="text-muted">
               Set <code>VITE_CLOUDINARY_CLOUD_NAME</code> and <code>VITE_CLOUDINARY_UPLOAD_PRESET</code> in Vercel env vars,
@@ -466,7 +466,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         )}
 
         {error && (
-          <div className="flex items-start justify-between gap-3 border border-red-500/50 bg-red-500/10 rounded-sm p-4 text-sm">
+          <div className="flex items-start justify-between gap-3 border border-red-500/50 bg-red-500/10 rounded-xs p-4 text-sm">
             <div className="flex items-start gap-2">
               <AlertCircle className="text-red-400 mt-0.5" size={18} />
               <span className="text-muted">{error}</span>
@@ -486,7 +486,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
             role="button"
             tabIndex={0}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') inputRef.current?.click(); }}
-            className={`border-2 border-dashed rounded-sm p-8 md:p-10 text-center cursor-pointer transition-colors select-none ${
+            className={`border-2 border-dashed rounded-xs p-8 md:p-10 text-center cursor-pointer transition-colors select-none ${
               configOk ? 'border-divider hover:border-accent bg-secondary/40 active:bg-secondary/70' : 'border-divider/40 opacity-60 cursor-not-allowed'
             }`}
           >
@@ -513,7 +513,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
             type="button"
             onClick={() => cameraRef.current?.click()}
             disabled={!configOk}
-            className={`md:hidden flex items-center justify-center gap-3 bg-accent text-primary rounded-sm p-5 font-bold uppercase tracking-widest text-sm transition-colors ${
+            className={`md:hidden flex items-center justify-center gap-3 bg-accent text-primary rounded-xs p-5 font-bold uppercase tracking-widest text-sm transition-colors ${
               configOk ? 'hover:bg-light active:opacity-80' : 'opacity-50 cursor-not-allowed'
             }`}
           >
@@ -535,7 +535,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
           <div className="space-y-2">
             <h2 className="text-xs uppercase tracking-widest text-muted">Uploading</h2>
             {activeJobs.map((job) => (
-              <div key={job.id} className="bg-secondary border border-divider rounded-sm p-3">
+              <div key={job.id} className="bg-secondary border border-divider rounded-xs p-3">
                 <div className="flex items-center justify-between text-sm mb-1">
                   <span className="truncate flex-1 pr-4">{job.file.name}</span>
                   <span className="text-muted text-xs">{formatBytes(job.file.size)}</span>
@@ -573,7 +573,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         {items === null ? (
           <div className="text-muted text-sm">Loading media…</div>
         ) : filtered.length === 0 ? (
-          <div className="text-muted text-sm py-16 text-center border border-dashed border-divider rounded-sm">
+          <div className="text-muted text-sm py-16 text-center border border-dashed border-divider rounded-xs">
             No {filter === 'all' ? 'media' : filter + 's'} yet.
           </div>
         ) : (
@@ -581,7 +581,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
             {filtered.map((item) => (
               <div
                 key={item.publicId}
-                className="group relative aspect-square bg-secondary border border-divider rounded-sm overflow-hidden"
+                className="group relative aspect-square bg-secondary border border-divider rounded-xs overflow-hidden"
               >
                 {item.resourceType === 'image' ? (
                   <img src={imgUrl(item.publicId, 640, item.width)} onError={(event) => originalOnError(event, item.secureUrl)} alt={enrich(item).caption} className="w-full h-full object-cover" loading="lazy" decoding="async" />
@@ -595,14 +595,14 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
                     can see at a glance which photos are featured. */}
                 {getFeaturedOrder(item) !== null && (
                   <div
-                    className="absolute top-2 start-2 z-10 bg-accent text-primary rounded-full p-1.5 shadow-lg"
+                    className="absolute top-2 inset-s-2 z-10 bg-accent text-primary rounded-full p-1.5 shadow-lg"
                     title={`Pinned #${getFeaturedOrder(item)}`}
                   >
                     <Star size={12} fill="currentColor" strokeWidth={0} />
                   </div>
                 )}
                 {/* On mobile, controls are always visible (no hover). On desktop, appear on hover. */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2 md:p-3">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/40 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2 md:p-3">
                   <div className="flex items-center gap-1 text-[10px] uppercase tracking-widest text-white/80">
                     {item.resourceType === 'image' ? <ImageIcon size={12} /> : <Film size={12} />}
                     <span>{item.format}</span>
@@ -650,7 +650,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-secondary border border-divider rounded-sm p-6 max-w-sm w-full"
+            className="bg-secondary border border-divider rounded-xs p-6 max-w-sm w-full"
           >
             <h3 className="text-lg font-serif text-light mb-2 flex items-center gap-2">
               <AlertCircle className="text-red-400" size={18} /> Delete this file?
@@ -664,7 +664,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
               </button>
               <button
                 onClick={() => doDelete(confirmDelete)}
-                className="px-4 py-3 text-sm font-bold bg-red-500 text-white rounded-sm hover:bg-red-600"
+                className="px-4 py-3 text-sm font-bold bg-red-500 text-white rounded-xs hover:bg-red-600"
               >
                 <span className="flex items-center gap-1">
                   <Trash2 size={14} /> Delete
@@ -677,7 +677,7 @@ const Dashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
 
       {/* Toast for finished uploads */}
       {jobs.some((j) => j.status === 'done') && (
-        <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:w-auto flex items-center gap-2 bg-accent text-primary px-4 py-3 rounded-sm text-sm font-bold shadow-lg">
+        <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:w-auto flex items-center gap-2 bg-accent text-primary px-4 py-3 rounded-xs text-sm font-bold shadow-lg">
           <CheckCircle2 size={16} /> {jobs.filter((j) => j.status === 'done').length} uploaded
           <button
             onClick={() => setJobs((prev) => prev.filter((j) => j.status !== 'done'))}
@@ -726,7 +726,7 @@ const EditModal: React.FC<{
       <form
         onClick={(e) => e.stopPropagation()}
         onSubmit={submit}
-        className="bg-secondary border border-divider rounded-sm p-5 md:p-6 max-w-md w-full space-y-5"
+        className="bg-secondary border border-divider rounded-xs p-5 md:p-6 max-w-md w-full space-y-5"
       >
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-serif text-light">Edit details</h3>
@@ -743,9 +743,9 @@ const EditModal: React.FC<{
         {/* Preview thumb */}
         <div className="flex gap-3">
           {item.resourceType === 'image' ? (
-            <img src={imgUrl(item.publicId, 320, item.width)} onError={(event) => originalOnError(event, item.secureUrl)} alt="" className="w-20 h-20 object-cover rounded-sm border border-divider" />
+            <img src={imgUrl(item.publicId, 320, item.width)} onError={(event) => originalOnError(event, item.secureUrl)} alt="" className="w-20 h-20 object-cover rounded-xs border border-divider" />
           ) : (
-            <div className="w-20 h-20 flex items-center justify-center bg-black rounded-sm border border-divider">
+            <div className="w-20 h-20 flex items-center justify-center bg-black rounded-xs border border-divider">
               <Film className="text-accent" size={24} />
             </div>
           )}
@@ -768,7 +768,7 @@ const EditModal: React.FC<{
             maxLength={200}
             autoFocus
             placeholder="אי מטבח משיש — כפר יאסיף"
-            className="w-full bg-primary border border-divider rounded-sm px-3 py-3 text-sm text-light focus:outline-none focus:border-accent"
+            className="w-full bg-primary border border-divider rounded-xs px-3 py-3 text-sm text-light focus:outline-hidden focus:border-accent"
           />
           <div className="text-[10px] text-muted mt-1 text-end">{alt.length} / 200</div>
         </div>
@@ -782,7 +782,7 @@ const EditModal: React.FC<{
             id="edit-cat"
             value={category}
             onChange={(e) => setCategory(e.target.value as Category | '')}
-            className="w-full bg-primary border border-divider rounded-sm px-3 py-3 text-sm text-light focus:outline-none focus:border-accent"
+            className="w-full bg-primary border border-divider rounded-xs px-3 py-3 text-sm text-light focus:outline-hidden focus:border-accent"
           >
             <option value="">— none —</option>
             {CATEGORIES.map((c) => (
@@ -792,7 +792,7 @@ const EditModal: React.FC<{
         </div>
 
         {/* Pin */}
-        <div className="border border-divider rounded-sm p-4 space-y-3">
+        <div className="border border-divider rounded-xs p-4 space-y-3">
           <label className="flex items-center gap-3 cursor-pointer">
             <input
               type="checkbox"
@@ -817,7 +817,7 @@ const EditModal: React.FC<{
                 max={999}
                 value={order}
                 onChange={(e) => setOrder(Number(e.target.value))}
-                className="w-24 bg-primary border border-divider rounded-sm px-3 py-2 text-sm text-light focus:outline-none focus:border-accent"
+                className="w-24 bg-primary border border-divider rounded-xs px-3 py-2 text-sm text-light focus:outline-hidden focus:border-accent"
               />
               <span className="text-xs text-muted">lower first (0-999)</span>
             </div>
@@ -834,7 +834,7 @@ const EditModal: React.FC<{
           </button>
           <button
             type="submit"
-            className="px-6 py-3 text-sm font-bold bg-accent text-primary rounded-sm hover:bg-light transition-colors"
+            className="px-6 py-3 text-sm font-bold bg-accent text-primary rounded-xs hover:bg-light transition-colors"
           >
             Save
           </button>

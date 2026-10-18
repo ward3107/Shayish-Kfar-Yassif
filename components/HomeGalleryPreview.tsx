@@ -85,7 +85,7 @@ const HomeGalleryPreview: React.FC = () => {
       {items === null ? (
         <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 md:gap-4" aria-hidden>
           {Array.from({ length: PREVIEW_COUNT }).map((_, i) => (
-            <div key={i} className="mb-3 md:mb-4 bg-secondary border border-divider rounded-sm animate-pulse" style={{ height: `${190 + (i % 3) * 60}px` }} />
+            <div key={i} className="mb-3 md:mb-4 bg-secondary border border-divider rounded-xs animate-pulse" style={{ height: `${190 + (i % 3) * 60}px` }} />
           ))}
         </div>
       ) : items.length === 0 ? null : (
@@ -94,7 +94,7 @@ const HomeGalleryPreview: React.FC = () => {
             <Link
               key={item.publicId}
               to="/gallery"
-              className="group relative block w-full mb-3 md:mb-4 overflow-hidden bg-secondary border border-divider rounded-sm break-inside-avoid hover:border-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="group relative block w-full mb-3 md:mb-4 overflow-hidden bg-secondary border border-divider rounded-xs break-inside-avoid hover:border-accent transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={item.caption ? `${item.caption} — ${t('home.view_all')}` : t('home.view_all')}
             >
               <img

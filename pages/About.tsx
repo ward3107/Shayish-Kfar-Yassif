@@ -40,7 +40,7 @@ const About: React.FC = () => {
                   className="w-full h-[500px] object-cover"
                 />
               ) : (
-                <div className="w-full h-[500px] bg-gradient-to-br from-secondary via-primary to-secondary opacity-80" />
+                <div className="w-full h-[500px] bg-linear-to-br from-secondary via-primary to-secondary opacity-80" />
               )}
             </div>
         </div>
@@ -84,7 +84,7 @@ const About: React.FC = () => {
                    className="w-full h-auto"
                  />
                ) : (
-                 <div className="w-full aspect-[4/3] bg-gradient-to-br from-secondary via-primary to-secondary" />
+                 <div className="w-full aspect-4/3 bg-linear-to-br from-secondary via-primary to-secondary" />
                )}
             </div>
             <div>

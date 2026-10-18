@@ -27,7 +27,7 @@ export default function VisualizerAdmin() {
   return <section className="border border-divider bg-secondary p-5 md:p-7 space-y-4" dir="rtl" aria-labelledby="visualizer-admin-title">
     <div className="flex flex-wrap items-center justify-between gap-4">
       <div><h2 id="visualizer-admin-title" className="text-xl font-serif text-light">הדמיית אבן במטבח של הלקוח</h2><p className="text-sm text-muted mt-2">העלאת תמונת מטבח והחלפת המשטח בלוח שנבחר מהאתר.</p></div>
-      <button type="button" role="switch" aria-checked={settings?.enabled ?? false} aria-label="הפעלת הדמיית מטבח ללקוחות" disabled={!settings || saving || (!settings.enabled && !settings.configured)} onClick={toggle} className="min-h-12 border border-divider px-5 py-3 text-light bg-primary disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent">
+      <button type="button" role="switch" aria-checked={settings?.enabled ?? false} aria-label="הפעלת הדמיית מטבח ללקוחות" disabled={!settings || saving || (!settings.enabled && !settings.configured)} onClick={toggle} className="min-h-12 border border-divider px-5 py-3 text-light bg-primary disabled:opacity-60 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-accent">
         {saving ? 'שומר…' : settings?.enabled ? 'ON · פעיל ללקוחות' : 'OFF · כבוי ללקוחות'}
       </button>
     </div>

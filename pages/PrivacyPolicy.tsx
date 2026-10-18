@@ -164,11 +164,11 @@ const PrivacyPolicy: React.FC = () => {
       <div className="container mx-auto px-6 py-12">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Table of Contents - Sidebar */}
-          <aside className="lg:w-72 flex-shrink-0">
+          <aside className="lg:w-72 shrink-0">
             {/* Mobile TOC Toggle */}
             <button
               onClick={() => setMobileTocOpen(!mobileTocOpen)}
-              className="lg:hidden w-full flex items-center justify-between p-4 bg-secondary border border-divider rounded-sm mb-6"
+              className="lg:hidden w-full flex items-center justify-between p-4 bg-secondary border border-divider rounded-xs mb-6"
               aria-label="Toggle table of contents"
             >
               <span className="font-bold text-sm uppercase tracking-wider">{t.tableOfContents}</span>
@@ -179,7 +179,7 @@ const PrivacyPolicy: React.FC = () => {
             <nav
               className={`${
                 mobileTocOpen ? 'block' : 'hidden'
-              } lg:block sticky top-32 bg-secondary border border-divider rounded-sm p-6 max-h-[calc(100vh-200px)] overflow-y-auto`}
+              } lg:block sticky top-32 bg-secondary border border-divider rounded-xs p-6 max-h-[calc(100vh-200px)] overflow-y-auto`}
             >
               <h3 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">
                 {t.tableOfContents}
@@ -195,7 +195,7 @@ const PrivacyPolicy: React.FC = () => {
                           : 'text-muted hover:text-light hover:bg-neutral-800'
                       }`}
                     >
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-current"></span>
+                      <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-current"></span>
                       <span>{section.title}</span>
                     </button>
                   </li>
@@ -206,7 +206,7 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* Main Content */}
           <main className="flex-1 max-w-4xl">
-            <div className="bg-secondary border border-divider rounded-sm p-8 md:p-12 space-y-12">
+            <div className="bg-secondary border border-divider rounded-xs p-8 md:p-12 space-y-12">
               {/* Section 1 - Introduction */}
               <section data-section="introduction" id="introduction" className="scroll-mt-32">
                 <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
@@ -215,7 +215,7 @@ const PrivacyPolicy: React.FC = () => {
                 <div className="prose prose-invert max-w-none">
                   <p className="text-muted leading-relaxed mb-4">{t.section1.para1}</p>
 
-                  <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 my-6">
+                  <div className="bg-neutral-800/50 border border-divider rounded-xs p-6 my-6">
                     <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                       {t.section1.controllerTitle}
                     </h4>
@@ -265,7 +265,7 @@ const PrivacyPolicy: React.FC = () => {
 
                 <div className="space-y-6">
                   {/* Direct Data */}
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-6">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-6">
                     <h3 className="text-lg font-bold text-light mb-4 flex items-center gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm">א</span>
                       {t.section2.directData.title}
@@ -273,22 +273,22 @@ const PrivacyPolicy: React.FC = () => {
                     <p className="text-muted mb-4">{t.section2.directData.desc}</p>
                     <ul className="space-y-2 text-sm text-muted">
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.directData.item1}</span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.directData.item2}</span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.directData.item3}</span>
                       </li>
                     </ul>
                   </div>
 
                   {/* Automatic Data */}
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-6">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-6">
                     <h3 className="text-lg font-bold text-light mb-4 flex items-center gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm">ב</span>
                       {t.section2.autoData.title}
@@ -301,30 +301,30 @@ const PrivacyPolicy: React.FC = () => {
                     </div>
                     <ul className="space-y-2 text-sm text-muted">
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.autoData.item1}</span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.autoData.item2}</span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.autoData.item3}</span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.autoData.item4}</span>
                       </li>
                       <li className="flex items-start gap-3">
-                        <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                        <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                         <span>{t.section2.autoData.item5}</span>
                       </li>
                     </ul>
                   </div>
 
                   {/* Third-party Data */}
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-6">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-6">
                     <h3 className="text-lg font-bold text-light mb-4 flex items-center gap-3">
                       <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white text-sm">ג</span>
                       {t.section2.thirdPartyData.title}
@@ -333,19 +333,19 @@ const PrivacyPolicy: React.FC = () => {
 
                     <div className="space-y-4">
                       {/* Google Analytics */}
-                      <div className="border border-neutral-600 rounded-sm p-4">
+                      <div className="border border-neutral-600 rounded-xs p-4">
                         <h4 className="font-bold text-light mb-2">Google Analytics 4</h4>
                         <p className="text-sm text-muted">{t.section2.thirdPartyData.ga4}</p>
                       </div>
 
                       {/* Facebook Pixel */}
-                      <div className="border border-neutral-600 rounded-sm p-4">
+                      <div className="border border-neutral-600 rounded-xs p-4">
                         <h4 className="font-bold text-light mb-2">Facebook Pixel / Meta</h4>
                         <p className="text-sm text-muted">{t.section2.thirdPartyData.facebook}</p>
                       </div>
 
                       {/* Google Ads */}
-                      <div className="border border-neutral-600 rounded-sm p-4">
+                      <div className="border border-neutral-600 rounded-xs p-4">
                         <h4 className="font-bold text-light mb-2">Google Ads</h4>
                         <p className="text-sm text-muted">{t.section2.thirdPartyData.googleAds}</p>
                       </div>
@@ -374,7 +374,7 @@ const PrivacyPolicy: React.FC = () => {
                       <tr className="border-b border-divider bg-neutral-800/30">
                         <td className="p-4 text-light">{t.section3.table.row1.purpose}</td>
                         <td className="p-4">
-                          <span className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 rounded text-xs font-bold uppercase">
+                          <span className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 rounded-sm text-xs font-bold uppercase">
                             {t.section3.table.legitimateInterest}
                           </span>
                         </td>
@@ -382,7 +382,7 @@ const PrivacyPolicy: React.FC = () => {
                       <tr className="border-b border-divider">
                         <td className="p-4 text-light">{t.section3.table.row2.purpose}</td>
                         <td className="p-4">
-                          <span className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded text-xs font-bold uppercase">
+                          <span className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded-sm text-xs font-bold uppercase">
                             {t.section3.table.consent}
                           </span>
                         </td>
@@ -390,7 +390,7 @@ const PrivacyPolicy: React.FC = () => {
                       <tr className="border-b border-divider bg-neutral-800/30">
                         <td className="p-4 text-light">{t.section3.table.row3.purpose}</td>
                         <td className="p-4">
-                          <span className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded text-xs font-bold uppercase">
+                          <span className="inline-block px-3 py-1 bg-green-900/30 text-green-400 rounded-sm text-xs font-bold uppercase">
                             {t.section3.table.consent}
                           </span>
                         </td>
@@ -398,7 +398,7 @@ const PrivacyPolicy: React.FC = () => {
                       <tr className="bg-neutral-800/30">
                         <td className="p-4 text-light">{t.section3.table.row4.purpose}</td>
                         <td className="p-4">
-                          <span className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 rounded text-xs font-bold uppercase">
+                          <span className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 rounded-sm text-xs font-bold uppercase">
                             {t.section3.table.legitimateInterest}
                           </span>
                         </td>
@@ -417,8 +417,8 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-6">{t.section4.intro}</p>
 
                 <div className="space-y-4">
-                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-sm">
-                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-lg">G</div>
+                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-xs">
+                    <div className="shrink-0 w-12 h-12 bg-accent/20 rounded-sm flex items-center justify-center text-accent font-bold text-lg">G</div>
                     <div>
                       <h4 className="font-bold text-light">Google LLC</h4>
                       <p className="text-sm text-muted">{t.section4.google}</p>
@@ -426,8 +426,8 @@ const PrivacyPolicy: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-sm">
-                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-lg">M</div>
+                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-xs">
+                    <div className="shrink-0 w-12 h-12 bg-accent/20 rounded-sm flex items-center justify-center text-accent font-bold text-lg">M</div>
                     <div>
                       <h4 className="font-bold text-light">Meta Platforms Inc.</h4>
                       <p className="text-sm text-muted">{t.section4.meta}</p>
@@ -435,8 +435,8 @@ const PrivacyPolicy: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-sm">
-                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-lg">H</div>
+                  <div className="flex items-start gap-4 p-4 bg-neutral-800/30 border border-divider rounded-xs">
+                    <div className="shrink-0 w-12 h-12 bg-accent/20 rounded-sm flex items-center justify-center text-accent font-bold text-lg">H</div>
                     <div>
                       <h4 className="font-bold text-light">{t.section4.hosting}</h4>
                       <p className="text-sm text-muted">{t.section4.hostingDesc}</p>
@@ -444,7 +444,7 @@ const PrivacyPolicy: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-sm">
+                <div className="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-xs">
                   <p className="text-sm text-light font-bold">
                     {t.section4.noSale}
                   </p>
@@ -460,21 +460,21 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-4">{t.section5.para1}</p>
                 <p className="text-muted leading-relaxed mb-4">{t.section5.para2}</p>
 
-                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 my-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-xs p-6 my-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-3">
                     {t.section5.safeguards}
                   </h4>
                   <ul className="space-y-2 text-sm text-muted">
                     <li className="flex items-start gap-3">
-                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                       <span>{t.section5.safeguard1}</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                       <span>{t.section5.safeguard2}</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                       <span>{t.section5.safeguard3}</span>
                     </li>
                   </ul>
@@ -490,19 +490,19 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-6">{t.section6.intro}</p>
 
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-xs">
                     <span className="text-light">{t.section6.contactForm}</span>
                     <span className="text-accent font-bold">24 {t.section6.months}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-xs">
                     <span className="text-light">{t.section6.analytics}</span>
                     <span className="text-accent font-bold">14 {t.section6.months}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-xs">
                     <span className="text-light">{t.section6.marketing}</span>
                     <span className="text-accent font-bold">{t.section6.untilUnsubscribe}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-sm">
+                  <div className="flex justify-between items-center p-4 bg-neutral-800/30 border border-divider rounded-xs">
                     <span className="text-light">{t.section6.serverLogs}</span>
                     <span className="text-accent font-bold">90 {t.section6.days}</span>
                   </div>
@@ -513,7 +513,7 @@ const PrivacyPolicy: React.FC = () => {
               <section data-section="consequences" id="consequences" className="scroll-mt-32">
                 <h2 className="text-2xl font-serif text-light mb-6 pb-3 border-b border-divider">
                   <span className="text-accent">7.</span> {t.section7.title}
-                  <span className="ml-2 text-xs bg-red-900/50 text-red-400 px-2 py-1 rounded uppercase tracking-wider">{t.section7.mandatory}</span>
+                  <span className="ml-2 text-xs bg-red-900/50 text-red-400 px-2 py-1 rounded-sm uppercase tracking-wider">{t.section7.mandatory}</span>
                 </h2>
 
                 <div className="space-y-4">
@@ -538,29 +538,29 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-6">{t.section8.intro}</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right1.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right1.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right2.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right2.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right3.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right3.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right4.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right4.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-accent mb-2">{t.section8.right5.title}</h4>
                     <p className="text-sm text-muted">{t.section8.right5.desc}</p>
                   </div>
                 </div>
 
-                <div className="bg-accent/10 border border-accent/30 rounded-sm p-6">
+                <div className="bg-accent/10 border border-accent/30 rounded-xs p-6">
                   <h4 className="font-bold text-light mb-3">{t.section8.howToExercise}</h4>
                   <p className="text-sm text-muted mb-3">{t.section8.emailUs}:</p>
                   <a
@@ -584,7 +584,7 @@ const PrivacyPolicy: React.FC = () => {
 
                 <p className="text-muted leading-relaxed mb-6">{t.section9.intro}</p>
 
-                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-xs p-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     Privacy Protection Authority (PPA)
                   </h4>
@@ -618,21 +618,21 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-6">{t.section10.intro}</p>
 
                 <div className="space-y-4">
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-light mb-2">{t.section10.necessary.title}</h4>
                     <p className="text-sm text-muted">{t.section10.necessary.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-light mb-2">{t.section10.analytics.title}</h4>
                     <p className="text-sm text-muted">{t.section10.analytics.desc}</p>
                   </div>
-                  <div className="bg-neutral-800/30 border border-divider rounded-sm p-5">
+                  <div className="bg-neutral-800/30 border border-divider rounded-xs p-5">
                     <h4 className="font-bold text-light mb-2">{t.section10.marketing.title}</h4>
                     <p className="text-sm text-muted">{t.section10.marketing.desc}</p>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-sm">
+                <div className="mt-6 p-4 bg-accent/10 border border-accent/30 rounded-xs">
                   <p className="text-sm text-light">
                     {t.section10.changePref} <Link to="/" className="text-accent hover:text-light underline underline-offset-2">{t.section10.cookieBanner}</Link>
                   </p>
@@ -658,21 +658,21 @@ const PrivacyPolicy: React.FC = () => {
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-green-900/30 rounded flex items-center justify-center text-green-400">🔒</div>
+                    <div className="shrink-0 w-10 h-10 bg-green-900/30 rounded-sm flex items-center justify-center text-green-400">🔒</div>
                     <div>
                       <h4 className="font-bold text-light mb-1">{t.section12.encryption}</h4>
                       <p className="text-sm text-muted">{t.section12.encryptionDesc}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-green-900/30 rounded flex items-center justify-center text-green-400">👥</div>
+                    <div className="shrink-0 w-10 h-10 bg-green-900/30 rounded-sm flex items-center justify-center text-green-400">👥</div>
                     <div>
                       <h4 className="font-bold text-light mb-1">{t.section12.accessControl}</h4>
                       <p className="text-sm text-muted">{t.section12.accessControlDesc}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-orange-900/30 rounded flex items-center justify-center text-orange-400">⚠️</div>
+                    <div className="shrink-0 w-10 h-10 bg-orange-900/30 rounded-sm flex items-center justify-center text-orange-400">⚠️</div>
                     <div>
                       <h4 className="font-bold text-light mb-1">{t.section12.breach}</h4>
                       <p className="text-sm text-muted">{t.section12.breachDesc}</p>
@@ -693,7 +693,7 @@ const PrivacyPolicy: React.FC = () => {
 
               {/* Section 14 - GDPR Addendum for EU/EEA Residents */}
               <section data-section="gdpr-addendum" id="gdpr-addendum" className="scroll-mt-32">
-                <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-sm p-6 mb-6">
+                <div className="bg-linear-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-xs p-6 mb-6">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-3xl">🇪🇺</span>
                     <h2 className="text-2xl font-serif text-light">
@@ -706,7 +706,7 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="text-muted leading-relaxed mb-6">{t.section14.intro}</p>
 
                 {/* GDPR Legal Bases Table */}
-                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-xs p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.legalBasisTitle}
                   </h4>
@@ -722,7 +722,7 @@ const PrivacyPolicy: React.FC = () => {
                         <tr className="border-b border-divider bg-neutral-800/30">
                           <td className="p-3 text-light">{t.section14.table.row1.activity}</td>
                           <td className="p-3">
-                            <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">
+                            <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded-sm text-xs">
                               {t.section14.table.row1.basis}
                             </span>
                           </td>
@@ -730,7 +730,7 @@ const PrivacyPolicy: React.FC = () => {
                         <tr className="border-b border-divider">
                           <td className="p-3 text-light">{t.section14.table.row2.activity}</td>
                           <td className="p-3">
-                            <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">
+                            <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded-sm text-xs">
                               {t.section14.table.row2.basis}
                             </span>
                           </td>
@@ -738,7 +738,7 @@ const PrivacyPolicy: React.FC = () => {
                         <tr className="border-b border-divider bg-neutral-800/30">
                           <td className="p-3 text-light">{t.section14.table.row3.activity}</td>
                           <td className="p-3">
-                            <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">
+                            <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded-sm text-xs">
                               {t.section14.table.row3.basis}
                             </span>
                           </td>
@@ -746,7 +746,7 @@ const PrivacyPolicy: React.FC = () => {
                         <tr className="bg-neutral-800/30">
                           <td className="p-3 text-light">{t.section14.table.row4.activity}</td>
                           <td className="p-3">
-                            <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">
+                            <span className="inline-block px-2 py-1 bg-blue-900/30 text-blue-400 rounded-sm text-xs">
                               {t.section14.table.row4.basis}
                             </span>
                           </td>
@@ -757,12 +757,12 @@ const PrivacyPolicy: React.FC = () => {
                 </div>
 
                 {/* GDPR Additional Rights */}
-                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-xs p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.additionalRightsTitle}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-neutral-900/50 border border-neutral-600 rounded-sm p-4">
+                    <div className="bg-neutral-900/50 border border-neutral-600 rounded-xs p-4">
                       <h5 className="font-bold text-light mb-2 flex items-center gap-2">
                         <span className="text-accent">Article 20</span>
                         <span className="text-sm text-accent">📦</span>
@@ -770,7 +770,7 @@ const PrivacyPolicy: React.FC = () => {
                       <p className="text-sm text-muted">{t.section14.rightPortability}</p>
                       <p className="text-xs text-muted mt-2">{t.section14.rightPortabilityDesc}</p>
                     </div>
-                    <div className="bg-neutral-900/50 border border-neutral-600 rounded-sm p-4">
+                    <div className="bg-neutral-900/50 border border-neutral-600 rounded-xs p-4">
                       <h5 className="font-bold text-light mb-2 flex items-center gap-2">
                         <span className="text-accent">Article 18</span>
                         <span className="text-sm text-accent">🔒</span>
@@ -782,30 +782,30 @@ const PrivacyPolicy: React.FC = () => {
                 </div>
 
                 {/* Supervisory Authority */}
-                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-xs p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.supervisoryAuthorityTitle}
                   </h4>
                   <p className="text-sm text-muted mb-4">{t.section14.supervisoryAuthorityDesc}</p>
                   <ul className="space-y-2 text-sm text-muted">
                     <li className="flex items-start gap-3">
-                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                       <span>{t.section14.supervisoryAuthority1}</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <ChevronRight size={16} className="text-accent flex-shrink-0 mt-0.5" />
+                      <ChevronRight size={16} className="text-accent shrink-0 mt-0.5" />
                       <span>{t.section14.supervisoryAuthority2}</span>
                     </li>
                   </ul>
                 </div>
 
                 {/* International Transfers */}
-                <div className="bg-neutral-800/50 border border-divider rounded-sm p-6 mb-6">
+                <div className="bg-neutral-800/50 border border-divider rounded-xs p-6 mb-6">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-accent mb-4">
                     {t.section14.internationalTransfersTitle}
                   </h4>
                   <p className="text-sm text-muted mb-4">{t.section14.internationalTransfersDesc}</p>
-                  <div className="bg-blue-900/20 border border-blue-500/30 rounded-sm p-4">
+                  <div className="bg-blue-900/20 border border-blue-500/30 rounded-xs p-4">
                     <p className="text-sm text-light">
                       <strong className="text-accent">SCC (Standard Contractual Clauses):</strong> {t.section14.sccDesc}
                     </p>
@@ -813,12 +813,12 @@ const PrivacyPolicy: React.FC = () => {
                 </div>
 
                 {/* GDPR Request Form Link */}
-                <div className="bg-accent/10 border border-accent/30 rounded-sm p-6">
+                <div className="bg-accent/10 border border-accent/30 rounded-xs p-6">
                   <h4 className="font-bold text-light mb-3">{t.section14.requestFormTitle}</h4>
                   <p className="text-sm text-muted mb-4">{t.section14.requestFormDesc}</p>
                   <Link
                     to="/gdpr-request"
-                    className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-sm font-bold hover:bg-light hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-xs font-bold hover:bg-light hover:text-primary transition-colors"
                   >
                     {t.section14.requestFormButton}
                     <ExternalLink size={16} />

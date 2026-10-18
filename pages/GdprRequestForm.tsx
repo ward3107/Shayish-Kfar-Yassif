@@ -336,7 +336,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
             <p className="text-muted mb-6">{t.notEUMessage}</p>
             <a
               href="/contact"
-              className="inline-block px-6 py-3 bg-accent text-white font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-sm"
+              className="inline-block px-6 py-3 bg-accent text-white font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-xs"
             >
               Go to Contact Form
             </a>
@@ -379,7 +379,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
         {/* GDPR Notice */}
         <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-6 mb-8">
           <p className="text-sm text-muted flex items-start gap-3">
-            <FileText className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+            <FileText className="w-5 h-5 text-accent shrink-0 mt-0.5" />
             <span>{t.gdprOnlyNote}</span>
           </p>
         </div>
@@ -388,7 +388,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
         {submitStatus === 'success' && (
           <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-6 mb-8">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0" />
+              <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0" />
               <div>
                 <h3 className="font-bold text-green-500 mb-2">{t.successTitle}</h3>
                 <p className="text-sm text-muted">{t.successMessage}</p>
@@ -401,7 +401,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
         {submitStatus === 'error' && (
           <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6 mb-8">
             <div className="flex items-start gap-3">
-              <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
+              <AlertCircle className="w-6 h-6 text-red-500 shrink-0" />
               <div>
                 <h3 className="font-bold text-red-500 mb-2">{t.errorTitle}</h3>
                 <p className="text-sm text-muted">
@@ -456,7 +456,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-sm text-light focus:outline-none focus:border-accent transition-colors"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-xs text-light focus:outline-hidden focus:border-accent transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -474,7 +474,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                     setConfirmEmail(e.target.value);
                     setEmailError('');
                   }}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-sm text-light focus:outline-none focus:border-accent transition-colors"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-xs text-light focus:outline-hidden focus:border-accent transition-colors"
                   placeholder="your@email.com"
                 />
                 {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
@@ -489,7 +489,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-sm text-light focus:outline-none focus:border-accent transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-divider rounded-xs text-light focus:outline-hidden focus:border-accent transition-colors resize-none"
                   placeholder="Please provide any additional details about your request..."
                 />
               </div>
@@ -517,7 +517,7 @@ const GdprRequestForm: React.FC<GdprRequestFormProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-4 bg-accent text-white font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-8 py-4 bg-accent text-white font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-xs flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>

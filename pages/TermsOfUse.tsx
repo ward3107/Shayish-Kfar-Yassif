@@ -753,7 +753,7 @@ const TermsOfUse: React.FC = () => {
           <div className="flex-1">
         {/* Section 1 */}
         <section id="section-1" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section1.title}</h2>
             <p className="text-muted mt-1">{t.section1.subtitle}</p>
           </div>
@@ -770,7 +770,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 2 */}
         <section id="section-2" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section2.title}</h2>
             <p className="text-muted mt-1">{t.section2.subtitle}</p>
           </div>
@@ -792,7 +792,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 3 */}
         <section id="section-3" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section3.title}</h2>
             <p className="text-muted mt-1">{t.section3.subtitle}</p>
           </div>
@@ -824,7 +824,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 4 */}
         <section id="section-4" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section4.title}</h2>
             <p className="text-muted mt-1">{t.section4.subtitle}</p>
           </div>
@@ -838,7 +838,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 5 */}
         <section id="section-5" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section5.title}</h2>
             <p className="text-muted mt-1">{t.section5.subtitle}</p>
           </div>
@@ -853,7 +853,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 6 */}
         <section id="section-6" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section6.title}</h2>
             <p className="text-muted mt-1">{t.section6.subtitle}</p>
           </div>
@@ -869,7 +869,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 7 */}
         <section id="section-7" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section7.title}</h2>
             <p className="text-muted mt-1">{t.section7.subtitle}</p>
           </div>
@@ -882,7 +882,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 8 */}
         <section id="section-8" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section8.title}</h2>
             <p className="text-muted mt-1">{t.section8.subtitle}</p>
           </div>
@@ -903,7 +903,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 9 */}
         <section id="section-9" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section9.title}</h2>
             <p className="text-muted mt-1">{t.section9.subtitle}</p>
           </div>
@@ -916,7 +916,7 @@ const TermsOfUse: React.FC = () => {
 
         {/* Section 10 */}
         <section id="section-10" className="mb-16 scroll-mt-32">
-          <div className="bg-gradient-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
+          <div className="bg-linear-to-r from-accent/10 to-transparent border-r-4 border-accent pr-6 py-4 mb-6">
             <h2 className="text-2xl font-serif text-accent">{t.section10.title}</h2>
             <p className="text-muted mt-1">{t.section10.subtitle}</p>
           </div>

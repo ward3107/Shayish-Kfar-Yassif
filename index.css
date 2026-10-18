@@ -1,6 +1,41 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is([data-theme="dark"] *));
+
+/* Resolve theme aliases on the element so light/dark values stay in sync. */
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-light: var(--color-text-main);
+  --color-surface: var(--color-surface);
+  --color-muted: var(--color-text-muted);
+  --color-divider: var(--color-border);
+
+  --font-sans: Heebo, Assistant, sans-serif;
+  --font-serif: Playfair Display, serif;
+  --font-arabic: Tajawal, sans-serif;
+
+  --tracking-widest: 0.25em;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 /* Slow zoom + drift ("Ken Burns") for hero background images. Runs on every
    layer; the fade between layers keeps consecutive shots feeling cinematic. */

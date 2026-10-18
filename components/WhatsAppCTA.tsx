@@ -27,7 +27,7 @@ const WhatsAppCTA: React.FC<WhatsAppCTAProps> = ({ variant = 'card' }) => {
 
   return (
     <div className="bg-secondary p-8 md:p-12 border border-divider relative overflow-hidden transition-colors duration-300">
-      <div className={`absolute top-0 w-[1px] h-20 bg-accent ${dir === 'rtl' ? 'right-12' : 'left-12'}`}></div>
+      <div className={`absolute top-0 w-px h-20 bg-accent ${dir === 'rtl' ? 'right-12' : 'left-12'}`}></div>
 
       <h3 className="text-3xl font-serif text-light mb-2">{t('whatsapp.title')}</h3>
       <p className="text-muted mb-10 text-sm tracking-wide leading-relaxed">

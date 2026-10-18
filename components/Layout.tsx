@@ -106,7 +106,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled 
-            ? 'bg-primary backdrop-blur-md border-divider py-4 shadow-sm'
+            ? 'bg-primary backdrop-blur-md border-divider py-4 shadow-xs'
             : isOverDarkHero
               ? 'bg-[#101916]/85 backdrop-blur-md border-[#c3a16f]/35 py-4 shadow-lg'
               : 'bg-primary/95 backdrop-blur-md border-divider py-4'
@@ -233,7 +233,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </div>
 
       {/* Main Content */}
-      <main id="main-content" className="flex-grow" role="main" tabIndex={-1}>
+      <main id="main-content" className="grow" role="main" tabIndex={-1}>
         {children}
       </main>
 

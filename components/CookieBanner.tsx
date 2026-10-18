@@ -438,7 +438,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
       aria-label={t.aria.banner}
       aria-live="polite"
       dir={dir}
-      className={`fixed bottom-0 left-0 right-0 z-[9999] bg-secondary/98 backdrop-blur-md border-t border-divider shadow-2xl transition-all duration-300 ${
+      className={`fixed bottom-0 left-0 right-0 z-9999 bg-secondary/98 backdrop-blur-md border-t border-divider shadow-2xl transition-all duration-300 ${
         isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
     >
@@ -487,14 +487,14 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
               <>
                 <button
                   onClick={handleAcceptAll}
-                  className="px-6 py-3 bg-accent text-white text-sm font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-sm"
+                  className="px-6 py-3 bg-accent text-white text-sm font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-xs"
                   aria-label={t.acceptAll}
                 >
                   {t.acceptAll}
                 </button>
                 <button
                   onClick={handleRejectAll}
-                  className="px-6 py-3 bg-transparent border border-neutral-600 text-light text-sm font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors rounded-sm"
+                  className="px-6 py-3 bg-transparent border border-neutral-600 text-light text-sm font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors rounded-xs"
                   aria-label={t.rejectAll}
                 >
                   {t.rejectAll}
@@ -531,10 +531,10 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             aria-label={t.customize}
           >
             {/* Necessary Cookies - Always ON */}
-            <div className="mb-5 p-4 bg-neutral-800/50 rounded-sm border border-divider">
+            <div className="mb-5 p-4 bg-neutral-800/50 rounded-xs border border-divider">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-5 h-5 rounded-sm bg-accent/20 border-2 border-accent flex items-center justify-center">
+                <div className="shrink-0 mt-1">
+                  <div className="w-5 h-5 rounded-xs bg-accent/20 border-2 border-accent flex items-center justify-center">
                     <svg className="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
@@ -549,14 +549,14 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
 
             {/* Do Not Sell or Share Toggle - GDPR Article 21 */}
             {isEU && euDetectionComplete && (
-              <div className="mb-5 p-4 bg-purple-900/20 rounded-sm border border-purple-500/30 hover:border-purple-500/50 transition-colors">
+              <div className="mb-5 p-4 bg-purple-900/20 rounded-xs border border-purple-500/30 hover:border-purple-500/50 transition-colors">
                 <div className="flex items-start gap-4">
                   <button
                     onClick={() => setDoNotSell(!doNotSell)}
                     role="switch"
                     aria-checked={doNotSell}
                     aria-label={`${t.doNotSell.label}: ${doNotSell ? 'enabled' : 'disabled'}`}
-                    className={`flex-shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-secondary ${
+                    className={`shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-secondary ${
                       doNotSell ? 'bg-purple-500' : 'bg-neutral-600'
                     }`}
                     tabIndex={0}
@@ -576,7 +576,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
                   <div className="flex-1">
                     <h3 className="text-sm font-bold text-light mb-1 flex items-center gap-2">
                       {t.doNotSell.label}
-                      <span className="text-xs px-2 py-0.5 bg-purple-500/30 text-purple-300 rounded">
+                      <span className="text-xs px-2 py-0.5 bg-purple-500/30 text-purple-300 rounded-sm">
                         {t.doNotSell.legalBasis?.split(':')[0] || 'GDPR Article 21'}
                       </span>
                     </h3>
@@ -587,14 +587,14 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             )}
 
             {/* Analytics Toggle */}
-            <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-divider hover:border-neutral-600 transition-colors">
+            <div className="mb-5 p-4 bg-neutral-800/30 rounded-xs border border-divider hover:border-neutral-600 transition-colors">
               <div className="flex items-start gap-4">
                 <button
                   onClick={() => setAnalytics(!analytics)}
                   role="switch"
                   aria-checked={analytics}
                   aria-label={`${t.analytics.label}: ${analytics ? 'enabled' : 'disabled'}`}
-                  className={`flex-shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-secondary ${
+                  className={`shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-secondary ${
                     analytics ? 'bg-accent' : 'bg-neutral-600'
                   }`}
                   tabIndex={0}
@@ -615,7 +615,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
                   <h3 className="text-sm font-bold text-light mb-1">
                     {t.analytics.label}
                     {isEU && euDetectionComplete && t.analytics.legalBasis && (
-                      <span className="ml-2 text-xs px-2 py-0.5 bg-blue-900/30 text-blue-300 rounded">
+                      <span className="ml-2 text-xs px-2 py-0.5 bg-blue-900/30 text-blue-300 rounded-sm">
                         {t.analytics.legalBasis?.split(':')[0] || 'Article 6(1)(a)'}
                       </span>
                     )}
@@ -629,14 +629,14 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
             </div>
 
             {/* Marketing Toggle */}
-            <div className="mb-5 p-4 bg-neutral-800/30 rounded-sm border border-divider hover:border-neutral-600 transition-colors">
+            <div className="mb-5 p-4 bg-neutral-800/30 rounded-xs border border-divider hover:border-neutral-600 transition-colors">
               <div className="flex items-start gap-4">
                 <button
                   onClick={() => setMarketing(!marketing)}
                   role="switch"
                   aria-checked={marketing}
                   aria-label={`${t.marketing.label}: ${marketing ? 'enabled' : 'disabled'}`}
-                  className={`flex-shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-secondary ${
+                  className={`shrink-0 w-12 h-6 rounded-full transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-secondary ${
                     marketing ? 'bg-accent' : 'bg-neutral-600'
                   }`}
                   tabIndex={0}
@@ -657,7 +657,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
                   <h3 className="text-sm font-bold text-light mb-1">
                     {t.marketing.label}
                     {isEU && euDetectionComplete && t.marketing.legalBasis && (
-                      <span className="ml-2 text-xs px-2 py-0.5 bg-green-900/30 text-green-300 rounded">
+                      <span className="ml-2 text-xs px-2 py-0.5 bg-green-900/30 text-green-300 rounded-sm">
                         {t.marketing.legalBasis?.split(':')[0] || 'Article 6(1)(a)'}
                       </span>
                     )}
@@ -702,7 +702,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({
                 </a>
                 <button
                   onClick={handleSavePreferences}
-                  className="px-6 py-3 bg-accent text-white text-sm font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-sm whitespace-nowrap"
+                  className="px-6 py-3 bg-accent text-white text-sm font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors rounded-xs whitespace-nowrap"
                 >
                   {t.savePreferences}
                 </button>
