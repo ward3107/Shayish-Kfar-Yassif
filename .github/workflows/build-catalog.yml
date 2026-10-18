@@ -52,7 +52,7 @@ jobs:
           python catalog/build-preview.py
 
       - name: Preserve generated catalog
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: generated-catalog
           retention-days: 7
