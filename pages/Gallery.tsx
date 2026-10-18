@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Instagram, ArrowUpRight, FileText } from 'lucide-react';
+import { Instagram, ArrowUpRight, FileText, Heart } from 'lucide-react';
+import { selectionCopy } from '../lib/selectionCopy';
 import { useLanguage } from '../contexts/LanguageContext';
 import { CONTACT } from '../constants';
 import WhatsAppCTA from '../components/WhatsAppCTA';
@@ -8,7 +9,7 @@ import GalleryGrid from '../components/GalleryGrid';
 const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog-v2.pdf';
 
 const Gallery: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     document.title = `${t('gallery.title')} | ${t('meta.brand')}`;
@@ -21,6 +22,7 @@ const Gallery: React.FC = () => {
           <div className="text-xs uppercase tracking-widest text-accent mb-2">{t('gallery.eyebrow')}</div>
           <h1 className="text-4xl md:text-6xl font-serif text-light mb-4">{t('gallery.title')}</h1>
           <p className="text-muted font-light max-w-2xl">{t('gallery.subtitle')}</p>
+          <p className="selection-gallery-hint"><Heart size={19} aria-hidden="true" />{selectionCopy[language].hint}</p>
         </header>
 
         {/* Owner-curated project media, powered by Cloudinary. */}

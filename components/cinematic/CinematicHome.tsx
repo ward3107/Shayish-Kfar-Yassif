@@ -11,6 +11,8 @@ import { homeSlabs, slabNamingCopy } from './slabs';
 import { materialCopy } from './materialBreakdown';
 import MaterialExplorer from './MaterialExplorer';
 import InteractiveVase from './InteractiveVase';
+import { SelectionHeart } from '../SelectionControls';
+import { selectionCopy } from '../../lib/selectionCopy';
 import './CinematicHome.css';
 
 const slabSource = (name: string) => `/stone-slabs/edited/${name}.jpeg`;
@@ -63,11 +65,13 @@ export default function CinematicHome() {
       </section>
       <section id="slabs" className="ch-slabs" aria-labelledby="ch-slabs-title">
         <div className="ch-slabs-heading"><div><p className="ch-eyebrow">STONE / 01—13</p><h2 id="ch-slabs-title">{s.title}</h2><p>{s.intro}</p></div><small>{s.note}</small></div>
+        <p className="ch-selection-hint">♡ {selectionCopy[language].hint}</p>
         <div className="ch-slabs-line" aria-hidden="true" />
         <div className="ch-slabs-arrival">
         <div ref={slabs.stage} className="ch-slabs-stage" data-dragging={slabs.dragging} tabIndex={0} onScroll={slabs.onScroll} onWheel={slabs.onWheel} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();slabs.goTo(slabs.active+(event.key==='ArrowLeft'?(dir==='rtl'?1:-1):(dir==='rtl'?-1:1)));}}} onPointerDown={slabs.onPointerDown} onPointerMove={slabs.onPointerMove} onPointerUp={slabs.onPointerUp} onPointerCancel={slabs.onPointerCancel} aria-label={s.title} role="region">
           {homeSlabs.map((slab, i) => (
             <figure key={slab.id} className="ch-slab">
+              <SelectionHeart item={`s:${slab.id}`} label={slab.name[language]} />
               <button type="button" onClick={()=>{if(!slabs.canOpen())return;setSelectedSlab(i);slabDialog.current?.showModal();}} aria-label={`${s.edited}: ${slab.name[language]} — ${s.slab} ${i+1}`}><img src={slabImage(slab.id)} srcSet={localPhotoSrcSet(slabSource(slab.id))} sizes="(min-width: 751px) 65vw, 88vw" alt={slab.name[language]} loading={Math.abs(i-slabs.active)<=2?'eager':'lazy'} decoding="async" draggable={false} width="1448" height="1086" /></button>
               <figcaption className="ch-slab-caption"><div><strong>{slab.name[language]}</strong>{language !== 'en' && <small><bdi dir="ltr">{slab.tradeName}</bdi></small>}</div><span dir="ltr">{String(i+1).padStart(2,'0')}</span></figcaption>
             </figure>
@@ -77,7 +81,7 @@ export default function CinematicHome() {
         <p className="ch-slab-naming-note">{naming.note}</p>
         </div>
       </section>
-      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-labelledby="ch-slab-name"><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(selected.id)} srcSet={localPhotoSrcSet(slabSource(selected.id))} sizes="95vw" alt={selected.name[language]} /><div className="ch-slab-caption"><div><strong id="ch-slab-name">{selected.name[language]}</strong>{language !== 'en' && <small><bdi dir="ltr">{selected.tradeName}</bdi></small>}</div><span dir="ltr">{String(selectedSlab+1).padStart(2,'0')}</span></div></dialog>
+      <dialog ref={slabDialog} className="ch-slab-dialog" onClick={event=>{if(event.target===event.currentTarget)slabDialog.current?.close();}} aria-labelledby="ch-slab-name"><button type="button" className="ch-slab-close" onClick={()=>slabDialog.current?.close()} aria-label={c.close}>×</button><img src={slabImage(selected.id)} srcSet={localPhotoSrcSet(slabSource(selected.id))} sizes="95vw" alt={selected.name[language]} /><div className="ch-slab-caption"><SelectionHeart item={`s:${selected.id}`} label={selected.name[language]} inline /><div><strong id="ch-slab-name">{selected.name[language]}</strong>{language !== 'en' && <small><bdi dir="ltr">{selected.tradeName}</bdi></small>}</div><span dir="ltr">{String(selectedSlab+1).padStart(2,'0')}</span></div></dialog>
       <div id="gallery" className="ch-section-label"><span>{c.selected}</span><span dir="ltr">SELECTED SPACES / 01—03</span></div>
       {c.projects.map((p,i)=>(
         <section key={i} className={`ch-project ch-tone-${i}`} aria-labelledby={`ch-title-${i}`}>
@@ -85,10 +89,10 @@ export default function CinematicHome() {
             <div className="ch-project-meta"><span><b dir="ltr">0{i+1}</b> / {p.category}</span><span className="ch-phase"><span>{c.room}</span><span>{c.detail}</span></span></div>
             <div className="ch-composition">
               <div className="ch-project-copy"><p className="ch-eyebrow">{p.title}</p><h2 id={`ch-title-${i}`}>{p.headline}</h2><p>{p.description}</p><button className="ch-text-button" onClick={()=>openProject(i)}>{c.full} +</button></div>
-              <button className="ch-photo" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span>{p.title} <b aria-hidden="true">↗</b></span></button>
+              <div className="ch-photo"><SelectionHeart item={projectPublicIds[i]} label={p.title} /><button className="ch-photo-open" onClick={()=>openProject(i)} aria-label={`${c.full}: ${p.title}`}><img src={projectImages[i]} srcSet={imgSrcSet(projectPublicIds[i], [480, 800, 1200])} sizes="(min-width: 751px) 60vw, 100vw" alt={`${p.title} — ${p.category}`} loading="lazy" decoding="async" width="1200" height="1600" /><span className="ch-photo-caption">{p.title} <b aria-hidden="true">↗</b></span></button></div>
               <div className="ch-details" aria-label={c.detailNote}>
                 <div><p className="ch-eyebrow">{c.detail}</p><h3>{p.detail}</h3></div>
-                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><button type="button" onClick={()=>setMaterialSelection({project:i,view:j})} aria-haspopup="dialog" aria-label={`${materialCopy[language].open}: ${p.title} — ${caption}`}><img src={projectDetailImages[i][j]} srcSet={imgSrcSet(projectDetailPublicIds[i][j], [480, 800])} sizes="(min-width: 751px) 18vw, 24vw" alt={`${p.title} — ${caption}`} loading="lazy" decoding="async" /><span className="ch-detail-open" aria-hidden="true">+</span></button><figcaption>{caption}</figcaption></figure>)}</div>
+                <div className="ch-detail-pair">{p.captions.map((caption,j)=><figure key={j}><SelectionHeart item={projectDetailPublicIds[i][j]} label={`${p.title} — ${caption}`} /><button type="button" onClick={()=>setMaterialSelection({project:i,view:j})} aria-haspopup="dialog" aria-label={`${materialCopy[language].open}: ${p.title} — ${caption}`}><img src={projectDetailImages[i][j]} srcSet={imgSrcSet(projectDetailPublicIds[i][j], [480, 800])} sizes="(min-width: 751px) 18vw, 24vw" alt={`${p.title} — ${caption}`} loading="lazy" decoding="async" /><span className="ch-detail-open" aria-hidden="true">+</span></button><figcaption>{caption}</figcaption></figure>)}</div>
                 <small>{c.detailNote}</small>
               </div>
             </div>
@@ -98,7 +102,7 @@ export default function CinematicHome() {
       ))}
       <div className="ch-collection-link"><Link to="/gallery" className="ch-pill">{c.all} <span aria-hidden="true">↗</span></Link></div>
       <section className="ch-material" aria-labelledby="ch-material-title">
-        <div className="ch-material-image"><img src={projectImages[look]} srcSet={imgSrcSet(projectPublicIds[look], [480, 800, 1200])} sizes="(min-width: 751px) 50vw, 100vw" alt={c.projects[look].title} loading="lazy" width="1200" height="1600" /><span dir="ltr">0{look+1} / 03</span></div>
+        <div className="ch-material-image"><SelectionHeart item={projectPublicIds[look]} label={c.projects[look].title} /><img src={projectImages[look]} srcSet={imgSrcSet(projectPublicIds[look], [480, 800, 1200])} sizes="(min-width: 751px) 50vw, 100vw" alt={c.projects[look].title} loading="lazy" width="1200" height="1600" /><span dir="ltr">0{look+1} / 03</span></div>
         <div className="ch-material-copy"><p className="ch-eyebrow">{c.material}</p><h2 id="ch-material-title">{c.materialTitle}</h2><p aria-live="polite">{c.lookDescriptions[look]}</p><div className="ch-looks" role="group" aria-label={c.material}>{c.looks.map((label,i)=><button key={i} aria-pressed={look===i} onClick={()=>setLook(i)}>{label}</button>)}</div><small>{c.real}</small></div>
       </section>
       <section className="ch-craft" style={{ '--craft-photo': `url("${localPhoto('/cinematic/cutting-still.webp')}")` } as React.CSSProperties} aria-labelledby="ch-craft-title">
@@ -110,7 +114,7 @@ export default function CinematicHome() {
       {materialSelection && <MaterialExplorer project={materialSelection.project} initialView={materialSelection.view} language={language} reduced={reduced} onClose={()=>setMaterialSelection(null)} />}
       <dialog ref={dialog} className="ch-dialog" aria-labelledby="ch-dialog-title" onClick={e=>{if(e.target===e.currentTarget)dialog.current?.close();}}>
         <button className="ch-close" onClick={()=>dialog.current?.close()}>{c.close} ×</button>
-        <div className="ch-dialog-content"><img src={projectImages[project]} srcSet={imgSrcSet(projectPublicIds[project], [640, 960, 1200])} sizes="(min-width: 751px) 64vw, 100vw" alt={c.projects[project].title} /><div><p className="ch-eyebrow">{c.projects[project].category}</p><h2 id="ch-dialog-title">{c.projects[project].title}</h2><p>{c.projects[project].description}</p><a href={chat} className="ch-pill" target="_blank" rel="noopener noreferrer">{c.chat} +</a></div></div>
+        <div className="ch-dialog-content"><img src={projectImages[project]} srcSet={imgSrcSet(projectPublicIds[project], [640, 960, 1200])} sizes="(min-width: 751px) 64vw, 100vw" alt={c.projects[project].title} /><div><p className="ch-eyebrow">{c.projects[project].category}</p><h2 id="ch-dialog-title">{c.projects[project].title}</h2><SelectionHeart item={projectPublicIds[project]} label={c.projects[project].title} inline /><p>{c.projects[project].description}</p><a href={chat} className="ch-pill" target="_blank" rel="noopener noreferrer">{c.chat} +</a></div></div>
       </dialog>
     </div>
   );

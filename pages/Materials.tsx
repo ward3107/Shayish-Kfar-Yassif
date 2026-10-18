@@ -3,6 +3,7 @@ import { Box, Loader2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { heroUrl, croppedImgSrcSet } from '../lib/galleryData';
+import { SelectionHeart } from '../components/SelectionControls';
 
 // Three.js is heavy (~800 kB with fiber + drei). The explorer chunk only
 // downloads when the user actually clicks "Launch 3D Viewer" below —
@@ -95,7 +96,8 @@ const Materials: React.FC = () => {
           <div ref={typesGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {types.map((t2) => (
               <div key={t2.key} className="group">
-                <div className="overflow-hidden aspect-[4/5] mb-5 border border-divider/50">
+                <div className="relative overflow-hidden aspect-[4/5] mb-5 border border-divider/50">
+                  <SelectionHeart item={`m:${t2.id}`} label={t(`materials.type_${t2.key}`)} />
                   <img
                     src={img(t2.id, 700, 900)}
                     srcSet={croppedImgSrcSet(`shayish/materials/${t2.id}`, [360, 560, 800, 1120], 7 / 9)}
@@ -128,7 +130,8 @@ const Materials: React.FC = () => {
           <div ref={finishGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {finishes.map((f) => (
               <div key={f.key} className="group cursor-pointer">
-                <div className="overflow-hidden aspect-square mb-4 border border-divider/50">
+                <div className="relative overflow-hidden aspect-square mb-4 border border-divider/50">
+                  <SelectionHeart item={`m:${f.id}`} label={t(`materials.finish_${f.key}`)} />
                   <img
                     src={img(f.id, 600, 600)}
                     srcSet={croppedImgSrcSet(`shayish/materials/${f.id}`, [320, 480, 640, 960, 1280], 1)}
@@ -162,6 +165,7 @@ const Materials: React.FC = () => {
           <div ref={trendsGridRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {trends.map((t3) => (
               <div key={t3.key} className="group relative overflow-hidden aspect-[4/3] border border-divider/50">
+                <SelectionHeart item={`m:${t3.id}`} label={t(`materials.trend_${t3.key}`)} />
                 <img
                   src={img(t3.id, 1200, 900)}
                   srcSet={croppedImgSrcSet(`shayish/materials/${t3.id}`, [480, 800, 1200, 1600], 4 / 3)}

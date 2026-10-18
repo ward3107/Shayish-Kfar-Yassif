@@ -12,6 +12,9 @@ import { CONTACT } from '../constants';
 import { prefetchRoute } from '../utils/routePrefetch';
 import LanguageSwitcher from './LanguageSwitcher';
 import CreatorSignature from './CreatorSignature';
+import { SelectionBar } from './SelectionControls';
+import { useSelections } from '../contexts/SelectionContext';
+import { selectionCopy } from '../lib/selectionCopy';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +25,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const { language, setLanguage, t, dir } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const { refs: selections } = useSelections();
 
   useEffect(() => {
     let ticking = false;
@@ -85,6 +89,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { name: t('nav.home'), path: '/' },
     { name: t('nav.collections'), path: '/gallery' },
     { name: t('nav.faq'), path: '/faq' },
+    { name: `${selectionCopy[language].title}${selections.length ? ` (${selections.length})` : ''}`, path: '/favorites' },
   ];
 
   const CATALOG_URL = '/catalog/shayish-kfar-yassif-catalog-v2.pdf';
@@ -114,7 +119,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6" aria-label={t('nav.primary')}>
+          <nav className="hidden xl:flex items-center gap-6" aria-label={t('nav.primary')}>
              {/* Language + Theme Switcher */}
             <div className="flex items-center gap-6 border-e border-divider pe-6 me-4">
 
@@ -157,7 +162,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </nav>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-5 md:hidden z-50">
+          <div className="flex items-center gap-5 xl:hidden z-50">
             <button onClick={toggleTheme} className={headerText} aria-label="Toggle Theme">
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
@@ -184,7 +189,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         role="dialog"
         aria-modal="true"
         inert={!isMobileMenuOpen}
-        className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out md:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}
+        className={`fixed inset-0 z-40 bg-black transition-transform duration-700 ease-in-out xl:hidden flex flex-col items-center justify-center ${isMobileMenuOpen ? 'translate-x-0' : (dir === 'rtl' ? '-translate-x-full' : 'translate-x-full')}`}
       >
           <nav className="flex flex-col items-center gap-8">
             {navLinks.map((link) => (
@@ -308,6 +313,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </footer>
 
       <ContactFAB />
+      <SelectionBar />
       <ScrollToTop forceVisible={atFooter} />
       <CookieBanner />
     </div>
