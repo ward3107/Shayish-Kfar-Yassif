@@ -5,7 +5,7 @@ remove unrelated people, tools, packaging and installation debris, and improve
 framing, perspective and illumination. Two existing clean visualizations are
 retained. These are edited illustrations: reconstructed areas, stone patterns
 and other details can differ from the original photograph. The lightbox labels
-AI versions. Original files are retained privately in the asset history; the
+AI versions. Original files are retained for traceability; the
 public gallery has no original-photo comparison control.
 
 Retouches are exported to `public/photo-retouch-v2` with content fingerprints
