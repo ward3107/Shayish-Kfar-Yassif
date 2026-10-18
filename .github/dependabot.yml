@@ -1,37 +1,51 @@
+# Keep the React renderer and type packages together; majors still require owner review.
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: weekly
-      day: sunday
-      time: "06:00"
-      timezone: Asia/Jerusalem
-    open-pull-requests-limit: 3
-    cooldown:
-      default-days: 7
-    groups:
-      react-rendering:
-        patterns:
-          - react
-          - react-dom
-          - "@react-three/fiber"
-          - "@react-three/drei"
-      styling:
-        patterns:
-          - tailwindcss
-          - "@tailwindcss/*"
-      routine-updates:
-        patterns: ["*"]
-        update-types: [minor, patch]
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: weekly
-      day: sunday
-      time: "06:30"
-      timezone: Asia/Jerusalem
-    open-pull-requests-limit: 1
-    groups:
-      workflow-actions:
-        patterns: ["*"]
+- package-ecosystem: npm
+  directory: /
+  schedule:
+    interval: weekly
+    day: sunday
+    time: 06:00
+    timezone: Asia/Jerusalem
+  open-pull-requests-limit: 3
+  cooldown:
+    default-days: 7
+  groups:
+    react-compatible:
+      patterns:
+      - react
+      - react-dom
+      - '@types/react'
+      - '@types/react-dom'
+      update-types:
+      - minor
+      - patch
+    react-rendering:
+      patterns:
+      - react
+      - react-dom
+      - '@react-three/fiber'
+      - '@react-three/drei'
+    styling:
+      patterns:
+      - tailwindcss
+      - '@tailwindcss/*'
+    routine-updates:
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: weekly
+    day: sunday
+    time: 06:30
+    timezone: Asia/Jerusalem
+  open-pull-requests-limit: 1
+  groups:
+    workflow-actions:
+      patterns:
+      - '*'
