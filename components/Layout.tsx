@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Instagram, Sun, Moon, Lock, FileText } from 'lucide-react';
+import { Menu, X, Sun, Moon, Lock, FileText } from 'lucide-react';
+import { Instagram } from './InstagramIcon';
 // (Instagram still used in the footer + mobile-menu handle preview.)
 import Button from './Button';
 import ContactFAB from './ContactFAB';
