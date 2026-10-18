@@ -1,16 +1,8 @@
 name: Build catalog PDF
 
 on:
+  # Required check: run for every PR, including dependency updates.
   pull_request:
-    paths:
-      - '.github/workflows/build-catalog.yml'
-      - 'catalog/build.py'
-      - 'catalog/build-preview.py'
-      - 'catalog/catalog.css'
-      - 'catalog/assets/**'
-      - 'catalog/images/**'
-      - 'catalog/enhanced/**'
-      - 'catalog/objects/*.png'
   workflow_dispatch:
   push:
     branches: [main]
